@@ -22,7 +22,7 @@
                     <span asp-validation-for="Tensyll" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="cvFile" class="control-label">File CV(.pdf)
+                    <label asp-for="cvFile" class="control-label">File CV(pdf)
                         (<span style="color: red">*</span>)
                     </label>
                     <input asp-for="cvFile" class="form-control" type="file" id="cvFile" name="cvFile" required/>
@@ -30,9 +30,21 @@
                 </div>
                 <div class="form-group mt2">
                     <input class="btn btn-success" type="submit" value="Thêm mới" />
-                    <a class="btn btn-danger" asp-action="DanhSachTaiKhoan" asp-controller="DanhSachTaiKhoan">Bỏ qua</a>
+                    <a class="btn btn-danger" asp-action="DSCVUngVien" asp-controller="CV" asp-route-IdTK="@ViewBag.IdTk">Bỏ qua</a>
                 </div>
             </form>
         </div>
     </div>
 </div>
+<script>
+    document.getElementById('cvFile').addEventListener('change', function () {
+        var fileInput = this;
+        var filePath = fileInput.value;
+        var allowedExtensions = /(\.pdf)$/i;
+        if (!allowedExtensions.exec(filePath)) {
+            alert('Chỉ cho phép tệp PDF.');
+            fileInput.value = '';
+            return false;
+        }
+    });
+</script>

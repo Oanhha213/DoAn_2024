@@ -149,6 +149,27 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             return View(pagedList);
         }
 
+        [Route("XoaBTDDaThich")]
+        [HttpGet]
+        public IActionResult XoaBTDDaThich(int idTCV, int idTK)
+        {
+            TempData["Message"] = "";
+            var tcv = db.Thichcongviecs.Find(idTCV);
+            if (tcv != null)
+            {
+                db.Thichcongviecs.Remove(tcv);
+                db.SaveChanges();
+                TempData["Message"] = $"Xoá bài viết đã thích thành công";
+                TempData["MessageType"] = "success";
+            }
+            else
+            {
+                TempData["Message"] = $"Không tìm thấy";
+                TempData["MessageType"] = "error";
+            }
+            return RedirectToAction("BaiVietDaThich", "TKNguoiTimViec", new { idTK = idTK });
+        }
+
         [Route("ThichBaiViet")]
         [HttpPost]
         public IActionResult ThichBaiViet(int idBTD, int IdTK)
@@ -209,6 +230,27 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
                 return PartialView("_BTDUngTuyenPartial", pagedList);
             }
             return View(pagedList);
+        }
+
+        [Route("XoaBTDUngTuyen")]
+        [HttpGet]
+        public IActionResult XoaBTDUngTuyen(int idCVSYLL, int idTK)
+        {
+            TempData["Message"] = "";
+            var cvSyll = db.CongviecSylls.Find(idCVSYLL);
+            if (cvSyll != null)
+            {
+                db.CongviecSylls.Remove(cvSyll);
+                db.SaveChanges();
+                TempData["Message"] = $"Xoá bài viết đã ứng tuyển thành công";
+                TempData["MessageType"] = "success";
+            }
+            else
+            {
+                TempData["Message"] = $"Không tìm thấy";
+                TempData["MessageType"] = "error";
+            }
+            return RedirectToAction("DSBTDUngTuyen", "TKNguoiTimViec", new { idTK = idTK });
         }
 
         [Route("BTDChuaUT")]

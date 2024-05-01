@@ -449,12 +449,24 @@
       "PackagePath": "staticwebassets\\uploads\\Anh\\01c442b5-5269-41ce-b845-24424054d4de.png"
     },
     {
+      "Id": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\uploads\\Anh\\0249c2ed-f3d2-422c-b934-ee6a2be64dca.gif",
+      "PackagePath": "staticwebassets\\uploads\\Anh\\0249c2ed-f3d2-422c-b934-ee6a2be64dca.gif"
+    },
+    {
       "Id": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\uploads\\Anh\\06043f2d-d5f2-4f67-9cc3-c96ef7ffc8ac.jpg",
       "PackagePath": "staticwebassets\\uploads\\Anh\\06043f2d-d5f2-4f67-9cc3-c96ef7ffc8ac.jpg"
     },
     {
+      "Id": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\uploads\\Anh\\08d000e2-adb3-48a5-a966-b86f83a3bc90.jpg",
+      "PackagePath": "staticwebassets\\uploads\\Anh\\08d000e2-adb3-48a5-a966-b86f83a3bc90.jpg"
+    },
+    {
       "Id": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\uploads\\Anh\\1254a113-539d-43c9-b531-8128d410e290.jpg",
       "PackagePath": "staticwebassets\\uploads\\Anh\\1254a113-539d-43c9-b531-8128d410e290.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\uploads\\Anh\\12c544fa-6ac6-4b2f-849d-de5fef1700aa.jpg",
+      "PackagePath": "staticwebassets\\uploads\\Anh\\12c544fa-6ac6-4b2f-849d-de5fef1700aa.jpg"
     },
     {
       "Id": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\uploads\\Anh\\1aa72be7-3013-4ece-a77f-ead5b171a3fa.jpg",
@@ -471,6 +483,10 @@
     {
       "Id": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\uploads\\Anh\\3099dfb7-c2e1-4405-9462-76f2f70c7d99.jpg",
       "PackagePath": "staticwebassets\\uploads\\Anh\\3099dfb7-c2e1-4405-9462-76f2f70c7d99.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\uploads\\Anh\\347e0aec-95a4-47d6-955e-db5c5bc38d52.jpg",
+      "PackagePath": "staticwebassets\\uploads\\Anh\\347e0aec-95a4-47d6-955e-db5c5bc38d52.jpg"
     },
     {
       "Id": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\uploads\\Anh\\38588dbf-0b15-4135-b3e8-4a235c825760.jpg",
@@ -539,6 +555,10 @@
     {
       "Id": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\uploads\\Anh\\8e51daf7-6aa0-44d7-8623-d0e67734e588.jpg",
       "PackagePath": "staticwebassets\\uploads\\Anh\\8e51daf7-6aa0-44d7-8623-d0e67734e588.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\uploads\\Anh\\90599dcc-2fbb-4ec8-b79b-234e988e8705.jpg",
+      "PackagePath": "staticwebassets\\uploads\\Anh\\90599dcc-2fbb-4ec8-b79b-234e988e8705.jpg"
     },
     {
       "Id": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\uploads\\Anh\\90f49e84-a2dd-4c7f-9407-e765e7ecafcc.jpg",
@@ -643,6 +663,10 @@
     {
       "Id": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\uploads\\CV\\638500232598928935_CV.pdf",
       "PackagePath": "staticwebassets\\uploads\\CV\\638500232598928935_CV.pdf"
+    },
+    {
+      "Id": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\uploads\\CV\\638501997553751790_CV.pdf",
+      "PackagePath": "staticwebassets\\uploads\\CV\\638501997553751790_CV.pdf"
     },
     {
       "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.DoAnNet7_2.Microsoft.AspNetCore.StaticWebAssets.props",

@@ -152,7 +152,6 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
                 return RedirectToAction("Trangloi", "Home");
             }
 
-            // Mục 3: Kiểm tra ModelState Errors
             if (!ModelState.IsValid)
             {
                 foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
@@ -160,6 +159,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
                     Console.WriteLine(error.ErrorMessage);
                 }
             }
+            
             if (ModelState.IsValid)
             {
                 ct.IdTk = ID_TK.Value;
@@ -250,6 +250,26 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
                 ViewBag.Message = "Vui lòng kiểm tra lại thông tin";
             }
             return View(ct);
+        }
+        [Route("XoaCongTy")]
+        [HttpGet]
+        public IActionResult XoaCongTy(int idCT)
+        {
+            TempData["Message"] = "";
+            var ct = db.Congties.Find(idCT);
+            if (ct != null)
+            {
+                db.Congties.Remove(ct);
+                db.SaveChanges(); // Đẩy thay đổi vào database ngay sau khi xoá bài tuyển dụng
+                TempData["Message"] = $"Xoá công ty thành công";
+                TempData["MessageType"] = "success";
+            }
+            else
+            {
+                TempData["Message"] = $"Không tìm thấy công ty có ID {idCT}";
+                TempData["MessageType"] = "error";
+            }
+            return RedirectToAction("DSNhaTuyenDung", "TKNhaTuyenDung");
         }
     }
 }

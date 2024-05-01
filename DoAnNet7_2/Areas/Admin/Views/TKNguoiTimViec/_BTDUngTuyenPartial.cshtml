@@ -57,7 +57,7 @@
                     </a>
                 </td>
                 <td>
-                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.IdCvsyll">
+                    <a class="btn btn-danger" id="Xoa" onclick="confirmDelete(@item.IdCvsyll,@ViewBag.IdTk)">
                         <i class="fa-solid fa-trash"></i>
                     </a>
                 </td>
@@ -92,15 +92,17 @@
 <!-- Modal xác nhận xoá -->
 <div id="confirmModal" class="modal" aria-hidden="true">
     <div class="modal-content">
-        <div class="title-danger">
-            <i class="fa-solid fa-triangle-exclamation" style="font-size: 20pt"></i>
-            <h3 style="margin-left: 10px !important" class="confirm-message">Bạn có chắc chắn muốn xoá?</h3>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <div class="display: flex; justify-content: end">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="display: inline">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
+        <div class="title-danger">
+            <i class="fa-solid fa-triangle-exclamation" style="font-size: 20pt"></i>
+            <h3 style="margin-left: 10px !important" class="confirm-message">Bạn có chắc chắn muốn xoá?</h3>
+        </div>
         <p class="mt2" style="font-size: 16pt; margin-left: 20px; margin-right: 20px">
-            CV chưa được ứng tuyển sẽ được xoá. Bạn chắc chắn muốn xoá CV này?
+            Bài viết đã ứng tuyển sẽ bị xoá vĩnh viễn. Bạn chắc chắn muốn xoá bài viết đã ứng tuyển này?
         </p>
         <div class="button-container">
             <button id="confirmBtn" class="confirm">
@@ -125,19 +127,18 @@
             sessionStorage.removeItem('reloadFromDelete');
         }
     };
-    function confirmDelete(idCV, IdTK) {
+    function confirmDelete(idCVSYLL, idTK) {
         // Hiển thị modal xác nhận
         $('#confirmModal').modal('show');
-        // Lưu ID của bài tuyển dụng muốn xóa vào một thuộc tính data của modal
-        $('#confirmModal').data('idCV', idCV);
-        $('#confirmModal').data('IdTK', IdTK);
+        $('#confirmModal').data('idCVSYLL', idCVSYLL);
+        $('#confirmModal').data('idTK', idTK);
     }
 
     // Xử lý sự kiện khi người dùng xác nhận xoá
     $('#confirmBtn').click(function () {
-        var idCV = $('#confirmModal').data('idCV');
-        var IdTK = $('#confirmModal').data('IdTK');
-        var url = '@Url.Action("XoaCV", "CV")' + '?idCV=' + idCV + '&IdTK=' + IdTK;
+        var idCVSYLL = $('#confirmModal').data('idCVSYLL');
+        var idTK = $('#confirmModal').data('idTK');
+        var url = '@Url.Action("XoaBTDUngTuyen", "TKNguoiTimViec")' + '?idCVSYLL=' + idCVSYLL + '&idTK=' + idTK;
         sessionStorage.setItem('reloadFromDelete', true);
         window.location.assign(url);
     });

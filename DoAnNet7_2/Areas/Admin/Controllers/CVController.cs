@@ -148,7 +148,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
         public IActionResult ThemCVUngVien()
         {
             var ID_TK = HttpContext.Session.GetInt32("IdTk");
-
+            ViewBag.IdTk = ID_TK;
             if (!ID_TK.HasValue)
             {
                 // Xử lý trường hợp người dùng không hợp lệ, có thể chuyển hướng hoặc xử lý lỗi khác

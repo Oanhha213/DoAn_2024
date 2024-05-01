@@ -17,7 +17,7 @@
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <input type="hidden" asp-for="IdCt" />
                 <div class="form-group">
-                    <label asp-for="UpLogo" class="control-label"></label>
+                    <label asp-for="UpLogo" class="control-label">Logo(jpg, jpeg, png)</label>
                     <input asp-for="UpLogo" type="file" class="form-control mt1" onchange="previewImage(this)" />
                     <span asp-validation-for="UpLogo" class="text-danger" style="display:none;"></span>
                 </div>

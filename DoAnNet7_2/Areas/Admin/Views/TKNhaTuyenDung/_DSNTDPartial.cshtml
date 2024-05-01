@@ -59,7 +59,7 @@
 @*                <td>
                     @Html.DisplayFor(modelItem => item.IdLtkNavigation.Tenltk)
                 </td>*@
-                <td style="display: flex; justify-content: space-between; align-items: center;border-bottom: 0 !important;">
+                <td style="display: flex; justify-content: space-between; align-items: center">
                     @*@if (!string.IsNullOrEmpty(item.Logo))
                     {
                         <img src="@item.Logo" alt="Logo" width="50" height="50" />
@@ -71,7 +71,7 @@
                         <a style="margin: 7px !important;" class="btn btn-success" asp-action="SuaCongTy" asp-route-IdTK="@item.IdTk" asp-controller="TKNhaTuyenDung">
                             <i class="fa-solid fa-pen"></i>
                         </a>
-                        <a class="btn btn-danger" asp-action="SuaCongTy" asp-route-IdTK="@item.IdTk" asp-controller="TKNhaTuyenDung">
+                        <a class="btn btn-danger" id="Xoa" onclick="confirmDelete(@item.IdCt)">
                             <i class="fa-solid fa-trash"></i>
                         </a>
                     </div>
@@ -115,3 +115,62 @@
     </div>
 </div>
 }
+
+<!-- Modal xác nhận xoá -->
+<div id="confirmModal" class="modal" aria-hidden="true">
+    <div class="modal-content">
+        <div class="display: flex; justify-content: end">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="display: inline">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="title-danger">
+            <i class="fa-solid fa-triangle-exclamation" style="font-size: 20pt"></i>
+            <h3 style="margin-left: 10px !important" class="confirm-message">Bạn có chắc chắn muốn xoá?</h3>
+        </div>
+        <p class="mt2" style="font-size: 16pt; margin-left: 20px; margin-right: 20px">
+            Công ty sẽ bị xoá vĩnh viễn. Bạn chắc chắn muốn xoá công ty này?
+        </p>
+        <div class="button-container">
+            <button id="confirmBtn" class="confirm">
+                Đồng ý
+            </button>
+            <button id="cancelBtn" class="cancel">Huỷ bỏ</button>
+        </div>
+    </div>
+</div>
+<script>
+
+    // Kiểm tra xem trang đã được tải lại sau khi thực hiện thao tác xoá hay không
+    window.onload = function () {
+        var reloadFromDelete = sessionStorage.getItem('reloadFromDelete');
+        if (reloadFromDelete) {
+            // Nếu trang đã được tải lại từ thao tác xoá, hiển thị modal
+            Swal.fire({
+                icon: '@TempData["MessageType"]',
+                title: '@TempData["Message"]'
+            });
+            // Xóa dữ liệu trong sessionStorage để tránh hiển thị modal khi tải lại trang lần tiếp theo
+            sessionStorage.removeItem('reloadFromDelete');
+        }
+    };
+    function confirmDelete(idCT) {
+        // Hiển thị modal xác nhận
+        $('#confirmModal').modal('show');
+        // Lưu ID của bài tuyển dụng muốn xóa vào một thuộc tính data của modal
+        $('#confirmModal').data('idCT', idCT);
+    }
+
+    // Xử lý sự kiện khi người dùng xác nhận xoá
+    $('#confirmBtn').click(function () {
+        var idCT = $('#confirmModal').data('idCT');
+        var url = '@Url.Action("XoaCongTy", "TKNhaTuyenDung")' + '?idCT=' + idCT;
+        sessionStorage.setItem('reloadFromDelete', true);
+        window.location.assign(url);
+    });
+
+    // Xử lý sự kiện khi người dùng nhấn nút "Huỷ bỏ"
+    $('#cancelBtn').click(function () {
+        $('#confirmModal').modal('hide'); // Đóng modal xác nhận
+    });
+</script>

@@ -5,72 +5,64 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h1>Thêm CV</h1>
 
-<hr />
-<div class="row">
-    <div class="col-md-6">
-        <form asp-action="ThemCV" asp-controller="CV" method="post" enctype="multipart/form-data">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="IdTk" class="control-label"></label>
-                <select asp-for="IdTk" class ="form-control mt1" asp-items="ViewBag.IdTk"></select>
-            </div>
-            <div class="form-group mt2">
-                <label asp-for="Tensyll" class="control-label"></label>
-                <input asp-for="Tensyll" class="form-control mt1" />
-                <span asp-validation-for="Tensyll" class="text-danger"></span>
-            </div>
-            <div class="form-group mt2">
-                <label asp-for="cvFile" class="control-label"></label>
-                <input asp-for="cvFile" class="form-control mt1" type="file" id="cvFile" name="cvFile" />
-                <span asp-validation-for="cvFile" class="text-danger"></span>
-            </div>
-            <div class="form-group mt2">
-                <input type="submit" value="Thêm mới" class="btn btn-success" />
-            </div>
-        </form>
+<div class="border-content col-md-6">
+    <div class="mt1">
     </div>
-    <div class="col-md-6">
-        <h3>Danh sách người tìm việc</h3>
-        <div style="overflow-y: scroll;max-height: 500px; padding: 4px 8px">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Họ tên</th>
-                        <th>Email</th>
-                        <th>Thao tác</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in ViewBag.Taikhoan)
-                    {
+    <h1>Thêm CV</h1>
+
+    <hr />
+    <div class="row">
+        <div class="col-md-6">
+            <form asp-action="ThemCV" asp-controller="CV" method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="IdTk" class="control-label"></label>
+                    <select asp-for="IdTk" class="form-control mt1" asp-items="ViewBag.IdTk"></select>
+                </div>
+                <div class="form-group mt2">
+                    <label asp-for="Tensyll" class="control-label"></label>
+                    <input asp-for="Tensyll" class="form-control mt1" />
+                    <span asp-validation-for="Tensyll" class="text-danger"></span>
+                </div>
+                <div class="form-group mt2">
+                    <label asp-for="cvFile" class="control-label"></label>
+                    <input asp-for="cvFile" class="form-control mt1" type="file" id="cvFile" name="cvFile" />
+                    <span asp-validation-for="cvFile" class="text-danger"></span>
+                </div>
+                <div class="form-group mt2">
+                    <input type="submit" value="Thêm mới" class="btn btn-success" />
+                    <a class="btn btn-danger" asp-action="DSCVUngVien" asp-controller="CV" asp-route-IdTK="">Huỷ</a>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <h3>Danh sách người tìm việc</h3>
+            <div style="overflow-y: scroll;max-height: 500px; padding: 4px 8px">
+                <table class="table">
+                    <thead>
                         <tr>
-                            <td>@item.IdTk</td>
-                            <td>@item.Hoten</td>
-                            <td>@item.Email</td>
-                            <td>
-                                <a class="btn btn-info" asp-action="DSCVungVien" asp-controller="CV" asp-route-IdTK="@item.IdTk">Danh sách CV</a>
-                            </td>
+                            <th>Id</th>
+                            <th>Họ tên</th>
+                            <th>Email</th>
+                            <th>Thao tác</th>
                         </tr>
-                    }
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in ViewBag.Taikhoan)
+                        {
+                            <tr>
+                                <td>@item.IdTk</td>
+                                <td>@item.Hoten</td>
+                                <td>@item.Email</td>
+                                <td>
+                                    <a class="btn btn-info" asp-action="DSCVungVien" asp-controller="CV" asp-route-IdTK="@item.IdTk">Danh sách CV</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
-
-<div class="mt2">
-    <a class="btn btn-return" asp-action="DanhSachCV" asp-controller="CV">Quay về</a>
-</div>
-
-<style>
-    .mt1{
-        margin-top: 10px;
-    }
-    .mt2{
-        margin-top: 20px;
-    }
-</style>
-

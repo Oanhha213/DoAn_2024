@@ -1,10 +1,84 @@
 ﻿@{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Admin";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
-<div>
-    Trang Admin
+<div class="col-md-12">
+    <div class="row" style="justify-content: space-between">
+        <div class="col-md-4">
+            <div class="border-content" style="min-width: -webkit-fill-available !important">
+                <i class='icon bx bxs-user-account fa-3x'></i>
+                <div class="info">
+                    <h4>Tổng số nhà tuyển dụng</h4>
+                    <p><b>@ViewBag.countNTD nhà tuyển dụng</b></p>
+                    <p class="info-tong">Tổng số nhà tuyển dụng được quản lý.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="border-content" style="min-width: -webkit-fill-available !important">
+                <i class='icon bx bxs-data fa-3x'></i>
+                <div class="info">
+                    <h4>Tổng số người tìm việc</h4>
+                    <p><b>@ViewBag.countNTV người tìm việc</b></p>
+                    <p class="info-tong">Tổng số người tìm việc được quản lý.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="border-content" style="min-width: -webkit-fill-available !important">
+                <i class='icon bx bxs-shopping-bags fa-3x'></i>
+                <div class="info">
+                    <h4>Tổng số bài tuyển dụng</h4>
+                    <p><b>@ViewBag.countBTD bài tuyển dụng</b></p>
+                    <p class="info-tong">Tổng số bài tuyển dụng được quản lý.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12" style="margin-top: 30px">
+            <div class="border-content" style="min-width: -webkit-fill-available !important">
+                <div class="tile">
+                <h3 class="tile-title">Bài tuyển dụng mới</h3>
+                <hr/>
+                <div>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Tên công việc</th>
+                                <th>Ngành nghề</th>
+                                <th>Loại công việc</th>
+                                <th>Tài khoản tạo bài viết</th>
+                                <th>Ngày tạo bài viết</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                var stt = 1;
+                            }
+                            @foreach (var item in ViewBag.BTDMoi)
+                            {
+                                <tr>
+                                    <td>@stt</td>
+                                    <td>@item.Tencongviec</td>
+                                    <td>
+                                        @item.IdNnNavigation.Tennganhnghe
+                                    </td>
+                                    <td>@item.IdLcvNavigation.Tenlcv</td>
+                                    <td>@item.IdTkNavigation.Email</td>
+                                    <td>@item.CreateAt</td>
+                                </tr>
+                                stt++;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <!-- / div trống-->
+            </div>
+            </div>
+        </div>
+    </div>
 </div>
+

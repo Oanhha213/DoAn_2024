@@ -169,6 +169,27 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             return View(pagedList);
         }
 
+        [Route("XoaUT")]
+        [HttpGet]
+        public IActionResult XoaUT(int idCVSYLL, int idBTD)
+        {
+            TempData["Message"] = "";
+            var cvsyll = db.CongviecSylls.Find(idCVSYLL);
+            if (cvsyll != null)
+            {
+                db.CongviecSylls.Remove(cvsyll);
+                db.SaveChanges(); // Đẩy thay đổi vào database ngay sau khi xoá bài tuyển dụng
+                TempData["Message"] = $"Xoá ứng viên ứng tuyển thành công";
+                TempData["MessageType"] = "success";
+            }
+            else
+            {
+                TempData["Message"] = $"Không tìm thấy";
+                TempData["MessageType"] = "error";
+            }
+            return RedirectToAction("DSUngTuyen", "BaiTuyenDung", new {idBTD = idBTD});
+        }
+
         [Route("BTDUngVien")]
         [HttpGet]
         public IActionResult BTDUngVien( int? page, string searchTerm)
