@@ -1,0 +1,51 @@
+﻿@model DoAnNet7_2.Models.Congty
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "CongTy";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="border-content col-md-12">
+    <div class="mt1">
+        <a class="link-hover" asp-controller="TKNhaTuyenDung" asp-action="DSNhaTuyenDung">Quay về</a>
+    </div>
+    <h1>@ViewBag.Tenct</h1>
+
+    <div class="ml4 row">
+        <hr />
+        <div class="col-sm-10" style="background-color: #fff">
+            <div class="mt1">
+                <p>Logo</p>
+                <img src="@Model.Logo" alt="Logo" style="max-width: 200px!important; max-height: 200px !important" class="des mt1" />
+                @*<p class="des mt1">@Html.DisplayFor(model => model.Logo)</p>*@
+            </div>
+            <div class="mt1">
+                <p>Tên công ty</p>
+                <p class="des mt1">@Html.DisplayFor(model => model.Tencongty)</p>
+            </div>
+            <div class="mt1">
+                <p>Địa chỉ</p>
+                <p class="des mt1">@Html.DisplayFor(model => model.Diachi)</p>
+            </div>
+            <div class="mt1">
+                <p>Tỉnh thành</p>
+                <p class="des mt1">@Html.DisplayFor(model => model.IdTtNavigation.Tentt)</p>
+            </div>
+            <div class="mt1">
+                <p>Ngành nghề</p>
+                <p class="des mt1">@Html.DisplayFor(model => model.IdNnNavigation.Tennganhnghe)</p>
+            </div>
+            <div class="mt1">
+                <p>Số nhân viên</p>
+                <p class="des mt1">@Html.DisplayFor(model => model.Sonhanvien)</p>
+            </div>
+            <div class="mt1">
+                <p>Mô tả</p>
+                <p class="des mt1">@Html.DisplayFor(model => model.Mota)</p>
+            </div>
+        </div>
+    </div>
+    <div class="mt2 ml4">
+        <a class="btn btn-success" asp-action="SuaCongTy" asp-controller="TKNhaTuyenDung" asp-route-idTK="@Model.IdTk"> Chỉnh sửa</a>
+    </div>
+</div>

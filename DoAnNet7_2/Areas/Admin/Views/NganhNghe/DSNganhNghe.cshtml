@@ -1,0 +1,53 @@
+﻿@model X.PagedList.IPagedList<DoAnNet7_2.Models.Nganhnghe>
+@using X.PagedList.Mvc.Core
+@using X.PagedList.Mvc.Core.Common;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "DSNganhNghe";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="border-content col-md-12">
+    <h1>Danh sách ngành nghề</h1>
+
+    <div class="row mt2" style="justify-content: space-between; align-items: center">
+        <p class="col-md-3">
+            <a class="btn btn-success" asp-action="ThemNganhNghe" asp-controller="NganhNghe">Thêm mới</a>
+        </p>
+        <form id="search-form" class="col-md-9" style="display: flex">
+            <input type="search" class="form-control" placeholder="Tên ngành nghề..." id="searchItem">
+            <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+        </form>
+    </div>
+
+    <div id="item_search">
+        @Html.Partial("_DSNNPartial", Model)
+    </div>
+</div>
+<script>
+    // Bắt sự kiện khi form submit
+    $('#search-form').submit(function (event) {
+        // Ngăn chặn hành vi mặc định của form submit
+        event.preventDefault();
+
+        // Lấy giá trị của input tìm kiếm
+        var searchTerm = $('#searchItem').val();
+
+        // Gọi hàm loadData để gửi yêu cầu Ajax và cập nhật dữ liệu
+        loadData(1, searchTerm);
+    });
+
+
+    function loadData(page, searchTerm) {
+        $.ajax({
+            url: "@Url.Action("DSNganhNghe", "NganhNghe")?page=" + page + "&searchTerm=" + searchTerm, // Đường dẫn đến hành động trong controller để lấy dữ liệu từ máy chủ
+            type: 'GET', // Phương thức HTTP để lấy dữ liệu
+            data: { page: page, searchTerm: searchTerm }, // Các tham số để truyền cho hành động lấy dữ liệu
+            success: function (data) {
+                $('#item_search').html(data); // Cập nhật nội dung của bảng dữ liệu trong trang web
+            }
+        });
+    }
+
+</script>
+

@@ -1,0 +1,64 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a{
+    text-decoration: none;
+}
+
+html,body{
+    height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container{
+    background-color: #f2edf3;
+    height: inherit;
+    padding-top: 100px;
+}
+
+.card {
+    width: 350px;
+    /* height: 400px; */
+    margin: auto;
+    background-color: #fff;
+    padding: 50px;
+}
+
+.mt-3 {
+    margin-top: 30px;
+}
+
+.mt-4 {
+    margin-top: 40px;
+}
+
+input{
+    border: 1px solid #ccc;
+    display: block;
+    height: 30px;
+    padding: 20px;
+    outline: none;
+    font-size: 13pt;
+    width: 100%;
+}
+
+.btn-dang-nhap{
+    width: 90px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    font-size: 12pt;
+    padding: 12px 20px;
+    color: #fff;
+    background-color: #74bbf3;
+    border-radius: 10px;
+}
+
+.btn-dang-nhap:hover{
+    background-color: #b1b2ff;
+    cursor: pointer;
+    color: #f9f9f9;
+}

@@ -1,0 +1,117 @@
+﻿@model X.PagedList.IPagedList<DoAnNet7_2.Models.ViewModels.TaiKhoanCongTyViewModel>
+@using X.PagedList.Mvc.Core
+@using X.PagedList.Mvc.Core.Common;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<table class="table mt2">
+    <thead>
+        <tr>
+            <th>
+                #
+            </th>
+            <th>
+                Họ tên
+            </th>
+            <th>
+                Email
+            </th>
+@*            <th>
+                Mật khẩu
+            </th>*@
+            <th>
+                Số điện thoại
+            </th>
+            <th style="max-width: 315px">
+                Công ty
+            </th>
+@*            <th>
+                Tuỳ chọn
+            </th>*@
+@*            <th>
+                Loại tài khoản
+            </th>*@
+@*            <th>
+                Thao tác
+            </th>*@
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            var stt = (Model.PageNumber - 1) * Model.PageSize + 1;
+        }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @stt
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Hoten)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+@*                <td>
+                    @Html.DisplayFor(modelItem => item.Matkhau)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sdt)
+                </td>
+@*                <td>
+                    @Html.DisplayFor(modelItem => item.IdLtkNavigation.Tenltk)
+                </td>*@
+                <td style="display: flex; justify-content: space-between; align-items: center;border-bottom: 0 !important;">
+                    @*@if (!string.IsNullOrEmpty(item.Logo))
+                    {
+                        <img src="@item.Logo" alt="Logo" width="50" height="50" />
+                    }*@
+                    <a class="link-hover" asp-action="CongTy" asp-route-IdTK="@item.IdTk" asp-controller="TKNhaTuyenDung">
+                        @Html.DisplayFor(modelItem => item.Tencongty)
+                    </a>
+                    <div>
+                        <a style="margin: 7px !important;" class="btn btn-success" asp-action="SuaCongTy" asp-route-IdTK="@item.IdTk" asp-controller="TKNhaTuyenDung">
+                            <i class="fa-solid fa-pen"></i>
+                        </a>
+                        <a class="btn btn-danger" asp-action="SuaCongTy" asp-route-IdTK="@item.IdTk" asp-controller="TKNhaTuyenDung">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
+                    </div>
+                </td>
+@*                <td style="padding: 4px 10px !important">
+                    <a class="btn btn-secondary" asp-action="DSBTDCongTy" asp-controller="TKNhaTuyenDung" asp-route-idTK="@item.IdTk">Danh sách bài tuyển dụng</a>
+                </td>*@
+               @* <td>
+                    <a class="btn btn-success" asp-action="SuaCongTy" asp-route-IdTK="@item.IdTk" asp-controller="TKNhaTuyenDung">
+                        <i class="fa-solid fa-pen"></i>
+                    </a>
+                    <a class="btn btn-danger" asp-action="SuaCongTy" asp-route-IdTK="@item.IdTk" asp-controller="TKNhaTuyenDung">
+                        <i class="fa-solid fa-trash"></i>
+                    </a>
+                    <a class="btn btn-secondary" asp-action="DSBTDCongTy" asp-controller="TKNhaTuyenDung" asp-route-idTK="@item.IdTk">Danh sách bài tuyển dụng</a>
+                </td>*@
+            </tr>
+            stt++;
+        }
+    </tbody>
+</table>
+@if (!string.IsNullOrEmpty(ViewBag.NoResultsMessage))
+{
+    <div class="alert alert-warning" role="alert">
+        @ViewBag.NoResultsMessage
+    </div>
+}
+@if (Model.TotalItemCount > 8)
+{
+<div class="row">
+    <div class="col-sm-12">
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                @Html.PagedListPager(Model, page => Url.Action("DSNhaTuyenDung", new { page , searchTerm = ViewBag.searchTerm}), new PagedListRenderOptions
+                {
+                LiElementClasses = new List<string> { "page-item" },
+                PageClasses = new List<string> { "page-link" }
+                })
+            </ul>
+        </nav>
+    </div>
+</div>
+}

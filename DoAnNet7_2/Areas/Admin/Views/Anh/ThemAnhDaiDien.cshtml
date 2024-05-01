@@ -1,0 +1,56 @@
+﻿@model DoAnNet7_2.Models.Anhdaidien
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "ThemAnhDaiDien";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="border-content col-md-6">
+    <h1>Thêm ảnh</h1>
+
+    <hr />
+    <div class="row">
+        <div class="col-md-12">
+            <form asp-action="ThemAnhDaiDien" method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="UpAnhDaiDien" class="control-label"></label>
+                    <input type="file" asp-for="UpAnhDaiDien" class="form-group mt1 custom-btn-input" onchange="previewImage(this);" />
+                    @*<label for="UpAnhDaiDien" class="custom-file-upload">
+                    <i class="fas fa-cloud-upload-alt"></i> Chọn ảnh
+                    </label>
+                    <input type="file" id="UpAnhDaiDien" name="UpAnhDaiDien" style="display: none;" onchange="previewImage(this);">*@
+                    <img class="mt2" id="AnhDaiDienPreview" src="#" alt="Ảnh đại diện" style="display: none; max-width: 200px; max-height: 200px;">
+                    <span asp-validation-for="UpAnhDaiDien" class="text-danger"></span>
+                </div>
+                <div class="form-group mt2">
+                    <input type="submit" value="Lưu ảnh" class="btn btn-success" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    function previewImage(input) {
+        var preview = document.getElementById('AnhDaiDienPreview');
+        var file = input.files[0];
+        var reader = new FileReader();
+
+        reader.onloadend = function () {
+            preview.src = reader.result;
+            preview.style.display = 'block';
+        };
+
+        if (file) {
+            reader.readAsDataURL(file);
+        } else {
+            preview.src = '#';
+            preview.style.display = 'none';
+        }
+    }
+</script>
+
+<style>
+
+
+</style>

@@ -1,0 +1,48 @@
+﻿@model IEnumerable<DoAnNet7_2.Models.Soyeulylich>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>DanhSachCV</title>
+</head>
+<body>
+    <p>
+        <a class="btn-success" asp-action="ThemCV" asp-controller="NguoiTimViec">Tải lên CV</a>
+    </p>
+    <p>Danh sách CV của bạn</p>
+    @foreach (var item in Model)
+    {
+        <div class="box-cv">
+            <div class="card-cv">
+                <img src="~/assets/images/iconCV1.png" />
+                <p>@item.Tensyll</p>
+                <div>
+                    <a class="btn-info" style="width: 55px; padding:10px 0; display: inline-block; margin: 5px; border-radius: 6px" asp-action="XoaCV" asp-route-userId="@item.IdTk">Xoá CV</a>
+                </div>
+            </div>
+        </div>
+    }
+    <p>
+        <a class="btn-info" style="width: 55px; padding:10px 0; display: inline-block; margin: 5px; border-radius: 6px" asp-action="NguoiTimViec">Hoàn thành</a>
+    </p>
+    <p>
+        <a class="btn-danger" style="width: 55px; padding:10px 0; display: inline-block; margin: 5px; border-radius: 6px" asp-action="NguoiTimViec">Bỏ qua</a>
+    </p>
+    <style>
+        .box-cv {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .card-cv {
+            width: 33.33%;
+        }
+    </style>
+</body>
+</html>

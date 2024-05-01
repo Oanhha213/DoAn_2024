@@ -1,0 +1,122 @@
+﻿@model DoAnNet7_2.Models.Baituyendung
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "ChiTietBTD";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<div class="border-content col-md-12">
+
+    <h1>Chi tiết bài tuyển dụng @ViewBag.Tencongviec</h1>
+
+    <div class="ml4 row">
+        <hr />
+        <div class="col-sm-10" style="background-color: #fff">
+            <div class="mt1">
+                <p>
+                    Tên công việc
+                </p>
+                <div class="des">
+                    @Html.DisplayFor(model => model.Tencongviec)
+                </div>
+            </div>
+            <div class="">
+                <p>
+                    Mô tả công việc
+                </p>
+                <div class="des">
+                    @Html.Raw(Model.Motacongviec.Replace("\n", "<br>"))
+                </div>
+            </div>
+            <div class="">
+                <p>
+                    Yêu cầu khác
+                </p>
+                <div class="des">
+                    @Html.Raw(Model.Yeucaukhac.Replace("\n", "<br>"))
+                </div>
+            </div>
+            <div class="">
+                <p>
+                    Quyền lợi
+                </p>
+                <div class="des">
+                    @Html.Raw(Model.Quyenloi.Replace("\n", "<br>"))
+                </div>
+            </div>
+            <div class="">
+                <p>
+                    Địa chỉ
+                </p>
+                <p>
+                    <span class="des">
+                        @Html.DisplayFor(model => model.Diachi),
+                    </span>
+                    <span class="">
+                        @Html.DisplayFor(model => model.IdTtNavigation.Tentt)
+                    </span>
+                </p>
+            </div>
+            <div class="">
+                <p>
+                    Loại công việc
+                </p>
+                <p class="des">
+                    @Html.DisplayFor(model => model.IdLcvNavigation.Tenlcv)
+                </p>
+            </div>
+            <div class="">
+                <p>
+                    Thời gian làm việc
+                </p>
+                <p class="des">
+                    @Html.DisplayFor(model => model.IdTglvNavigation.Tentglv)
+                </p>
+            </div>
+            <div class="">
+                <p>
+                    Ngành nghề
+                </p>
+                <p class="des">
+                    @Html.DisplayFor(model => model.IdNnNavigation.Tennganhnghe)
+                </p>
+            </div>
+            <div class="">
+                <p>
+                    Yêu cầu kinh nghiệm
+                </p>
+                <p class="des">
+                    @Html.DisplayFor(model => model.IdTgknNavigation.Tentgkn)
+                </p>
+            </div>
+            <div class="">
+                <p class="">
+                    Tài khoản tạo bài viết
+                </p>
+                <p class="des">
+                    @Html.DisplayFor(model => model.IdTkNavigation.Email)
+                </p>
+            </div>
+            <div class="">
+                <p>
+                    Thời gian tạo bài viết
+                </p>
+                <p class="des">
+                    @Html.DisplayFor(model => model.CreateAt)
+                </p>
+            </div>
+            <div class="">
+                <p>
+                    Trạng thái hiển thị
+                </p>
+                <p class="des">
+                    @Html.DisplayFor(model => model.IdTthtNavigation.Tenttht)
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="mt2 ml4" style="margin-bottom: 20px">
+        <a class="btn btn-success" asp-controller="BaiTuyenDung" asp-action="SuaBTD" asp-route-idBTD="@Model.IdBtd">Chỉnh sửa</a>
+    </div>
+</div>

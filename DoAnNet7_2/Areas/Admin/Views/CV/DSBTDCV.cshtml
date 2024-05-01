@@ -1,0 +1,54 @@
+﻿@model X.PagedList.IPagedList<DoAnNet7_2.Models.CongviecSyll>
+@using X.PagedList.Mvc.Core
+@using X.PagedList.Mvc.Core.Common;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "DSBTDCV";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>DSBTDCV</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Tên công việc
+            </th>
+            <th>
+                Loại công việc
+            </th>
+            <th>
+                Thời gian làm việc
+            </th>
+            <th>
+                Địa chỉ
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdBtdNavigation.Tencongviec)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdBtdNavigation.IdLcvNavigation.Tenlcv)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdBtdNavigation.IdTglvNavigation.Tentglv)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdBtdNavigation.Diachi),
+                @Html.DisplayFor(modelItem => item.IdBtdNavigation.IdTtNavigation.Tentt)
+            </td>
+            <td>
+                <a asp-action="Delete" asp-route-id="@item.IdCvsyll">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

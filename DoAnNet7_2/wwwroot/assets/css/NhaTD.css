@@ -1,0 +1,13 @@
+﻿
+p{
+    margin-bottom: 0 !important;
+}
+
+
+.menu-item{
+    justify-content: left !important;
+}
+
+.menu-item > i {
+    margin-right: 10px !important;
+}

@@ -1,0 +1,17 @@
+﻿@{
+    ViewData["Title"] = "NhaTuyenDung";
+    Layout = "~/Views/Shared/_LayoutNhaTuyenDung.cshtml"; ;
+}
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using Microsoft.AspNetCore.Http
+
+@{
+    HttpContext context = ViewContext.HttpContext;
+}
+<div>
+    Xin chào, @context.Session.GetString("Hoten")
+</div>
+@*<div class="nav-item">
+    <a asp-controller="Access" asp-action="DangXuat" class="nav-link"><i class="bx bx-log-out bx-rotate-180"></i> Đăng xuất</a>
+</div>*@

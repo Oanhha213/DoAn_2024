@@ -1,0 +1,200 @@
+﻿@model X.PagedList.IPagedList<DoAnNet7_2.Models.Baituyendung>
+@using X.PagedList.Mvc.Core;
+@using X.PagedList.Mvc.Core.Common;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<table class="table mt2">
+    <thead>
+        <tr>
+            <th>
+                #
+            </th>
+            <th style="max-width: 180px; word-wrap: break-word">
+                Tên công việc
+            </th>
+            <th style="max-width: 105px; word-wrap: break-word">
+                Ngành nghề
+            </th>
+@*            <th style="max-width: 120px !important; word-wrap: break-word">
+                Thời gian tạo bài viết
+            </th>*@
+            <th style="max-width: 170px; word-wrap: break-word">
+                Tài khoản tạo bài viết
+            </th>
+            <th style="max-width: 100px; word-wrap: break-word">
+                Trạng thái hiển thị
+            </th>
+            <th>
+                Tuỳ chọn
+            </th>
+            <th>
+                Thao tác
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            var stt = (Model.PageNumber - 1) * Model.PageSize + 1;
+        }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @stt
+                </td>
+                <td style="max-width: 180px">
+                    <a class="link-hover" asp-action="ChiTietBTD" asp-controller="BaiTuyenDung" asp-route-idBTD="@item.IdBtd" target="_blank">
+                        @Html.DisplayFor(modelItem => item.Tencongviec)
+                    </a>
+                </td>
+                <td style="max-width: 105px; word-wrap: break-word">
+                    @Html.DisplayFor(modelItem => item.IdNnNavigation.Tennganhnghe)
+                </td>
+@*                <td style="max-width: 120px !important; word-wrap: break-word">
+                    @Html.DisplayFor(modelItem => item.CreateAt)
+                </td>*@
+                <td style="max-width: 170px !important; word-wrap: break-word">
+                    @Html.DisplayFor(modelItem => item.IdTkNavigation.Email)
+                </td>
+                <td style="text-align: center">
+                    <div class="dropdown">
+                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton_@item.IdBtd" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            @Html.DisplayFor(modelItem => item.IdTthtNavigation.Tenttht)
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton_@item.IdBtd">
+                            <a class="dropdown-item" href="@Url.ActionLink("DoiTTHT", "BaiTuyenDung", new { idBTD = item.IdBtd, newStatus = "Hiện", currentView = "DSBaiTuyenDung" })">Hiện</a>
+                            <a class="dropdown-item" href="@Url.ActionLink("DoiTTHT", "BaiTuyenDung", new { idBTD = item.IdBtd, newStatus = "Ẩn" , currentView = "DSBaiTuyenDung"})">Ẩn</a>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <a class="btn btn-secondary" asp-action="DSUngTuyen" asp-controller="BaiTuyenDung" asp-route-idBTD="@item.IdBtd">Danh sách ứng tuyển</a>
+                </td>
+                <td>
+                    <a class="btn btn-success" asp-action="SuaBTD" asp-controller="BaiTuyenDung" asp-route-idBTD="@item.IdBtd">
+                        <i class="fa-solid fa-pen"></i>
+                    </a>
+                    <a class="btn btn-danger" id="XoaBTD" onclick="confirmDelete(@item.IdBtd)">
+                        <i class="fa-solid fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+            stt++;
+        }
+    </tbody>
+</table>
+@if (!string.IsNullOrEmpty(ViewBag.NoResultsMessage))
+{
+    <div class="alert alert-warning" role="alert">
+        @ViewBag.NoResultsMessage
+    </div>
+}
+@if (Model.TotalItemCount > 8)
+{
+    <div class="row">
+        <div class="col-sm-12">
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    @Html.PagedListPager(Model, page => Url.Action("DSBaiTuyenDung", new { page,searchTerm = ViewBag.searchTerm }), new PagedListRenderOptions
+                {
+                LiElementClasses = new List<string> { "page-item" },
+                PageClasses = new List<string> { "page-link" }
+                })
+                </ul>
+            </nav>
+        </div>
+    </div>
+}
+<!-- Modal xác nhận xoá -->
+<div id="confirmModal" class="modal" aria-hidden="true">
+    <div class="modal-content">
+        <div class="title-danger">
+            <i class="fa-solid fa-triangle-exclamation" style="font-size: 20pt"></i>
+            <h3 style="margin-left: 10px !important" class="confirm-message">Bạn có chắc chắn muốn xoá?</h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <p class="mt2" style="font-size: 16pt; margin-left: 20px; margin-right: 20px">
+            Lưu ý: Xoá bài tuyển dụng này sẽ xoá bài viết này và toàn bộ danh sách ứng viên đã ứng tuyển vào bài viết.
+        </p>
+        <div class="button-container">
+            <button id="confirmBtn" class="confirm">
+                Đồng ý
+            </button>
+            <button id="cancelBtn" class="cancel">Huỷ bỏ</button>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    // Kiểm tra xem trang đã được tải lại sau khi thực hiện thao tác xoá hay không
+    window.onload = function () {
+        var reloadFromDelete = sessionStorage.getItem('reloadFromDelete');
+        if (reloadFromDelete) {
+            // Nếu trang đã được tải lại từ thao tác xoá, hiển thị modal
+            Swal.fire({
+                icon: '@TempData["MessageType"]',
+                title: '@TempData["Message"]'
+            });
+            // Xóa dữ liệu trong sessionStorage để tránh hiển thị modal khi tải lại trang lần tiếp theo
+            sessionStorage.removeItem('reloadFromDelete');
+        }
+    };
+    function confirmDelete(id) {
+        // Hiển thị modal xác nhận
+        $('#confirmModal').modal('show');
+        $('#confirmModal').data('id', id);
+    }
+
+    // Xử lý sự kiện khi người dùng xác nhận xoá
+    $('#confirmBtn').click(function () {
+        var id = $('#confirmModal').data('id');
+        var url = '@Url.Action("XoaBTD", "BaiTuyenDung")' + '?idBTD=' + id;
+        sessionStorage.setItem('reloadFromDelete', true);
+        window.location.assign(url);
+    });
+
+    // Xử lý sự kiện khi người dùng nhấn nút "Huỷ bỏ"
+    $('#cancelBtn').click(function () {
+        $('#confirmModal').modal('hide'); // Đóng modal xác nhận
+    });
+</script>
+<script>
+    //document.querySelectorAll('.dropdown-toggle').forEach(function (button) {
+    //    // Lắng nghe sự kiện khi trạng thái dropdown thay đổi và khi trang được tải lên
+    //    button.addEventListener('click', updateButtonColor);
+    //    window.addEventListener('load', updateButtonColor);
+
+    //    function updateButtonColor(event) {
+    //        // Lấy ra nội dung của nút dropdown
+    //        var buttonText = button.textContent.trim();
+
+    //        // Kiểm tra nội dung của nút dropdown và thêm lớp CSS tương ứng
+    //        if (buttonText === 'Hiện') {
+    //            button.classList.remove('text-an');
+    //            button.classList.add('text-hien');
+    //        } else if (buttonText === 'Ẩn') {
+    //            button.classList.remove('text-hien');
+    //            button.classList.add('text-an');
+    //        }
+    //    }
+    //});
+    // Hàm để cập nhật màu sắc của nút dropdown
+    function updateButtonColors() {
+        $('.dropdown-toggle').each(function () {
+            var buttonText = $(this).text().trim();
+            if (buttonText === 'Hiện') {
+                $(this).removeClass('text-an').addClass('text-hien');
+            } else if (buttonText === 'Ẩn') {
+                $(this).removeClass('text-hien').addClass('text-an');
+            }
+        });
+    }
+
+    // Gọi hàm cập nhật màu sắc của nút dropdown khi trang được tải lần đầu tiên
+    $(document).ready(function () {
+        updateButtonColors();
+    });
+</script>

@@ -1,0 +1,295 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using Microsoft.AspNetCore.Http
+
+@{
+    HttpContext context = ViewContext.HttpContext;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @*<link rel="stylesheet" href="~/assets/css/Admin.css">*@
+    <link rel="stylesheet" href="~/assets/css/Admin.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/642d846c81.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/37.0.0/classic/ckeditor.js"></script>
+
+@*    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/642d846c81.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>*@
+
+
+@*    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>*@
+
+    <style>
+
+        .btn-profile {
+            display: flex;
+            margin-right: 100px !important;
+            align-items: center;
+            background-color: #fff;
+            position: relative;
+            outline: none !important;
+        }
+
+        .nav-profile-img {
+            margin-right: 15px;
+        }
+
+        .nav-profile-text {
+            vertical-align: middle;
+            margin-right: 6px;
+        }
+
+        .nav-profile-text > p {
+            margin-bottom: 0 !important;
+        }
+
+        .dang-xuat-a {
+            position: absolute;
+            display: none;
+            background-color: #fff;
+            box-shadow: 0px 3px 21px 0px rgba(0, 0, 0, 0.2);
+            padding: 10px 20px;
+            z-index: 99;
+            margin-top: 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            color: #000 !important;
+        }
+
+            .dang-xuat-a:hover {
+                background-color: #e9ecef !important;
+                color: #000 !important;
+            }
+
+            .dang-xuat-a.show {
+                display: block;
+            }
+
+        i.fa-chevron-down.hide, i.fa-chevron-up {
+            display: none;
+        }
+
+        .fa-chevron-up.show {
+            display: block;
+        }
+
+        .avatar {
+            width: 40px !important;
+            height: 40px !important;
+            border-radius: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="nav-bar">
+        <div>
+            <img class="logo" src="~/assets/images/LOGO.jpg" alt="Logo">
+        </div>
+        <div>
+            <button class="btn-profile">
+                <div class="nav-profile-img">
+                    <img class="avatar" src="@context.Session.GetString("Tenanh")" alt="image">
+                </div>
+                <div class="nav-profile-text">
+                    <p class="text-black">
+                        @context.Session.GetString("Hoten")
+                    </p>
+                </div>
+                <i class="fa-solid fa-chevron-down" style="font-size: x-small;"></i>
+                <i class="fa-solid fa-chevron-up" style="font-size: x-small;"></i>
+            </button>
+            <a class="dang-xuat-a" asp-controller="Access" asp-action="DangXuat">Đăng xuất</a>
+        </div>
+    </div>
+    <div class="row main">
+        <div class="side-bar col-md-2">
+            <div class="acc-admin">
+                <img class="avatarAdmin" src="@context.Session.GetString("Tenanh")" alt="anh-dai-dien">
+                <div class="name-admin">
+                    <h3>
+                        @context.Session.GetString("Hoten")
+                    </h3>
+                    <h4>Admin</h4>
+                </div>
+            </div>
+            <ul class="menu">
+                <li class="">
+                    <a class="active menu-item" asp-action="index" asp-controller="HomeAdmin">
+                        <i class="fa-solid fa-house"></i>
+                        Bảng điều khiển
+                    </a>
+                </li>
+                <li class="">
+                    @*<span class="child-first" style="cursor: pointer;">
+                        <span>Tài khoản</span>
+                        <i class="fa-solid fa-circle-user"></i>
+                    </span>*@
+                    <a class="menu-item" asp-action="DanhSachTaiKhoan" asp-controller="DanhSachTaiKhoan">
+                        <i class="fa-solid fa-user-plus"></i>
+                        <span>Tài khoản</span>
+                    </a>
+                    @*<ul class="child">
+                        <li>
+                            
+                        </li>
+                        
+                        
+                    </ul>*@
+                </li>
+                <li>
+                    <a class="menu-item" asp-action="DSNhaTuyenDung" asp-controller="TKNhaTuyenDung">
+                        <i class="fa-solid fa-building-user"></i>
+                        <span>Nhà tuyển dụng</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="menu-item" asp-action="DSNguoiTimViec" asp-controller="TKNguoiTimViec">
+                        <i class="fa-solid fa-user-tie"></i>
+                        <span>Người tìm việc</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a class="menu-item" asp-action="DSBaiTuyenDung" asp-controller="BaiTuyenDung">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        <span>Bài tuyển dụng</span>
+                    </a>
+                   @* <span class="child-first" style="cursor: pointer;">
+                        <span>Quản lý bài tuyển dụng</span>
+                        <i class="fa-solid fa-newspaper"></i>
+                    </span>
+                    <ul class="child">
+                        <li>
+                            
+                        </li>
+                        <li>
+                            <a class="menu-item" asp-action="BTDUngVien" asp-controller="BaiTuyenDung">
+                                <span>Bài tuyển dụng - ứng viên</span>
+                                <i class="fa-solid fa-thumbtack"></i>
+                            </a>
+                        </li>
+                    </ul>*@
+@*                    <a class="menu-item" asp-action="DSBaiTuyenDung" asp-controller="BaiTuyenDung">
+                        <span>Quản lý bài tuyển dụng</span>
+                        <i class="fa-solid fa-newspaper"></i>
+                    </a>*@
+                </li>
+@*                <li class="">
+                    <a class="menu-item" asp-action="DanhSachCV" asp-controller="CV">
+                        <span>Sơ yếu lý lịch</span>
+                        <i class="fa-solid fa-file-pdf"></i>
+                    </a>
+                </li>*@
+@*                <li class="">
+                    <a class="menu-item" asp-action="DanhSachCV" asp-controller="CV">
+                        <span>Công ty</span>
+                        <i class="fa-solid fa-file-pdf"></i>
+                    </a>
+                </li>*@
+                <li class="">
+                    <a class="menu-item" asp-action="DSNganhNghe" asp-controller="NganhNghe">
+                        <i class="fa-solid fa-business-time"></i>
+                        <span>Ngành nghề</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a class="menu-item" asp-action="DSTinhThanh" asp-controller="TinhThanh">
+                        <i class="fa-solid fa-tree-city"></i>
+                        <span>Tỉnh thành</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="content-main col-md-10">
+            <div class="content row">
+                
+                    @RenderBody()
+                @*<div class="card">
+                <h3>Số bài tuyển dụng</h3>
+                <h3 class="so-luong">20</h3>
+                </div>
+                <div class="card">
+                <h3>Số nhà tuyển dụng</h3>
+                <h3 class="so-luong">20</h3>
+                </div>
+                <div class="card">
+                <h3>Số người tìm việc</h3>
+                <h3 class="so-luong">20</h3>
+                </div>*@
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('.child-first').click(function () {
+                $(this).next('.child').toggleClass('expanded');
+            });
+        });
+        $(document).ready(function () {
+            $('.btn-profile').click(function (event) {
+                event.stopPropagation(); // Ngăn chặn sự kiện click được truyền xuống các phần tử cha
+                $('.dang-xuat-a').toggleClass('show');
+                $('.fa-chevron-down').toggleClass('hide');
+                $('.fa-chevron-up').toggleClass('show');
+            });
+
+            // Đóng các phần tử khi nhấp vào bất kỳ vị trí nào ở bên ngoài chúng
+            $(document).click(function (event) {
+                if (!$(event.target).closest('.profile-container').length) {
+                    $('.dang-xuat-a').removeClass('show');
+                    $('.fa-chevron-down').removeClass('hide');
+                    $('.fa-chevron-up').removeClass('show');
+                }
+            });
+        });
+    </script>
+
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#moTaCongViec'))
+            .catch(error => {
+                console.error(error);
+            });
+        ClassicEditor
+            .create(document.querySelector('#yeuCauKhac'))
+            .catch(error => {
+                console.error(error);
+            });
+        ClassicEditor
+            .create(document.querySelector('#quyenLoi'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+@*    <script>
+        $('.btn-profile').click(function () {
+            $('.dang-xuat-a').toggleClass('show');
+            $('.fa-chevron-down').toggleClass('hide')
+            $('.fa-chevron-up').toggleClass('show')
+        });
+    </script>*@
+</body>
+</html>

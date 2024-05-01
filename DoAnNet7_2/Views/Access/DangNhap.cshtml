@@ -1,0 +1,42 @@
+﻿@model Taikhoan
+@{
+    ViewData["Title"] = "DangNhap";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập</title>
+    <link rel="stylesheet" href="../wwwroot/assets/css/Login.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h2>Đăng nhập</h2>
+            @*<form action="">
+            <div class="form-group mt-3">
+            <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Email">
+            </div>
+            <div class="form-group mt-3">
+            <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Mật khẩu">
+            </div>
+            <div class="mt-4">
+            <a class="btn-dang-nhap" href="">ĐĂNG NHẬP</a>
+            </div>
+            </form>*@
+            @using (Html.BeginForm("DangNhap", "Access", FormMethod.Post))
+            {
+                <div class="form-group mt-3">
+                    @Html.TextBoxFor(x=>x.Email, new{@class="form-control form-control-lg",placeholder="Email",required="required", type="email", autofocus="autofocus"})
+                </div>
+                <div class="form-group mt-3">
+                    @Html.TextBoxFor(x=>x.Matkhau, new{@class="form-control form-control-lg",placeholder="Mật khẩu",required="required",type = "password",autofocus="autofocus"})
+                </div>
+                <button class="btn-dang-nhap" href="">ĐĂNG NHẬP</button>
+            }
+        </div>
+    </div>
+</body>
+</html>

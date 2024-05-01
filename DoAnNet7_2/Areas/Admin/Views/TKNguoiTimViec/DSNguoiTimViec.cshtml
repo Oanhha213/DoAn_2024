@@ -1,0 +1,50 @@
+﻿@model X.PagedList.IPagedList<DoAnNet7_2.Models.Taikhoan>
+@using X.PagedList.Mvc.Core
+@using X.PagedList.Mvc.Core.Common;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "DanhSachNguoiTimViec";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="border-content col-md-12">
+    <h1>Danh sách người tìm việc</h1>
+
+    @*<p>
+        <a class="btn-danger" asp-action="Create">X</a>
+    </p>*@
+    <form id="search-form" class="mt2" style="display: flex">
+        <input type="search" class="form-control" placeholder="Họ tên, email..." id="searchItem">
+        <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+    </form>
+
+    <div id="tk_search">
+        @Html.Partial("_DSNTVPartial", Model)
+    </div>
+</div>
+<script>
+    // Bắt sự kiện khi form submit
+    $('#search-form').submit(function (event) {
+        // Ngăn chặn hành vi mặc định của form submit
+        event.preventDefault();
+
+        // Lấy giá trị của input tìm kiếm
+        var searchTerm = $('#searchItem').val();
+
+        // Gọi hàm loadData để gửi yêu cầu Ajax và cập nhật dữ liệu
+        loadData(1, searchTerm);
+    });
+
+
+    function loadData(page, searchTerm) {
+        $.ajax({
+            url: "@Url.Action("DSNguoiTimViec", "TKNguoiTimViec")?page=" + page + "&searchTerm=" + searchTerm, // Đường dẫn đến hành động trong controller để lấy dữ liệu từ máy chủ
+            type: 'GET', // Phương thức HTTP để lấy dữ liệu
+            data: { page: page, searchTerm: searchTerm }, // Các tham số để truyền cho hành động lấy dữ liệu
+            success: function (data) {
+                $('#tk_search').html(data); // Cập nhật nội dung của bảng dữ liệu trong trang web
+            }
+        });
+    }
+
+</script>

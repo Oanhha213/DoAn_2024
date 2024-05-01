@@ -1,0 +1,92 @@
+﻿@model DoAnNet7_2.Models.Nganhnghe
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "SuaNganhNghe";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="border-content col-md-6">
+    <h1>Sửa ngành nghề</h1>
+
+    <hr />
+    <div class="row">
+        <div class="col-md-12">
+            <form id="editForm" asp-action="SuaNganhNghe" asp-controller="NganhNghe" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="IdNn" />
+                <div class="form-group">
+                    <label asp-for="Tennganhnghe" class="control-label">Tên ngành nghề
+                        (<span style="color: red">*</span>)
+                    </label>
+                    <input asp-for="Tennganhnghe" class="form-control mt1" required/>
+                    <span asp-validation-for="Tennganhnghe" class="text-danger"></span>
+                </div>
+                <div class="form-group mt2">
+                    @*<input type="submit" value="Lưu" class="btn btn-success" />*@
+                    <button type="button" id="submitBtn" class="btn btn-success">Lưu</button>
+                    <a class="btn btn-danger" asp-controller="NganhNghe" asp-action="DSNganhNghe">Huỷ</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal xác nhận sửa -->
+<div id="confirmModal" class="modal" aria-hidden="true">
+    <div class="modal-content">
+        <div class="display: flex; justify-content: end">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="display: inline">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="title-warning">
+            <i class="fa-solid fa-triangle-exclamation" style="font-size: 20pt"></i>
+            <h3 style="margin-left: 10px !important" class="confirm-message">Bạn có chắc chắn muốn sửa?</h3>
+        </div>
+        <p class="mt2" style="font-size: 16pt; margin-left: 20px; margin-right: 20px">
+            Thông tin ngành nghề sẽ được sửa. Bạn chắc chắn muốn sửa ngành nghề này?
+        </p>
+        <div class="button-container">
+            <button id="confirmBtn" class="confirm">
+                Đồng ý
+            </button>
+            <button id="cancelBtn" class="cancel">Huỷ bỏ</button>
+        </div>
+    </div>
+</div>
+<script>
+    $('#submitBtn').click(function () {
+        $('#confirmModal').modal('show');
+    });
+
+    $('#confirmBtn').click(function () {
+        // Đóng modal xác nhận
+        $('#confirmModal').modal('hide');
+        $('#editForm').submit();
+    });
+
+    // Xử lý kết quả sau khi submit form
+    $(function () {
+        var messageType = '@ViewBag.MessageType';
+        var message = '@ViewBag.Message';
+
+        if (messageType !== '') {
+            Swal.fire({
+                icon: messageType,
+                title: message,
+                showConfirmButton: false,
+                timer: 1500 //
+            }).then(function () {
+                // Chuyển hướng sau khi hiển thị thông điệp
+                if (messageType === 'success') {
+                    window.location.href = '@Url.Action("DSNganhNghe", "NganhNghe")';
+                }
+            });
+        }
+    });
+    // Xử lý sự kiện khi người dùng nhấn nút "Huỷ bỏ"
+    $('#cancelBtn').click(function () {
+        $('#confirmModal').modal('hide'); // Đóng modal xác nhận
+    });
+</script>

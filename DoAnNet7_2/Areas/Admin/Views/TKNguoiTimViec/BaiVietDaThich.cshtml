@@ -1,0 +1,55 @@
+﻿@model X.PagedList.IPagedList<DoAnNet7_2.Models.Thichcongviec>
+@using X.PagedList.Mvc.Core
+@using X.PagedList.Mvc.Core.Common;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "BaiVietDaThich";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="border-content col-md-12">
+    <div class="mt1">
+        <a class="link-hover" asp-action="DSNguoiTimViec" asp-controller="TKNguoiTimViec">Quay về</a>
+    </div>
+    <h1>Bài viết đã thích của @ViewBag.Hoten</h1>
+    <input type="hidden" id="idTK" value="@ViewBag.idTK" />
+
+    <div class="row mt2" style="align-items: center; justify-content: space-between">
+        <p class="col-md-3">
+            <a class="btn btn-success" asp-action="ThichBaiViet" asp-controller="TKNguoiTimViec" asp-route-idTK="@ViewBag.idTk">Bài viết chưa thích</a>
+        </p>
+        <form id="search-form" class="col-md-9" style="display: flex">
+            <input type="search" class="form-control" placeholder="Tên công việc, địa chỉ..." id="searchItem">
+            <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+        </form>
+    </div>
+    <div id="item_search">
+        @Html.Partial("_BaiVietDaThichPartial", Model)
+    </div>
+</div>
+<script>
+    // Bắt sự kiện khi form submit
+    $('#search-form').submit(function (event) {
+        // Ngăn chặn hành vi mặc định của form submit
+        event.preventDefault();
+
+        // Lấy giá trị của input tìm kiếm
+        var searchTerm = $('#searchItem').val();
+        var idTK = $('#idTK').val();
+
+        // Gọi hàm loadData để gửi yêu cầu Ajax và cập nhật dữ liệu
+        loadData(idTK, 1, searchTerm);
+    });
+
+
+    function loadData(idTK, page, searchTerm) {
+        $.ajax({
+            url: "@Url.Action("BaiVietDaThich", "TKNguoiTimViec")?idTK=" + idTK + "&page=" + page + "&searchTerm=" + searchTerm, // Đường dẫn đến hành động trong controller để lấy dữ liệu từ máy chủ
+            type: 'GET', // Phương thức HTTP để lấy dữ liệu
+            data: { idTK: idTK, page: page, searchTerm: searchTerm }, // Các tham số để truyền cho hành động lấy dữ liệu
+            success: function (data) {
+                $('#item_search').html(data); // Cập nhật nội dung của bảng dữ liệu trong trang web
+            }
+        });
+    }
+
+</script>

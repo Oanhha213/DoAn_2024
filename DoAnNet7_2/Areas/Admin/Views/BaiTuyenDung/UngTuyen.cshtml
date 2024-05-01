@@ -1,0 +1,176 @@
+﻿@model DoAnNet7_2.Models.CongviecSyll
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "UngTuyen";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Ứng tuyển</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-8">
+        <form asp-action="UngTuyen" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="IdBtd" class="control-label"></label>
+                <select asp-for="IdBtd" class ="form-control mt1" asp-items='new SelectList(ViewBag.BaiTuyenDung, "IdBtd", "Tencongviec")'></select>
+            </div>
+            <div class="form-group mt2">
+                <label asp-for="IdSyll" class="control-label"></label>
+                <select asp-for="IdSyll" class="form-control mt1" asp-items='new SelectList(ViewBag.SoYeuLyLich, "IdSyll","IdSyll")'></select>
+            </div>
+            <div class="form-group mt2" style="margin-bottom: 20px">
+                <input type="submit" value="Ứng tuyển" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="row" style="display: flex;">
+            <div class="col-md-5" style="background-color: #fff">
+                <h2 class="mt2">Danh sách bài tuyển dụng</h2>
+                <div style="overflow-y: scroll;max-height: 400px; padding: 4px 8px">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Tên công việc</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in ViewBag.BaiTuyenDung)
+                            {
+                                <tr>
+                                    <td>@item.IdBtd</td>
+                                    <td>
+                                        <a class="link-hover" asp-action="ChiTietBTD" asp-controller="BaiTuyenDung" asp-route-idBTD="@item.IdBtd" target="_blank">@item.Tencongviec</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="col-md-7" style=" background-color: #fff">
+                <h2 class="mt2">Danh sách CV</h2>
+                <div style="overflow-y: scroll;max-height: 400px;padding: 4px 8px">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Tên CV</th>
+                                <th>Email</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in ViewBag.SoYeuLyLich)
+                            {
+                                <tr>
+                                    <td>@item.IdSyll</td>
+                                    <td>
+                                        <a class="link-hover" asp-action="ViewCV" asp-controller="CV" asp-route-idCV="@item.IdSyll" target="_blank">@item.Tensyll</a>
+                                    </td>
+                                    <td>
+                                        @if (item.IdTkNavigation != null)
+                                        {
+                                            @item.IdTkNavigation.Email
+                                        }
+                                        else
+                                        {
+                                            <span class="text-danger">Email not available</span>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mt2">
+    <a class="btn btn-return" asp-action="BTDUngVien" asp-controller="BaiTuyenDung" >Quay về</a>
+</div>
+
+<style>
+    .wmax300 {
+        max-width: 300px;
+        word-wrap: break-word;
+    }
+    .wmin300{
+        min-width: 300px;
+    }
+    .wmin260{
+        min-width: 260px;
+    }
+    a {
+        text-decoration: none;
+    }
+    .ml1{
+        margin-left: 10px;
+    }
+    .mt2{
+        margin-top: 20px;
+    }
+
+    .mt1{
+        margin-top: 10px;
+    }
+
+    table {
+        margin-top: 30px;
+    }
+
+    .pagination {
+        display: flex;
+    }
+
+    .page-link {
+        display: inline-block;
+        height: inherit;
+        padding: 6px 12px;
+        text-align: center;
+        color: #000;
+        background-color: #fff;
+        border: solid 1px #ccc;
+    }
+
+    a.page-link:hover {
+        color: #fff !important;
+        background-color: #feb696;
+        cursor: pointer;
+    }
+
+    .active.page-item .page-link {
+        background-color: #feb696;
+        color: #fff !important;
+    }
+
+    .box-button {
+        margin: 20px 0;
+    }
+
+    .btn {
+        color: #fff !important;
+        padding: 8px 12px;
+        height: inherit;
+        display: inline-block;
+        border-radius: 5px;
+        margin: 0 5px;
+        cursor: pointer;
+        border: none !important;
+    }
+
+    td:last-child {
+        text-align: center;
+    }
+
+    td:first-child {
+        text-align: center;
+    }
+</style>

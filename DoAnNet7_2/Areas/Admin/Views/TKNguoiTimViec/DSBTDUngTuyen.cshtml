@@ -1,0 +1,81 @@
+﻿@model X.PagedList.IPagedList<DoAnNet7_2.Models.CongviecSyll>
+@using X.PagedList.Mvc.Core
+@using X.PagedList.Mvc.Core.Common;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "DSBTDUngTuyen";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="border-content col-md-12">
+    <div class="mt1">
+        <a class="link-hover" asp-action="DSNguoiTimViec" asp-controller="TKNguoiTimViec">Quay về</a>
+    </div>
+    <h1>Danh sách bài tuyển dụng đã ứng tuyển của @ViewBag.Hoten</h1>
+    <input type="hidden" id="idCV" value="@ViewBag.IdSyll" />
+    <input type="hidden" id="IdTK" value="@ViewBag.IdTk" />
+
+    <div class="row mt2" style="align-items: center; justify-content: space-between">
+        <div class="col-md-3">
+            <a class="btn btn-success" asp-action="BTDChuaUT" asp-controller="TKNguoiTimViec" asp-route-idTK="@ViewBag.IdTk">Bài viết chưa ứng tuyển</a>
+        </div>
+        <form id="search-form" class="col-md-9" style="display: flex">
+            <input type="search" class="form-control" placeholder="Tên công việc, địa chỉ..." id="searchItem">
+            <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+        </form>
+    </div>
+    <div id="btd_search">
+        @Html.Partial("_BTDUngTuyenPartial", Model)
+    </div>
+</div>
+<script>
+    // Bắt sự kiện khi form submit
+    $('#search-form').submit(function (event) {
+        // Ngăn chặn hành vi mặc định của form submit
+        event.preventDefault();
+
+        // Lấy giá trị của input tìm kiếm
+        var searchTerm = $('#searchItem').val();
+        var idCV = $('#idCV').val();
+
+        // Gọi hàm loadData để gửi yêu cầu Ajax và cập nhật dữ liệu
+        loadData(idCV, 1, searchTerm);
+    });
+
+
+    function loadData(idCV, page, searchTerm) {
+        $.ajax({
+            url: "@Url.Action("DSBTDUngTuyen", "TKNguoiTimViec")?idCV=" + idCV + "&page=" + page + "&searchTerm=" + searchTerm, // Đường dẫn đến hành động trong controller để lấy dữ liệu từ máy chủ
+            type: 'GET', // Phương thức HTTP để lấy dữ liệu
+            data: { idCV: idCV, page: page, searchTerm: searchTerm }, // Các tham số để truyền cho hành động lấy dữ liệu
+            success: function (data) {
+                $('#btd_search').html(data); // Cập nhật nội dung của bảng dữ liệu trong trang web
+            }
+        });
+    }
+
+</script>
+
+<script>
+    //$(document).ready(function () {
+    //    // Lấy tham số từ URL
+    //    const urlParams = new URLSearchParams(window.location.search);
+    //    const previousView = urlParams.get('previousView');
+    //    const IdTK = urlParams.get('IdTK');
+
+    //    // Xử lý sự kiện khi nhấn vào nút "Quay về"
+    //    $('.btn-return').click(function () {
+    //        // Điều hướng người dùng đến trang trước đó
+    //        if (previousView === "DanhSachCV") {
+    //            window.location.href = "@Url.Action("DanhSachCV", "CV")";
+    //        } else if (previousView === "DSNguoiTimViec") {
+    //            window.location.href = "@Url.Action("DSNguoiTimViec", "TKNguoiTimViec")";
+    //        } else {
+    //            // Nếu không tìm thấy trang trước đó, điều hướng người dùng đến trang mặc định
+    //            window.history.back();
+    //        }
+    //    });
+    //});
+</script>
+
+

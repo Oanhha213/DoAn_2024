@@ -1,0 +1,87 @@
+﻿@model DoAnNet7_2.Models.Congty
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "ThemCongTy";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="border-content col-md-6">
+
+    <h1>Thêm công ty tài khoản @ViewBag.Email</h1>
+
+    <hr />
+    <div class="row">
+        <div class="col-md-12">
+            <form asp-action="ThemCongTy" asp-controller="TKNhaTuyenDung" method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="UpLogo" class="control-label"></label>
+                    <input type="file" asp-for="UpLogo" class="form-control mt1" onchange="previewImage(this);" />
+                    <img class="mt2 " id="LogoPreview" src="#" alt="Logo" style="display: none; max-width: 200px; max-height: 200px;">
+                    <span asp-validation-for="UpLogo" class="text-danger"></span>
+                </div>
+                <div class="form-group mt2">
+                    <label asp-for="Tencongty" class="control-label">Tên công ty
+                        (<span style="color: red">*</span>)
+                    </label>
+                    <input asp-for="Tencongty" class="form-control mt1" required/>
+                    <span asp-validation-for="Tencongty" class="text-danger"></span>
+                </div>
+                <div class="form-group mt2">
+                    <label asp-for="IdNn" class="control-label"></label>
+                    <select asp-for="IdNn" class="form-control mt1" asp-items="ViewBag.IdNn"></select>
+                </div>
+                <div class="form-group mt2">
+                    <label asp-for="Sonhanvien" class="control-label"></label>
+                    <input asp-for="Sonhanvien" class="form-control mt1" />
+                    <span asp-validation-for="Sonhanvien" class="text-danger"></span>
+                </div>
+                <div class="form-group mt2">
+                    <label asp-for="Diachi" class="control-label"></label>
+                    <input asp-for="Diachi" class="form-control mt1" />
+                    <span asp-validation-for="Diachi" class="text-danger"></span>
+                </div>
+                <div class="form-group mt2">
+                    <label asp-for="IdTt" class="control-label"></label>
+                    <select asp-for="IdTt" class="form-control mt1" asp-items="ViewBag.IdTt"></select>
+                </div>
+                <div class="form-group mt2">
+                    <label asp-for="Mota" class="control-label"></label>
+                    <textarea asp-for="Mota" class="form-control mt1" id="moTaCongTy"></textarea>
+                    <span asp-validation-for="Mota" class="text-danger"></span>
+                </div>
+                <div class="form-group mt2">
+                    <input type="submit" value="Thêm mới" class="btn btn-success" />
+                    <a class="btn btn-danger" asp-action="DanhSachTaiKhoan" asp-controller="DanhSachTaiKhoan">Bỏ qua</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    function previewImage(input) {
+        var preview = document.getElementById('LogoPreview');
+        var file = input.files[0];
+        var reader = new FileReader();
+
+        reader.onloadend = function () {
+            preview.src = reader.result;
+            preview.style.display = 'block';
+        };
+
+        if (file) {
+            reader.readAsDataURL(file);
+        } else {
+            preview.src = '#';
+            preview.style.display = 'none';
+        }
+    }
+</script>
+
+<script>
+    ClassicEditor
+        .create(document.querySelector('#moTaCongTy'))
+        .catch(error => {
+            console.error(error);
+        });
+</script>

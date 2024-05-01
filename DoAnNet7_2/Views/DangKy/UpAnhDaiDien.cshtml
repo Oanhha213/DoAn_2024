@@ -1,0 +1,51 @@
+﻿@model DoAnNet7_2.Models.Anhdaidien
+
+@{
+    Layout = null;
+}
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="">
+</head>
+<body>
+    <h3>Tải ảnh đại diện</h3>
+    <form asp-action="UpAnhDaiDien" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label asp-for="UpAnhDaiDien" class="control-label"></label>
+            <input type="file" asp-for="UpAnhDaiDien" class="form-control" onchange="previewImage(this);" />
+            <img id="AnhDaiDienPreview" src="#" alt="Ảnh đại diện" style="display: none; max-width: 200px; max-height: 200px;">
+            <span asp-validation-for="UpAnhDaiDien" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Lưu ảnh" class="btn btn-primary" />
+        </div>
+    </form>
+
+    <script>
+        function previewImage(input) {
+            var preview = document.getElementById('AnhDaiDienPreview');
+            var file = input.files[0];
+            var reader = new FileReader();
+
+            reader.onloadend = function () {
+                preview.src = reader.result;
+                preview.style.display = 'block';
+            };
+
+            if (file) {
+                reader.readAsDataURL(file);
+            } else {
+                preview.src = '#';
+                preview.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+﻿@model DoAnNet7_2.Models.Nganhnghe
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "ThemNganhNghe";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="border-content col-md-6">
+    <h4>Ngành nghề</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-12">
+            <form asp-action="ThemNganhNghe" asp-controller="NganhNghe" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Tennganhnghe" class="control-label">Tên ngành nghề
+                        (<span style="color: red">*</span>)
+                    </label>
+                    <input asp-for="Tennganhnghe" class="form-control mt1" required/>
+                    <span asp-validation-for="Tennganhnghe" class="text-danger"></span>
+                </div>
+                <div class="form-group mt2">
+                    <input type="submit" value="Thêm mới" class="btn btn-success" />
+                    <a class="btn btn-danger" asp-action="DSNganhNghe" asp-controller="NganhNghe">Huỷ</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

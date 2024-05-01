@@ -1,0 +1,38 @@
+﻿@model DoAnNet7_2.Models.Soyeulylich
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "ThemCV";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="border-content col-md-6">
+
+    <h1>Thêm CV</h1>
+
+    <hr />
+    <div class="row">
+        <div class="col-md-12">
+            <form asp-action="ThemCVUngVien" method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Tensyll" class="control-label">Tên CV(thường là vị trí ứng tuyển)
+                        (<span style="color: red">*</span>)
+                    </label>
+                    <input asp-for="Tensyll" class="form-control" required/>
+                    <span asp-validation-for="Tensyll" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="cvFile" class="control-label">File CV(.pdf)
+                        (<span style="color: red">*</span>)
+                    </label>
+                    <input asp-for="cvFile" class="form-control" type="file" id="cvFile" name="cvFile" required/>
+                    <span asp-validation-for="cvFile" class="text-danger"></span>
+                </div>
+                <div class="form-group mt2">
+                    <input class="btn btn-success" type="submit" value="Thêm mới" />
+                    <a class="btn btn-danger" asp-action="DanhSachTaiKhoan" asp-controller="DanhSachTaiKhoan">Bỏ qua</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

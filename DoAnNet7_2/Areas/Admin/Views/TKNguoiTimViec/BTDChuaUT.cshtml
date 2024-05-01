@@ -1,0 +1,54 @@
+﻿@model X.PagedList.IPagedList<DoAnNet7_2.Models.Baituyendung>
+@using X.PagedList.Mvc.Core
+@using X.PagedList.Mvc.Core.Common;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "BTD chưa Ứng tuyển";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="border-content col-md-12">
+    <div class="mt1">
+        @*<a class="btn btn-return"
+        href="@Url.Action("DSBTDUngTuyen", "TKNguoiTimViec", new { IdTK = ViewBag.IdTK, idCV = @ViewBag.IdSyll,previousView = "DSNguoiTimViec" })">Quay về</a>*@
+        <a class="link-hover" asp-action="DSBTDUngTuyen" asp-controller="TKNguoiTimViec" asp-route-idTK="@ViewBag.IdTk">Quay về</a>
+    </div>
+    <h1>Danh sách bài tuyển dụng chưa ứng tuyển của @ViewBag.Hoten</h1>
+    <input type="hidden" id="idCV" value="@ViewBag.IdSyll" />
+    <form id="search-form" class="mt2" style="display: flex">
+        <input type="search" class="form-control" placeholder="Tên công việc, địa chỉ..." id="searchItem">
+        <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+    </form>
+    <div id="item_search">
+        @Html.Partial("_BTDChuaUTPartial", Model)
+    </div>
+</div>
+<script>
+    // Bắt sự kiện khi form submit
+    $('#search-form').submit(function (event) {
+        // Ngăn chặn hành vi mặc định của form submit
+        event.preventDefault();
+
+        // Lấy giá trị của input tìm kiếm
+        var searchTerm = $('#searchItem').val();
+        var idCV = $('#idCV').val();
+
+        // Gọi hàm loadData để gửi yêu cầu Ajax và cập nhật dữ liệu
+        loadData(idCV, 1, searchTerm);
+    });
+
+
+    function loadData(idCV, page, searchTerm) {
+        $.ajax({
+            url: "@Url.Action("UVUngTuyen", "TKNguoiTimViec")?idCV=" + idCV + "&page=" + page + "&searchTerm=" + searchTerm, // Đường dẫn đến hành động trong controller để lấy dữ liệu từ máy chủ
+            type: 'GET', // Phương thức HTTP để lấy dữ liệu
+            data: { idCV: idCV, page: page, searchTerm: searchTerm }, // Các tham số để truyền cho hành động lấy dữ liệu
+            success: function (data) {
+                $('#item_search').html(data); // Cập nhật nội dung của bảng dữ liệu trong trang web
+            }
+        });
+    }
+
+</script>
+
+
