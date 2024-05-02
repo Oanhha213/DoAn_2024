@@ -156,7 +156,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             {
                 foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
                 {
-                    Console.WriteLine(error.ErrorMessage);
+                    Debug.WriteLine(error.ErrorMessage);
                 }
             }
             

@@ -9,7 +9,7 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 namespace DoAnNet7_2.Areas.Admin.Controllers
 {
     [Area("admin")]
-    [Route("SoYeuLyLich")]
+    [Route("CV")]
     public class CVController : Controller
     {
         Jobsworld2Context db = new Jobsworld2Context();
@@ -209,7 +209,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             return View(syll);
         }
 
-        [Route("ChiTietCV")]
+        [Route("ViewCV")]
         public IActionResult ViewCV(int idCV)
         {
             var cv = db.Soyeulyliches.FirstOrDefault(x => x.IdSyll == idCV);

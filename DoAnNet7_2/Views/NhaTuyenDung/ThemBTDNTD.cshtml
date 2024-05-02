@@ -1,0 +1,108 @@
+﻿@model DoAnNet7_2.Models.Baituyendung
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "ThemBTDCongTy";
+    Layout = "~/Views/Shared/_LayoutNhaTuyenDung.cshtml";
+}
+
+<div class="border-content col-md-6">
+    <h1>Thêm Bài tuyển dụng</h1>
+    <hr />
+    <div class="row">
+        <div class="col-md-12">
+            <form asp-action="ThemBTDNTD" asp-controller="NhaTuyenDung" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Tencongviec" class="control-label">Tên công việc
+                        (<span style="color: red">*</span>)
+                    </label>
+                    <input asp-for="Tencongviec" class="form-control mt1" required/>
+                    <span asp-validation-for="Tencongviec" class="text-danger"></span>
+                </div>
+                <div class="form-group mt2">
+                    <label asp-for="Diachi" class="control-label"></label>
+                    <input asp-for="Diachi" class="form-control mt1" />
+                    <span asp-validation-for="Diachi" class="text-danger"></span>
+                </div>
+                <div class="form-group mt2">
+                    <label asp-for="IdTt" class="control-label"></label>
+                    <select asp-for="IdTt" class="form-control mt1" asp-items="ViewBag.IdTt"></select>
+                </div>
+                <div class="form-group mt2">
+                    <label asp-for="IdLcv" class="control-label">Loại công việc
+                        (<span style="color: red">*</span>)
+                    </label>
+                    <select asp-for="IdLcv" class="form-control mt1" asp-items="ViewBag.IdLcv" required></select>
+                </div>
+                <div class="form-group mt2">
+                    <label asp-for="IdTglv" class="control-label">Thời gian làm việc
+                        (<span style="color: red">*</span>)
+                    </label>
+                    <select asp-for="IdTglv" class="form-control mt1" asp-items="ViewBag.IdTglv" required></select>
+                </div>
+                <div class="form-group mt2">
+                    <label asp-for="IdNn" class="control-label">Ngành nghề
+                        (<span style="color: red">*</span>)
+                    </label>
+                    <select asp-for="IdNn" class="form-control mt1" asp-items="ViewBag.IdNn" required></select>
+                </div>
+                <div class="form-group mt2">
+                    <label asp-for="Motacongviec" class="control-label">Mô tả công việc
+                        (<span style="color: red">*</span>)
+                    </label>
+                    <textarea asp-for="Motacongviec" class="form-control mt1 minht200" id="moTaCongViec"></textarea>
+                    <span asp-validation-for="Motacongviec" class="text-danger"></span>
+                </div>
+                <div class="form-group mt2">
+                    <label asp-for="IdTgkn" class="control-label">Yêu cầu kinh nghiệm
+                        (<span style="color: red">*</span>)
+                    </label>
+                    <select asp-for="IdTgkn" class="form-control mt1" asp-items="ViewBag.IdTgkn" required></select>
+                </div>
+                <div class="form-group mt2">
+                    <label asp-for="Yeucaukhac" class="control-label">Yêu cầu khác
+                        (<span style="color: red">*</span>)
+                    </label>
+                    <textarea asp-for="Yeucaukhac" class="form-control mt1 minht150" id="yeuCauKhac"></textarea>
+                    <span asp-validation-for="Yeucaukhac" class="text-danger"></span>
+                </div>
+                <div class="form-group mt2">
+                    <label asp-for="Quyenloi" class="control-label">Quyền lợi
+                        (<span style="color: red">*</span>)
+                    </label>
+                    <textarea asp-for="Quyenloi" class="form-control mt1 minht200" id="quyenLoi"></textarea>
+                    <span asp-validation-for="Quyenloi" class="text-danger"></span>
+                </div>
+                <div class="form-group mt2">
+                    <label asp-for="IdTtht" class="control-label">Trạng thái hiển thị
+                        (<span style="color: red">*</span>)
+                    </label>
+                    <select asp-for="IdTtht" class="form-control mt1" asp-items="ViewBag.IdTtht" required></select>
+                </div>
+                <div class="form-group mt2">
+                    <input type="submit" value="Thêm mới" class="btn btn-success" />
+                    <a class="btn btn-danger" asp-action="DSBTDNTD" asp-controller="NhaTuyenDung" asp-route-idTK="@ViewBag.IdTk">Huỷ</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="/_framework/aspnetcore-browser-refresh.js"></script>
+
+@*<style>
+    .mt1 {
+        margin-top: 10px;
+    }
+
+    .mt2 {
+        margin-top: 20px;
+    }
+
+    .minht200 {
+        min-height: 200px !important;
+    }
+
+    .minht150 {
+        min-height: 150px !important;
+    }
+</style>*@

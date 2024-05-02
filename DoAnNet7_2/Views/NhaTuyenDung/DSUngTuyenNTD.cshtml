@@ -1,0 +1,51 @@
+﻿@model X.PagedList.IPagedList<DoAnNet7_2.Models.CongviecSyll>
+@using X.PagedList.Mvc.Core
+@using X.PagedList.Mvc.Core.Common;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "DSUngTuyenNTD";
+    Layout = "~/Views/Shared/_LayoutNhaTuyenDung.cshtml";
+}
+
+<div class="border-content col-md-12">
+    <div class="mt1">
+        <a class="link-hover" asp-action="DSBTDNTD" asp-controller="NhaTuyenDung">Quay về</a>
+    </div>
+    <h1>Danh sách ứng tuyển @ViewBag.Tencongviec</h1>
+    <input type="hidden" id="idBTD" value="@ViewBag.idBTD" />
+
+    <form id="search-form" class="mt2" style="display: flex">
+        <input type="search" class="form-control" placeholder="Họ tên, email..." id="searchItem">
+        <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+    </form>
+    <div id="item_search">
+        @Html.Partial("_DSUngTuyenNTDPartial", Model)
+    </div>
+</div>
+<script>
+    // Bắt sự kiện khi form submit
+    $('#search-form').submit(function (event) {
+        // Ngăn chặn hành vi mặc định của form submit
+        event.preventDefault();
+
+        // Lấy giá trị của input tìm kiếm
+        var searchTerm = $('#searchItem').val();
+        var idBTD = $('#idBTD').val();
+        // Gọi hàm loadData để gửi yêu cầu Ajax và cập nhật dữ liệu
+        loadData(idBTD, 1, searchTerm);
+    });
+
+
+    function loadData(idBTD, page, searchTerm) {
+        $.ajax({
+            url: "@Url.Action("DSUngTuyenNTD", "NhaTuyenDung")?idBTD=" + idBTD + "&page=" + page + "&searchTerm=" + searchTerm, // Đường dẫn đến hành động trong controller để lấy dữ liệu từ máy chủ
+            type: 'GET', // Phương thức HTTP để lấy dữ liệu
+            data: { idBTD: idBTD, page: page, searchTerm: searchTerm }, // Các tham số để truyền cho hành động lấy dữ liệu
+            success: function (data) {
+                $('#item_search').html(data); // Cập nhật nội dung của bảng dữ liệu trong trang web
+            }
+        });
+    }
+
+</script>
+

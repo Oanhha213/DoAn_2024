@@ -340,6 +340,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             ViewBag.IdTgkn = new SelectList(db.Thoigiankinhnghiems.ToList(), "IdTgkn", "Tentgkn");
             ViewBag.IdTglv = new SelectList(db.Thoigianlamviecs.ToList(), "IdTglv", "Tentglv");
             ViewBag.IdTt = new SelectList(db.Tinhthanhs.ToList(), "IdTt", "Tentt");
+            ViewBag.IdTtht = new SelectList(db.Trangthaihienthis.ToList(), "IdTtht", "Tenttht");
             return View(btd);
         }
 

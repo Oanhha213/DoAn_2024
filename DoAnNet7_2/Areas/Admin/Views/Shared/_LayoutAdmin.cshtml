@@ -126,7 +126,7 @@
                 </div>
                 <i class="fa-solid fa-chevron-down" style="font-size: x-small;"></i>
                 <i class="fa-solid fa-chevron-up" style="font-size: x-small;"></i>
-                <a class="dang-xuat-a" asp-controller="Access" asp-action="DangXuat">Đăng xuất</a>
+                <a class="dang-xuat-a" id="logoutBtn" asp-controller="Access" asp-action="DangXuat">Đăng xuất</a>
             </button>
         </div>
     </div>
@@ -143,7 +143,7 @@
             </div>
             <ul class="menu">
                 <li class="">
-                    <a class="active menu-item" id="item-home" asp-action="index" asp-controller="HomeAdmin">
+                    <a class="menu-item" id="item-home" asp-controller="admin" asp-action="index">
                         <i class="fa-solid fa-house"></i>
                         Bảng tin
                     </a>
@@ -241,6 +241,10 @@
             if (activeMenuItem) {
                 $('.menu-item').removeClass('active'); // Xóa lớp active khỏi tất cả các menu item
                 $('#' + activeMenuItem).addClass('active'); // Thêm lớp active vào menu item được lưu trong Local Storage
+            } else {
+                // Nếu không có menu item nào được lưu, mặc định active cho menu item Home và lưu nó vào Local Storage
+                $('#item-home').addClass('active');
+                localStorage.setItem('activeMenuItem', 'item-home');
             }
 
             // Khi click vào một menu item
@@ -252,7 +256,32 @@
                 // Lưu trạng thái active vào Local Storage
                 localStorage.setItem('activeMenuItem', itemId);
             });
+            $('#logoutBtn').click(function(){
+                // Sau khi đăng xuất
+                localStorage.removeItem('activeMenuItem');
+            })
         });
+        
+        // Xác định URL hiện tại
+        //var currentURL = window.location.pathname;
+
+        //// Duyệt qua các menu-item và áp dụng trạng thái active
+        //$('.menu-item').each(function () {
+        //    var menuItemURL = $(this).attr('href');
+        //    if (menuItemURL === currentURL) {
+        //        $(this).addClass('active');
+        //    }
+        //});
+
+        //// Khi click vào một menu item
+        //$('.menu-item').click(function () {
+        //    // Loại bỏ trạng thái active từ tất cả các menu item
+        //    $('.menu-item').removeClass('active');
+
+        //    // Thêm trạng thái active cho menu item được chọn
+        //    $(this).addClass('active');
+        //});
+
     </script>
 
     <script>

@@ -9,6 +9,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
 {
     [Area("admin")]
     [Route("admin")]
+    [Route("admin/homeadmin")]
     public class HomeAdminController : Controller
     {
         Jobsworld2Context db = new Jobsworld2Context();

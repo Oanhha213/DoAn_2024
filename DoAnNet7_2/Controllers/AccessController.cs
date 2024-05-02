@@ -25,51 +25,47 @@ namespace DoAnNet7_2.Controllers
         [HttpPost]
         public IActionResult DangNhap(Taikhoan taikhoan)
         {
-            if (HttpContext.Session.GetString("Email") == null)
-            {
-                var obj = db.Taikhoans.Where(x => x.Email == taikhoan.Email && x.Matkhau == taikhoan.Matkhau).FirstOrDefault();
-                if (obj != null)
-                {
-                    var anhdd = db.Anhdaidiens.FirstOrDefault(x => x.IdTk == obj.IdTk)?.Tenanh;
-                    if (obj.IdLtk == 1)
-                    {
-                        HttpContext.Session.SetString("Email", obj.Email.ToString());
-                        HttpContext.Session.SetString("Hoten", obj.Hoten.ToString());
-                        HttpContext.Session.SetInt32("IdTk", obj.IdTk);
-                        if (anhdd != null)
-                        {
-                            HttpContext.Session.SetString("Tenanh", anhdd.ToString());
-                        }
 
-                        return RedirectToAction("Index", "Admin");
-                    }
-                    var anh = db.Anhdaidiens.Where(x => x.IdTk == obj.IdTk).FirstOrDefault();
-                    if (obj.IdLtk == 2)
+            var obj = db.Taikhoans.Where(x => x.Email == taikhoan.Email && x.Matkhau == taikhoan.Matkhau).FirstOrDefault();
+            if (obj != null)
+            {
+                var anhdd = db.Anhdaidiens.FirstOrDefault(x => x.IdTk == obj.IdTk)?.Tenanh;
+                if (obj.IdLtk == 1)
+                {
+                    HttpContext.Session.SetString("Email", obj.Email.ToString());
+                    HttpContext.Session.SetString("Hoten", obj.Hoten.ToString());
+                    HttpContext.Session.SetInt32("IdTk", obj.IdTk);
+                    if (anhdd != null)
                     {
-                        HttpContext.Session.SetString("Email", obj.Email.ToString());
-                        HttpContext.Session.SetString("Hoten", obj.Hoten.ToString());
-                        HttpContext.Session.SetInt32("IdTk", obj.IdTk);
-                        HttpContext.Session.SetString("IdTk", obj.IdTk.ToString());
-                        if (anh != null)
-                        {
-                            HttpContext.Session.SetInt32("IdAnhdd", anh.IdAnhdd);
-                            HttpContext.Session.SetString("Tenanh", anh.Tenanh.ToString());
-                        }
-                        return RedirectToAction("NhaTuyenDung", "NhaTuyenDung");
+                        HttpContext.Session.SetString("Tenanh", anhdd.ToString());
                     }
-                    else
+
+                    return RedirectToAction("index", "admin");
+                }
+                var anh = db.Anhdaidiens.Where(x => x.IdTk == obj.IdTk).FirstOrDefault();
+                if (obj.IdLtk == 2)
+                {
+                    HttpContext.Session.SetString("Email", obj.Email.ToString());
+                    HttpContext.Session.SetString("Hoten", obj.Hoten.ToString());
+                    HttpContext.Session.SetInt32("IdTk", obj.IdTk);
+                    if (anh != null)
                     {
-                        HttpContext.Session.SetString("Email", obj.Email.ToString());
-                        HttpContext.Session.SetString("Hoten", obj.Hoten.ToString());
-                        HttpContext.Session.SetInt32("IdTk", obj.IdTk);
-                        HttpContext.Session.SetString("IdTk", obj.IdTk.ToString());
-                        if (anh != null)
-                        {
-                            HttpContext.Session.SetInt32("IdAnhdd", anh.IdAnhdd);
-                            HttpContext.Session.SetString("Tenanh", anh.Tenanh.ToString());
-                        }
-                        return RedirectToAction("NguoiTimViec", "NguoiTimViec");
+                        HttpContext.Session.SetInt32("IdAnhdd", anh.IdAnhdd);
+                        HttpContext.Session.SetString("Tenanh", anh.Tenanh.ToString());
                     }
+                    return RedirectToAction("NhaTuyenDung", "NhaTuyenDung");
+                }
+                else
+                {
+                    HttpContext.Session.SetString("Email", obj.Email.ToString());
+                    HttpContext.Session.SetString("Hoten", obj.Hoten.ToString());
+                    HttpContext.Session.SetInt32("IdTk", obj.IdTk);
+                    if (anh != null)
+                    {
+                        HttpContext.Session.SetInt32("IdAnhdd", anh.IdAnhdd);
+                        HttpContext.Session.SetString("Tenanh", anh.Tenanh.ToString());
+                    }
+                    return RedirectToAction("NguoiTimViec", "NguoiTimViec");
                 }
             }
             return View();
