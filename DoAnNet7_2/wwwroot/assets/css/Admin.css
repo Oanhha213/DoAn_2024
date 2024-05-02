@@ -100,7 +100,7 @@ h3,h4{
     color: #fff !important;
 }
 
-.menu-item, .child-first{
+.menu-item, .child-first {
     display: flex;
     color: #000;
     padding: 12px;
@@ -108,6 +108,7 @@ h3,h4{
     border-radius: 8px;
     font-size: 12pt;
     font-weight: 500;
+    align-items: center;
 }
 
 .menu-item > i, .child-first > i{
@@ -133,6 +134,7 @@ h3,h4{
     flex-grow: 1;
     margin-left: 16.67%;
     margin-top: 63px;
+    min-width: -webkit-fill-available;
 }
 
 .content {
@@ -301,13 +303,6 @@ th {
     text-align: center !important;
 }*/
 
-.side-bar.col-sm-3{
-    max-width: 21% !important;
-}
-.content-main.col-sm-9{
-    min-width: 79% !important;
-    padding-right: 0 !important;
-}
 
 /* Modal styles */
 .modal {

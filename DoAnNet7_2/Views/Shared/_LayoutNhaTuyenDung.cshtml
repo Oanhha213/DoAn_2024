@@ -40,15 +40,79 @@
     @*    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>*@
+    <style>
 
+        .btn-profile {
+            display: flex;
+            margin-right: 100px !important;
+            align-items: center;
+            background-color: #fff;
+            position: relative;
+            outline: none !important;
+        }
+
+        .nav-profile-img {
+            margin-right: 15px;
+        }
+
+        .nav-profile-text {
+            vertical-align: middle;
+            margin-right: 6px;
+        }
+
+            .nav-profile-text > p {
+                margin-bottom: 0 !important;
+            }
+
+        .dang-xuat-a {
+            position: absolute;
+            display: none;
+            background-color: #fff;
+            box-shadow: 0px 3px 21px 0px rgba(0, 0, 0, 0.2);
+            padding: 10px 20px;
+            z-index: 99;
+            top: 52px;
+            border-radius: 5px;
+            cursor: pointer;
+            color: #000 !important;
+            min-width: fit-content;
+        }
+
+            .dang-xuat-a:hover {
+                background-color: #e9ecef !important;
+                color: #000 !important;
+            }
+
+            .dang-xuat-a.show {
+                display: block;
+            }
+
+        i.fa-chevron-down.hide, i.fa-chevron-up {
+            display: none;
+        }
+
+        .fa-chevron-up.show {
+            display: block;
+        }
+
+        .avatar {
+            width: 40px !important;
+            height: 40px !important;
+            border-radius: 100%;
+        }
+    </style>
 
 </head>
 <body>
     <div id="nav-bar">
-        <div>
-            <img class="logo" src="~/assets/images/LOGO.jpg" alt="Logo">
+        <div style="min-width: 20% !important;display: flex; justify-content: center">
+             <img class="logo" src="~/assets/images/LOGO.jpg" alt="Logo">
         </div>
-        <div>
+        <div style="display: flex; justify-content: space-between;width: -webkit-fill-available; align-items: center">
+            <p>
+                <i class="fa-regular fa-calendar-days" style="color: #feb696"></i>
+                @DateTime.Now.ToString("dddd, dd/MM/yyyy")
+            </p>
             <button class="btn-profile">
                 <div class="nav-profile-img">
                     <img class="avatar" src="@context.Session.GetString("Tenanh")" alt="image">
@@ -60,87 +124,117 @@
                 </div>
                 <i class="fa-solid fa-chevron-down" style="font-size: x-small;"></i>
                 <i class="fa-solid fa-chevron-up" style="font-size: x-small;"></i>
+                <a class="dang-xuat-a" asp-controller="Access" asp-action="DangXuat">Đăng xuất</a>
             </button>
-            <a class="dang-xuat-a" asp-controller="Access" asp-action="DangXuat" >Đăng xuất</a>
         </div>
-@*        <div class="btn btn-dang-xuat">
-            <a asp-controller="Access" asp-action="DangXuat" style="color: #fff"><i class="bx bx-log-out bx-rotate-180"></i> Đăng xuất</a>
-        </div>*@
     </div>
     <div class="row main">
-        <div class="side-bar col-sm-3">
-            <div class="acc-admin">
-                <img class="avatarAdmin" src="@context.Session.GetString("Tenanh")" alt="anh-dai-dien">
+        <div class="side-bar col-md-3" style="max-width: 20% !important">
+            <div style="margin-top: 30px; display: flex; flex-direction: column; align-items: center">
+                <img class="avatarNTD" src="@context.Session.GetString("Tenanh")" alt="anh-dai-dien">
                 <div class="name-admin">
-                    <h3>
-                       @context.Session.GetString("Hoten")
-                    </h3>
-                    <h4>Nhà tuyển dụng</h4>
+                    <h4 style="text-align: center;font-size: 1.5rem !important;">
+                        @context.Session.GetString("Hoten")
+                    </h4>
+                    <h5 style="margin-top: 5px">Nhà tuyển dụng</h5>
                 </div>
             </div>
             <ul class="menu">
                 <li class="">
-                    <a class="active menu-item" asp-action="index" asp-controller="HomeAdmin">
+                    <a class="active menu-item" id="item-home" asp-action="index" asp-controller="HomeAdmin">
                         <i class="fa-solid fa-house"></i>
-                        <span>Bảng tin</span>
+                        Bảng tin
                     </a>
                 </li>
                 <li class="">
-                    <a class="menu-item" asp-action="index" asp-controller="HomeAdmin">
+                    <a class="menu-item" id="item-account" asp-action="DanhSachTaiKhoan" asp-controller="DanhSachTaiKhoan">
                         <i class="fa-solid fa-newspaper"></i>
-                        <span>Quản lý bài tuyển dụng</span>
+                        <span>Bài tuyển dụng</span>
                     </a>
                 </li>
-                <li class="">
-                    <a class="menu-item" asp-action="index" asp-controller="HomeAdmin">
-                        <i class="fa-solid fa-house"></i>
+                <li>
+                    <a class="menu-item" id="item-employer" asp-action="DSNhaTuyenDung" asp-controller="TKNhaTuyenDung">
+                        <i class="fa-solid fa-building-user"></i>
                         <span>Công ty</span>
                     </a>
                 </li>
-                <li class="">
-                    <a class="menu-item" asp-action="index" asp-controller="HomeAdmin">
-                        <i class="fa-solid fa-house"></i>
+                <li>
+                    <a class="menu-item" id="item-employee" asp-action="DSNguoiTimViec" asp-controller="TKNguoiTimViec">
+                        <i class="fa-solid fa-gear"></i>
                         <span>Cài đặt tài khoản</span>
                     </a>
                 </li>
-                <li class="">
-                    <a class="menu-item" asp-action="index" asp-controller="HomeAdmin">
-                        <i class="fa-solid fa-house"></i>
+                <li>
+                    <a class="menu-item" id="item-employee" asp-action="DSNguoiTimViec" asp-controller="TKNguoiTimViec">
+                        <i class="fa-brands fa-hire-a-helper"></i>
                         <span>Hỗ trợ</span>
                     </a>
                 </li>
             </ul>
         </div>
-        <div class="content-main col-sm-9">
-            <div class="content">
-                @*<div class="card">
-                <h3>Số bài tuyển dụng</h3>
-                <h3 class="so-luong">20</h3>
-                </div>
-                <div class="card">
-                <h3>Số nhà tuyển dụng</h3>
-                <h3 class="so-luong">20</h3>
-                </div>
-                <div class="card">
-                <h3>Số người tìm việc</h3>
-                <h3 class="so-luong">20</h3>
-                </div>*@
+        <div class="content-main col-md-9" style="max-width: 80% !important; margin-left: 20% !important">
+            <div class="content row">
                 @RenderBody()
             </div>
         </div>
     </div>
     <script>
         $(document).ready(function () {
-            $('.child-first').click(function () {
-                $(this).next('.child').toggleClass('expanded');
+            // Khi trang được load, kiểm tra trạng thái active trong Local Storage và áp dụng cho menu item tương ứng
+            var activeMenuItem = localStorage.getItem('activeMenuItem');
+            if (activeMenuItem) {
+                $('.menu-item').removeClass('active'); // Xóa lớp active khỏi tất cả các menu item
+                $('#' + activeMenuItem).addClass('active'); // Thêm lớp active vào menu item được lưu trong Local Storage
+            }
+
+            // Khi click vào một menu item
+            $('.menu-item').click(function () {
+                var itemId = $(this).attr('id'); // Lấy id của menu item
+                $('.menu-item').removeClass('active'); // Xóa lớp active khỏi tất cả các menu item
+                $(this).addClass('active'); // Thêm lớp active vào menu item được click
+
+                // Lưu trạng thái active vào Local Storage
+                localStorage.setItem('activeMenuItem', itemId);
             });
         });
+    </script>
 
-        $('.btn-profile').click(function () {
-            $('.dang-xuat-a').toggleClass('show');
-            $('.fa-chevron-down').toggleClass('hide')
-            $('.fa-chevron-up').toggleClass('show')
+    <script>
+        $(document).ready(function () {
+            $('.btn-profile').click(function (event) {
+                event.stopPropagation(); // Ngăn chặn sự kiện click được truyền xuống các phần tử cha
+                $('.dang-xuat-a').toggleClass('show');
+                $('.fa-chevron-down').toggleClass('hide');
+                $('.fa-chevron-up').toggleClass('show');
+            });
+
+            // Đóng các phần tử khi nhấp vào bất kỳ vị trí nào ở bên ngoài chúng
+            $(document).click(function (event) {
+                if (!$(event.target).closest('.profile-container').length) {
+                    $('.dang-xuat-a').removeClass('show');
+                    $('.fa-chevron-down').removeClass('hide');
+                    $('.fa-chevron-up').removeClass('show');
+                }
+            });
         });
+    </script>
+
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#moTaCongViec'))
+            .catch(error => {
+                console.error(error);
+            });
+        ClassicEditor
+            .create(document.querySelector('#yeuCauKhac'))
+            .catch(error => {
+                console.error(error);
+            });
+        ClassicEditor
+            .create(document.querySelector('#quyenLoi'))
+            .catch(error => {
+                console.error(error);
+            });
     </script>
 </body>
 </html>

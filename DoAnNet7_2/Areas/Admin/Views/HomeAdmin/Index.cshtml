@@ -36,15 +36,15 @@
                         @{
                             if ((double)ViewBag.percentChangeNTD > 0)
                             {
-                                <span style="color: green">Tăng @ViewBag.percentChangeNTD% so với tháng @previousMonth2</span>
+                                <span style="color: green;font-weight: 600;">+@ViewBag.percentChangeNTD% so với tháng @previousMonth2</span>
                             }
                             else if ((double)ViewBag.percentChangeNTD < 0)
                             {
-                                <span style="color: red">Giảm @ViewBag.percentChangeNTD% so với tháng @previousMonth2</span>
+                                <span style="color: red;font-weight: 600;">-@ViewBag.percentChangeNTD% so với tháng @previousMonth2</span>
                             }
                             else
                             {
-                                <span style="color: blue">Bằng với tháng @previousMonth2</span>
+                                <span style="color: blue;font-weight: 600;">Bằng với tháng @previousMonth2</span>
                             }
                         }
                     </p>
@@ -62,15 +62,15 @@
                         @{
                             if ((double)ViewBag.percentChangeNTV > 0)
                             {
-                                <span style="color: green">Tăng @ViewBag.percentChangeNTV% so với tháng @previousMonth2</span>
+                                <span style="color: green;font-weight: 600;">+@ViewBag.percentChangeNTV% so với tháng @previousMonth2</span>
                             }
                             else if ((double)ViewBag.percentChangeNTV < 0)
                             {
-                                <span style="color: red">Giảm @ViewBag.percentChangeNTV% so với tháng @previousMonth2</span>
+                                <span style="color: red; font-weight: 600;">-@ViewBag.percentChangeNTV% so với tháng @previousMonth2</span>
                             }
                             else
                             {
-                                <span style="color: blue">Bằng với tháng @previousMonth2</span>
+                                <span style="color: blue;font-weight: 600;">Bằng với tháng @previousMonth2</span>
                             }
                         }
                     </p>
@@ -88,15 +88,15 @@
                         @{
                             if ((double)ViewBag.percentChangeBTD > 0)
                             {
-                                <span style="color: green">+@ViewBag.percentChangeBTD% so với tháng @previousMonth2</span>
+                                <span style="color: green;font-weight: 600;">+@ViewBag.percentChangeBTD% so với tháng @previousMonth2</span>
                             }
                             else if ((double)ViewBag.percentChangeBTD < 0)
                             {
-                                <span style="color: red">-@ViewBag.percentChangeBTD% so với tháng @previousMonth2</span>
+                                <span style="color: red;font-weight: 600;">-@ViewBag.percentChangeBTD% so với tháng @previousMonth2</span>
                             }
                             else
                             {
-                                <span style="color: blue">Bằng với tháng @previousMonth2</span>
+                                <span style="color: blue;font-weight: 600;">Bằng với tháng @previousMonth2</span>
                             }
                         }
                     </p>

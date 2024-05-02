@@ -8,6 +8,10 @@ p{
     justify-content: left !important;
 }
 
-.menu-item > i {
-    margin-right: 10px !important;
+
+.avatarNTD {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 1px solid #c9a9da;
 }
