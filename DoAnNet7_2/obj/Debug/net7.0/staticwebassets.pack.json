@@ -193,8 +193,20 @@
       "PackagePath": "staticwebassets\\assets\\css\\NhaTD.css"
     },
     {
+      "Id": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\assets\\images\\BTD2.png",
+      "PackagePath": "staticwebassets\\assets\\images\\BTD2.png"
+    },
+    {
       "Id": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\assets\\images\\LOGO.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\LOGO.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\assets\\images\\NTD.png",
+      "PackagePath": "staticwebassets\\assets\\images\\NTD.png"
+    },
+    {
+      "Id": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\assets\\images\\NTV.png",
+      "PackagePath": "staticwebassets\\assets\\images\\NTV.png"
     },
     {
       "Id": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\assets\\images\\avatarAdmin.png",

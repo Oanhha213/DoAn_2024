@@ -9,9 +9,10 @@ html{
     height: 100%;
 }
 
-body{
+body {
     height: 100%;
-    font-family: Arial, sans-serif !important;
+    /*font-family: Arial, sans-serif !important;*/
+    font-family: 'Roboto', sans-serif;
 }
 
 a{

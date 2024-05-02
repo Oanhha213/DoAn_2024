@@ -25,6 +25,8 @@ namespace DoAnNet7_2.Models.ViewModels
         [DisplayName("Loại tài khoản")]
         public int? IdLtk { get; set; }
 
+        [DisplayName("Thời gian tạo")]
+        public DateTime? CreateAt { get; set; }
         public virtual ICollection<Anhdaidien> Anhdaidiens { get; set; } = new List<Anhdaidien>();
 
         public virtual ICollection<Soyeulylich> Soyeulyliches { get; set; } = new List<Soyeulylich>();

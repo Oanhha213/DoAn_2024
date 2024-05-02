@@ -401,6 +401,9 @@ public partial class Jobsworld2Context : DbContext
             entity.Property(e => e.Sdt)
                 .HasMaxLength(12)
                 .HasColumnName("SDT");
+            entity.Property(e => e.CreateAt)
+                .HasColumnType("datetime")
+                .HasColumnName("CREATE_AT");
         });
 
         modelBuilder.Entity<Thanhtuu>(entity =>

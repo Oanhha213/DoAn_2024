@@ -5,35 +5,101 @@
 
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
+@{
+    // Lấy tháng hiện tại
+    var currentMonth = DateTime.Now.Month;
+
+    // Tính toán tháng trước
+    var previousMonth = currentMonth - 1;
+    var previousMonth2 = currentMonth - 2;
+    if (previousMonth == 0)
+    {
+        previousMonth = 12; // Nếu tháng trước là tháng 0, tức tháng 12 của năm trước
+    }
+
+    if (previousMonth2 == 0)
+    {
+        previousMonth2 = 12;
+    }
+}
+
 <div class="col-md-12">
     <div class="row" style="justify-content: space-between">
         <div class="col-md-4">
-            <div class="border-content" style="min-width: -webkit-fill-available !important">
-                <i class='icon bx bxs-user-account fa-3x'></i>
-                <div class="info">
-                    <h4>Tổng số nhà tuyển dụng</h4>
-                    <p><b>@ViewBag.countNTD nhà tuyển dụng</b></p>
-                    <p class="info-tong">Tổng số nhà tuyển dụng được quản lý.</p>
+            <div class="border-content" style="min-width: -webkit-fill-available !important;display: flex; justify-content: space-between;
+                                            padding: 15px 20px !important; align-items: center;min-height: 100%;">
+                <img alt="NhaTuyenDung" src="~/assets/images/NTD.png" style="max-width: 80px; max-height: 80px; margin-right: 10px">
+                <div class="info" style="">
+                    <h4 style="color: #dc3545">Nhà tuyển dụng mới tháng @previousMonth</h4>
+                    <p><b>@ViewBag.countNTDLastMonth nhà tuyển dụng mới</b></p>
+                    <p class="info-tong">
+                        @{
+                            if ((double)ViewBag.percentChangeNTD > 0)
+                            {
+                                <span style="color: green">Tăng @ViewBag.percentChangeNTD% so với tháng @previousMonth2</span>
+                            }
+                            else if ((double)ViewBag.percentChangeNTD < 0)
+                            {
+                                <span style="color: red">Giảm @ViewBag.percentChangeNTD% so với tháng @previousMonth2</span>
+                            }
+                            else
+                            {
+                                <span style="color: blue">Bằng với tháng @previousMonth2</span>
+                            }
+                        }
+                    </p>
                 </div>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="border-content" style="min-width: -webkit-fill-available !important">
-                <i class='icon bx bxs-data fa-3x'></i>
-                <div class="info">
-                    <h4>Tổng số người tìm việc</h4>
-                    <p><b>@ViewBag.countNTV người tìm việc</b></p>
-                    <p class="info-tong">Tổng số người tìm việc được quản lý.</p>
+            <div class="border-content" style="min-width: -webkit-fill-available !important;display: flex; justify-content: space-between;
+                                            padding: 15px 20px !important; align-items: center;min-height: 100%;">
+                <img alt="NguoiTimViec" src="~/assets/images/NTV.png" style="max-width: 80px; max-height: 80px; margin-right: 10px">
+                <div class="info" style="">
+                    <h4 style="color: #dc3545">Người tìm việc mới tháng @previousMonth</h4>
+                    <p><b>@ViewBag.countNTVLastMonth người tìm việc mới</b></p>
+                    <p class="info-tong">
+                        @{
+                            if ((double)ViewBag.percentChangeNTV > 0)
+                            {
+                                <span style="color: green">Tăng @ViewBag.percentChangeNTV% so với tháng @previousMonth2</span>
+                            }
+                            else if ((double)ViewBag.percentChangeNTV < 0)
+                            {
+                                <span style="color: red">Giảm @ViewBag.percentChangeNTV% so với tháng @previousMonth2</span>
+                            }
+                            else
+                            {
+                                <span style="color: blue">Bằng với tháng @previousMonth2</span>
+                            }
+                        }
+                    </p>
                 </div>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="border-content" style="min-width: -webkit-fill-available !important">
-                <i class='icon bx bxs-shopping-bags fa-3x'></i>
-                <div class="info">
-                    <h4>Tổng số bài tuyển dụng</h4>
-                    <p><b>@ViewBag.countBTD bài tuyển dụng</b></p>
-                    <p class="info-tong">Tổng số bài tuyển dụng được quản lý.</p>
+            <div class="border-content" style="min-width: -webkit-fill-available !important;display: flex; justify-content: space-between;
+                                            padding: 15px 20px !important; align-items: center;min-height: 100%;">
+                <img alt="NhaTuyenDung" src="~/assets/images/BTD2.png" style="max-width: 80px; max-height: 80px; margin-right: 10px">
+                <div class="info" style="">
+                    <h4 style="color: #dc3545">Bài tuyển dụng mới tháng @previousMonth</h4>
+                    <p><b>@ViewBag.countBTDLastMonth bài tuyển dụng mới</b></p>
+                    <p class="info-tong">
+                        @{
+                            if ((double)ViewBag.percentChangeBTD > 0)
+                            {
+                                <span style="color: green">+@ViewBag.percentChangeBTD% so với tháng @previousMonth2</span>
+                            }
+                            else if ((double)ViewBag.percentChangeBTD < 0)
+                            {
+                                <span style="color: red">-@ViewBag.percentChangeBTD% so với tháng @previousMonth2</span>
+                            }
+                            else
+                            {
+                                <span style="color: blue">Bằng với tháng @previousMonth2</span>
+                            }
+                        }
+                    </p>
                 </div>
             </div>
         </div>

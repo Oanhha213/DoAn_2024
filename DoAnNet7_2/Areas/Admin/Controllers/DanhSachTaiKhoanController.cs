@@ -38,7 +38,8 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
                             Matkhau = tk.Matkhau,
                             Sdt = tk.Sdt,
                             IdLtk = tk.IdLtk,
-                            IdLtkNavigation = ltk
+                            IdLtkNavigation = ltk,
+                            CreateAt = tk.CreateAt
                         };
 
             // Kiểm tra xem có giá trị searchTerm không rồi gán giá trị cho ViewBag.SearchTerm
@@ -86,6 +87,8 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                // Set thời gian tạo bài viết
+                tk.CreateAt = DateTime.Now;
                 db.Taikhoans.Add(tk);
                 db.SaveChanges();
                 var Id_TK = tk.IdTk;

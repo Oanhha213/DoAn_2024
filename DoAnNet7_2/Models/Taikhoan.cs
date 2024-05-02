@@ -25,6 +25,8 @@ public partial class Taikhoan
 
     public string? Madatlaimatkhau { get; set; }
 
+    [DisplayName("Thời gian tạo")]
+    public DateTime? CreateAt { get; set; }
     public virtual ICollection<Anhdaidien> Anhdaidiens { get; set; } = new List<Anhdaidien>();
 
     public virtual ICollection<Baituyendung> Baituyendungs { get; set; } = new List<Baituyendung>();

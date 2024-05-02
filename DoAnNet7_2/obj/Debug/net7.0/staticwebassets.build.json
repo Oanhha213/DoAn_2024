@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "LBGQb7K24dfRJipeNlp4ivI70NpKmZRTWAFdtvex6TQ=",
+  "Hash": "wBHFHkIomSO10V4mkZ69M4uWajn04waesiGtcUhWQh0=",
   "Source": "DoAnNet7_2",
   "BasePath": "_content/DoAnNet7_2",
   "Mode": "Default",
@@ -867,6 +867,23 @@
       "OriginalItemSpec": "wwwroot\\assets\\images\\avatarAdmin.png"
     },
     {
+      "Identity": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\assets\\images\\BTD2.png",
+      "SourceId": "DoAnNet7_2",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\",
+      "BasePath": "_content/DoAnNet7_2",
+      "RelativePath": "assets/images/BTD2.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\images\\BTD2.png"
+    },
+    {
       "Identity": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\assets\\images\\iconCV1.png",
       "SourceId": "DoAnNet7_2",
       "SourceType": "Discovered",
@@ -899,6 +916,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\images\\LOGO.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\assets\\images\\NTD.png",
+      "SourceId": "DoAnNet7_2",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\",
+      "BasePath": "_content/DoAnNet7_2",
+      "RelativePath": "assets/images/NTD.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\images\\NTD.png"
+    },
+    {
+      "Identity": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\assets\\images\\NTV.png",
+      "SourceId": "DoAnNet7_2",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\",
+      "BasePath": "_content/DoAnNet7_2",
+      "RelativePath": "assets/images/NTV.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\images\\NTV.png"
     },
     {
       "Identity": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\css\\site.css",
