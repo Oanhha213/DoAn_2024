@@ -41,7 +41,9 @@
             </div>
             <div class="mt1">
                 <p>Mô tả</p>
-                <p class="des mt1">@Html.DisplayFor(model => model.Mota)</p>
+                <div class="des">
+                    @Html.Raw(Model.Mota.Replace("\n", "<br>"))
+                </div>
             </div>
         </div>
     </div>

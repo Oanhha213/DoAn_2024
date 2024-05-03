@@ -15,3 +15,15 @@ p{
     border-radius: 50%;
     border: 1px solid #c9a9da;
 }
+
+.circle-btn {
+    padding: 7px 10px;
+    border-radius: 50%;
+    color: #6cd7cb !important;
+    background-color: #fff;
+    border: solid 2px #6cd7cb;
+}
+
+.circle-btn:hover {
+    background-color: #f0f8ff !important;
+}

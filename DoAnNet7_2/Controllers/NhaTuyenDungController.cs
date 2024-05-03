@@ -80,6 +80,92 @@ namespace DoAnNet7_2.Controllers
             return View(ct);
         }
 
+        [Route("CongTyNTD")]
+        [HttpGet]
+        public IActionResult CongTyNTD()
+        {
+            var ID_TK = HttpContext.Session.GetInt32("IdTk");
+            var ct = db.Congties.FirstOrDefault(x => x.IdTk == ID_TK);
+
+            if (ct == null)
+            {
+                return View("CongTyNull");
+            }
+            if (ct != null)
+            {
+                ViewBag.Tenct = ct.Tencongty;
+                // Include các dữ liệu liên quan nếu cần thiết
+                db.Entry(ct).Reference(x => x.IdNnNavigation).Load();
+                db.Entry(ct).Reference(x => x.IdTtNavigation).Load();
+                return View(ct);
+            }
+            ViewBag.IdTk = ID_TK;
+            //var Id_TK = IdTK;
+            //HttpContext.Session.SetInt32("IdTk", Id_TK);
+            return View(ct);
+        }
+
+        [Route("SuaCongTyNTD")]
+        [HttpGet]
+        public IActionResult SuaCongTyNTD(int idTK)
+        {
+            var ct = db.Congties.FirstOrDefault(a => a.IdTk == idTK);
+            if (ct == null)
+            {
+                return RedirectToAction("TaoCongTy", "NhaTuyenDung");
+            }
+            ViewBag.Tenct = ct.Tencongty;
+            ViewBag.IdNn = new SelectList(db.Nganhnghes.ToList(), "IdNn", "Tennganhnghe");
+            ViewBag.IdTt = new SelectList(db.Tinhthanhs.ToList(), "IdTt", "Tentt");
+            var Id_TK = idTK;
+            HttpContext.Session.SetInt32("IdTk", Id_TK);
+
+            return View(ct);
+        }
+
+        [Route("SuaCongTyNTD")]
+        [HttpPost]
+        public IActionResult SuaCongTyNTD(Congty ct)
+        {
+            var existingCT = db.Congties.FirstOrDefault(a => a.IdTk == ct.IdTk);
+            var ID_TK = HttpContext.Session.GetInt32("IdTk");
+            if (existingCT == null)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid || (!string.IsNullOrEmpty(ct.Tencongty)))
+            {
+                // Kiểm tra xem người dùng đã tải lên logo mới hay không
+                if (ct.UpLogo != null)
+                {
+                    // Nếu có, lưu ảnh mới
+                    existingCT.Logo = LuuAnh.LuuAnhDaiDien(ct.UpLogo);
+                }
+
+                // Cập nhật các trường khác
+                existingCT.Tencongty = ct.Tencongty;
+                existingCT.IdNn = ct.IdNn;
+                existingCT.Sonhanvien = ct.Sonhanvien;
+                existingCT.Diachi = ct.Diachi;
+                existingCT.IdTt = ct.IdTt;
+                existingCT.Mota = ct.Mota;
+
+                // Cập nhật thông tin trong cơ sở dữ liệu
+                db.SaveChanges();
+                ViewBag.MessageType = "success";
+                ViewBag.Message = "Sửa thành công";
+            }
+            else
+            {
+                // Truyền thông điệp thất bại trực tiếp tới view
+                ViewBag.MessageType = "error";
+                ViewBag.Message = "Vui lòng kiểm tra lại thông tin";
+            }
+            HttpContext.Session.SetInt32("IdTk", (int)ID_TK);
+            return View(ct);
+        }
+
         [HttpGet]
         public async Task<IActionResult> DoiTTHT(int idBTD, string newStatus)
         {
@@ -252,7 +338,7 @@ namespace DoAnNet7_2.Controllers
                 TempData["Message"] = $"Không tìm thấy";
                 TempData["MessageType"] = "error";
             }
-            return RedirectToAction("DSUngTuyen", "BaiTuyenDung", new { idBTD = idBTD });
+            return RedirectToAction("DSUngTuyenNTD", "NhaTuyenDung",new {idBTD = idBTD });
         }
 
         [Authentication]

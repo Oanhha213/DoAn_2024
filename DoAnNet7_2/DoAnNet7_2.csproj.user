@@ -14,7 +14,7 @@
     <WebStackScaffolding_IsPartialViewSelected>False</WebStackScaffolding_IsPartialViewSelected>
     <WebStackScaffolding_IsReferencingScriptLibrariesSelected>False</WebStackScaffolding_IsReferencingScriptLibrariesSelected>
     <WebStackScaffolding_DbContextTypeFullName>DoAnNet7_2.Models.Jobsworld2Context</WebStackScaffolding_DbContextTypeFullName>
-    <WebStackScaffolding_LayoutPageFile>~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml</WebStackScaffolding_LayoutPageFile>
+    <WebStackScaffolding_LayoutPageFile>~/Views/Shared/_LayoutNhaTuyenDung.cshtml</WebStackScaffolding_LayoutPageFile>
     <WebStackScaffolding_EnablerDialogWidth>650.4</WebStackScaffolding_EnablerDialogWidth>
   </PropertyGroup>
 </Project>

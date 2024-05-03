@@ -1,0 +1,35 @@
+﻿@model DoAnNet7_2.Models.Congty
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "CongTyNull";
+    Layout = "~/Views/Shared/_LayoutNhaTuyenDung.cshtml";
+}
+
+<div class="border-content col-md-10">
+    <div class="row mt2" style="justify-content: space-between; align-items: center">
+        <h4 class="col-md-11">Congty</h4>
+        <div class="col-md-1">
+            <a class="circle-btn" asp-action="TaoCongTy" asp-controller="NhaTuyenDung">
+                <i class="fa-solid fa-pen"></i>
+            </a>
+        </div>
+    </div>
+    <div class="mt2">
+        <p>
+            Logo
+        </p>
+        <p>
+            Tên công ty
+        </p>
+        <p>
+            Địa chỉ
+        </p>
+        <p>
+            Ngành nghề
+        </p>
+        <p>
+            Số nhân viên
+        </p>
+        <p>Mô tả</p>
+    </div>
+</div>

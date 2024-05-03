@@ -1,0 +1,48 @@
+﻿@model DoAnNet7_2.Models.Congty
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "CongTyNTD";
+    Layout = "~/Views/Shared/_LayoutNhaTuyenDung.cshtml";
+}
+
+<div class="border-content col-md-10">
+    <div class="row mt2" style="justify-content: space-between; align-items: center">
+        <div class="col-md-11 row" style="align-items: center">
+            <img src="@Model.Logo" alt="Logo" style="max-width: 100px!important; max-height: 100px !important; border-radius: 50%" class="des mt1" />
+            <h1 style="margin-left: 20px">@ViewBag.Tenct</h1>
+        </div>
+        <div class="col-md-1">
+            <a class="circle-btn" asp-action="SuaCongTyNTD" asp-controller="NhaTuyenDung" asp-route-idTK="@Model.IdTk">
+                <i class="fa-solid fa-pen"></i>
+            </a>
+        </div>
+    </div>
+    <div class="ml4" style="background-color: #fff">
+        
+        <div class="mt1">
+            <p>Tên công ty</p>
+            <p class="des mt1">@Html.DisplayFor(model => model.Tencongty)</p>
+        </div>
+        <div class="mt1">
+            <p>Địa chỉ</p>
+            <p class="des mt1">
+                @Html.DisplayFor(model => model.Diachi),
+                @Html.DisplayFor(model => model.IdTtNavigation.Tentt)
+            </p>
+        </div>
+        <div class="mt1">
+            <p>Ngành nghề</p>
+            <p class="des mt1">@Html.DisplayFor(model => model.IdNnNavigation.Tennganhnghe)</p>
+        </div>
+        <div class="mt1">
+            <p>Số nhân viên</p>
+            <p class="des mt1">@Html.DisplayFor(model => model.Sonhanvien)</p>
+        </div>
+        <div class="mt1">
+            <p>Mô tả</p>
+            <div class="des">
+                @Html.Raw(Model.Mota.Replace("\n", "<br>"))
+            </div>
+        </div>
+    </div>
+</div>

@@ -10,7 +10,7 @@
 
     <hr />
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <form id="editForm" asp-action="SuaBTD" asp-controller="BaiTuyenDung" method="post">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <input type="hidden" asp-for="IdBtd" />
@@ -88,7 +88,7 @@
                 <input type="hidden" asp-for="IdTk" />
                 <input type="hidden" asp-for="CreateAt" />
                 <div class="form-group mt2">
-                    <input type="submit" value="Lưu" class="btn btn-success" />
+                    @*<input type="submit" value="Lưu" class="btn btn-success" />*@
                     <button type="button" id="submitBtn" class="btn btn-success">Lưu</button>
                     <a class="btn btn-danger" asp-action="DSBaiTuyenDung" asp-controller="BaiTuyenDung"> Huỷ</a>
                 </div>
