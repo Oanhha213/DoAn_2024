@@ -1,6 +1,5 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @using Microsoft.AspNetCore.Http
-
 @{
     HttpContext context = ViewContext.HttpContext;
 }
@@ -115,7 +114,7 @@
                     <h4 style="text-align: center;font-size: 1.5rem !important;">
                         @context.Session.GetString("Hoten")
                     </h4>
-                    <h5 style="margin-top: 5px">Nhà tuyển dụng</h5>
+                    <h5 style="margin-top: 5px; text-align: center">Nhà tuyển dụng</h5>
                 </div>
             </div>
             <ul class="menu">
@@ -138,13 +137,13 @@
                     </a>
                 </li>
                 <li>
-                    <a class="menu-item" id="item-account" asp-action="TaiKhoanNTD" asp-controller="NhaTuyenDung">
+                    <a class="menu-item" id="item-account" asp-action="CaiDatTaiKhoan" asp-controller="Common" asp-route-idTK="@context.Session.GetInt32("IdTk")" asp-route-layoutType="Layout1">
                         <i class="fa-solid fa-gear"></i>
                         <span>Cài đặt tài khoản</span>
                     </a>
                 </li>
                 <li>
-                    <a class="menu-item" id="item-help" asp-action="HoTro" asp-controller="Home">
+                    <a class="menu-item" id="item-help" asp-action="HoTro" asp-controller="Common">
                         <i class="fa-brands fa-hire-a-helper"></i>
                         <span>Hỗ trợ</span>
                     </a>
@@ -163,22 +162,28 @@
             var activeMenuItem = localStorage.getItem('activeMenuItem');
             if (activeMenuItem) {
                 $('.menu-item').removeClass('active'); // Xóa lớp active khỏi tất cả các menu item
-                $('#' + activeMenuItem).addClass('active'); // Thêm lớp active vào menu item được lưu trong Local Storage
+                $('.menu-item').each(function () {
+                    var href = $(this).attr('href');
+                    if (href && href.includes(activeMenuItem)) {
+                        $(this).addClass('active'); // Thêm lớp active vào menu item được lưu trong Local Storage
+                    }
+                });
             } else {
                 // Nếu không có menu item nào được lưu, mặc định active cho menu item Home và lưu nó vào Local Storage
                 $('#item-home').addClass('active');
-                localStorage.setItem('activeMenuItem', 'item-home');
+                localStorage.setItem('activeMenuItem', 'NhaTuyenDung');
             }
 
             // Khi click vào một menu item
             $('.menu-item').click(function () {
-                var itemId = $(this).attr('id'); // Lấy id của menu item
+                var href = $(this).attr('href');
                 $('.menu-item').removeClass('active'); // Xóa lớp active khỏi tất cả các menu item
                 $(this).addClass('active'); // Thêm lớp active vào menu item được click
 
                 // Lưu trạng thái active vào Local Storage
-                localStorage.setItem('activeMenuItem', itemId);
+                localStorage.setItem('activeMenuItem', href);
             });
+
             // Khi nhấn nút đăng xuất
             $('#logoutBtn').click(function () {
                 // Xóa mục activeMenuItem khỏi Local Storage khi đăng xuất
@@ -186,8 +191,8 @@
                 // Xóa lớp active khỏi tất cả các menu item
                 $('.menu-item').removeClass('active');
                 // Thiết lập menu item Home làm active và lưu vào Local Storage
-                $('#item-home').addClass('active');
-                localStorage.setItem('activeMenuItem', 'item-home');
+                $('[href="/NhaTuyenDung/NhaTuyenDung"]').addClass('active');
+                localStorage.setItem('activeMenuItem', '/NhaTuyenDung/NhaTuyenDung');
             });
         });
     </script>

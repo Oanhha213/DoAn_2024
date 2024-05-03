@@ -1,0 +1,48 @@
+﻿@model DoAnNet7_2.Models.Taikhoan
+@using X.PagedList.Mvc.Core
+@using X.PagedList.Mvc.Core.Common;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+
+<input value="@ViewBag.layoutType" type="hidden"/>
+<div class="row mt2" style="justify-content: space-between; align-items: center">
+    <div class="col-md-11 row" style="align-items: center">
+        @if (ViewBag.Anh != null)
+        {
+            <img src="@ViewBag.Anh.Tenanh" alt="Avartar" style="max-width: 100px!important; max-height: 100px !important; border-radius: 50%;position: relative;" class="des mt1" />
+            <a class="btn btn-secondary sua-anh-big" style="" asp-action="SuaAnhDDCommon" asp-controller="Common" asp-route-idTK="@Model.IdTk" asp-route-layoutType="@ViewBag.layoutType">
+                <i class="fa-solid fa-camera"></i>
+            </a>
+        }
+        <h1 style="margin-left: 20px">@Html.DisplayFor(model => model.Hoten)</h1>
+    </div>
+    <div class="col-md-1 mr2">
+        <a class="circle-btn" asp-action="SuaTaiKhoanCommon" asp-controller="Common" asp-route-idTK="@Model.IdTk" asp-route-layoutType="@ViewBag.layoutType">
+            <i class="fa-solid fa-pen"></i>
+        </a>
+    </div>
+</div>
+<div class="mt2 ml4">
+    <div>
+        <p>Email:</p>
+        <p class="des  mt1">
+            @Html.DisplayFor(model => model.Email)
+        </p>
+    </div>
+    <div class="mt2">
+        <p>
+            Số điện thoại:
+        </p>
+        <p class="des mt1">
+            @Html.DisplayFor(model => model.Sdt)
+        </p>
+    </div>
+    <div class="mt2">
+        <p>
+            Thời gian tạo:
+        </p>
+        <p class="des mt1">
+            @Html.DisplayFor(model => model.CreateAt)
+        </p>
+    </div>
+</div>

@@ -519,3 +519,17 @@ input[type=file] {
     .circle-btn:hover {
         background-color: #f0f8ff !important;
     }
+.btn-sua-anh {
+    height: fit-content !important;
+    border-radius: 50% !important;
+    padding: 1px 7px !important;
+    align-self: flex-end;
+}
+
+.sua-anh-big {
+    padding: 5px 10px !important;
+    position: absolute;
+    left: 114px;
+    border-radius: 50% !important;
+    bottom: 0;
+}

@@ -1,0 +1,13 @@
+﻿@model DoAnNet7_2.Models.Taikhoan
+
+@{
+    ViewData["Title"] = "CaiDatTaiKhoanLayout";
+    Layout = "~/Views/Shared/_LayoutNhaTuyenDung.cshtml";
+}
+
+
+<div class="border-content col-md-8">
+    @await Html.PartialAsync("_CaiDatTaiKhoanPartial", Model)
+</div>
+
+
