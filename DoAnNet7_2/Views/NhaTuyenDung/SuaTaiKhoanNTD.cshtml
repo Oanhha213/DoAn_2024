@@ -1,0 +1,161 @@
+﻿@model DoAnNet7_2.Models.Taikhoan
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "SuaTaiKhoanNTD";
+    Layout = "~/Views/Shared/_LayoutNhaTuyenDung.cshtml";
+}
+
+
+<div class="border-content col-md-8">
+    <h1>Sửa tài khoản</h1>
+
+    <hr />
+    <div class="row">
+        <div class="col-md-12">
+            <form id="editForm" asp-action="SuaTaiKhoanNTD" asp-controller="NhaTuyenDung" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="IdTk" />
+                <div class="form-group">
+                    <label asp-for="Hoten" class="control-label">
+                        Họ tên
+                        (<span style="color: red">*</span>)
+                    </label>
+                    <input asp-for="Hoten" class="form-control mt1" required />
+                    <span asp-validation-for="Hoten" class="text-danger"></span>
+                </div>
+                <div class="form-group mt2">
+                    <label asp-for="Email" class="control-label">
+                        Email
+                        (<span style="color: red">*</span>)
+                    </label>
+                    <input asp-for="Email" class="form-control mt1" type="email" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group mt2">
+                    <label asp-for="Matkhau" class="control-label">
+                        Mật khẩu
+                        (<span style="color: red">*</span>)
+                    </label>
+                    <input asp-for="Matkhau" class="form-control mt1" />
+                    <span asp-validation-for="Matkhau" class="text-danger"></span>
+                </div>
+                <div class="form-group mt2">
+                    <label asp-for="Sdt" class="control-label"></label>
+                    <input asp-for="Sdt" class="form-control mt1" />
+                    <span asp-validation-for="Sdt" class="text-danger"></span>
+                </div>
+                <input type="hidden" asp-for="IdLtk" />
+                <input type="hidden" asp-for="CreateAt" />
+                <div class="form-group mt2">
+                    @*<input type="submit" value="Lưu" class="btn btn-success" />*@
+                    <button type="button" id="submitBtn" class="btn btn-success">Lưu</button>
+                    <a class="btn btn-danger" asp-action="CaiDatTaiKhoanNTD" asp-controller="NhaTuyenDung">Huỷ</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal xác nhận sửa -->
+<div id="confirmModal" class="modal" aria-hidden="true">
+    <div class="modal-content">
+        <div class="display: flex; justify-content: end">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="display: inline">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="title-warning">
+            <i class="fa-solid fa-triangle-exclamation" style="font-size: 20pt"></i>
+            <h3 style="margin-left: 10px !important" class="confirm-message">Bạn có chắc chắn muốn sửa?</h3>
+        </div>
+        <p class="mt2" style="font-size: 16pt; margin-left: 20px; margin-right: 20px">
+            Thông tin tài khoản này sẽ được sửa. Bạn chắc chắn muốn sửa tài khoản này?
+        </p>
+        <div class="button-container">
+            <button id="confirmBtn" class="confirm">
+                Đồng ý
+            </button>
+            <button id="cancelBtn" class="cancel">Huỷ bỏ</button>
+        </div>
+    </div>
+</div>
+@*<script>
+    $(function () {
+        $('#submitBtn').click(function () {
+            $('#confirmModal').modal('show');
+        });
+
+        $('#confirmBtn').click(function () {
+            // Đóng modal xác nhận
+            $('#confirmModal').modal('hide');
+            // Lấy dữ liệu từ form
+            var formData = $('#editForm').serialize();
+            // Thực hiện AJAX POST để lưu dữ liệu
+            $.ajax({
+                url: '@Url.Action("SuaTaiKhoanCommon", "Common")',
+                type: 'POST',
+                data: formData,
+                success: function (result) {
+                    var messageType = result.messageType;
+                    var message = result.message;
+                    Swal.fire({
+                        icon: messageType,
+                        title: message,
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then(function () {
+                        if (messageType === 'success') {
+                            var idTK = $('#idTKInput').val();
+                            var layoutType = $('#layoutTypeInput').val();
+                            window.location.href = '@Url.Action("CaiDatTaiKhoan", "Common")?idTK=' + idTK + '&layoutType=' + layoutType;
+                        }
+                    });
+                },
+                error: function () {
+                    // Xử lý lỗi
+                }
+            });
+        });
+
+        // Xử lý sự kiện khi người dùng nhấn nút "Huỷ bỏ"
+        $('#cancelBtn').click(function () {
+            $('#confirmModal').modal('hide'); // Đóng modal xác nhận
+        });
+    });
+</script>*@
+<script>
+    $('#submitBtn').click(function () {
+        $('#confirmModal').modal('show');
+    });
+
+    $('#confirmBtn').click(function () {
+        // Đóng modal xác nhận
+        $('#confirmModal').modal('hide');
+        $('#editForm').submit();
+    });
+
+    // Xử lý kết quả sau khi submit form
+    $(function () {
+        var messageType = '@ViewBag.MessageType';
+        var message = '@ViewBag.Message';
+
+        if (messageType !== '') {
+            Swal.fire({
+                icon: messageType,
+                title: message,
+                showConfirmButton: false,
+                timer: 1500 //
+            }).then(function () {
+                //var idTK = $('#idTKInput').val();
+                // Chuyển hướng sau khi hiển thị thông điệp
+                if (messageType === 'success') {
+                    window.location.href = '@Url.Action("CaiDatTaiKhoanNTD", "NhaTuyenDung")';
+                }
+            });
+        }
+    });
+    // Xử lý sự kiện khi người dùng nhấn nút "Huỷ bỏ"
+    $('#cancelBtn').click(function () {
+        $('#confirmModal').modal('hide'); // Đóng modal xác nhận
+    });
+</script>

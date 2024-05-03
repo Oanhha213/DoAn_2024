@@ -72,16 +72,24 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             //var countBTD = db.Baituyendungs.AsNoTracking().Select(x => x.IdBtd).Distinct().Count();
             //ViewBag.countBTD = countBTD;
 
+            // Lấy ngày đầu tiên của tháng hiện tại
+            var today = DateTime.Today;
+            var firstDayOfThisMonth = new DateTime(today.Year, today.Month, 1);
+
+            // Lấy ngày đầu tiên của tháng trước của tháng hiện tại
+            var firstDayOfLastMonth = firstDayOfThisMonth.AddMonths(-1);
+
+            // Lấy ngày đầu tiên của tháng trước đó
+            var firstDayOfSecondLastMonth = firstDayOfLastMonth.AddMonths(-1);
+
+
+            // Đếm số lượng bài tuyển dụng trong tháng trước của tháng hiện tại, group theo tháng và năm
             var countBTDLastMonth = db.Baituyendungs
-                .Where(x => x.CreateAt >= DateTime.Today.AddMonths(-1) && x.CreateAt < DateTime.Today)
-                .GroupBy(x => x.CreateAt)
-                .Select(group => group.FirstOrDefault())
+                .Where(x => x.CreateAt >= firstDayOfLastMonth && x.CreateAt < firstDayOfThisMonth)
                 .Count();
 
             var countBTDSecondLastMonth = db.Baituyendungs
-                .Where(x => x.CreateAt >= DateTime.Today.AddMonths(-2) && x.CreateAt < DateTime.Today.AddMonths(-1))
-                .GroupBy(x => x.CreateAt)
-                .Select(group => group.FirstOrDefault())
+                .Where(x => x.CreateAt >= firstDayOfSecondLastMonth && x.CreateAt < firstDayOfLastMonth)
                 .Count();
 
             // Tính toán phần trăm tăng trưởng hoặc giảm

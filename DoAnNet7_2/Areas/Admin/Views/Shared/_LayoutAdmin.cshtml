@@ -20,7 +20,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/37.0.0/classic/ckeditor.js"></script>
 
-@*    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    @*    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/642d846c81.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
@@ -39,7 +39,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>*@
 
 
-@*    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    @*    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>*@
 
@@ -63,9 +63,9 @@
             margin-right: 6px;
         }
 
-        .nav-profile-text > p {
-            margin-bottom: 0 !important;
-        }
+            .nav-profile-text > p {
+                margin-bottom: 0 !important;
+            }
 
         .dang-xuat-a {
             position: absolute;
@@ -143,85 +143,44 @@
             </div>
             <ul class="menu">
                 <li class="">
-                    <a class="menu-item" id="item-home" asp-controller="admin" asp-action="index">
+                    <a class="menu-item" id="item-home-admin" asp-controller="admin" asp-action="index">
                         <i class="fa-solid fa-house"></i>
                         Bảng tin
                     </a>
                 </li>
                 <li class="">
-                    @*<span class="child-first" style="cursor: pointer;">
-                        <span>Tài khoản</span>
-                        <i class="fa-solid fa-circle-user"></i>
-                    </span>*@
-                    <a class="menu-item" id="item-account" asp-action="DanhSachTaiKhoan" asp-controller="DanhSachTaiKhoan">
+                    <a class="menu-item" id="item-account-admin" asp-action="DanhSachTaiKhoan" asp-controller="DanhSachTaiKhoan">
                         <i class="fa-solid fa-user-plus"></i>
                         <span>Tài khoản</span>
                     </a>
-                    @*<ul class="child">
-                        <li>
-                            
-                        </li>
-                        
-                        
-                    </ul>*@
                 </li>
                 <li>
-                    <a class="menu-item" id="item-employer" asp-action="DSNhaTuyenDung" asp-controller="TKNhaTuyenDung">
+                    <a class="menu-item" id="item-employer-admin" asp-action="DSNhaTuyenDung" asp-controller="TKNhaTuyenDung">
                         <i class="fa-solid fa-building-user"></i>
                         <span>Nhà tuyển dụng</span>
                     </a>
                 </li>
                 <li>
-                    <a class="menu-item" id="item-employee" asp-action="DSNguoiTimViec" asp-controller="TKNguoiTimViec">
+                    <a class="menu-item" id="item-employee-admin" asp-action="DSNguoiTimViec" asp-controller="TKNguoiTimViec">
                         <i class="fa-solid fa-user-tie"></i>
                         <span>Người tìm việc</span>
                     </a>
                 </li>
                 <li class="">
-                    <a class="menu-item" id="item-job-post" asp-action="DSBaiTuyenDung" asp-controller="BaiTuyenDung">
+                    <a class="menu-item" id="item-job-post-admin" asp-action="DSBaiTuyenDung" asp-controller="BaiTuyenDung">
                         <i class="fa-solid fa-newspaper"></i>
                         <span>Bài tuyển dụng</span>
                     </a>
-                   @* <span class="child-first" style="cursor: pointer;">
-                        <span>Quản lý bài tuyển dụng</span>
-                        <i class="fa-solid fa-newspaper"></i>
-                    </span>
-                    <ul class="child">
-                        <li>
-                            
-                        </li>
-                        <li>
-                            <a class="menu-item" asp-action="BTDUngVien" asp-controller="BaiTuyenDung">
-                                <span>Bài tuyển dụng - ứng viên</span>
-                                <i class="fa-solid fa-thumbtack"></i>
-                            </a>
-                        </li>
-                    </ul>*@
-@*                    <a class="menu-item" asp-action="DSBaiTuyenDung" asp-controller="BaiTuyenDung">
-                        <span>Quản lý bài tuyển dụng</span>
-                        <i class="fa-solid fa-newspaper"></i>
-                    </a>*@
+
                 </li>
-@*                <li class="">
-                    <a class="menu-item" asp-action="DanhSachCV" asp-controller="CV">
-                        <span>Sơ yếu lý lịch</span>
-                        <i class="fa-solid fa-file-pdf"></i>
-                    </a>
-                </li>*@
-@*                <li class="">
-                    <a class="menu-item" asp-action="DanhSachCV" asp-controller="CV">
-                        <span>Công ty</span>
-                        <i class="fa-solid fa-file-pdf"></i>
-                    </a>
-                </li>*@
                 <li class="">
-                    <a class="menu-item" id="item-career" asp-action="DSNganhNghe" asp-controller="NganhNghe">
+                    <a class="menu-item" id="item-career-admin" asp-action="DSNganhNghe" asp-controller="NganhNghe">
                         <i class="fa-solid fa-business-time"></i>
                         <span>Ngành nghề</span>
                     </a>
                 </li>
                 <li class="">
-                    <a class="menu-item" id="item-province" asp-action="DSTinhThanh" asp-controller="TinhThanh">
+                    <a class="menu-item" id="item-province-admin" asp-action="DSTinhThanh" asp-controller="TinhThanh">
                         <i class="fa-solid fa-tree-city"></i>
                         <span>Tỉnh thành</span>
                     </a>
@@ -230,7 +189,7 @@
         </div>
         <div class="content-main col-md-10">
             <div class="content row">
-                    @RenderBody()
+                @RenderBody()
             </div>
         </div>
     </div>
@@ -243,8 +202,8 @@
                 $('#' + activeMenuItem).addClass('active'); // Thêm lớp active vào menu item được lưu trong Local Storage
             } else {
                 // Nếu không có menu item nào được lưu, mặc định active cho menu item Home và lưu nó vào Local Storage
-                $('#item-home').addClass('active');
-                localStorage.setItem('activeMenuItem', 'item-home');
+                $('#item-home-admin').addClass('active');
+                localStorage.setItem('activeMenuItem', 'admin'); // Sử dụng id của menu item cho mục này
             }
 
             // Khi click vào một menu item
@@ -256,13 +215,77 @@
                 // Lưu trạng thái active vào Local Storage
                 localStorage.setItem('activeMenuItem', itemId);
             });
-            $('#logoutBtn').click(function(){
-                // Sau khi đăng xuất
+
+            // Khi nhấn nút đăng xuất
+            $('#logoutBtn').click(function () {
+                // Xóa mục activeMenuItem khỏi Local Storage khi đăng xuất
                 localStorage.removeItem('activeMenuItem');
-            })
+                // Xóa lớp active khỏi tất cả các menu item
+                $('.menu-item').removeClass('active');
+                // Thiết lập menu item Home làm active và lưu vào Local Storage
+                $('#item-home-admin').addClass('active');
+                localStorage.setItem('activeMenuItem', 'admin'); // Sử dụng id của menu item cho mục này
+            });
         });
-        
-        // Xác định URL hiện tại
+
+        //$(document).ready(function () {
+        //    // Khi trang được load, kiểm tra trạng thái active trong Local Storage và áp dụng cho menu item tương ứng
+        //    var activeMenuItem = localStorage.getItem('activeMenuItem');
+        //    if (activeMenuItem) {
+        //        $('.menu-item').removeClass('active'); // Xóa lớp active khỏi tất cả các menu item
+        //        $('#' + activeMenuItem).addClass('active'); // Thêm lớp active vào menu item được lưu trong Local Storage
+        //    } else {
+        //        // Nếu không có menu item nào được lưu, mặc định active cho menu item Home và lưu nó vào Local Storage
+        //        $('#item-home').addClass('active');
+        //        localStorage.setItem('activeMenuItem', 'item-home');
+        //    }
+
+        //    // Khi click vào một menu item
+        //    $('.menu-item').click(function () {
+        //        var itemId = $(this).attr('id'); // Lấy id của menu item
+        //        $('.menu-item').removeClass('active'); // Xóa lớp active khỏi tất cả các menu item
+        //        $(this).addClass('active'); // Thêm lớp active vào menu item được click
+
+        //        // Lưu trạng thái active vào Local Storage
+        //        localStorage.setItem('activeMenuItem', itemId);
+        //    });
+
+        //    // Khi nhấn nút đăng xuất
+        //    $('#logoutBtn').click(function () {
+        //        // Xóa mục activeMenuItem khỏi Local Storage khi đăng xuất
+        //        localStorage.removeItem('activeMenuItem');
+        //        // Xóa lớp active khỏi tất cả các menu item
+        //        $('.menu-item').removeClass('active');
+        //        // Thiết lập menu item Home làm active và lưu vào Local Storage
+        //        $('#item-home').addClass('active');
+        //        localStorage.setItem('activeMenuItem', 'item-home');
+        //    });
+        //});
+
+        $(document).ready(function () {
+            var activeMenuItem = localStorage.getItem('activeMenuItem');
+            if (!activeMenuItem) {
+                $('#item-home-admin').addClass('active');
+                localStorage.setItem('activeMenuItem', 'item-home-admin');
+            } else {
+                $('#' + activeMenuItem).addClass('active');
+            }
+            $('.menu-item').click(function () {
+                var itemId = $(this).attr('id'); // Lấy id của menu item
+                $('.menu-item').removeClass('active'); // Xóa lớp active khỏi tất cả các menu item
+                $(this).addClass('active'); // Thêm lớp active vào menu item được click
+
+                // Lưu trạng thái active vào Local Storage
+                localStorage.setItem('activeMenuItem', itemId);
+            });
+
+            $('#logoutBtn').click(function () {
+                // Xóa mục activeMenuItem khỏi Local Storage khi đăng xuất
+                localStorage.removeItem('activeMenuItem');
+            });
+        })
+
+        //// Xác định URL hiện tại
         //var currentURL = window.location.pathname;
 
         //// Duyệt qua các menu-item và áp dụng trạng thái active
@@ -281,6 +304,15 @@
         //    // Thêm trạng thái active cho menu item được chọn
         //    $(this).addClass('active');
         //});
+        //$('#logoutBtn').click(function () {
+        //            // Xóa mục activeMenuItem khỏi Local Storage khi đăng xuất
+        //            localStorage.removeItem('activeMenuItem');
+        //            // Xóa lớp active khỏi tất cả các menu item
+        //            $('.menu-item').removeClass('active');
+        //            // Thiết lập menu item Home làm active và lưu vào Local Storage
+        //            $('#item-home').addClass('active');
+        //            localStorage.setItem('activeMenuItem', 'item-home');
+        //        });
 
     </script>
 
@@ -331,12 +363,12 @@
                 console.error(error);
             });
     </script>
-@*    <script>
-        $('.btn-profile').click(function () {
-            $('.dang-xuat-a').toggleClass('show');
-            $('.fa-chevron-down').toggleClass('hide')
-            $('.fa-chevron-up').toggleClass('show')
-        });
+    @*    <script>
+    $('.btn-profile').click(function () {
+    $('.dang-xuat-a').toggleClass('show');
+    $('.fa-chevron-down').toggleClass('hide')
+    $('.fa-chevron-up').toggleClass('show')
+    });
     </script>*@
 </body>
 </html>

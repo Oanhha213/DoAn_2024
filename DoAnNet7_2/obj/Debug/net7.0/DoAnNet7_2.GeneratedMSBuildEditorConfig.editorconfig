@@ -288,6 +288,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmd1b2lUaW1WaWVjXFRoZW1DVi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Ha Yen/Documents/oanhDoc/Ki2Nam4/DoAn/DoAnNet7_2/DoAnNet7_2/Views/NhaTuyenDung/CaiDatTaiKhoanNTD.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmhhVHV5ZW5EdW5nXENhaURhdFRhaUtob2FuTlRELmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Ha Yen/Documents/oanhDoc/Ki2Nam4/DoAn/DoAnNet7_2/DoAnNet7_2/Views/NhaTuyenDung/ChiTietBTDNTD.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmhhVHV5ZW5EdW5nXENoaVRpZXRCVEROVEQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -312,6 +316,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmhhVHV5ZW5EdW5nXE5oYVR1eWVuRHVuZy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Ha Yen/Documents/oanhDoc/Ki2Nam4/DoAn/DoAnNet7_2/DoAnNet7_2/Views/NhaTuyenDung/SuaAnhDDNTD.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmhhVHV5ZW5EdW5nXFN1YUFuaERETlRELmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Ha Yen/Documents/oanhDoc/Ki2Nam4/DoAn/DoAnNet7_2/DoAnNet7_2/Views/NhaTuyenDung/SuaBTDNTD.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmhhVHV5ZW5EdW5nXFN1YUJURE5URC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -320,12 +328,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmhhVHV5ZW5EdW5nXFN1YUNvbmdUeU5URC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Ha Yen/Documents/oanhDoc/Ki2Nam4/DoAn/DoAnNet7_2/DoAnNet7_2/Views/NhaTuyenDung/SuaTaiKhoanNTD.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmhhVHV5ZW5EdW5nXFN1YVRhaUtob2FuTlRELmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Ha Yen/Documents/oanhDoc/Ki2Nam4/DoAn/DoAnNet7_2/DoAnNet7_2/Views/NhaTuyenDung/TaoCongTy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmhhVHV5ZW5EdW5nXFRhb0NvbmdUeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Ha Yen/Documents/oanhDoc/Ki2Nam4/DoAn/DoAnNet7_2/DoAnNet7_2/Views/NhaTuyenDung/ThemBTDNTD.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmhhVHV5ZW5EdW5nXFRoZW1CVEROVEQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Ha Yen/Documents/oanhDoc/Ki2Nam4/DoAn/DoAnNet7_2/DoAnNet7_2/Views/NhaTuyenDung/UpAnhDaiDienNTD.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmhhVHV5ZW5EdW5nXFVwQW5oRGFpRGllbk5URC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Ha Yen/Documents/oanhDoc/Ki2Nam4/DoAn/DoAnNet7_2/DoAnNet7_2/Views/NhaTuyenDung/_DSBTDNTDPartial.cshtml]

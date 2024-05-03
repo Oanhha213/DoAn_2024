@@ -21,9 +21,138 @@ namespace DoAnNet7_2.Controllers
         public IActionResult NhaTuyenDung()
         {
             var idTK = HttpContext.Session.GetInt32("IdTk");
-            ViewBag.Hoten = db.Taikhoans.FirstOrDefault(x => x.IdTk == idTK)?.Hoten;
+            // Số bài hiển thị
+            var countBTDHien = db.Baituyendungs
+                .Where(x => x.IdTtht == 2 && x.IdTk == idTK)
+                .Count();
+            //var countBTDHien2 = db.Baituyendungs
+            //    .Where(x => x.IdTtht == 2 && x.IdTk == idTK)
+            //    .Count();
+            Debug.WriteLine("Hiện 1: " + countBTDHien);
+            //Debug.WriteLine("Hiện 2: " + countBTDHien2);
+
+            ViewBag.BTDHien = countBTDHien;
+
+            //Số CV ứng tuyển
+            // Lấy danh sách tất cả các bài tuyển dụng của tài khoản
+            var btdList = db.Baituyendungs.Where(x => x.IdTk == idTK).ToList();
+
+            // Khởi tạo biến để lưu tổng số CV ứng tuyển
+            int tongCV = 0;
+
+            // Duyệt qua từng bài tuyển dụng và tính tổng số CV ứng tuyển
+            foreach (var btd in btdList)
+            {
+                // Lấy số lượng CV ứng tuyển cho bài tuyển dụng hiện tại
+                var soLuongCV = db.CongviecSylls.Count(cs => cs.IdBtd == btd.IdBtd);
+
+                // Cộng số lượng CV ứng tuyển vào tổng số
+                tongCV += soLuongCV;
+            }
+            ViewBag.TongCVUT = tongCV;
+
+            // Lấy ngày đầu tiên của tháng hiện tại
+            var today = DateTime.Today;
+            var firstDayOfThisMonth = new DateTime(today.Year, today.Month, 1);
+
+            // Lấy ngày đầu tiên của tháng trước của tháng hiện tại
+            var firstDayOfLastMonth = firstDayOfThisMonth.AddMonths(-1);
+
+            // Lấy ngày đầu tiên của tháng trước đó
+            var firstDayOfSecondLastMonth = firstDayOfLastMonth.AddMonths(-1);
+
+
+            // Đếm số lượng bài tuyển dụng trong tháng trước của tháng hiện tại, group theo tháng và năm
+            var countBTDLastMonth = db.Baituyendungs
+                .Where(x => x.CreateAt >= firstDayOfLastMonth && x.CreateAt < firstDayOfThisMonth && x.IdTk == idTK)
+                .Count();
+
+            var countBTDSecondLastMonth = db.Baituyendungs
+                .Where(x => x.CreateAt >= firstDayOfSecondLastMonth && x.CreateAt < firstDayOfLastMonth && x.IdTk == idTK)
+                .Count();
+            // Tính toán phần trăm tăng trưởng hoặc giảm
+            double percentChangeBTD = 0.0;
+            if (countBTDSecondLastMonth != 0)
+            {
+                percentChangeBTD = ((double)(countBTDLastMonth - countBTDSecondLastMonth) / countBTDSecondLastMonth) * 100;
+            }
+            Debug.WriteLine("Tháng 3: " + countBTDSecondLastMonth);
+            Debug.WriteLine("Tháng 4: " + countBTDLastMonth);
+            Debug.WriteLine("Phần trăm: " + percentChangeBTD);
+
+            ViewBag.countBTDLastMonth = countBTDLastMonth;
+            ViewBag.countBTDSecondLastMonth = countBTDSecondLastMonth;
+            ViewBag.percentChangeBTD = percentChangeBTD;
+
+            var BTDMoi = db.Baituyendungs.OrderByDescending(b => b.CreateAt)
+                        .Where(x => x.IdTk == idTK)
+                        .Include(x => x.IdNnNavigation)
+                        .Include(x => x.IdLcvNavigation)
+                        .Include(x => x.IdTkNavigation)
+                        .Take(5) // Chỉ lấy 5 bài đăng mới nhất
+                        .ToList();
+            ViewBag.BTDMoi = BTDMoi;
             return View();
         }
+
+        [Route("UpAnhDaiDienNTD")]
+        [HttpGet]
+        public IActionResult UpAnhDaiDienNTD()
+        {
+            var ID_TK = HttpContext.Session.GetInt32("IdTk");
+
+            //if (!ID_TK.HasValue)
+            //{
+            //    // Xử lý trường hợp người dùng không hợp lệ, có thể chuyển hướng hoặc xử lý lỗi khác
+            //    return RedirectToAction("TrangLoi", "Home");
+            //}
+
+            var anhDD = new Anhdaidien
+            {
+                IdTk = ID_TK.Value
+            };
+
+            return View(anhDD);
+        }
+
+        [Route("UpAnhDaiDienNTD")]
+        [HttpPost]
+
+        public IActionResult UpAnhDaiDienNTD(Anhdaidien anhdd)
+        {
+            var ID_TK = HttpContext.Session.GetInt32("IdTk");
+
+            //if (!ID_TK.HasValue)
+            //{
+            //    // Xử lý trường hợp người dùng không hợp lệ, có thể chuyển hướng hoặc xử lý lỗi khác
+            //    return RedirectToAction("Trangloi", "Home");
+            //}
+
+            if (anhdd.UpAnhDaiDien != null)
+            {
+                anhdd.Tenanh = LuuAnh.LuuAnhDaiDien(anhdd.UpAnhDaiDien);
+            }
+
+            // Mục 3: Kiểm tra ModelState Errors
+            if (!ModelState.IsValid)
+            {
+                foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    Console.WriteLine(error.ErrorMessage);
+                }
+            }
+
+            if (ModelState.IsValid)
+            {
+                anhdd.IdTk = ID_TK.Value;
+                anhdd.Tenanh = LuuAnh.LuuAnhDaiDien(anhdd.UpAnhDaiDien);
+                db.Anhdaidiens.Add(anhdd);
+                db.SaveChanges();
+                return RedirectToAction("CaiDatTaiKhoanNTD", "NhaTuyenDung");
+            }
+            return View(anhdd);
+        }
+
 
         [Route("TaoCongTy")]
         [HttpGet]
@@ -450,6 +579,132 @@ namespace DoAnNet7_2.Controllers
                 TempData["MessageType"] = "error";
             }
             return RedirectToAction("DSBTDNTD", "NhaTuyenDung");
+        }
+
+
+        [Route("CaiDatTaiKhoanNTD")]
+        public IActionResult CaiDatTaiKhoanNTD()
+        {
+            var ID_TK = HttpContext.Session.GetInt32("IdTk");
+            var TenanhDD = HttpContext.Session.GetString("Tenanh");
+            var tk = db.Taikhoans.FirstOrDefault(x => x.IdTk == ID_TK);
+            Debug.WriteLine("IdTk: " + ID_TK);
+            ViewBag.Anh = db.Anhdaidiens.FirstOrDefault(x => x.IdTk == ID_TK);
+            if (tk == null)
+            {
+                return RedirectToAction("TrangLoi", "Home");
+            }
+            if (tk != null)
+            {
+                // Include các dữ liệu liên quan nếu cần thiết
+                db.Entry(tk).Reference(x => x.IdLtkNavigation).Load();
+                return View(tk);
+            }
+            //var Id_TK = IdTK;
+            //HttpContext.Session.SetInt32("IdTk", Id_TK);
+            return View(tk);
+        }
+
+        [Route("SuaTaiKhoanNTD")]
+        [HttpGet]
+        public IActionResult SuaTaiKhoanNTD(int idTK)
+        {
+            TempData["Message"] = "";
+            var tk = db.Taikhoans.FirstOrDefault(x => x.IdTk == idTK);
+            var ID_TK = idTK;
+            HttpContext.Session.SetInt32("IdTk", ID_TK);
+            if (tk == null)
+            {
+                NotFound();
+            }
+            ViewBag.IdLtk = new SelectList(db.Loaitaikhoans.ToList(), "IdLtk", "Tenltk");
+            return View(tk);
+        }
+
+        [Route("SuaTaiKhoanNTD")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult SuaTaiKhoanNTD(Taikhoan tk)
+        {
+
+            if (ModelState.IsValid)
+            {
+                db.Entry(tk).State = EntityState.Modified;
+                //var IdTk = tk.IdTk;
+                //HttpContext.Session.SetInt32("IdTk", IdTk);
+                db.SaveChanges();
+                HttpContext.Session.SetString("Hoten", tk.Hoten);
+                // Truyền thông điệp thành công trực tiếp tới view
+                ViewBag.MessageType = "success";
+                ViewBag.Message = "Sửa thành công";
+            }
+            else
+            {
+                // Truyền thông điệp thất bại trực tiếp tới view
+                ViewBag.MessageType = "error";
+                ViewBag.Message = "Vui lòng kiểm tra lại thông tin";
+            }
+            ViewBag.IdLtk = new SelectList(db.Loaitaikhoans.ToList(), "IdLtk", "Tenltk");
+            return View(tk);
+        }
+
+        
+        [Route("SuaAnhDDNTD")]
+        [HttpGet]
+        public IActionResult SuaAnhDDNTD(int idTK)
+        {
+            var anhDD = db.Anhdaidiens.FirstOrDefault(a => a.IdTk == idTK);
+            var Id_TK = idTK;
+            if (anhDD == null)
+            {
+                return RedirectToAction("UpAnhDaiDienNTD", "NhaTuyenDung");
+            }
+
+            HttpContext.Session.SetInt32("IdTk", Id_TK);
+            return View(anhDD);
+        }
+
+        [Route("SuaAnhDDNTD")]
+        [HttpPost]
+        public IActionResult SuaAnhDDNTD(Anhdaidien anhDD)
+        {
+            var existingAnhDD = db.Anhdaidiens.FirstOrDefault(a => a.IdTk == anhDD.IdTk);
+            var ID_TK = HttpContext.Session.GetInt32("IdTk");
+            var idTK = ID_TK;
+            if (existingAnhDD == null)
+            {
+                return NotFound();
+            }
+
+            if (anhDD.UpAnhDaiDien != null && ModelState.IsValid)
+            {
+                // Xóa ảnh cũ nếu cần
+
+                // Lưu ảnh mới
+                existingAnhDD.Tenanh = LuuAnh.LuuAnhDaiDien(anhDD.UpAnhDaiDien);
+
+                // Cập nhật thông tin ảnh đại diện trong cơ sở dữ liệu
+                db.SaveChanges();
+                if(idTK != null)
+                {
+                    HttpContext.Session.SetInt32("IdTk", (int)idTK);
+                    HttpContext.Session.SetString("Tenanh", existingAnhDD.Tenanh);
+                }
+                ViewBag.MessageType = "success";
+                ViewBag.Message = "Sửa thành công";
+                //return RedirectToAction("DanhSachTaiKhoan", "DanhSachTaiKhoan");
+            }
+            else
+            {
+                // Truyền thông điệp thất bại trực tiếp tới view
+                ViewBag.MessageType = "error";
+                ViewBag.Message = "Vui lòng kiểm tra lại thông tin";
+                // Trả về lại view với dữ liệu cũ
+                return View(existingAnhDD);
+            }
+            HttpContext.Session.SetInt32("IdTk", (int)idTK);
+            HttpContext.Session.SetString("Tenanh", existingAnhDD.Tenanh);
+            return View(existingAnhDD);
         }
     }
 }

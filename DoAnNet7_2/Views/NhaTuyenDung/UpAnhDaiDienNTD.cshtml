@@ -1,0 +1,95 @@
+﻿@model DoAnNet7_2.Models.Anhdaidien
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "ThemAnhDaiDienNTD";
+    Layout = "~/Views/Shared/_LayoutNhaTuyenDung.cshtml";
+}
+
+<div class="border-content col-md-6">
+    <h1>Thêm ảnh</h1>
+
+    <hr />
+    <div class="row">
+        <div class="col-md-12">
+            <form asp-action="UpAnhDaiDienNTD" method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="UpAnhDaiDien" class="control-label">Ảnh đại diện(jpg, jpeg, png, gif)
+                        (<span style="color: red">*</span>)
+                    </label>
+                    <input type="file" asp-for="UpAnhDaiDien" class="form-group mt1 custom-btn-input" id="avatarFile" onchange="previewImage(this);" />
+                    @*<label for="UpAnhDaiDien" class="custom-file-upload">
+                    <i class="fas fa-cloud-upload-alt"></i> Chọn ảnh
+                    </label>
+                    <input type="file" id="UpAnhDaiDien" name="UpAnhDaiDien" style="display: none;" onchange="previewImage(this);">*@
+                    <img class="mt2" id="AnhDaiDienPreview" src="#" alt="Ảnh đại diện" style="display: none; max-width: 200px; max-height: 200px;">
+                    <span asp-validation-for="UpAnhDaiDien" class="text-danger"></span>
+                </div>
+                <div class="form-group mt2">
+                    <input type="submit" value="Lưu ảnh" class="btn btn-success" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@*<script>
+    document.getElementById('avatarFile').addEventListener('change', function () {
+        var fileInput = this;
+        var filePath = fileInput.value;
+        var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+        if (!allowedExtensions.exec(filePath)) {
+            alert('Chỉ cho phép tệp ảnh (jpg, jpeg, png, gif).');
+            fileInput.value = '';
+            return false;
+        }
+    });
+</script>
+
+<script>
+    function previewImage(input) {
+        var preview = document.getElementById('AnhDaiDienPreview');
+        var file = input.files[0];
+        var reader = new FileReader();
+
+        reader.onloadend = function () {
+            preview.src = reader.result;
+            preview.style.display = 'block';
+        };
+
+        if (file) {
+            reader.readAsDataURL(file);
+        } else {
+            preview.src = '#';
+            preview.style.display = 'none';
+        }
+    }
+</script>*@
+<script>
+    function previewImage(input) {
+        var preview = document.getElementById('AnhDaiDienPreview');
+        var file = input.files[0];
+        var reader = new FileReader();
+
+        if (file) {
+            var filePath = file.name;
+            var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+            if (!allowedExtensions.exec(filePath)) {
+                alert('Chỉ cho phép tệp ảnh (jpg, jpeg, png, gif).');
+                input.value = '';
+                preview.src = '#';
+                preview.style.display = 'none';
+                return false;
+            }
+
+            reader.onloadend = function () {
+                preview.src = reader.result;
+                preview.style.display = 'block';
+            };
+
+            reader.readAsDataURL(file);
+        } else {
+            preview.src = '#';
+            preview.style.display = 'none';
+        }
+    }
+</script>

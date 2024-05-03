@@ -7,9 +7,118 @@
 @using Microsoft.AspNetCore.Http
 
 @{
-    HttpContext context = ViewContext.HttpContext;
+    // Lấy tháng hiện tại
+    var currentMonth = DateTime.Now.Month;
+
+    // Tính toán tháng trước
+    var previousMonth = currentMonth - 1;
+    var previousMonth2 = currentMonth - 2;
+    if (previousMonth == 0)
+    {
+        previousMonth = 12; // Nếu tháng trước là tháng 0, tức tháng 12 của năm trước
+    }
+
+    if (previousMonth2 == 0)
+    {
+        previousMonth2 = 12;
+    }
 }
-<div>
-    Xin chào, @context.Session.GetString("Hoten")
-    Index
+
+<div class="col-md-12">
+    <div class="row" style="justify-content: space-between">
+        <div class="col-md-4">
+            <div class="border-content" style="min-width: -webkit-fill-available !important;display: flex; justify-content: space-between;
+                                            padding: 15px 20px !important; align-items: center;min-height: 100%;">
+                <img alt="NhaTuyenDung" src="~/assets/images/btdHien.jpg" style="max-width: 80px; max-height: 80px; margin-right: 10px">
+                <div class="info" style="">
+                    <h4 style="color: #dc3545">Số bài tuyển dụng hiển thị</h4>
+                    <p><b>@ViewBag.BTDHien bài viết hiển thị</b></p>
+                    <p class="info-tong">
+                        Tổng số bài hiển thị được quản lý
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="border-content" style="min-width: -webkit-fill-available !important;display: flex; justify-content: space-between;
+                                            padding: 15px 20px !important; align-items: center;min-height: 100%;">
+                <img alt="NguoiTimViec" src="~/assets/images/iconCV2.png" style="max-width: 80px; max-height: 80px; margin-right: 10px">
+                <div class="info" style="">
+                    <h4 style="color: #dc3545">Số CV đã tiếp nhận</h4>
+                    <p><b>@ViewBag.TongCVUT CV đã tiếp nhận</b></p>
+                    <p class="info-tong">
+                        Tổng số CV đã tiếp nhận được quản lý
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="border-content" style="min-width: -webkit-fill-available !important;display: flex; justify-content: space-between;
+                                            padding: 15px 20px !important; align-items: center;min-height: 100%;">
+                <img alt="NhaTuyenDung" src="~/assets/images/BTD2.png" style="max-width: 80px; max-height: 80px; margin-right: 10px">
+                <div class="info" style="">
+                    <h4 style="color: #dc3545">Bài tuyển dụng mới tháng @previousMonth</h4>
+                    <p><b>@ViewBag.countBTDLastMonth bài tuyển dụng mới</b></p>
+                    <p class="info-tong">
+                        @{
+                            if ((double)ViewBag.percentChangeBTD > 0)
+                            {
+                                <span style="color: green;font-weight: 600;">+@ViewBag.percentChangeBTD% so với tháng @previousMonth2</span>
+                            }
+                            else if ((double)ViewBag.percentChangeBTD < 0)
+                            {
+                                <span style="color: red;font-weight: 600;">-@ViewBag.percentChangeBTD% so với tháng @previousMonth2</span>
+                            }
+                            else
+                            {
+                                <span style="color: blue;font-weight: 600;">Bằng với tháng @previousMonth2</span>
+                            }
+                        }
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12" style="margin-top: 30px">
+            <div class="border-content" style="min-width: -webkit-fill-available !important">
+                <div class="tile">
+                    <h3 class="tile-title">Bài tuyển dụng mới</h3>
+                    <hr />
+                    <div>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Tên công việc</th>
+                                    <th>Ngành nghề</th>
+                                    <th>Loại công việc</th>
+                                    <th>Tài khoản tạo bài viết</th>
+                                    <th>Ngày tạo bài viết</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    var stt = 1;
+                                }
+                                @foreach (var item in ViewBag.BTDMoi)
+                                {
+                                    <tr>
+                                        <td>@stt</td>
+                                        <td>@item.Tencongviec</td>
+                                        <td>
+                                            @item.IdNnNavigation.Tennganhnghe
+                                        </td>
+                                        <td>@item.IdLcvNavigation.Tenlcv</td>
+                                        <td>@item.IdTkNavigation.Email</td>
+                                        <td>@item.CreateAt</td>
+                                    </tr>
+                                    stt++;
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- / div trống-->
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

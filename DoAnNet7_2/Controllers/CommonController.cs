@@ -120,7 +120,7 @@ namespace DoAnNet7_2.Controllers
 
         [Route("SuaAnhDDCommon")]
         [HttpGet]
-        public IActionResult SuaAnhDDCommon(int idTK)
+        public IActionResult SuaAnhDDCommon(int idTK, string layoutType)
         {
             var tk = db.Taikhoans.FirstOrDefault(x => x.IdTk == idTK);
 
@@ -137,7 +137,7 @@ namespace DoAnNet7_2.Controllers
 
         [Route("SuaAnhDDCommon")]
         [HttpPost]
-        public IActionResult SuaAnhDDCommon(Taikhoan tk)
+        public IActionResult SuaAnhDDCommon(Taikhoan tk, string layoutType)
         {
             var ID_TK = HttpContext.Session.GetInt32("IdTk");
 

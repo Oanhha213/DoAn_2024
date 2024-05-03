@@ -137,7 +137,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="menu-item" id="item-account" asp-action="CaiDatTaiKhoan" asp-controller="Common" asp-route-idTK="@context.Session.GetInt32("IdTk")" asp-route-layoutType="Layout1">
+                    <a class="menu-item" id="item-account" asp-action="CaiDatTaiKhoanNTD" asp-controller="NhaTuyenDung">
                         <i class="fa-solid fa-gear"></i>
                         <span>Cài đặt tài khoản</span>
                     </a>
@@ -156,6 +156,34 @@
             </div>
         </div>
     </div>
+@*    <script>
+        $(document).ready(function () {
+            // Khi trang được load, kiểm tra trạng thái active trong Local Storage và áp dụng cho menu item tương ứng
+            var activeMenuItem = localStorage.getItem('activeMenuItem');
+            if (activeMenuItem) {
+                $('.menu-item').removeClass('active'); // Xóa lớp active khỏi tất cả các menu item
+                $('#' + activeMenuItem).addClass('active'); // Thêm lớp active vào menu item được lưu trong Local Storage
+            } else {
+                // Nếu không có menu item nào được lưu, mặc định active cho menu item Home và lưu nó vào Local Storage
+                $('#item-home').addClass('active');
+                localStorage.setItem('activeMenuItem', 'item-home');
+            }
+
+            // Khi click vào một menu item
+            $('.menu-item').click(function () {
+                var itemId = $(this).attr('id'); // Lấy id của menu item
+                $('.menu-item').removeClass('active'); // Xóa lớp active khỏi tất cả các menu item
+                $(this).addClass('active'); // Thêm lớp active vào menu item được click
+
+                // Lưu trạng thái active vào Local Storage
+                localStorage.setItem('activeMenuItem', itemId);
+            });
+            $('#logoutBtn').click(function () {
+                // Sau khi đăng xuất
+                localStorage.removeItem('activeMenuItem');
+            })
+        });
+    </script>*@
     <script>
         $(document).ready(function () {
             // Khi trang được load, kiểm tra trạng thái active trong Local Storage và áp dụng cho menu item tương ứng
