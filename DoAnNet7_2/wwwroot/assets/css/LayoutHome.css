@@ -1,0 +1,14 @@
+﻿.nav-item{
+    margin: 0 10px !important;
+}
+.group-btn-access{
+    margin-right: 30px !important;
+}
+.content-center {
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+.width-100{
+    width: 100% !important;
+}

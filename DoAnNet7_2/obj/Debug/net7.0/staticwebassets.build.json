@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Rf73iNov6VyrFZzBCL2TnpDZDwXGkX8ZoG5r/G6ckOQ=",
+  "Hash": "sdgVwNJVY3OussUgSU9rQNtFIWcnF/Y5oiPBe/4vvkI=",
   "Source": "DoAnNet7_2",
   "BasePath": "_content/DoAnNet7_2",
   "Mode": "Default",
@@ -814,6 +814,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\css\\Admin.css"
+    },
+    {
+      "Identity": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\assets\\css\\LayoutHome.css",
+      "SourceId": "DoAnNet7_2",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\",
+      "BasePath": "_content/DoAnNet7_2",
+      "RelativePath": "assets/css/LayoutHome.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\css\\LayoutHome.css"
     },
     {
       "Identity": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\assets\\css\\Login.css",

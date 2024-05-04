@@ -185,6 +185,10 @@
       "PackagePath": "staticwebassets\\assets\\css\\Admin.css"
     },
     {
+      "Id": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\assets\\css\\LayoutHome.css",
+      "PackagePath": "staticwebassets\\assets\\css\\LayoutHome.css"
+    },
+    {
       "Id": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\assets\\css\\Login.css",
       "PackagePath": "staticwebassets\\assets\\css\\Login.css"
     },

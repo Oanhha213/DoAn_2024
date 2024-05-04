@@ -2,10 +2,46 @@
     ViewData["Title"] = "Home Page";
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
 }
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<div class="row content-center" style="width: -webkit-fill-available !important; flex-direction: column; background-color: #f3f5f7">
+    <div class="col-md-10 filter">
 
-<div>
-    Trang Index
+    </div>
+    <div class="col-md-10 row content-center width-100">
+        @if (ViewBag.DSBTD != null)
+        {
+            @foreach (var item in ViewBag.DSBTD)
+            {
+                <div class="border-content col-md-12 row" style="margin-top: 20px; justify-content: space-between">
+                    <div class="col-md-8">
+                        <h5>
+                            @item.Tencongviec
+                        </h5>
+                        <p>
+                            @item.Diachi, @item.IdTtNavigation?.Tentt
+                        </p>
+                        <p>
+                            <span>
+                                @item.IdLcvNavigation?.Tenlcv
+                            </span>
+                            |
+                            <span>
+                                @item.IdTglvNavigation?.Tentglv
+                            </span>
+                        </p>
+                    </div>
+                    <div class="col-md-4 row" style="justify-content: end;">
+                        <a class="btn btn-success col-md-10" style="height: fit-content; line-height: 26px;max-width: fit-content;">Ứng tuyển ngay</a>
+                        <a class="btn text-an col-md-2" style="height: fit-content; line-height: 22px;max-width: fit-content;">
+                            <i class="fa-solid fa-heart"></i>
+                        </a>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <p>No data available.</p>
+        }
+    </div>
 </div>
-<a asp-controller="Access" asp-action="DangNhap">Đăng nhập</a>
-<div>Ngăn cách</div>
-<a asp-controller="DangKy" asp-action="DangKy">Đăng ký</a>
