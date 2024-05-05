@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "sdgVwNJVY3OussUgSU9rQNtFIWcnF/Y5oiPBe/4vvkI=",
+  "Hash": "eaeSmKZBkLMYp2twKMfhrHS2AAeh+yPbqN0dv8fzX0g=",
   "Source": "DoAnNet7_2",
   "BasePath": "_content/DoAnNet7_2",
   "Mode": "Default",
@@ -916,6 +916,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\images\\btdHien.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\assets\\images\\h1_hero1.jpg",
+      "SourceId": "DoAnNet7_2",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\",
+      "BasePath": "_content/DoAnNet7_2",
+      "RelativePath": "assets/images/h1_hero1.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\images\\h1_hero1.jpg"
     },
     {
       "Identity": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\assets\\images\\iconCV1.png",

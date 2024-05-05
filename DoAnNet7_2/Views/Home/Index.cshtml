@@ -3,11 +3,19 @@
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
 }
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-<div class="row content-center" style="width: -webkit-fill-available !important; flex-direction: column; background-color: #f3f5f7">
-    <div class="col-md-10 filter">
-
+<div class="row content-center" style="padding-bottom: 40px ;width: -webkit-fill-available !important; flex-direction: column; background-color: #f3f5f7;">
+    <div class="col-md-8 filter" style="margin-top: 40px">
+        <div class="">
+            <form id="search-form-home" class="row"  style="padding: 7px 12px !important">
+                <input type="search" class="form-control col-md-10" placeholder="Tên công việc..." id="searchItem">
+                <button type="submit" class="btn btn-success col-md-2" style="max-width: fit-content">Tìm kiếm</button>
+            </form>
+        </div>
+        <div>
+            Filter
+        </div>
     </div>
-    <div class="col-md-10 row content-center width-100">
+    <div class="col-md-8 row content-center width-100">
         @if (ViewBag.DSBTD != null)
         {
             @foreach (var item in ViewBag.DSBTD)
@@ -17,16 +25,20 @@
                         <h5>
                             @item.Tencongviec
                         </h5>
-                        <p>
-                            @item.Diachi, @item.IdTtNavigation?.Tentt
-                        </p>
+                        @if (item.Diachi != null || item.IdTtNavigation?.Tentt != null)
+                        {
+                            <p>
+                                <i class="fa-solid fa-location-dot"></i>
+                                @item.Diachi, @item.IdTtNavigation?.Tentt
+                            </p>
+                        }
                         <p>
                             <span>
                                 @item.IdLcvNavigation?.Tenlcv
                             </span>
                             |
                             <span>
-                                @item.IdTglvNavigation?.Tentglv
+                                @item.IdLuongNavigation?.Tenmucluong
                             </span>
                         </p>
                     </div>
@@ -43,5 +55,8 @@
         {
             <p>No data available.</p>
         }
+    </div>
+    <div>
+        Top ngành nghể nổi bật
     </div>
 </div>

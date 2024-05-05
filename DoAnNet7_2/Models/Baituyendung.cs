@@ -13,7 +13,7 @@ public partial class Baituyendung
     public string Tencongviec { get; set; } = null!;
 
     [DisplayName("Địa chỉ")]
-    public string? Diachi { get; set; }
+    public string? Diachi { get; set; } = null!;
 
     [DisplayName("Trạng thái hiển thị")]
     public int IdTtht { get; set; }
@@ -25,7 +25,7 @@ public partial class Baituyendung
     public int IdLcv { get; set; }
 
     [DisplayName("Thời gian làm việc")]
-    public int? IdTglv { get; set; }
+    public string Thoigianlamviec { get; set; } = null!;
 
     [DisplayName("Ngành nghề")]
     public int? IdNn { get; set; }
@@ -45,12 +45,16 @@ public partial class Baituyendung
     [DisplayName("Tài khoản ")]
     public int? IdTk { get; set; }
 
+    [DisplayName("Mức lương ")]
+    public int IdLuong { get; set; }
+
     [DisplayName("Thời gian tạo bài")]
     public DateTime? CreateAt { get; set; }
 
     public virtual ICollection<CongviecSyll> CongviecSylls { get; set; } = new List<CongviecSyll>();
     public virtual ICollection<Thichcongviec> Thichcongviecs { get; set; } = new List<Thichcongviec>();
     public virtual Loaicongviec? IdLcvNavigation { get; set; }
+    public virtual Luong? IdLuongNavigation { get; set; }
 
     public virtual Nganhnghe? IdNnNavigation { get; set; }
 
@@ -59,8 +63,6 @@ public partial class Baituyendung
     public virtual Taikhoan? IdTkNavigation { get; set; }
 
     public virtual Tinhthanh? IdTtNavigation { get; set; }
-
-    public virtual Thoigianlamviec? IdTglvNavigation { get; set; }
 
     public virtual Trangthaihienthi? IdTthtNavigation { get; set; }
     //public object IdBtdNavigation { get; internal set; }

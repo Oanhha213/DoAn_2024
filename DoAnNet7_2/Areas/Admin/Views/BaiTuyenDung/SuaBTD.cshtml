@@ -22,34 +22,44 @@
                     <span asp-validation-for="Tencongviec" class="text-danger"></span>
                 </div>
                 <div class="form-group mt2">
-                    <label asp-for="Diachi" class="control-label"></label>
-                    <input asp-for="Diachi" class="form-control mt1" />
+                    <label asp-for="Diachi" class="control-label">Địa điểm làm việc
+                        (<span style="color: red">*</span>)
+                    </label>
+                    <input asp-for="Diachi" class="form-control mt1" required/>
                     <span asp-validation-for="Diachi" class="text-danger"></span>
                 </div>
                 <div class="form-group mt2">
+                    <label asp-for="Thoigianlamviec" class="control-label">
+                        Thời gian làm việc
+                        (<span style="color: red">*</span>)
+                    </label>
+                    <input asp-for="Thoigianlamviec" class="form-control mt1" required />
+                    <span asp-validation-for="Thoigianlamviec" class="text-danger"></span>
+                </div>
+                <div class="form-group mt2">
                     <label asp-for="IdTt" class="control-label"></label>
-                    <select asp-for="IdTt" class="form-control mt1" asp-items="ViewBag.IdTt"></select>
+                    <select asp-for="IdTt" class="form-control mt1" asp-items="ViewBag.IdTt" required></select>
                     <span asp-validation-for="IdTt" class="text-danger"></span>
                 </div>
                 <div class="form-group mt2">
                     <label asp-for="IdLcv" class="control-label">Loại công việc
                         (<span style="color: red">*</span>)
                     </label>
-                    <select asp-for="IdLcv" class="form-control mt1" asp-items="ViewBag.IdLcv"></select>
+                    <select asp-for="IdLcv" class="form-control mt1" asp-items="ViewBag.IdLcv" required></select>
                     <span asp-validation-for="IdLcv" class="text-danger"></span>
                 </div>
                 <div class="form-group mt2">
-                    <label asp-for="IdTglv" class="control-label"> Thời gian làm việc
+                    <label asp-for="IdLuong" class="control-label"> Mức lương
                         (<span style="color: red">*</span>)
                     </label>
-                    <select asp-for="IdTglv" class="form-control mt1" asp-items="ViewBag.IdTglv"></select>
-                    <span asp-validation-for="IdTglv" class="text-danger"></span>
+                    <select asp-for="IdLuong" class="form-control mt1" asp-items="ViewBag.IdLuong" required></select>
+                    <span asp-validation-for="IdLuong" class="text-danger"></span>
                 </div>
                 <div class="form-group mt2">
                     <label asp-for="IdNn" class="control-label">Ngành nghề
                         (<span style="color: red">*</span>)
                     </label>
-                    <select asp-for="IdNn" class="form-control mt1" asp-items="ViewBag.IdNn"></select>
+                    <select asp-for="IdNn" class="form-control mt1" asp-items="ViewBag.IdNn" required></select>
                     <span asp-validation-for="IdNn" class="text-danger"></span>
                 </div>
                 <div class="form-group mt2">
@@ -82,7 +92,7 @@
                 </div>
                 <div class="form-group mt2">
                     <label asp-for="IdTtht" class="control-label"></label>
-                    <select asp-for="IdTtht" class="form-control mt1" asp-items="ViewBag.IdTtht"></select>
+                    <select asp-for="IdTtht" class="form-control mt1" asp-items="ViewBag.IdTtht" required></select>
                     <span asp-validation-for="IdTtht" class="text-danger"></span>
                 </div>
                 <input type="hidden" asp-for="IdTk" />

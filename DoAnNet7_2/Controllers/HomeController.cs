@@ -18,9 +18,9 @@ namespace DoAnNet7_2.Controllers
         public IActionResult Index()
         {
             var DSBTDHien = db.Baituyendungs.Where(x => x.IdTtht == 2)
-                            .Include(x => x.IdTthtNavigation)
+                            .Include(x => x.IdTtNavigation)
                             .Include(x => x.IdLcvNavigation)
-                            .Include(x => x.IdTglvNavigation)
+                            .Include(x => x.IdLuongNavigation)
                             .ToList();
             ViewBag.DSBTD = DSBTDHien;
             Debug.WriteLine("BTD:");
@@ -29,6 +29,8 @@ namespace DoAnNet7_2.Controllers
             {
                 Debug.WriteLine("ID: " + item.IdBtd); // Ví dụ về việc truy cập thuộc tính Id
                 Debug.WriteLine("Name: " + item.Tencongviec); // In ra thông tin của mỗi đối tượng trong danh sách
+                Debug.WriteLine("Salary: " + item.IdLuongNavigation.Tenmucluong);
+
             }
             return View();
         }

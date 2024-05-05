@@ -12,3 +12,175 @@
 .width-100{
     width: 100% !important;
 }
+
+.single-slider {
+    position: relative;
+    left: 0px;
+    top: 0px;
+    z-index: 999;
+    opacity: 1;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    height: 100%;
+}
+
+.hero__caption h1 {
+    font-size: 80px;
+    font-weight: 900;
+    color: #28395a;
+    line-height: 1.2;
+}
+
+#search-form-home{
+    align-items: center;
+    justify-content: center;
+}
+
+a {
+    text-decoration: none;
+}
+
+.slider-footer {
+    background: url("../../assets/img/footer_bg.jpg") no-repeat #111316;
+    background-size: cover;
+    padding-top: 197px;
+    padding-bottom: 136px;
+    color: #fff;
+    overflow: hidden;
+}
+
+.container-footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.p-m {
+    padding: 0 15px 0 15px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.first-card {
+    font-size: 24px;
+    line-height: 36px;
+    text-align: center;
+}
+
+    .first-card .email {
+        display: flex;
+        flex-direction: column;
+        font-size: 20px;
+        line-height: 38px;
+        color: #f44029;
+        margin-top: 46px;
+    }
+
+        .first-card .email a {
+            color: #f44029;
+        }
+
+            .first-card .email a:hover {
+                color: #fff;
+                text-decoration: none;
+            }
+
+        .first-card .email i {
+            font-size: 30px;
+        }
+
+.second-card {
+    margin-left: 8.33%;
+}
+
+    .second-card ul {
+        margin-top: 8px;
+    }
+
+        .second-card ul li.active, .second-card ul li:hover {
+            color: #f44029;
+        }
+
+        .second-card ul li {
+            font-size: 24px;
+            line-height: 24px;
+        }
+
+            .second-card ul li + li {
+                margin-top: 18px;
+            }
+
+            .second-card ul li a {
+                color: inherit;
+                text-decoration: none;
+            }
+
+.third-card {
+    display: flex;
+    flex-direction: column;
+}
+
+    .third-card p {
+        margin-top: 55px;
+        text-align: center;
+        font-size: 17px;
+        line-height: 20px;
+        font-style: normal;
+    }
+
+        .third-card p .line {
+            height: 31px;
+            width: 1px;
+            background: rgba(255, 255, 255, 0.54);
+            display: inline-block;
+            margin: 0 9px;
+            position: relative;
+            top: 10px;
+        }
+
+        .third-card p a {
+            font: inherit;
+            color: inherit;
+        }
+
+            .third-card p a:hover {
+                color: #f44029;
+                text-decoration: none;
+            }
+
+.list-icon {
+    margin-top: 7px;
+    display: flex;
+}
+
+    .list-icon li {
+        list-style: none;
+        margin: 0 4px;
+    }
+
+        .list-icon li a {
+            display: inline-block;
+            border-radius: 50%;
+            color: #fff;
+            width: 76px;
+            height: 76px;
+            border-radius: 50%;
+            border: 1px solid #ffffff;
+            text-align: center;
+        }
+
+            .list-icon li a i {
+                font-size: 24px;
+                line-height: 76px;
+            }
+
+            .list-icon li a:hover {
+                animation-name: anm;
+                animation-duration: 0.6s;
+                animation-fill-mode: both;
+                background-color: #fff;
+                color: #f44029;
+            }

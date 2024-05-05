@@ -21,13 +21,13 @@
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">
-                    <img class="logo" style="height: 40px !important;min-width: 180px !important;" src="~/assets/images/LOGO.jpg" alt="Logo">
+                    <img class="logo" style="height: 50px !important;min-width: 200px !important;" src="~/assets/images/LOGO.jpg" alt="Logo">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" style="justify-content: space-between">
-                    <ul class="navbar-nav">
+                    <ul class="navbar-nav" style="font-size: 13pt; font-weight: 500">
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="#">Công việc</a>
                         </li>
@@ -42,15 +42,91 @@
                         </li>
                     </ul>
                     <div class="row group-btn-access">
-                        <a class="btn btn-success" asp-controller="Access" asp-action="DangNhap">Đăng nhập</a>
-                        <a class="btn btn-info" asp-controller="DangKy" asp-action="DangKy">Đăng ký</a>
+                        <a class="btn btn-success" style="font-size: 13pt" asp-controller="Access" asp-action="DangNhap">Đăng nhập</a>
+                        <a class="btn btn-info" style="font-size: 13pt" asp-controller="DangKy" asp-action="DangKy">Đăng ký</a>
                     </div>
                 </div>
             </div>
         </nav>
     </div>
+    <div class="slider">
+        <div class="single-slider slider-height d-flex align-items-center slick-slide slick-current slick-active" style="background-image: url(assets/images/h1_hero1.jpg);" data-background="assets/images/h1_hero1.jpg" data-slick-index="0" aria-hidden="false" tabindex="0">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-7 col-lg-9 col-md-10" style="padding-top: 160px; padding-bottom: 210px">
+                        <div class="hero__caption">
+                            @*<h1>
+                                Nâng cao sự nghiệp,
+                            </h1>*@
+                            <h1>Khám phá những cơ hội không giới hạn.</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="">
     @RenderBody()
+    </div>
+    <!-- footer -->
+    <div id="footer" >
+        <div class="slider-footer">
+            <div class="container-footer">
+                <div class="first-card p-m">
+                    <div class="address">
+                        <p>28 Jackson Blvd<br>Ste 151, Chicago<br>IL 60604-2340</p>
+                    </div>
+                    <div class="email">
+                        <i class="far fa-envelope"></i>
+                        <a href="" class="link-mail">info@demolink.org</a>
+                    </div>
+                </div>
+                <div class="second-card p-m">
+                    <ul>
+                        <li class="active"><a href="./index.html">HOME</a></li>
+                        <li><a href="./about.html">ABOUT US</a></li>
+                        <li><a href="./menu.html">OUR MENU</a></li>
+                        <li><a href="./gallery.html">GALLERY</a></li>
+                        <li><a href="./contact.html">CONTACTS</a></li>
+                    </ul>
+                </div>
+                <div class="third-card p-m">
+                    <ul class="list-icon">
+                        <li>
+                            <a href="https://twitter.com/">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.facebook.com/">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.google.com/intl/vi/account/about/">
+                                <i class="fab fa-google-plus-g"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.pinterest.com/">
+                                <i class="fab fa-pinterest"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.instagram.com/">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <p>
+                        ©
+                        <span>2021</span>
+                        <span class="line"></span>
+                        <a href="">PRIVACY POLICY</a>
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>

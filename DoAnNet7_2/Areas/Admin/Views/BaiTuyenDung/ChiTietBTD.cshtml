@@ -23,6 +23,38 @@
             </div>
             <div class="">
                 <p>
+                    Địa điểm làm việc
+                </p>
+                <p>
+                    <span class="des">
+                        @Html.DisplayFor(model => model.Diachi)
+                    </span>
+                    @if (Model.IdTtNavigation != null)
+                    {
+                        <span class="">
+                            ,@Html.DisplayFor(model => model.IdTtNavigation.Tentt)
+                        </span>
+                    }
+                </p>
+            </div>
+            <div class="">
+                <p>
+                    Ngành nghề
+                </p>
+                <p class="des">
+                    @Html.DisplayFor(model => model.IdNnNavigation.Tennganhnghe)
+                </p>
+            </div>
+            <div class="">
+                <p>
+                    Loại công việc
+                </p>
+                <p class="des">
+                    @Html.DisplayFor(model => model.IdLcvNavigation.Tenlcv)
+                </p>
+            </div>
+            <div class="">
+                <p>
                     Mô tả công việc
                 </p>
                 <div class="des">
@@ -47,39 +79,10 @@
             </div>
             <div class="">
                 <p>
-                    Địa chỉ
-                </p>
-                <p>
-                    <span class="des">
-                        @Html.DisplayFor(model => model.Diachi),
-                    </span>
-                    <span class="">
-                        @Html.DisplayFor(model => model.IdTtNavigation.Tentt)
-                    </span>
-                </p>
-            </div>
-            <div class="">
-                <p>
-                    Loại công việc
+                    Mức lương
                 </p>
                 <p class="des">
-                    @Html.DisplayFor(model => model.IdLcvNavigation.Tenlcv)
-                </p>
-            </div>
-            <div class="">
-                <p>
-                    Thời gian làm việc
-                </p>
-                <p class="des">
-                    @Html.DisplayFor(model => model.IdTglvNavigation.Tentglv)
-                </p>
-            </div>
-            <div class="">
-                <p>
-                    Ngành nghề
-                </p>
-                <p class="des">
-                    @Html.DisplayFor(model => model.IdNnNavigation.Tennganhnghe)
+                    @Html.DisplayFor(model => model.IdLuongNavigation.Tenmucluong)
                 </p>
             </div>
             <div class="">

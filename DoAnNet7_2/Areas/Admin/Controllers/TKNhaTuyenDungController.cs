@@ -77,7 +77,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
                         .Where(tk => tk.IdTk == idTK)
                         .Include(x => x.IdNnNavigation)
                         .Include(x => x.IdLcvNavigation)
-                        .Include(x => x.IdTglvNavigation)
+                        .Include(x => x.IdLuongNavigation)
                         .Include(x => x.IdTthtNavigation)
                         .AsNoTracking()
                         .OrderBy(x => x.IdBtd);

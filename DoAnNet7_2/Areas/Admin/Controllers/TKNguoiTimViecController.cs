@@ -63,6 +63,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             var query = db.Thichcongviecs.Where(x => x.IdTk == idTK)
                         .Include(x => x.IdBtdNavigation)
                         .Include(x => x.IdBtdNavigation.IdLcvNavigation)
+                        .Include(x => x.IdBtdNavigation.IdLuongNavigation)
                         .Include(x => x.IdBtdNavigation.IdNnNavigation)
                         .Include(x => x.IdBtdNavigation.IdTtNavigation)
                         .AsNoTracking()
@@ -112,7 +113,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             var query = db.Baituyendungs
                                     .Where(b => !db.Thichcongviecs.Any(c => c.IdTk == idTK && c.IdBtd == b.IdBtd))
                                     .Include(b => b.IdLcvNavigation)
-                                    .Include(b => b.IdTglvNavigation)
+                                    .Include(b => b.IdLuongNavigation)
                                     .Include(b =>b.IdTtNavigation)
                                     .AsNoTracking()
                                     .OrderBy(b => b.IdBtd);
@@ -125,7 +126,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
                     b.IdLcvNavigation.Tenlcv.Contains(searchTerm) ||
                     b.Diachi.Contains(searchTerm) ||
                     b.IdTtNavigation.Tentt.Contains(searchTerm) ||
-                    b.IdTglvNavigation.Tentglv.Contains(searchTerm)));
+                    b.IdLuongNavigation.Tenmucluong.Contains(searchTerm)));
             }
 
             var pagedList = query.ToPagedList(pageNumber, pageSize);
@@ -189,7 +190,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             var query = db.CongviecSylls.Where(x => x.IdSyllNavigation.IdTk == idTK)
                         .Include(x => x.IdBtdNavigation)
                         .Include(x => x.IdBtdNavigation.IdLcvNavigation)
-                        .Include(x => x.IdBtdNavigation.IdTglvNavigation)
+                        .Include(x => x.IdBtdNavigation.IdLuongNavigation)
                         .Include(x => x.IdBtdNavigation.IdTtNavigation)
                         .Include(x => x.IdSyllNavigation)
                         .AsNoTracking()
@@ -202,7 +203,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
                     || x.IdBtdNavigation.IdLcvNavigation.Tenlcv.Contains(searchTerm)
                     || x.IdBtdNavigation.Diachi.Contains(searchTerm)
                     || x.IdBtdNavigation.IdTtNavigation.Tentt.Contains(searchTerm)
-                    || x.IdBtdNavigation.IdTglvNavigation.Tentglv.Contains(searchTerm));
+                    || x.IdBtdNavigation.IdLuongNavigation.Tenmucluong.Contains(searchTerm));
             }
             else
             {
@@ -267,7 +268,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             .Where(b => !db.CongviecSylls.Any(c => idSylls.Contains((int)c.IdSyll) && c.IdBtd == b.IdBtd && c.IdSyllNavigation.IdTk == idTK)) // Thêm điều kiện mới ở đây
             .Include(b => b.IdLcvNavigation)
             .Include(b => b.IdNnNavigation)
-            .Include(b => b.IdTglvNavigation)
+            .Include(b => b.IdLuongNavigation)
             .Include(b => b.IdTtNavigation)
             .AsNoTracking()
             .OrderBy(x => x.IdBtd);
@@ -281,7 +282,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
                     b.IdLcvNavigation.Tenlcv.Contains(searchTerm) ||
                     b.Diachi.Contains(searchTerm) ||
                     b.IdTtNavigation.Tentt.Contains(searchTerm) ||
-                    b.IdTglvNavigation.Tentglv.Contains(searchTerm)));
+                    b.IdLuongNavigation.Tenmucluong.Contains(searchTerm)));
             }
             ViewBag.ListCV = db.Soyeulyliches.Where(x => x.IdTk == idTK).ToList();
 

@@ -28,7 +28,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
                         .Include(x => x.IdTkNavigation)
                         .Include(x => x.IdNnNavigation)
                         .Include(x => x.IdLcvNavigation)
-                        .Include(x => x.IdTglvNavigation)
+                        .Include(x => x.IdLuongNavigation)
                         .Include(x => x.IdTthtNavigation)
                         .AsNoTracking()
                         .OrderBy(x => x.IdBtd);
@@ -121,7 +121,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             db.Entry(btd).Reference(x => x.IdNnNavigation).Load();
             db.Entry(btd).Reference(x => x.IdTkNavigation).Load();
             db.Entry(btd).Reference(x => x.IdTtNavigation).Load();
-            db.Entry(btd).Reference(x => x.IdTglvNavigation).Load();
+            db.Entry(btd).Reference(x => x.IdLuongNavigation).Load();
             db.Entry(btd).Reference(x => x.IdTthtNavigation).Load();
 
             return View(btd);
@@ -260,7 +260,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             ViewBag.IdNn = new SelectList(db.Nganhnghes.ToList(), "IdNn", "Tennganhnghe");
             ViewBag.IdLcv = new SelectList(db.Loaicongviecs.ToList(), "IdLcv", "Tenlcv");
             ViewBag.IdTgkn = new SelectList(db.Thoigiankinhnghiems.ToList(), "IdTgkn", "Tentgkn");
-            ViewBag.IdTglv = new SelectList(db.Thoigianlamviecs.ToList(), "IdTglv", "Tentglv");
+            ViewBag.IdLuong = new SelectList(db.Luongs.ToList(), "IdLuong", "Tenmucluong");
             ViewBag.IdTt = new SelectList(db.Tinhthanhs.ToList(), "IdTt", "Tentt");
             ViewBag.IdTtht = new SelectList(db.Trangthaihienthis.ToList(), "IdTtht", "Tenttht");
             return View();
@@ -292,7 +292,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             ViewBag.IdNn = new SelectList(db.Nganhnghes.ToList(), "IdNn", "Tennganhnghe");
             ViewBag.IdLcv = new SelectList(db.Loaicongviecs.ToList(), "IdLcv", "Tenlcv");
             ViewBag.IdTgkn = new SelectList(db.Thoigiankinhnghiems.ToList(), "IdTgkn", "Tentgkn");
-            ViewBag.IdTglv = new SelectList(db.Thoigianlamviecs.ToList(), "IdTglv", "Tentglv");
+            ViewBag.IdLuong = new SelectList(db.Luongs.ToList(), "IdLuong", "Tenmucluong");
             ViewBag.IdTt = new SelectList(db.Tinhthanhs.ToList(), "IdTt", "Tentt");
             ViewBag.IdTtht = new SelectList(db.Trangthaihienthis.ToList(), "IdTt", "Tenttht");
             return View(btd);
@@ -306,7 +306,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             ViewBag.IdNn = new SelectList(db.Nganhnghes.ToList(), "IdNn", "Tennganhnghe");
             ViewBag.IdLcv = new SelectList(db.Loaicongviecs.ToList(), "IdLcv", "Tenlcv");
             ViewBag.IdTgkn = new SelectList(db.Thoigiankinhnghiems.ToList(), "IdTgkn", "Tentgkn");
-            ViewBag.IdTglv = new SelectList(db.Thoigianlamviecs.ToList(), "IdTglv", "Tentglv");
+            ViewBag.IdLuong = new SelectList(db.Luongs.ToList(), "IdLuong", "Tenmucluong");
             ViewBag.IdTt = new SelectList(db.Tinhthanhs.ToList(), "IdTt", "Tentt");
             ViewBag.IdTtht = new SelectList(db.Trangthaihienthis.ToList(), "IdTtht", "Tenttht");
             ViewBag.Taikhoan = db.Taikhoans.Where(x => x.IdLtk == 2).ToList();
@@ -338,7 +338,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             ViewBag.IdNn = new SelectList(db.Nganhnghes.ToList(), "IdNn", "Tennganhnghe");
             ViewBag.IdLcv = new SelectList(db.Loaicongviecs.ToList(), "IdLcv", "Tenlcv");
             ViewBag.IdTgkn = new SelectList(db.Thoigiankinhnghiems.ToList(), "IdTgkn", "Tentgkn");
-            ViewBag.IdTglv = new SelectList(db.Thoigianlamviecs.ToList(), "IdTglv", "Tentglv");
+            ViewBag.IdLuong = new SelectList(db.Luongs.ToList(), "IdLuong", "Tenmucluong");
             ViewBag.IdTt = new SelectList(db.Tinhthanhs.ToList(), "IdTt", "Tentt");
             ViewBag.IdTtht = new SelectList(db.Trangthaihienthis.ToList(), "IdTtht", "Tenttht");
             return View(btd);

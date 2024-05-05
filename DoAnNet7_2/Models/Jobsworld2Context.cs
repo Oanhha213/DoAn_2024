@@ -33,6 +33,8 @@ public partial class Jobsworld2Context : DbContext
 
     public virtual DbSet<Kynang> Kynangs { get; set; }
 
+    public virtual DbSet<Luong> Luongs { get; set; }
+
     public virtual DbSet<Loaicongviec> Loaicongviecs { get; set; }
 
     public virtual DbSet<Loaitaikhoan> Loaitaikhoans { get; set; }
@@ -91,7 +93,10 @@ public partial class Jobsworld2Context : DbContext
             entity.Property(e => e.IdTgkn).HasColumnName("ID_TGKN");
             entity.Property(e => e.IdTk).HasColumnName("ID_TK");
             entity.Property(e => e.IdTt).HasColumnName("ID_TT");
-            entity.Property(e => e.IdTglv).HasColumnName("ID_TGLV");
+            entity.Property(e => e.IdLuong).HasColumnName("ID_LUONG");
+            entity.Property(e => e.Thoigianlamviec)
+                    .HasMaxLength(500)
+                    .HasColumnName("THOIGIANLAMVIEC");
             entity.Property(e => e.Motacongviec)
                 .HasColumnType("ntext")
                 .HasColumnName("MOTACONGVIEC");
@@ -111,7 +116,9 @@ public partial class Jobsworld2Context : DbContext
             entity.HasOne(d => d.IdLcvNavigation).WithMany(p => p.Baituyendungs)
                 .HasForeignKey(d => d.IdLcv)
                 .HasConstraintName("FK__BAITUYEND__ID_LC__5070F446");
-
+            entity.HasOne(d => d.IdLuongNavigation).WithMany(p => p.Baituyendungs)
+                .HasForeignKey(d => d.IdLuong)
+                .HasConstraintName("FK__BAITUYEND__ID_LU__160F4887");
             entity.HasOne(d => d.IdNnNavigation).WithMany(p => p.Baituyendungs)
                 .HasForeignKey(d => d.IdNn)
                 .HasConstraintName("FK__BAITUYEND__ID_NN__4F7CD00D");
@@ -127,9 +134,6 @@ public partial class Jobsworld2Context : DbContext
             entity.HasOne(d => d.IdTtNavigation).WithMany(p => p.Baituyendungs)
                 .HasForeignKey(d => d.IdTt)
                 .HasConstraintName("FK__BAITUYEND__ID_TT__52593CB8");
-            entity.HasOne(d => d.IdTglvNavigation).WithMany(p => p.Baituyendungs)
-                .HasForeignKey(d => d.IdTglv)
-                .HasConstraintName("FK__BAITUYEND__ID_TG__6E01572D");
             entity.HasOne(d => d.IdTthtNavigation).WithMany(p => p.Baituyendungs)
                 .HasForeignKey(d => d.IdTtht)
                 .HasConstraintName("FK__BAITUYEND__ID_TT__02FC7413");
@@ -310,6 +314,18 @@ public partial class Jobsworld2Context : DbContext
             entity.Property(e => e.Tenlcv)
                 .HasMaxLength(250)
                 .HasColumnName("TENLCV");
+        });
+
+        modelBuilder.Entity<Luong>(entity =>
+        {
+            entity.HasKey(e => e.IdLuong).HasName("PK__LUONG__39795408890B5D51");
+
+            entity.ToTable("LUONG");
+
+            entity.Property(e => e.IdLuong).HasColumnName("ID_LUONG");
+            entity.Property(e => e.Tenmucluong)
+                    .HasMaxLength(250)
+                    .HasColumnName("TENMUCLUONG");
         });
 
         modelBuilder.Entity<Loaitaikhoan>(entity =>

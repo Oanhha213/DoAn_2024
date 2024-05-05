@@ -105,7 +105,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
                         .Include(x => x.IdBtdNavigation)
                         .Include(x => x.IdBtdNavigation.IdLcvNavigation)
                         .Include(x => x.IdBtdNavigation.IdNnNavigation)
-                        .Include(x => x.IdBtdNavigation.IdTglvNavigation)
+                        .Include(x => x.IdBtdNavigation.IdLuongNavigation)
                         .Include(x => x.IdBtdNavigation.IdTtNavigation)
                         .AsNoTracking()
                         .OrderBy(x => x.IdCvsyll);
@@ -119,7 +119,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
                     || x.IdBtdNavigation.IdLcvNavigation.Tenlcv.Contains(searchTerm)
                     || x.IdBtdNavigation.Diachi.Contains(searchTerm)
                     || x.IdBtdNavigation.IdTtNavigation.Tentt.Contains(searchTerm)
-                    || x.IdBtdNavigation.IdTglvNavigation.Tentglv.Contains(searchTerm));
+                    || x.IdBtdNavigation.IdLuongNavigation.Tenmucluong.Contains(searchTerm));
             }
             else
             {
