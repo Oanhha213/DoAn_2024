@@ -184,3 +184,63 @@ a {
                 background-color: #fff;
                 color: #f44029;
             }
+
+
+.select-form {
+    padding: 10px;
+    align-items: center;
+    background-color: #fff;
+    cursor: pointer;
+    border-radius: 6px;
+    position: relative;
+    justify-content: space-around;
+    width: -webkit-fill-available;
+}
+
+.option-select {
+    background-color: #fff;
+    border-radius: 6px;
+    margin-top: 5px;
+    box-shadow: 0 2px 6px 4px rgba(220, 220, 220, 0.8);
+    position: absolute;
+    z-index: 99;
+    width: 200px;
+}
+
+.ul-select{
+    margin-bottom: 0;
+}
+
+.option-select {
+    display: none;
+    top: 45px;
+    min-width: -webkit-fill-available;
+    left: 0;
+}
+.show {
+    display: block !important;
+}
+
+.result-option {
+    white-space: nowrap; /* Ngăn chặn văn bản xuống dòng */
+    overflow: hidden; /* Ẩn nội dung vượt ra ngoài khung */
+    text-overflow: ellipsis;
+}
+  
+.ul-select li {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.ul-select li:hover,.ul-select li.selected{
+    background-color: #f4f5f5
+}
+
+::-webkit-scrollbar {
+    width: 7px;
+}
+::-webkit-scrollbar-thumb {
+    background: #b7b7b7;
+    border-radius: 10px;
+}
+

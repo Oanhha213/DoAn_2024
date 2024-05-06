@@ -1,7 +1,9 @@
 ﻿using DoAnNet7_2.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
+using X.PagedList;
 
 namespace DoAnNet7_2.Controllers
 {
@@ -15,24 +17,104 @@ namespace DoAnNet7_2.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        [HttpGet]
+        public IActionResult Index(int? page, string searchTerm, string luong, string tinhthanh, string nganhnghe, string kinhnghiem)
         {
-            var DSBTDHien = db.Baituyendungs.Where(x => x.IdTtht == 2)
-                            .Include(x => x.IdTtNavigation)
-                            .Include(x => x.IdLcvNavigation)
-                            .Include(x => x.IdLuongNavigation)
-                            .ToList();
-            ViewBag.DSBTD = DSBTDHien;
-            Debug.WriteLine("BTD:");
+            
+            int pageNumber = page ?? 1;
+            int pageSize = 8;
 
-            foreach (var item in DSBTDHien)
+            var query = db.Baituyendungs.Where(x => x.IdTtht == 2)
+                        .Include(x => x.IdTkNavigation)
+                        .Include(x => x.IdNnNavigation)
+                        .Include(x => x.IdLcvNavigation)
+                        .Include(x => x.IdLuongNavigation)
+                        .Include(x => x.IdTthtNavigation)
+                        .Include(x => x.IdTtNavigation)
+                        .Include(x => x.IdTgknNavigation)
+                        .AsNoTracking()
+                        .OrderBy(x => x.IdBtd);
+
+            // Kiểm tra xem có giá trị searchTerm không rồi gán giá trị cho ViewBag.SearchTerm
+            if (!string.IsNullOrEmpty(searchTerm))
             {
-                Debug.WriteLine("ID: " + item.IdBtd); // Ví dụ về việc truy cập thuộc tính Id
-                Debug.WriteLine("Name: " + item.Tencongviec); // In ra thông tin của mỗi đối tượng trong danh sách
-                Debug.WriteLine("Salary: " + item.IdLuongNavigation.Tenmucluong);
-
+                ViewBag.searchTerm = searchTerm;
+                query = (IOrderedQueryable<Baituyendung>)query
+                    .Where(x => x.Tencongviec.Contains(searchTerm) || x.IdNnNavigation.Tennganhnghe.Contains(searchTerm)
+                    || x.IdLcvNavigation.Tenlcv.Contains(searchTerm)
+                    || x.IdLuongNavigation.Tenmucluong.Contains(searchTerm)
+                    || x.IdTtNavigation.Tentt.Contains(searchTerm)
+                    );
             }
-            return View();
+            // Truy vấn dữ liệu từ cơ sở dữ liệu
+            //var luongs = db.Luongs.Select(x => x.Tenmucluong).Distinct().OrderBy(x => x).ToList();
+            var tinhthanhs = db.Tinhthanhs.Select(x => x.Tentt).Distinct().ToList();
+            var nganhnghes = db.Nganhnghes.Select(x => x.Tennganhnghe).Distinct().ToList();
+            //var kinhnghiems = db.Thoigiankinhnghiems.Select(x => x.Tentgkn).Distinct().ToList();
+
+            // Kiểm tra xem có bản ghi nào có Tennganhnghe hoặc Tentt là "Khác" không
+            var khacNganhNghe = nganhnghes.FirstOrDefault(x => x == "Khác");
+            var khacTinhThanh = tinhthanhs.FirstOrDefault(x => x == "Khác");
+
+            if (khacNganhNghe != null)
+            {
+                nganhnghes.Remove(khacNganhNghe);
+                nganhnghes.Add(khacNganhNghe);
+            }
+
+            if (khacTinhThanh != null)
+            {
+                tinhthanhs.Remove(khacTinhThanh);
+                tinhthanhs.Add(khacTinhThanh);
+            }
+            // Tạo các option từ dữ liệu truy vấn
+            //ViewBag.luongOptions = luongs.Select(l => new SelectListItem { Value = l, Text = l }).ToList();
+            ViewBag.tinhthanhOptions = tinhthanhs.Select(tt => new SelectListItem { Value = tt, Text = tt }).ToList();
+            ViewBag.nganhngheOptions = nganhnghes.Select(nn => new SelectListItem { Value = nn, Text = nn }).ToList();
+            //ViewBag.kinhnghiemOptions = kinhnghiems.Select(kn => new SelectListItem { Value = kn, Text = kn }).ToList();
+
+            // Áp dụng các bộ lọc
+            // Áp dụng các bộ lọc
+            if (!string.IsNullOrEmpty(luong) && luong != "Mức lương")
+            {
+                query = (IOrderedQueryable<Baituyendung>)query.Where(x => x.IdLuongNavigation.Tenmucluong == luong);
+            }
+
+            if (!string.IsNullOrEmpty(tinhthanh) && tinhthanh != "Tỉnh thành")
+            {
+                query = (IOrderedQueryable<Baituyendung>)query.Where(x => x.IdTtNavigation.Tentt == tinhthanh);
+            }
+
+            if (!string.IsNullOrEmpty(nganhnghe) && nganhnghe != "Ngành nghề")
+            {
+                query = (IOrderedQueryable<Baituyendung>)query.Where(x => x.IdNnNavigation.Tennganhnghe == nganhnghe);
+            }
+
+            if (!string.IsNullOrEmpty(kinhnghiem) && kinhnghiem != "Kinh nghiệm")
+            {
+                query = (IOrderedQueryable<Baituyendung>)query.Where(x => x.IdTgknNavigation.Tentgkn == kinhnghiem);
+            }
+            else
+            {
+                ViewBag.searchTerm = null; // Đặt ViewBag.SearchTerm về null nếu không có searchTerm
+            }
+                   
+            var pagedList = query.ToPagedList(pageNumber, pageSize);
+            // Kiểm tra xem có kết quả trả về hay không
+            if (pagedList.Count == 0)
+            {
+                ViewBag.NoResultsMessage = "Không có kết quả phù hợp.";
+            }
+            else
+            {
+                ViewBag.NoResultsMessage = null;
+            }
+            if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+            {
+                return PartialView("_IndexPartial", pagedList);
+            }
+
+            return View(pagedList);
         }
 
         public IActionResult Trangloi()

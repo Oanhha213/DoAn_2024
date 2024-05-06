@@ -1,62 +1,182 @@
-﻿@{
+﻿@model X.PagedList.IPagedList<DoAnNet7_2.Models.Baituyendung>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
     ViewData["Title"] = "Home Page";
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
-}
+}    
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 <div class="row content-center" style="padding-bottom: 40px ;width: -webkit-fill-available !important; flex-direction: column; background-color: #f3f5f7;">
     <div class="col-md-8 filter" style="margin-top: 40px">
-        <div class="">
-            <form id="search-form-home" class="row"  style="padding: 7px 12px !important">
-                <input type="search" class="form-control col-md-10" placeholder="Tên công việc..." id="searchItem">
-                <button type="submit" class="btn btn-success col-md-2" style="max-width: fit-content">Tìm kiếm</button>
-            </form>
-        </div>
-        <div>
-            Filter
-        </div>
-    </div>
-    <div class="col-md-8 row content-center width-100">
-        @if (ViewBag.DSBTD != null)
-        {
-            @foreach (var item in ViewBag.DSBTD)
-            {
-                <div class="border-content col-md-12 row" style="margin-top: 20px; justify-content: space-between">
-                    <div class="col-md-8">
-                        <h5>
-                            @item.Tencongviec
-                        </h5>
-                        @if (item.Diachi != null || item.IdTtNavigation?.Tentt != null)
-                        {
-                            <p>
-                                <i class="fa-solid fa-location-dot"></i>
-                                @item.Diachi, @item.IdTtNavigation?.Tentt
-                            </p>
-                        }
-                        <p>
-                            <span>
-                                @item.IdLcvNavigation?.Tenlcv
-                            </span>
-                            |
-                            <span>
-                                @item.IdLuongNavigation?.Tenmucluong
-                            </span>
-                        </p>
-                    </div>
-                    <div class="col-md-4 row" style="justify-content: end;">
-                        <a class="btn btn-success col-md-10" style="height: fit-content; line-height: 26px;max-width: fit-content;">Ứng tuyển ngay</a>
-                        <a class="btn text-an col-md-2" style="height: fit-content; line-height: 22px;max-width: fit-content;">
-                            <i class="fa-solid fa-heart"></i>
-                        </a>
+        <form id="search-form-home" class="row">
+            <div class="col-md-12 row" style="justify-content: space-around; align-items: center;
+                                            padding: 0 !important;
+                                            position: relative;
+                                            height: 50px;">
+                <i class="fa-solid fa-magnifying-glass" style="position: absolute; left: 10px; color: #ced4da; z-index: 99;font-size: larger;"></i>
+                <input type="search" class="form-control col-md-12" placeholder="Tên công việc..." id="searchItem"
+                       style="padding: 5px 200px 5px 40px;height: -webkit-fill-available;">
+                <button type="submit" class="btn btn-success col-md-2" style="max-width: fit-content;
+                                                                            position: absolute;
+                                                                            right: 0;
+                                                                            height: fit-content;">
+                    Tìm kiếm
+                </button>
+            </div>
+            <div class="col-md-12 row mt2" style="justify-content: space-between; padding: 0 !important">
+                <div class="col-md-2" style="min-width: 24% !important; padding: 0 !important">
+                    <div class="row select-form" style="flex-grow: 1;">
+                        <i class="fa-solid fa-sack-dollar col-md-2" style="vertical-align: middle; color: var(--blue)"></i>
+                        <p style="padding: 0 10px" id="luong" class="result-option col-md-8"></p>
+                        <i class="fa-solid fa-angle-down col-md-2" style="color: var(--blue)"></i>
+                        <div class="option-select" style="flex-grow: 1;">
+                            <ul class="ul-select" style="min-height: 176px !important;overflow-y: auto;max-height: 176px">
+                                <li>Mức lương</li>
+                                <li>Dưới 10 triệu</li>
+                                <li>10 - 15 triệu</li>
+                                <li>15 - 20 triệu</li>
+                                <li>Trên 20 triệu</li>
+                                <li>Thoả thuận</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            }
-        }
-        else
-        {
-            <p>No data available.</p>
-        }
+                <div class="col-md-2" style="min-width: 24% !important; padding: 0 !important">
+                    <div class="row select-form" style="">
+                        <i class="fa-solid fa-location-dot col-md-2" style="vertical-align: middle; color: var(--blue)"></i>
+                        <p style="padding: 0 10px" id="tinhthanh" class="result-option col-md-8"></p>
+                        <i class="fa-solid fa-angle-down col-md-2" style="color: var(--blue)"></i>
+                        <div class="option-select">
+                            <ul class="ul-select" style="max-height: 176px !important;overflow-y: auto;min-height: 176px">
+                                <li>Tỉnh thành</li>
+                                @foreach (var option in ViewBag.tinhthanhOptions)
+                                {
+                                    <li>@option.Text</li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2" style="min-width: 24% !important; padding: 0 !important">
+                    <div class="row select-form" style="">
+                        <i class="fa-solid fa-briefcase col-md-2" style="vertical-align: middle; color: var(--blue)"></i>
+                        <p style="padding: 0 10px" id="nganhnghe" class="result-option col-md-8"></p>
+                        <i class="fa-solid fa-angle-down col-md-2" style="color: var(--blue)"></i>
+                        <div class="option-select">
+                            <ul class="ul-select" style="max-height: 176px !important;overflow-y: auto;min-height: 176px">
+                                <li>Ngành nghề</li>
+                                @foreach (var option in ViewBag.nganhngheOptions)
+                                {
+                                    <li>@option.Text</li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2" style="min-width: 24% !important; padding: 0 !important">
+                    <div class="row select-form" style="">
+                        <i class="fa-solid fa-star col-md-2" style="vertical-align: middle; color: var(--blue)"></i>
+                        <p style="padding: 0 10px" id="kinhnghiem" class="result-option col-md-8"></p>
+                        <i class="fa-solid fa-angle-down col-md-2" style="color: var(--blue)"></i>
+                        <div class="option-select">
+                            <ul class="ul-select" style="max-height: 176px !important;overflow-y: auto;min-height: 176px">
+                                <li>Kinh nghiệm</li>
+                                <li>Chưa có kinh nghiệm</li>
+                                <li>1 năm</li>
+                                <li>2 năm</li>
+                                <li>3 năm</li>
+                                <li>4 năm</li>
+                                <li>5 năm</li>
+                                <li>Trên 5 năm</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="" style="margin-top: 100px">
+        <h1>Slider nhỏ</h1>
+    </div>
+    <div class="col-md-8 row content-center width-100" id="partial-container">
+        @Html.Partial("_IndexPartial", Model)
     </div>
     <div>
         Top ngành nghể nổi bật
     </div>
 </div>
+
+<script>
+
+    $(document).ready(function () {
+        // Toggle option select
+        $(".select-form").click(function () {
+            console.log("Select form clicked");
+            var optionSelect = $(this).find(".option-select");
+            optionSelect.toggleClass("show");
+        });
+
+        // Handle click event on list items
+        $(".ul-select li").click(function (e) {
+            e.stopPropagation();
+            console.log("List item clicked");
+            var value = $(this).text();
+            console.log("Selected value:", value);
+            var resultOption = $(this).closest('.select-form').find('.result-option');
+            console.log("result option:", resultOption.text());
+            resultOption.text(value); // Update text of result-option
+            console.log("Updated result option:", resultOption.text());
+            $(this).addClass("selected").siblings().removeClass("selected");
+            $(this).closest(".option-select").removeClass("show");
+
+        });
+
+        $(document).click(function (e) {
+            if (!$(e.target).closest('.select-form').length) {
+                $(".option-select").removeClass("show");
+            }
+        });
+        // Set default option for each select-form
+        $(".select-form").each(function () {
+            var defaultOption = $(this).find('.ul-select li').first().text();
+            console.log("default value:", defaultOption);
+
+            var selectForm = $(this);
+            var resultOption = selectForm.find(".result-option");
+            resultOption.text(defaultOption); // Set default text
+        });
+        $('#search-form-home').submit(function (e) {
+            e.preventDefault();
+            var searchItem = $('#searchItem').val();
+            var luong = $('#luong').text();
+            var tinhthanh = $('#tinhthanh').text();
+            var nganhnghe = $('#nganhnghe').text();
+            var kinhnghiem = $('#kinhnghiem').text();
+
+            console.log("Lương: ", luong);
+            console.log("Tỉnh thành: ", tinhthanh);
+            console.log("Ngành nghề: ", nganhnghe);
+            console.log("Kinh nghiệm: ", kinhnghiem);
+
+            // Gửi dữ liệu lên server
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Action("Index", "Home")',
+                data: {
+                    searchTerm: searchItem,
+                    luong: luong,
+                    tinhthanh: tinhthanh,
+                    nganhnghe: nganhnghe,
+                    kinhnghiem: kinhnghiem
+                },
+                success: function (response) {
+                    // Xử lý dữ liệu trả về từ server
+                    $('#partial-container').html(response);
+                },
+                error: function (xhr, status, error) {
+                    console.error(error);
+                }
+            });
+        });
+    });
+
+</script>
