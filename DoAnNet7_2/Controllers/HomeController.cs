@@ -78,27 +78,35 @@ namespace DoAnNet7_2.Controllers
             if (!string.IsNullOrEmpty(luong) && luong != "Mức lương")
             {
                 query = (IOrderedQueryable<Baituyendung>)query.Where(x => x.IdLuongNavigation.Tenmucluong == luong);
+                ViewBag.luong = luong;
             }
 
             if (!string.IsNullOrEmpty(tinhthanh) && tinhthanh != "Tỉnh thành")
             {
                 query = (IOrderedQueryable<Baituyendung>)query.Where(x => x.IdTtNavigation.Tentt == tinhthanh);
+                ViewBag.tinhthanh = tinhthanh;
             }
 
             if (!string.IsNullOrEmpty(nganhnghe) && nganhnghe != "Ngành nghề")
             {
                 query = (IOrderedQueryable<Baituyendung>)query.Where(x => x.IdNnNavigation.Tennganhnghe == nganhnghe);
+                ViewBag.nganhnghe = nganhnghe;
             }
 
             if (!string.IsNullOrEmpty(kinhnghiem) && kinhnghiem != "Kinh nghiệm")
             {
                 query = (IOrderedQueryable<Baituyendung>)query.Where(x => x.IdTgknNavigation.Tentgkn == kinhnghiem);
+                ViewBag.kinhnghiem= kinhnghiem;
             }
             else
             {
                 ViewBag.searchTerm = null; // Đặt ViewBag.SearchTerm về null nếu không có searchTerm
+                ViewBag.luong = null;
+                ViewBag.tinhthanh = null;
+                ViewBag.nganhnghe = null;
+                ViewBag.kinhnghiem = null;
             }
-                   
+
             var pagedList = query.ToPagedList(pageNumber, pageSize);
             // Kiểm tra xem có kết quả trả về hay không
             if (pagedList.Count == 0)

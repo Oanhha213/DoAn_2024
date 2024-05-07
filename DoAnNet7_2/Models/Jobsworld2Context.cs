@@ -94,6 +94,9 @@ public partial class Jobsworld2Context : DbContext
             entity.Property(e => e.IdTk).HasColumnName("ID_TK");
             entity.Property(e => e.IdTt).HasColumnName("ID_TT");
             entity.Property(e => e.IdLuong).HasColumnName("ID_LUONG");
+            entity.Property(e => e.Hannopcv)
+                   .HasColumnType("datetime")
+                   .HasColumnName("HANNOPCV");
             entity.Property(e => e.Thoigianlamviec)
                     .HasMaxLength(500)
                     .HasColumnName("THOIGIANLAMVIEC");

@@ -58,6 +58,14 @@
                 <span asp-validation-for="Quyenloi" class="text-danger"></span>
             </div>
             <div class="form-group mt2">
+                <label asp-for="Hannopcv" class="control-label">
+                    Hạn nộp hồ sơ
+                    (<span style="color: red">*</span>)
+                </label>
+                <input asp-for="Hannopcv" type="text" class="form-control mt1 minht200" id="hannopcv" readonly />
+                <span asp-validation-for="Hannopcv" class="text-danger"></span>
+            </div>
+            <div class="form-group mt2">
                 <label asp-for="IdTtht" class="control-label"></label>
                 <select asp-for="IdTtht" class="form-control mt1" asp-items="ViewBag.IdTtht"></select>
             </div>
@@ -69,24 +77,20 @@
         </form>
     </div>
 </div>
-
+<script>
+    $(function () {
+        var today = new Date(); // Lấy ngày hiện tại
+        var dd = String(today.getDate()).padStart(2, '0'); // Lấy ngày
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); // Lấy tháng (lưu ý rằng tháng bắt đầu từ 0)
+        var yyyy = today.getFullYear(); // Lấy năm
+        var minDate = dd + '-' + mm + '-' yyyy; // Định dạng ngày tháng năm
+        $("#hannopcv").datepicker({
+            minDate: minDate, // Chỉ cho phép chọn từ hôm nay trở đi
+            dateFormat: 'dd-mm-yyyy' // Định dạng ngày:
+        });
+    });
+</script>
 @*<div>
     <a asp-action="DSBTDCongTy">Quay về</a>
 </div>*@
 <script src="/_framework/aspnetcore-browser-refresh.js"></script>
-<style>
-    .mt1{
-        margin-top:10px;
-    }
-    .mt2{
-        margin-top: 20px;
-    }
-
-    .minht200 {
-        min-height: 200px !important;
-    }
-
-    .minht150 {
-        min-height: 150px !important;
-    }
-</style>

@@ -48,6 +48,9 @@ public partial class Baituyendung
     [DisplayName("Mức lương ")]
     public int IdLuong { get; set; }
 
+    [DisplayName("Hạn nộp hồ sơ")]
+    public DateTime? Hannopcv { get; set; } = null!;
+
     [DisplayName("Thời gian tạo bài")]
     public DateTime? CreateAt { get; set; }
 

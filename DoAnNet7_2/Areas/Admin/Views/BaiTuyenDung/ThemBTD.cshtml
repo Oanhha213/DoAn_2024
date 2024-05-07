@@ -17,23 +17,26 @@
             <form asp-action="ThemBTD" asp-controller="BaiTuyenDung" method="post">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group mt2">
-                    <label asp-for="IdTk" class="control-label">Tài khoản
+                    <label asp-for="IdTk" class="control-label">
+                        Tài khoản
                         (<span style="color: red">*</span>)
                     </label>
                     <select asp-for="IdTk" class="form-control mt1" asp-items="ViewBag.IdTk" required></select>
                 </div>
                 <div class="form-group mt2">
-                    <label asp-for="Tencongviec" class="control-label">Tên công việc
+                    <label asp-for="Tencongviec" class="control-label">
+                        Tên công việc
                         (<span style="color: red">*</span>)
                     </label>
-                    <input asp-for="Tencongviec" class="form-control mt1" required/>
+                    <input asp-for="Tencongviec" class="form-control mt1" required />
                     <span asp-validation-for="Tencongviec" class="text-danger"></span>
                 </div>
                 <div class="form-group mt2">
-                    <label asp-for="Diachi" class="control-label">Địa điểm làm việc
+                    <label asp-for="Diachi" class="control-label">
+                        Địa điểm làm việc
                         (<span style="color: red">*</span>)
                     </label>
-                    <input asp-for="Diachi" class="form-control mt1" required/>
+                    <input asp-for="Diachi" class="form-control mt1" required />
                     <span asp-validation-for="Diachi" class="text-danger"></span>
                 </div>
                 <div class="form-group mt2">
@@ -45,58 +48,76 @@
                     <span asp-validation-for="Thoigianlamviec" class="text-danger"></span>
                 </div>
                 <div class="form-group mt2">
-                    <label asp-for="IdTt" class="control-label">Tỉnh thành
+                    <label asp-for="IdTt" class="control-label">
+                        Tỉnh thành
                         (<span style="color: red">*</span>)
                     </label>
                     <select asp-for="IdTt" class="form-control mt1" asp-items="ViewBag.IdTt" required></select>
                 </div>
                 <div class="form-group mt2">
-                    <label asp-for="IdLcv" class="control-label">Loại công việc
+                    <label asp-for="IdLcv" class="control-label">
+                        Loại công việc
                         (<span style="color: red">*</span>)
                     </label>
                     <select asp-for="IdLcv" class="form-control mt1" asp-items="ViewBag.IdLcv" required></select>
                 </div>
                 <div class="form-group mt2">
-                    <label asp-for="IdLuong" class="control-label">Mức lương
+                    <label asp-for="IdLuong" class="control-label">
+                        Mức lương
                         (<span style="color: red">*</span>)
                     </label>
                     <select asp-for="IdLuong" class="form-control mt1" asp-items="ViewBag.IdLuong" required></select>
                 </div>
                 <div class="form-group mt2">
-                    <label asp-for="IdNn" class="control-label">Ngành nghề
+                    <label asp-for="IdNn" class="control-label">
+                        Ngành nghề
                         (<span style="color: red">*</span>)
                     </label>
                     <select asp-for="IdNn" class="form-control mt1" asp-items="ViewBag.IdNn" required></select>
                 </div>
                 <div class="form-group mt2">
-                    <label asp-for="Motacongviec" class="control-label">Mô tả công việc
+                    <label asp-for="Motacongviec" class="control-label">
+                        Mô tả công việc
                         (<span style="color: red">*</span>)
                     </label>
                     <textarea asp-for="Motacongviec" class="form-control mt1 minht200" id="moTaCongViec"></textarea>
                     <span asp-validation-for="Motacongviec" class="text-danger"></span>
                 </div>
                 <div class="form-group mt2">
-                    <label asp-for="IdTgkn" class="control-label">Yêu cầu kinh nghiệm
+                    <label asp-for="IdTgkn" class="control-label">
+                        Yêu cầu kinh nghiệm
                         (<span style="color: red">*</span>)
                     </label>
                     <select asp-for="IdTgkn" class="form-control mt1" asp-items="ViewBag.IdTgkn"></select>
                 </div>
                 <div class="form-group mt2">
-                    <label asp-for="Yeucaukhac" class="control-label">Yêu cầu khác
+                    <label asp-for="Yeucaukhac" class="control-label">
+                        Yêu cầu khác
                         (<span style="color: red">*</span>)
                     </label>
                     <textarea asp-for="Yeucaukhac" class="form-control mt1 minht150" id="yeuCauKhac"></textarea>
                     <span asp-validation-for="Yeucaukhac" class="text-danger"></span>
                 </div>
                 <div class="form-group mt2">
-                    <label asp-for="Quyenloi" class="control-label">Quyền lợi
+                    <label asp-for="Quyenloi" class="control-label">
+                        Quyền lợi
                         (<span style="color: red">*</span>)
                     </label>
                     <textarea asp-for="Quyenloi" class="form-control mt1 minht200" id="quyenLoi"></textarea>
                     <span asp-validation-for="Quyenloi" class="text-danger"></span>
                 </div>
                 <div class="form-group mt2">
-                    <label asp-for="IdTtht" class="control-label">Trạng thái hiển thị
+                    <label asp-for="Hannopcv" class="control-label">
+                        Hạn nộp hồ sơ
+                        (<span style="color: red">*</span>)
+                    </label>
+                    <input style="position: relative; cusor: auto !important" asp-for="Hannopcv" type="text" class="form-control mt1" id="hannopcv" readonly placeholder="Chọn ngày" />
+                    <i class="fa-regular fa-calendar" style="position: absolute; right: 30px; bottom: 193px; font-size: large; color: #6c75a2;"></i>
+                    <span asp-validation-for="Hannopcv" class="text-danger"></span>
+                </div>
+                <div class="form-group mt2">
+                    <label asp-for="IdTtht" class="control-label">
+                        Trạng thái hiển thị
                         (<span style="color: red">*</span>)
                     </label>
                     <select asp-for="IdTtht" class="form-control mt1" asp-items="ViewBag.IdTtht" required></select>
@@ -148,3 +169,21 @@
     </div>
 </div>
 
+<script>
+    $(function () {
+        var today = new Date(); // Lấy ngày hiện tại
+        var dd = String(today.getDate()).padStart(2, '0'); // Lấy ngày
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); // Lấy tháng (lưu ý rằng tháng bắt đầu từ 0)
+        var yyyy = today.getFullYear(); // Lấy năm
+        var minDate = yyyy + '-' + mm + '-' + dd; // Định dạng ngày tháng năm
+        $("#hannopcv").datepicker({
+            minDate: minDate, // Chỉ cho phép chọn từ hôm nay trở đi
+            dateFormat: 'yy-mm-dd', // Định dạng ngày: năm-tháng-ngày
+            onSelect: function (dateText, inst) {
+                var dateParts = dateText.split('-');
+                var formattedDate = dateParts[2] + '-' + dateParts[1] + '-' + dateParts[0]; // Định dạng lại ngày tháng
+                $("#hannopcv").val(formattedDate); // Hiển thị ngày tháng đã định dạng lại vào input
+            }
+        });
+    });
+</script>

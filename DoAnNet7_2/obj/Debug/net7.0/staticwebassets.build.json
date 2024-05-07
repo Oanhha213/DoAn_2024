@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "eaeSmKZBkLMYp2twKMfhrHS2AAeh+yPbqN0dv8fzX0g=",
+  "Hash": "pXuL8kH7ktqw0RDF9Em/SKQwZ+rh1Z59WupH18EsIXU=",
   "Source": "DoAnNet7_2",
   "BasePath": "_content/DoAnNet7_2",
   "Mode": "Default",
@@ -848,6 +848,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\css\\Login.css"
+    },
+    {
+      "Identity": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\assets\\css\\NguoiTV.css",
+      "SourceId": "DoAnNet7_2",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\",
+      "BasePath": "_content/DoAnNet7_2",
+      "RelativePath": "assets/css/NguoiTV.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\css\\NguoiTV.css"
     },
     {
       "Identity": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\assets\\css\\NhaTD.css",

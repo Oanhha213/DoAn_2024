@@ -116,6 +116,17 @@
             </div>
             <div class="">
                 <p>
+                    Hạn nộp hồ sơ
+                </p>
+                <p class="des">
+                    @if (Model.Hannopcv.HasValue)
+                    {
+                        @Model.Hannopcv.Value.ToShortDateString()
+                    }
+                </p>
+            </div>
+            <div class="">
+                <p>
                     Trạng thái hiển thị
                 </p>
                 <p class="des">
