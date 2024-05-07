@@ -79,50 +79,6 @@
         </div>
     </div>
 </div>
-@*<script>
-    $(function () {
-        $('#submitBtn').click(function () {
-            $('#confirmModal').modal('show');
-        });
-
-        $('#confirmBtn').click(function () {
-            // Đóng modal xác nhận
-            $('#confirmModal').modal('hide');
-            // Lấy dữ liệu từ form
-            var formData = $('#editForm').serialize();
-            // Thực hiện AJAX POST để lưu dữ liệu
-            $.ajax({
-                url: '@Url.Action("SuaTaiKhoanCommon", "Common")',
-                type: 'POST',
-                data: formData,
-                success: function (result) {
-                    var messageType = result.messageType;
-                    var message = result.message;
-                    Swal.fire({
-                        icon: messageType,
-                        title: message,
-                        showConfirmButton: false,
-                        timer: 1500
-                    }).then(function () {
-                        if (messageType === 'success') {
-                            var idTK = $('#idTKInput').val();
-                            var layoutType = $('#layoutTypeInput').val();
-                            window.location.href = '@Url.Action("CaiDatTaiKhoan", "Common")?idTK=' + idTK + '&layoutType=' + layoutType;
-                        }
-                    });
-                },
-                error: function () {
-                    // Xử lý lỗi
-                }
-            });
-        });
-
-        // Xử lý sự kiện khi người dùng nhấn nút "Huỷ bỏ"
-        $('#cancelBtn').click(function () {
-            $('#confirmModal').modal('hide'); // Đóng modal xác nhận
-        });
-    });
-</script>*@
 <script>
     $('#submitBtn').click(function () {
         $('#confirmModal').modal('show');

@@ -1,41 +1,79 @@
 ﻿@model DoAnNet7_2.Models.Anhdaidien
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
-    ViewData["Title"] = "SuaAnhDDNTD";
+    ViewData["Title"] = "SuaAnhDDNTV";
     Layout = "~/Views/Shared/_LayoutNhaTuyenDung.cshtml";
 }
 
-<div class="border-content col-md-8">
 
-    <h1>Đổi ảnh</h1>
-    <hr />
-    <div class="row">
-        <div class="col-md-12">
-            <form id="editForm" asp-action="SuaAnhDDNTD" asp-controller="NhaTuyenDung" method="post" enctype="multipart/form-data">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <input type="hidden" asp-for="IdAnhdd" />
-                <div class="form-group">
-                    <label asp-for="UpAnhDaiDien" class="control-label"></label>
-                    <input asp-for="UpAnhDaiDien" type="file" class="form-control mt1 custom-input-btn" onchange="previewImage(this)" />
-                    <span asp-validation-for="UpAnhDaiDien" class="text-danger"></span>
+<div class="row">
+    <ul class="menu col-md-3" style="max-width: 20%; margin-top: 40px">
+        <li class="">
+            <a class="active menu-item" id="item-home" asp-action="TaiKhoanNTV" asp-controller="NguoiTimViec">
+                <i class="fa-solid fa-house"></i>
+                Tài khoản
+            </a>
+        </li>
+        <li class="">
+            <a class="menu-item" id="item-account" asp-action="DSCVNTV" asp-controller="NguoiTimViec">
+                <i class="fa-solid fa-newspaper"></i>
+                <span>Sơ yếu lý lịch</span>
+            </a>
+        </li>
+        <li>
+            <a class="menu-item" id="item-company" asp-action="BTDDaUngTuyen" asp-controller="NguoiTimViec">
+                <i class="fa-solid fa-building-user"></i>
+                <span>Bài viết đã ứng tuyển</span>
+            </a>
+        </li>
+        <li>
+            <a class="menu-item" id="item-account" asp-action="BTDDaThich" asp-controller="NguoiTimViec">
+                <i class="fa-solid fa-gear"></i>
+                <span>Bài viết đã thích</span>
+            </a>
+        </li>
+        <li>
+            <a class="menu-item" id="item-help" asp-action="HoTro" asp-controller="Common">
+                <i class="fa-brands fa-hire-a-helper"></i>
+                <span>Hỗ trợ</span>
+            </a>
+        </li>
+    </ul>
+    <div class="col-md-9 row background-caidat" style="justify-content: center;    min-width: 80%;">
+
+        <div class="border-content col-md-8">
+
+            <h1>Đổi ảnh</h1>
+            <hr />
+            <div class="row">
+                <div class="col-md-12">
+                    <form id="editForm" asp-action="SuaAnhDDNTD" asp-controller="NhaTuyenDung" method="post" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="IdAnhdd" />
+                        <div class="form-group">
+                            <label asp-for="UpAnhDaiDien" class="control-label"></label>
+                            <input asp-for="UpAnhDaiDien" type="file" class="form-control mt1 custom-input-btn" onchange="previewImage(this)" />
+                            <span asp-validation-for="UpAnhDaiDien" class="text-danger"></span>
+                        </div>
+                        <div class="form-group mt2 row" style="justify-content: space-between;">
+                            <div class="col-4">
+                                <p class="control-label">Ảnh hiện tại</p>
+                                <img asp-for="Tenanh" class="mt2" src="@Model.Tenanh" alt="Ảnh đại diện" style="max-width: 200px; max-height: 200px;" />
+                            </div>
+                            <div class="col-4">
+                                <p class="control-label">Ảnh mới</p>
+                                <img class="mt2" id="AnhDaiDienPreview" src="#" alt="Ảnh đại diện" style="display: none; max-width: 200px; max-height: 200px;">
+                            </div>
+                        </div>
+                        <input type="hidden" asp-for="IdTk" />
+                        <div class="form-group mt2">
+                            @*<input type="submit" value="Lưu" class="btn btn-success" />*@
+                            <button type="button" id="submitBtn" class="btn btn-success">Lưu</button>
+                            <a class="btn btn-danger" asp-controller="CaiDatTaiKhoanNTD" asp-action="NhaTuyenDung">Huỷ</a>
+                        </div>
+                    </form>
                 </div>
-                <div class="form-group mt2 row" style="justify-content: space-between;">
-                    <div class="col-4">
-                        <p class="control-label">Ảnh hiện tại</p>
-                        <img asp-for="Tenanh" class="mt2" src="@Model.Tenanh" alt="Ảnh đại diện" style="max-width: 200px; max-height: 200px;" />
-                    </div>
-                    <div class="col-4">
-                        <p class="control-label">Ảnh mới</p>
-                        <img class="mt2" id="AnhDaiDienPreview" src="#" alt="Ảnh đại diện" style="display: none; max-width: 200px; max-height: 200px;">
-                    </div>
-                </div>
-                <input type="hidden" asp-for="IdTk" />
-                <div class="form-group mt2">
-                    @*<input type="submit" value="Lưu" class="btn btn-success" />*@
-                    <button type="button" id="submitBtn" class="btn btn-success">Lưu</button>
-                    <a class="btn btn-danger" asp-controller="CaiDatTaiKhoanNTD" asp-action="NhaTuyenDung">Huỷ</a>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>

@@ -1,0 +1,87 @@
+﻿@model DoAnNet7_2.Models.Taikhoan
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "TaiKhoanNTV";
+    Layout = "~/Views/Shared/_LayoutNguoiTimViec.cshtml";
+}
+
+<div class="row">
+    <ul class="menu col-md-3" style="max-width: 20%; margin-top: 40px">
+        <li class="">
+            <a class="active menu-item" id="item-home" asp-action="TaiKhoanNTV" asp-controller="NguoiTimViec">
+                <i class="fa-solid fa-address-card"></i>
+                Tài khoản
+            </a>
+        </li>
+        <li class="">
+            <a class="menu-item" id="item-account" asp-action="DSCVNTV" asp-controller="NguoiTimViec">
+                <i class="fa-solid fa-file-pdf"></i>
+                <span>Sơ yếu lý lịch</span>
+            </a>
+        </li>
+        <li>
+            <a class="menu-item" id="item-company" asp-action="BTDDaUngTuyen" asp-controller="NguoiTimViec">
+                <i class="fa-solid fa-newspaper"></i>
+                <span>Bài viết đã ứng tuyển</span>
+            </a>
+        </li>
+        <li>
+            <a class="menu-item" id="item-account" asp-action="BTDDaThich" asp-controller="NguoiTimViec">
+                <i class="fa-solid fa-hand-holding-heart"></i>
+                <span>Bài viết đã thích</span>
+            </a>
+        </li>
+        <li>
+            <a class="menu-item" id="item-help" asp-action="HoTro" asp-controller="Common">
+                <i class="fa-brands fa-hire-a-helper"></i>
+                <span>Hỗ trợ</span>
+            </a>
+        </li>
+    </ul>
+    <div class="col-md-9 row background-caidat" style="justify-content: center;    min-width: 80%;">
+        <div class="border-content col-md-8 ">
+            <div class="row mt2" style="justify-content: space-between; align-items: center">
+                <div class="col-md-11 row" style="align-items: center">
+                    @if (ViewBag.Anh != null)
+                    {
+                        <img src="@ViewBag.Anh.Tenanh" alt="Avartar" style="max-width: 100px!important; max-height: 100px !important; border-radius: 50%;position: relative;" class="des mt1" />
+                    }
+                    <a class="btn btn-secondary sua-anh-big" style="" asp-action="SuaAnhDDNTV" asp-controller="NguoiTimViec" asp-route-idTK="@Model.IdTk">
+                        <i class="fa-solid fa-camera"></i>
+                    </a>
+                    <h1 style="margin-left: 20px">@Html.DisplayFor(model => model.Hoten)</h1>
+                </div>
+                <div class="col-md-1" style="padding: 0 !important">
+                    <a class="circle-btn" asp-action="SuaTaiKhoanNTV" asp-controller="NguoiTimViec" asp-route-idTK="@Model.IdTk" s>
+                        <i class="fa-solid fa-pen"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="mt2 ml4">
+                <div>
+                    <p>Email:</p>
+                    <p class="des  mt1">
+                        @Html.DisplayFor(model => model.Email)
+                    </p>
+                </div>
+                <div class="mt2">
+                    <p>
+                        Số điện thoại:
+                    </p>
+                    <p class="des mt1">
+                        @Html.DisplayFor(model => model.Sdt)
+                    </p>
+                </div>
+                <div class="mt2">
+                    <p>
+                        Thời gian tạo:
+                    </p>
+                    <p class="des mt1">
+                        @Html.DisplayFor(model => model.CreateAt)
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

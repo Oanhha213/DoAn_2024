@@ -35,7 +35,7 @@
                 <div class="collapse navbar-collapse" style="justify-content: space-between">
                     <ul class="navbar-nav" style="font-size: 13pt; font-weight: 500">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Công việc</a>
+                            <a class="nav-link active" aria-current="page" asp-action="NguoiTimViec" asp-controller="NguoiTimViec">Công việc</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Công ty</a>
@@ -62,7 +62,7 @@
                         </div>
                         <ul class="ul-cai-dat">
                             <li>
-                                <a class="btn-li">
+                                <a class="btn-li" asp-action="TaiKhoanNTV" asp-controller="NguoiTimViec">
                                     <i class="fa-solid fa-user-gear" style="margin-right: 10px;color: var(--blue)"></i>
                                     Cài đặt tài khoản
                                 </a>
@@ -101,10 +101,10 @@
     <div class="">
         @RenderBody()
     </div>
-    <a class="btn-li" id="logoutBtn" asp-controller="Access" asp-action="DangXuat">
+@*    <a class="btn-li" id="logoutBtn" asp-controller="Access" asp-action="DangXuat">
         <i class="fa-solid fa-right-from-bracket" style="margin-right: 10px; color: var(--blue)"></i>
         Đăng xuất
-    </a>
+    </a>*@
     <!-- footer -->
     <div id="footer">
         <div class="slider-footer">

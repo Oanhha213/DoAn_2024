@@ -1,5 +1,6 @@
 ﻿using DoAnNet7_2.Models;
 using DoAnNet7_2.Models.Authentication;
+using DoAnNet7_2.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -221,6 +222,130 @@ namespace DoAnNet7_2.Controllers
             // Trả về FileResult để hiển thị tệp PDF
             var fileContent = System.IO.File.ReadAllBytes(syll.Duongdansyll);
             return File(fileContent, "application/pdf");
+        }
+
+        [Route("TaiKhoanNTV")]
+        public IActionResult TaiKhoanNTV()
+        {
+            var ID_TK = HttpContext.Session.GetInt32("IdTk");
+            var TenanhDD = HttpContext.Session.GetString("Tenanh");
+            var tk = db.Taikhoans.FirstOrDefault(x => x.IdTk == ID_TK);
+            Debug.WriteLine("IdTk: " + ID_TK);
+            ViewBag.Anh = db.Anhdaidiens.FirstOrDefault(x => x.IdTk == ID_TK);
+            if (tk == null)
+            {
+                return RedirectToAction("TrangLoi", "Home");
+            }
+            if (tk != null)
+            {
+                // Include các dữ liệu liên quan nếu cần thiết
+                db.Entry(tk).Reference(x => x.IdLtkNavigation).Load();
+                return View(tk);
+            }
+            //var Id_TK = IdTK;
+            //HttpContext.Session.SetInt32("IdTk", Id_TK);
+            return View(tk);
+        }
+
+        [Route("SuaTaiKhoanNTV")]
+        [HttpGet]
+        public IActionResult SuaTaiKhoanNTV(int idTK)
+        {
+            TempData["Message"] = "";
+            var tk = db.Taikhoans.FirstOrDefault(x => x.IdTk == idTK);
+            var ID_TK = idTK;
+            HttpContext.Session.SetInt32("IdTk", ID_TK);
+            if (tk == null)
+            {
+                NotFound();
+            }
+            ViewBag.IdLtk = new SelectList(db.Loaitaikhoans.ToList(), "IdLtk", "Tenltk");
+            return View(tk);
+        }
+
+        [Route("SuaTaiKhoanNTV")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult SuaTaiKhoanNTV(Taikhoan tk)
+        {
+
+            if (ModelState.IsValid)
+            {
+                db.Entry(tk).State = EntityState.Modified;
+                //var IdTk = tk.IdTk;
+                //HttpContext.Session.SetInt32("IdTk", IdTk);
+                db.SaveChanges();
+                HttpContext.Session.SetString("Hoten", tk.Hoten);
+                // Truyền thông điệp thành công trực tiếp tới view
+                ViewBag.MessageType = "success";
+                ViewBag.Message = "Sửa thành công";
+            }
+            else
+            {
+                // Truyền thông điệp thất bại trực tiếp tới view
+                ViewBag.MessageType = "error";
+                ViewBag.Message = "Vui lòng kiểm tra lại thông tin";
+            }
+            ViewBag.IdLtk = new SelectList(db.Loaitaikhoans.ToList(), "IdLtk", "Tenltk");
+            return View(tk);
+        }
+
+        [Route("SuaAnhDDNTV")]
+        [HttpGet]
+        public IActionResult SuaAnhDDNTV(int idTK)
+        {
+            var anhDD = db.Anhdaidiens.FirstOrDefault(a => a.IdTk == idTK);
+            var Id_TK = idTK;
+            if (anhDD == null)
+            {
+                return RedirectToAction("UpAnhDaiDienNTD", "NhaTuyenDung");
+            }
+
+            HttpContext.Session.SetInt32("IdTk", Id_TK);
+            return View(anhDD);
+        }
+
+        [Route("SuaAnhDDNTV")]
+        [HttpPost]
+        public IActionResult SuaAnhDDNTV(Anhdaidien anhDD)
+        {
+            var existingAnhDD = db.Anhdaidiens.FirstOrDefault(a => a.IdTk == anhDD.IdTk);
+            var ID_TK = HttpContext.Session.GetInt32("IdTk");
+            var idTK = ID_TK;
+            if (existingAnhDD == null)
+            {
+                return NotFound();
+            }
+
+            if (anhDD.UpAnhDaiDien != null && ModelState.IsValid)
+            {
+                // Xóa ảnh cũ nếu cần
+
+                // Lưu ảnh mới
+                existingAnhDD.Tenanh = LuuAnh.LuuAnhDaiDien(anhDD.UpAnhDaiDien);
+
+                // Cập nhật thông tin ảnh đại diện trong cơ sở dữ liệu
+                db.SaveChanges();
+                if (idTK != null)
+                {
+                    HttpContext.Session.SetInt32("IdTk", (int)idTK);
+                    HttpContext.Session.SetString("Tenanh", existingAnhDD.Tenanh);
+                }
+                ViewBag.MessageType = "success";
+                ViewBag.Message = "Sửa thành công";
+                //return RedirectToAction("DanhSachTaiKhoan", "DanhSachTaiKhoan");
+            }
+            else
+            {
+                // Truyền thông điệp thất bại trực tiếp tới view
+                ViewBag.MessageType = "error";
+                ViewBag.Message = "Vui lòng kiểm tra lại thông tin";
+                // Trả về lại view với dữ liệu cũ
+                return View(existingAnhDD);
+            }
+            HttpContext.Session.SetInt32("IdTk", (int)idTK);
+            HttpContext.Session.SetString("Tenanh", existingAnhDD.Tenanh);
+            return View(existingAnhDD);
         }
     }
 }

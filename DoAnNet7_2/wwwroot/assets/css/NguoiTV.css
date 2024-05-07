@@ -63,3 +63,10 @@ i.fa-chevron-down.hide, i.fa-chevron-up {
     height: 40px !important;
     border-radius: 100%;
 }
+
+.background-caidat {
+    background-image: linear-gradient(to bottom, #f2edf3 0%, #f2edf3 100%);
+    position: relative; /* Thêm dòng này */
+    min-height: 100vh;
+    padding: 35px;
+}
