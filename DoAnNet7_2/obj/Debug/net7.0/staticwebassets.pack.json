@@ -613,6 +613,10 @@
       "PackagePath": "staticwebassets\\uploads\\Anh\\7b473ead-918f-4622-ab37-ac7147943fab.jpg"
     },
     {
+      "Id": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\uploads\\Anh\\80af61c6-4d92-4e55-b848-6e2528ee2610.jpg",
+      "PackagePath": "staticwebassets\\uploads\\Anh\\80af61c6-4d92-4e55-b848-6e2528ee2610.jpg"
+    },
+    {
       "Id": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\uploads\\Anh\\8e51daf7-6aa0-44d7-8623-d0e67734e588.jpg",
       "PackagePath": "staticwebassets\\uploads\\Anh\\8e51daf7-6aa0-44d7-8623-d0e67734e588.jpg"
     },
@@ -735,6 +739,10 @@
     {
       "Id": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\uploads\\CV\\638501997553751790_CV.pdf",
       "PackagePath": "staticwebassets\\uploads\\CV\\638501997553751790_CV.pdf"
+    },
+    {
+      "Id": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\uploads\\CV\\638507128688563243_CV.pdf",
+      "PackagePath": "staticwebassets\\uploads\\CV\\638507128688563243_CV.pdf"
     },
     {
       "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.DoAnNet7_2.Microsoft.AspNetCore.StaticWebAssets.props",

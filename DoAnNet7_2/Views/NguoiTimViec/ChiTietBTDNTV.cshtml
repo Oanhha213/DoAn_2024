@@ -1,0 +1,338 @@
+﻿@model DoAnNet7_2.Models.Baituyendung
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "ChiTietBTD";
+    Layout = "~/Views/Shared/_LayoutNguoiTimViec.cshtml";
+}
+
+<input type="hidden" value="@ViewBag.IdBtd" id="idBTD" />
+<input type="hidden" value="@ViewBag.IdTk" id="idTK" />
+<div class="slider">
+    <div class="single-slider slider-height d-flex align-items-center slick-slide slick-current slick-active" style="background-image: url(../assets/images/h1_hero1.jpg);" data-background="assets/images/h1_hero1.jpg" data-slick-index="0" aria-hidden="false" tabindex="0">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-7 col-lg-9 col-md-10" style="padding-top: 160px; padding-bottom: 210px">
+                    <div class="hero__caption">
+                        @*<h1>
+                        Nâng cao sự nghiệp,
+                        </h1>*@
+                        <h1>Khám phá những cơ hội không giới hạn.</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" style="background-color: #f3f5f7;justify-content: center">
+    <div class="col-md-11 row" style="margin-top: 40px; margin-bottom: 30px">
+        <div class="col-md-8 row">
+            <div class="border-content col-md-12 mt2" style="max-height: fit-content; margin-top: 0 !important">
+                <h1>@ViewBag.Tencongviec</h1>
+                <div class="row mt2">
+                    <div class="col-md-3">
+                        <p>
+                            <i class="fa-solid fa-location-dot"></i>
+                            Địa điểm
+                        </p>
+                        <p>
+                            @if (Model.IdTtNavigation != null)
+                            {
+                                <span class="">
+                                    @Html.DisplayFor(model => model.IdTtNavigation.Tentt)
+                                </span>
+                            }
+                        </p>
+                    </div>
+                    <div class="col-md-3">
+                        <p>
+                            Mức lương
+                        </p>
+                        <p class="des">
+                            @Html.DisplayFor(model => model.IdLuongNavigation.Tenmucluong)
+                        </p>
+                    </div>
+                    <div class="col-md-3">
+                        <p>
+                            <i class="fa-solid fa-star"></i>
+                            Kinh nghiệm
+                        </p>
+                        <p class="des">
+                            @Html.DisplayFor(model => model.IdTgknNavigation.Tentgkn)
+                        </p>
+                    </div>
+                    <div class="col-md-3">
+                        <p>
+                            <i class="fa-solid fa-business-time"></i>
+                            Hạn nộp
+                        </p>
+                        <p class="des">
+                            @if (Model.Hannopcv.HasValue)
+                            {
+                                @Model.Hannopcv.Value.ToShortDateString()
+                            }
+                        </p>
+                    </div>
+                </div>
+                <div class="row mt2">
+                    @if (ViewBag.TTHH == "Đã hết hạn")
+                    {
+                        <a class="btn btn-danger" style="background-color: var(--blue); cursor: auto">Đã hết hạn</a>
+                    }
+                    else if (ViewBag.TTUT == "Chưa ứng tuyển")
+                    {
+                        <a class="btn btn-success" id="openUngTuyenModal">Ứng tuyển ngay</a>
+
+                    }
+                    else
+                    {
+                        <a class="btn" style="background-color: var(--blue); cursor: auto">Đã ứng tuyển</a>
+                    }
+                    @if (ViewBag.TTThich == "Chưa thích")
+                    {
+                        <a class="thichBtn" data-idbtd="@ViewBag.IdBtd" data-idtk="@ViewBag.IdTk" style="cursor: pointer">
+                            <i class="fa-regular fa-heart" style="color: #fe91ab; font-size: x-large"></i>
+                        </a>
+                    }
+                    else
+                    {
+                        <a class="thichBtn" data-idbtd="@ViewBag.IdBtd" data-idtk="@ViewBag.IdTk" style="cursor: pointer">
+                            <i class="fa-solid fa-heart" style="color: #fe91ab; font-size: x-large"></i>
+                        </a>
+                    }
+                </div>
+            </div>
+            <div class="border-content col-md-12 row" style="margin-top: 40px">
+                <h2 class="col-md-12" style="background-color: #6cd7cb;color: #fff;opacity: 0.6;padding: 5px 10px !important;">
+                    Chi tiết công việc
+                </h2>
+                <div class="col-sm-12 mt2">
+                    <div class="">
+                        <h5>
+                            Loại công việc
+                        </h5>
+                        <p class="des">
+                            @Html.DisplayFor(model => model.IdLcvNavigation.Tenlcv)
+                        </p>
+                    </div>
+                    <div class="">
+                        <h5>
+                            Mô tả công việc
+                        </h5>
+                        <div class="des">
+                            @Html.Raw(Model.Motacongviec.Replace("\n", "<br>"))
+                        </div>
+                    </div>
+                    <div class="">
+                        <h5>
+                            Yêu cầu khác
+                        </h5>
+                        <div class="des">
+                            @Html.Raw(Model.Yeucaukhac.Replace("\n", "<br>"))
+                        </div>
+                    </div>
+                    <div class="">
+                        <h5>
+                            Quyền lợi
+                        </h5>
+                        <div class="des">
+                            @Html.Raw(Model.Quyenloi.Replace("\n", "<br>"))
+                        </div>
+                    </div>
+                    <div class="">
+                        <h5>
+                            Địa điểm làm việc
+                        </h5>
+                        <p>
+                            <span class="des">
+                                @Html.DisplayFor(model => model.Diachi)
+                            </span>
+                            @if (Model.IdTtNavigation != null)
+                            {
+                                <span class="">
+                                    ,@Html.DisplayFor(model => model.IdTtNavigation.Tentt)
+                                </span>
+                            }
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="border-content col-md-12" style="min-width: -webkit-fill-available;">
+
+                @if (ViewBag.congty != null)
+                {
+                    <div class="row" style="align-items: center">
+                        @if (ViewBag.Logo != null)
+                        {
+                            <img style="max-width: 50px; max-height: 50px" src="@ViewBag.Logo" class="mr2" />
+                        }
+                        <h5>@ViewBag.Tenct</h5>
+                    </div>
+                    @if (ViewBag.SoNV != null)
+                    {
+                        <p style=" margin-top: 20px">Số nhân viên: @ViewBag.SoNV</p>
+                    }
+                    @if (ViewBag.Diachi != null)
+                    {
+                        <div style="margin-top: 20px">
+                            Địa chỉ:
+                            @ViewBag.Diachi
+                            @if (ViewBag.Tinhthanh != null)
+                            {
+                                <span>
+                                    ,@ViewBag.Tinhthanh
+                                </span>
+                            }
+                        </div>
+                    }
+                }
+                <div class="row mt2" style="justify-content: center">
+                    <a class="btn text-hien col-md-12" style="max-width: fit-content">Chi tiết</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        Top ngành nghể nổi bật
+    </div>
+</div>
+
+<div class="modal fade" id="ungTuyenModal" tabindex="-1" role="dialog" aria-labelledby="ungTuyenModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ungTuyenModalLabel">Chọn CV và Ứng tuyển</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Form chọn CV -->
+                <form id="chonCVForm">
+                    <div class="form-group">
+                        <label for="cvSelect">
+                            Chọn CV
+                            (<span style="color: red">*</span>)
+                        </label>
+                        <select class="form-control" id="cvSelect">
+                            @if (ViewBag.ListCV != null)
+                            {
+                                foreach (var cv in ViewBag.ListCV)
+                                {
+                                    <option value="@cv.IdSyll">@cv.Tensyll</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-success" id="nopHoSoBtn">Nộp hồ sơ ứng tuyển</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<button id="btn-test" data-id="@ViewBag.IdBtd" data-idtk="@ViewBag.IdTk">Test Id</button>
+<script>
+    //$("#btn-test").click(function () {
+    //    var id = $(this).data("id");
+    //    var idtk = $(this).data("idtk");
+    //    console.log(id);
+    //    console.log(idtk); // Kiểm tra giá trị của this
+    //    // Kiểm tra giá trị của this
+    //});
+    //$(".thichBtn").click(function () {
+    //    console.log(this); // Kiểm tra giá trị của this
+    //});
+
+    $(document).ready(function () {
+        $(".thichBtn").click(function () {
+            var idBTD = $(this).data("idbtd");
+            var idTK = $(this).data("idtk"); // Lấy idTK từ thuộc tính data-tk của nút thích
+
+            console.log("idBTD: ", idBTD);
+            console.log("idTK: ", idTK);
+
+            $.post("@Url.Action("ThichCongViec", "NguoiTimViec")", { idBTD: idBTD, idTK: idTK })
+                .done(function (data) {
+                    if (data.success) {
+                        // Cập nhật trạng thái nút thích
+                        if (data.thich) {
+                            $(".thichBtn").html('<i class="fa-solid fa-heart" style="color: #fe91ab; font-size: x-large"></i>');
+                        } else {
+                            $(".thichBtn").html('<i class="fa-regular fa-heart" style="color: #fe91ab; font-size: x-large"></i>');
+                        }
+                    }
+                })
+                .fail(function (xhr, status, error) {
+                    swal.fire("Lỗi!", xhr.responseText, "error");
+                });
+        });
+    });
+
+    $("#openUngTuyenModal").click(function () {
+        $("#ungTuyenModal").modal("show"); // Kích hoạt modal
+    });
+    $("#nopHoSoBtn").click(function () {
+        var idCV = $("#cvSelect").val();
+        var idBTD = $("#idBTD").val();
+        var idTK = $("#idTK").val();
+
+        $.post("@Url.Action("UngTuyenNTV", "NguoiTimViec")", { idTK: idTK, idBTD: idBTD, idCV: idCV })
+            .done(function (data) {
+                $("#ungTuyenModal").modal("hide");
+                swal.fire({
+                    icon: 'success',
+                    title: 'Ứng tuyển thành công!',
+                    text: data.message
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Cập nhật trạng thái của nút "Ứng tuyển ngay"
+                        $(".btn-success").replaceWith('<a class="btn" style="background-color: var(--blue); cursor: auto">Đã ứng tuyển</a>');
+                        // Chuyển hướng về trang ChiTietBTDNTV
+                        window.location.href = '@Url.Action("ChiTietBTDNTV", "NguoiTimViec")' + '?idTK=' + idTK + '&idBTD=' + idBTD;
+                    }
+                });
+            })
+            .fail(function (xhr, status, error) {
+                swal.fire("Lỗi!", xhr.responseText, "error");
+            });
+    });
+
+
+
+            //$(document).ready(function () {
+        //    $("#openUngTuyenModal").click(function () {
+        //        $("#ungTuyenModal").modal("show"); // Kích hoạt modal
+        //    });
+        //    $("#nopHoSoBtn").click(function () {
+        //        var idCV = $("#cvSelect").val();
+        //        var idBTD = $("#idBTD").val();
+        //        var idTK = $("#idTK").val();
+
+        //        console.log("idTK:", idTK);
+        //        console.log("idBTD:", idBTD);
+        //        console.log("idCV:", idCV);
+
+        //        // Gửi request POST để xử lý hồ sơ ứng tuyển
+        //        $.post("@Url.Action("UngTuyenNTV", "NguoiTimViec")", { idTK: idTK, idBTD: idBTD, idCV: idCV })
+        //            .done(function (data) {
+        //                // Hiển thị thông báo khi ứng tuyển thành công
+        //                swal.fire("Ứng tuyển thành công!", data, "success");
+        //            })
+        //            .fail(function (xhr, status, error) {
+        //                // Xử lý khi có lỗi
+        //                swal.fire("Lỗi!", xhr.responseText, "error");
+        //            });
+        //    });
+        //});
+</script>
+
+<style>
+    .modal-dialog {
+        min-width: -webkit-fill-available;
+    }
+</style>

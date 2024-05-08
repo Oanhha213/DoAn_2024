@@ -20,7 +20,7 @@ namespace DoAnNet7_2.Controllers
         [HttpGet]
         public IActionResult Index(int? page, string searchTerm, string luong, string tinhthanh, string nganhnghe, string kinhnghiem)
         {
-            
+
             int pageNumber = page ?? 1;
             int pageSize = 8;
 
@@ -96,7 +96,7 @@ namespace DoAnNet7_2.Controllers
             if (!string.IsNullOrEmpty(kinhnghiem) && kinhnghiem != "Kinh nghiệm")
             {
                 query = (IOrderedQueryable<Baituyendung>)query.Where(x => x.IdTgknNavigation.Tentgkn == kinhnghiem);
-                ViewBag.kinhnghiem= kinhnghiem;
+                ViewBag.kinhnghiem = kinhnghiem;
             }
             else
             {
@@ -128,6 +128,32 @@ namespace DoAnNet7_2.Controllers
         public IActionResult Trangloi()
         {
             return View();
+        }
+
+        [HttpGet]
+        [Route("DSCongTyHome")]
+        public IActionResult DSCongTyHome(int? page,string searchTerm)
+        {
+            int pageNumber = page ?? 1;
+            int pageSize = 8;
+            IQueryable<Congty> query = db.Congties; // Sử dụng IQueryable để xây dựng câu truy vấn LINQ
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                ViewBag.searchTerm = searchTerm;
+                // Lọc các công ty theo từ khóa tìm kiếm
+                query = query.Where(x => x.Tencongty.Contains(searchTerm));
+            }
+            var ID_TK = HttpContext.Session.GetInt32("IdTk");
+            var pagedList = query.ToPagedList(pageNumber, pageSize);
+            if (ID_TK.HasValue)
+            {
+                HttpContext.Session.SetInt32("IdTk", (int)ID_TK);
+            }
+            if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+            {
+                return PartialView("_DSCongTyHomePartial", pagedList);
+            }
+            return View(pagedList);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

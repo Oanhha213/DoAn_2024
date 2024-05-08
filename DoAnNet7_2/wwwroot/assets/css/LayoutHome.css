@@ -245,4 +245,11 @@ a {
 }
 
 
-
+.motaCT {
+    display: block;
+    -webkit-line-clamp: 6; /* số dòng hiển thị */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 10px;
+}

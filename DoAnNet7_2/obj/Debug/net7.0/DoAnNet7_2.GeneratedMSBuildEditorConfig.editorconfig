@@ -268,6 +268,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFuZ0t5XFVwQW5oRGFpRGllbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Ha Yen/Documents/oanhDoc/Ki2Nam4/DoAn/DoAnNet7_2/DoAnNet7_2/Views/Home/CongTyHome.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDb25nVHlIb21lLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Ha Yen/Documents/oanhDoc/Ki2Nam4/DoAn/DoAnNet7_2/DoAnNet7_2/Views/Home/DSCongTyHome.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxEU0NvbmdUeUhvbWUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Ha Yen/Documents/oanhDoc/Ki2Nam4/DoAn/DoAnNet7_2/DoAnNet7_2/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -276,12 +284,32 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxUcmFuZ0xvaS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Ha Yen/Documents/oanhDoc/Ki2Nam4/DoAn/DoAnNet7_2/DoAnNet7_2/Views/Home/_DSCongTyHomePartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxfRFNDb25nVHlIb21lUGFydGlhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Ha Yen/Documents/oanhDoc/Ki2Nam4/DoAn/DoAnNet7_2/DoAnNet7_2/Views/Home/_IndexPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxfSW5kZXhQYXJ0aWFsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Ha Yen/Documents/oanhDoc/Ki2Nam4/DoAn/DoAnNet7_2/DoAnNet7_2/Views/NguoiTimViec/BaiVietDaThichNTV.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmd1b2lUaW1WaWVjXEJhaVZpZXREYVRoaWNoTlRWLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Ha Yen/Documents/oanhDoc/Ki2Nam4/DoAn/DoAnNet7_2/DoAnNet7_2/Views/NguoiTimViec/BTDDaUngTuyen.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmd1b2lUaW1WaWVjXEJURERhVW5nVHV5ZW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Ha Yen/Documents/oanhDoc/Ki2Nam4/DoAn/DoAnNet7_2/DoAnNet7_2/Views/NguoiTimViec/ChiTietBTDNTV.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmd1b2lUaW1WaWVjXENoaVRpZXRCVEROVFYuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Ha Yen/Documents/oanhDoc/Ki2Nam4/DoAn/DoAnNet7_2/DoAnNet7_2/Views/NguoiTimViec/DanhSachCV.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmd1b2lUaW1WaWVjXERhbmhTYWNoQ1YuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Ha Yen/Documents/oanhDoc/Ki2Nam4/DoAn/DoAnNet7_2/DoAnNet7_2/Views/NguoiTimViec/DSCVNTV.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmd1b2lUaW1WaWVjXERTQ1ZOVFYuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Ha Yen/Documents/oanhDoc/Ki2Nam4/DoAn/DoAnNet7_2/DoAnNet7_2/Views/NguoiTimViec/NguoiTimViec.cshtml]
@@ -290,6 +318,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Ha Yen/Documents/oanhDoc/Ki2Nam4/DoAn/DoAnNet7_2/DoAnNet7_2/Views/NguoiTimViec/SuaAnhDDNTV.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmd1b2lUaW1WaWVjXFN1YUFuaERETlRWLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Ha Yen/Documents/oanhDoc/Ki2Nam4/DoAn/DoAnNet7_2/DoAnNet7_2/Views/NguoiTimViec/SuaCVNTV.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmd1b2lUaW1WaWVjXFN1YUNWTlRWLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Ha Yen/Documents/oanhDoc/Ki2Nam4/DoAn/DoAnNet7_2/DoAnNet7_2/Views/NguoiTimViec/SuaTaiKhoanNTV.cshtml]
@@ -302,6 +334,22 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Ha Yen/Documents/oanhDoc/Ki2Nam4/DoAn/DoAnNet7_2/DoAnNet7_2/Views/NguoiTimViec/ThemCV.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmd1b2lUaW1WaWVjXFRoZW1DVi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Ha Yen/Documents/oanhDoc/Ki2Nam4/DoAn/DoAnNet7_2/DoAnNet7_2/Views/NguoiTimViec/ThemCVTKNTV.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmd1b2lUaW1WaWVjXFRoZW1DVlRLTlRWLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Ha Yen/Documents/oanhDoc/Ki2Nam4/DoAn/DoAnNet7_2/DoAnNet7_2/Views/NguoiTimViec/_BaiVietDaThichNTVPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmd1b2lUaW1WaWVjXF9CYWlWaWV0RGFUaGljaE5UVlBhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Ha Yen/Documents/oanhDoc/Ki2Nam4/DoAn/DoAnNet7_2/DoAnNet7_2/Views/NguoiTimViec/_BTDDaUngTuyenPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmd1b2lUaW1WaWVjXF9CVEREYVVuZ1R1eWVuUGFydGlhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Ha Yen/Documents/oanhDoc/Ki2Nam4/DoAn/DoAnNet7_2/DoAnNet7_2/Views/NguoiTimViec/_DSCVNTVPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmd1b2lUaW1WaWVjXF9EU0NWTlRWUGFydGlhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Ha Yen/Documents/oanhDoc/Ki2Nam4/DoAn/DoAnNet7_2/DoAnNet7_2/Views/NguoiTimViec/_NguoiTimViecPartial.cshtml]
@@ -378,6 +426,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Ha Yen/Documents/oanhDoc/Ki2Nam4/DoAn/DoAnNet7_2/DoAnNet7_2/Views/Shared/_LayoutHome.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRIb21lLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Ha Yen/Documents/oanhDoc/Ki2Nam4/DoAn/DoAnNet7_2/DoAnNet7_2/Views/Shared/_LayoutHome2.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRIb21lMi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Ha Yen/Documents/oanhDoc/Ki2Nam4/DoAn/DoAnNet7_2/DoAnNet7_2/Views/Shared/_LayoutNguoiTimViec.cshtml]

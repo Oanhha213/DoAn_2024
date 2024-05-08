@@ -1,0 +1,126 @@
+﻿@model DoAnNet7_2.Models.Soyeulylich
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "SuaCVNTV";
+    Layout = "~/Views/Shared/_LayoutNguoiTimViec.cshtml";
+}
+
+<div class="row">
+    <ul class="menu col-md-3" style="max-width: 20%; margin-top: 40px">
+        <li class="">
+            <a class="active menu-item" id="item-home" asp-action="TaiKhoanNTV" asp-controller="NguoiTimViec">
+                <i class="fa-solid fa-address-card"></i>
+                Tài khoản
+            </a>
+        </li>
+        <li class="">
+            <a class="menu-item" id="item-account" asp-action="DSCVNTV" asp-controller="NguoiTimViec" asp-route-idTK="@Model.IdTk">
+                <i class="fa-solid fa-file-pdf"></i>
+                <span>Sơ yếu lý lịch</span>
+            </a>
+        </li>
+        <li>
+            <a class="menu-item" id="item-company" asp-action="BTDDaUngTuyen" asp-controller="NguoiTimViec" asp-route-idTK="@Model.IdTk">
+                <i class="fa-solid fa-newspaper"></i>
+                <span>Bài viết đã ứng tuyển</span>
+            </a>
+        </li>
+        <li>
+            <a class="menu-item" id="item-account" asp-action="BaiVietDaThichNTV" asp-controller="NguoiTimViec" asp-route-idTK="@Model.IdTk">
+                <i class="fa-solid fa-hand-holding-heart"></i>
+                <span>Bài viết đã thích</span>
+            </a>
+        </li>
+
+    </ul>
+    <div class="col-md-9 row background-caidat" style="justify-content: center;    min-width: 80%;">
+        <div class="border-content col-md-6">
+            <h1>Sửa tên CV </h1>
+            <hr />
+            <div class="row">
+                <div class="col-md-12">
+                    <form id="editForm" asp-action="SuaCVNTV" asp-controller="NguoiTimViec" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="IdSyll" />
+                        <div class="form-group">
+                            <label asp-for="Tensyll" class="control-label">
+                                Tên CV (thường là vị trí ứng tuyển)
+                                (<span style="color: red">*</span>)
+                            </label>
+                            <input asp-for="Tensyll" class="form-control mt1" required />
+                            <span asp-validation-for="Tensyll" class="text-danger"></span>
+                        </div>
+                        <input type="hidden" asp-for="Duongdansyll" />
+                        <input type="hidden" asp-for="IdTk" id="IdTk" />
+                        <div class="form-group mt2" style="display: flex">
+                            @*<input type="submit" value="Lưu" class="btn btn-success" />*@
+                            <button type="button" id="submitBtn" class="btn btn-success">Lưu</button>
+                            <a class="btn btn-danger" asp-action="DSCVNTV" asp-controller="NguoiTimViec">Huỷ</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal xác nhận sửa -->
+<div id="confirmModal" class="modal" aria-hidden="true">
+    <div class="modal-content">
+        <div class="display: flex; justify-content: end">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="display: inline">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="title-warning">
+            <i class="fa-solid fa-triangle-exclamation" style="font-size: 20pt"></i>
+            <h3 style="margin-left: 10px !important" class="confirm-message">Bạn có chắc chắn muốn sửa?</h3>
+        </div>
+        <p class="mt2" style="font-size: 16pt; margin-left: 20px; margin-right: 20px">
+            Thông tin CV sẽ được sửa. Bạn chắc chắn muốn sửa CV này?
+        </p>
+        <div class="button-container">
+            <button id="confirmBtn" class="confirm">
+                Đồng ý
+            </button>
+            <button id="cancelBtn" class="cancel">Huỷ bỏ</button>
+        </div>
+    </div>
+</div>
+<script>
+    $('#submitBtn').click(function () {
+        $('#confirmModal').modal('show');
+    });
+
+    $('#confirmBtn').click(function () {
+        // Đóng modal xác nhận
+        $('#confirmModal').modal('hide');
+        //var idTK = $('#IdTk').val();
+        $('#editForm').submit();
+    });
+
+    // Xử lý kết quả sau khi submit form
+    $(function () {
+        var messageType = '@ViewBag.MessageType';
+        var message = '@ViewBag.Message';
+
+        if (messageType !== '') {
+            Swal.fire({
+                icon: messageType,
+                title: message,
+                showConfirmButton: false,
+                timer: 1500 //
+            }).then(function () {
+                var idTK = '@ViewBag.IdTk';
+                // Chuyển hướng sau khi hiển thị thông điệp
+                if (messageType === 'success') {
+                    window.location.href = '@Url.Action("DSCVNTV", "NguoiTimViec")' + '?idTK=' + idTK;
+                }
+            });
+        }
+    });
+    // Xử lý sự kiện khi người dùng nhấn nút "Huỷ bỏ"
+    $('#cancelBtn').click(function () {
+        $('#confirmModal').modal('hide'); // Đóng modal xác nhận
+    });
+</script>

@@ -2,40 +2,123 @@
 @using X.PagedList.Mvc.Core
 @using X.PagedList.Mvc.Core.Common;
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-  
+
 
 @foreach (var item in Model)
 {
-    <div class="border-content col-md-12 row" style="margin-top: 20px; justify-content: space-between">
-        <div class="col-md-8">
-            <h5>
-                @item.Tencongviec
-            </h5>
-            @if (item.Diachi != null || item.IdTtNavigation?.Tentt != null)
-            {
-                <p>
-                    <i class="fa-solid fa-location-dot"></i>
-                    @item.Diachi, @item.IdTtNavigation?.Tentt
+    <div class="border-content col-md-12 row" style="margin-top: 20px; justify-content: space-between; position: relative">
+        <div class="col-md-10">
+            <a style="display: inline-block; width: -webkit-fill-available; cursor: pointer; color: #000 !important" asp-route-idBTD="@item.IdBtd" asp-route-idTK="@ViewBag.IdTk" asp-action="ChiTietBTDNTV" asp-controller="NguoiTimViec" target="_blank">
+                <h3>
+                    @item.Tencongviec
+                </h3>
+                @if (item.Diachi != null)
+                {
+                    <p class="mt1">
+                        <i class="fa-solid fa-location-dot"></i>
+
+                        @item.Diachi
+                        @if (item.IdTtNavigation?.Tentt != null)
+                        {
+                            <span>
+                                ,@item.IdTtNavigation?.Tentt
+                            </span>
+                        }
+                    </p>
+                }
+                <p class="mt1">
+                    <i class="fa-solid fa-business-time"></i>
+                    Hạn nộp hồ sơ:
+                    @if (item.Hannopcv.HasValue)
+                    {
+                        @item.Hannopcv.Value.ToShortDateString()
+                    }
                 </p>
-            }
-            <p>
-                <span>
-                    @item.IdLcvNavigation?.Tenlcv
-                </span>
-                |
-                <span>
-                    @item.IdLuongNavigation?.Tenmucluong
-                </span>
-            </p>
-        </div>
-        <div class="col-md-4 row" style="justify-content: end;">
-            <a class="btn btn-success col-md-10" style="height: fit-content; line-height: 26px;max-width: fit-content;">Ứng tuyển ngay</a>
-            <a class=" col-md-2" style="height: fit-content; line-height: 22px;max-width: fit-content;
-                                            cursor: pointer;
-                                            margin: 12px !important;
-                                            padding: 0 !important;">
-                <i class="fa-regular fa-heart" style="color: #fe91ab; font-size: x-large"></i>
+                <p class="mt1">
+                    <span>
+                        <i class="fa-solid fa-location-arrow"></i>
+                        @item.IdLcvNavigation?.Tenlcv
+                    </span>
+                    |
+                    <span>
+                        <i class="fa-solid fa-money-bills"></i>
+                        @item.IdLuongNavigation?.Tenmucluong
+                    </span>
+                </p>
             </a>
+        </div>
+        <div class="" style="position: absolute; top: 0; right: 0">
+            @foreach (var status in ViewBag.JobStatuses)
+            {
+                if (status.IdBtd == item.IdBtd) // Kiểm tra xem trạng thái này có phải của bài tuyển dụng hiện tại không
+                {
+                    if (status.TTUT == "Đã ứng tuyển")
+                    {
+                        <p class="btn" style="margin: 0!important;height: fit-content;
+                                            line-height: 26px;
+                                            max-width: fit-content;
+                                            background-color: var(--blue);
+                                            cursor: auto;
+                                            border-top-left-radius: 50%;
+                                            border-bottom-left-radius: 50%;">
+                            Đã ứng tuyển
+                        </p>
+                    }
+                    else if (status.TTUT == "Chưa ứng tuyển" && status.TTHH == "Chưa hết hạn")
+                    {
+                        <p class="btn" style="margin: 0 !important;height: fit-content; line-height: 26px;max-width: fit-content; background-color:#6cd7cb;">Chưa ứng tuyển</p>
+                    }
+                    else if (status.TTHH == "Đã hết hạn")
+                    {
+                        <p class="btn" style="margin: 0 !important;height: fit-content; line-height: 26px;max-width: fit-content; background-color: #fe91ab;
+                                              cursor: auto">Đã hết hạn</p>
+                    }
+
+                }
+            }
+        </div>
+        <div class="col-md-2 row" style="justify-content: flex-end; align-items: end">
+            @foreach (var status in ViewBag.JobStatuses)
+            {
+                if (status.IdBtd == item.IdBtd) // Kiểm tra xem trạng thái này có phải của bài tuyển dụng hiện tại không
+                {
+                    @if (status.TTThich == "Đã thích" && status.TTHH == "Đã hết hạn")
+                    {
+                        <a style="height: fit-content; line-height: 22px;max-width: fit-content;
+                                                        margin: 0 !important;
+                                                        padding: 0 !important;">
+                            <i class="fa-solid fa-heart" style="color: #fe91ab; font-size: x-large"></i>
+                        </a>
+                    }
+                    else if (status.TTThich == "Chưa thích" && status.TTHH == "Đã hết hạn")
+                    {
+                        <a class="" style="height: fit-content; line-height: 22px;max-width: fit-content;
+                                                        margin: 0 !important;
+                                                        padding: 0 !important;">
+                            <i class="fa-regular fa-heart" style="color: #fe91ab; font-size: x-large"></i>
+                        </a>
+                    }
+                    else if (status.TTThich == "Đã thích" && status.TTHH == "Chưa hết hạn")
+                    {
+                        <a class="thichBtn" data-idbtd="@item.IdBtd" data-idtk="@ViewBag.IdTk" style="height: fit-content; line-height: 22px;max-width: fit-content;
+                                                        cursor: pointer;
+                                                        padding: 0 !important;
+                                                        margin: 0 !important">
+                            <i class="fa-solid fa-heart" style="color: #fe91ab; font-size: x-large"></i>
+                        </a>
+                    }
+                    else if (status.TTThich == "Chưa thích" && status.TTHH == "Chưa hết hạn")
+                    {
+                        <a class="thichBtn" data-idbtd="@item.IdBtd" data-idtk="@ViewBag.IdTk" style="height: fit-content; line-height: 22px;max-width: fit-content;
+                                                        cursor: pointer;
+                                                        margin: 0 !important;
+                                                        padding: 0 !important;">
+                            <i class="fa-regular fa-heart" style="color: #fe91ab; font-size: x-large"></i>
+                        </a>
+                    }
+
+                }
+            }
         </div>
     </div>
 }
@@ -45,7 +128,7 @@
     <div class="alert alert-warning" role="alert">
         @ViewBag.NoResultsMessage
     </div>
-}  
+}
 @if (Model.TotalItemCount > 8)
 {
     <div class="row mt2">
@@ -64,3 +147,32 @@
         </div>
     </div>
 }
+
+<script>
+    $(document).ready(function () {
+        $(".thichBtn").click(function () {
+            var idBTD = $(this).data("idbtd");
+            var idTK = $(this).data("idtk"); // Lấy idTK từ thuộc tính data-tk của nút thích
+
+            console.log("idBTD: ", idBTD);
+            console.log("idTK: ", idTK);
+
+            var btnClicked = $(this); // Lấy phần tử nút "thích" đã được nhấp vào
+            console.log("clicked: ", btnClicked)
+            $.post("@Url.Action("ThichCongViec", "NguoiTimViec")", { idBTD: idBTD, idTK: idTK })
+                .done(function (data) {
+                    if (data.success) {
+                        // Cập nhật trạng thái nút thích chỉ cho nút đã được nhấp
+                        if (data.thich) {
+                            btnClicked.html('<i class="fa-solid fa-heart" style="color: #fe91ab; font-size: x-large"></i>');
+                        } else {
+                            btnClicked.html('<i class="fa-regular fa-heart" style="color: #fe91ab; font-size: x-large"></i>');
+                        }
+                    }
+                })
+                .fail(function (xhr, status, error) {
+                    swal.fire("Lỗi!", xhr.responseText, "error");
+                });
+        });
+    });
+</script>

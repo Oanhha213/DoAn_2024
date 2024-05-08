@@ -46,7 +46,7 @@
                     @Html.DisplayFor(modelItem => item.IdSyllNavigation.IdTkNavigation.Sdt)
                 </td>
                 <td style="text-align: center;">
-                    <a class="btn btn-info" asp-action="ViewCV" asp-controller="CV" asp-route-idCV="@item.IdSyll" target="_blank">Xem CV</a>
+                    <a class="btn btn-info" asp-action="ViewCV" asp-controller="NguoiTimViec" asp-route-idCV="@item.IdSyll" target="_blank">Xem CV</a>
                 </td>
                 <td style="text-align: center;">
                     <a class="btn btn-danger" id="Xoa" onclick="confirmDelete(@item.IdCvsyll,@item.IdBtd)">

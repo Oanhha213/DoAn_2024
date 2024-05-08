@@ -102,7 +102,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             }
             return View(pagedList);
         }
-
+        //Bài viết chưa thích
         [Route("ThichBaiViet")]
         [HttpGet]
         public IActionResult ThichBaiViet(int idTK, int? page, string searchTerm)
@@ -150,6 +150,16 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             return View(pagedList);
         }
 
+        [Route("ThichBaiViet")]
+        [HttpPost]
+        public IActionResult ThichBaiViet(int idBTD, int IdTK)
+        {
+            var newRecord = new Thichcongviec { IdBtd = idBTD, IdTk = IdTK };
+            db.Thichcongviecs.Add(newRecord);
+            db.SaveChanges();
+            return RedirectToAction("ThichBaiViet", new { idTK = IdTK });
+        }
+
         [Route("XoaBTDDaThich")]
         [HttpGet]
         public IActionResult XoaBTDDaThich(int idTCV, int idTK)
@@ -169,16 +179,6 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
                 TempData["MessageType"] = "error";
             }
             return RedirectToAction("BaiVietDaThich", "TKNguoiTimViec", new { idTK = idTK });
-        }
-
-        [Route("ThichBaiViet")]
-        [HttpPost]
-        public IActionResult ThichBaiViet(int idBTD, int IdTK)
-        {
-            var newRecord = new Thichcongviec { IdBtd = idBTD, IdTk = IdTK };
-            db.Thichcongviecs.Add(newRecord);
-            db.SaveChanges();
-            return RedirectToAction("ThichBaiViet", new { idTK = IdTK });
         }
 
         [HttpGet]

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "pXuL8kH7ktqw0RDF9Em/SKQwZ+rh1Z59WupH18EsIXU=",
+  "Hash": "vT74YxPNQyAdp+esGtOiSi+EUx5GC92Xarl8HQYakF4=",
   "Source": "DoAnNet7_2",
   "BasePath": "_content/DoAnNet7_2",
   "Mode": "Default",
@@ -2635,6 +2635,23 @@
       "OriginalItemSpec": "wwwroot\\uploads\\Anh\\7b473ead-918f-4622-ab37-ac7147943fab.jpg"
     },
     {
+      "Identity": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\uploads\\Anh\\80af61c6-4d92-4e55-b848-6e2528ee2610.jpg",
+      "SourceId": "DoAnNet7_2",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\",
+      "BasePath": "_content/DoAnNet7_2",
+      "RelativePath": "uploads/Anh/80af61c6-4d92-4e55-b848-6e2528ee2610.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\Anh\\80af61c6-4d92-4e55-b848-6e2528ee2610.jpg"
+    },
+    {
       "Identity": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\uploads\\Anh\\8e51daf7-6aa0-44d7-8623-d0e67734e588.jpg",
       "SourceId": "DoAnNet7_2",
       "SourceType": "Discovered",
@@ -3160,6 +3177,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\CV\\638501997553751790_CV.pdf"
+    },
+    {
+      "Identity": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\uploads\\CV\\638507128688563243_CV.pdf",
+      "SourceId": "DoAnNet7_2",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\",
+      "BasePath": "_content/DoAnNet7_2",
+      "RelativePath": "uploads/CV/638507128688563243_CV.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\CV\\638507128688563243_CV.pdf"
     }
   ]
 }

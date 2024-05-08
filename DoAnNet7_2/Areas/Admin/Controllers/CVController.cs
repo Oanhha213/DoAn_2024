@@ -230,23 +230,23 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
         }
 
 
-        public IActionResult ReturnToPreviousView()
-        {
+        //public IActionResult ReturnToPreviousView()
+        //{
 
-            // Kiểm tra xem TempData có chứa thông tin về đường dẫn trước đó hay không
-            if (TempData["ReturnUrl"] != null)
-            {
-                string returnUrl = TempData["ReturnUrl"].ToString();
-                Debug.WriteLine("URL: " + returnUrl);
-                return Redirect(returnUrl);
-            }
-            else
-            {
-                Debug.WriteLine("URL: " + TempData["ReturnUrl"]);
-                // Nếu TempData không có thông tin, chuyển hướng đến một view mặc định
-                return RedirectToAction("DSCVUngVien", "CV");
-            }
-        }
+        //    // Kiểm tra xem TempData có chứa thông tin về đường dẫn trước đó hay không
+        //    if (TempData["ReturnUrl"] != null)
+        //    {
+        //        string returnUrl = TempData["ReturnUrl"].ToString();
+        //        Debug.WriteLine("URL: " + returnUrl);
+        //        return Redirect(returnUrl);
+        //    }
+        //    else
+        //    {
+        //        Debug.WriteLine("URL: " + TempData["ReturnUrl"]);
+        //        // Nếu TempData không có thông tin, chuyển hướng đến một view mặc định
+        //        return RedirectToAction("DSCVUngVien", "CV");
+        //    }
+        //}
 
         [Route("ThemCV")]
         [HttpGet]

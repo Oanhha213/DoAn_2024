@@ -1,0 +1,50 @@
+﻿@model X.PagedList.IPagedList<DoAnNet7_2.Models.Congty>
+@using X.PagedList.Mvc.Core
+@using X.PagedList.Mvc.Core.Common;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<div class="row" style="margin-top: 50px">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4 row" style="margin-top: 20px">
+            <div class="col-md-12 border-content" style="min-height: 315px;">
+                <div class="row" style="align-items: center; justify-content: space-between">
+                    <img class="col-md-4" style="min-height: 100px; max-width: 100px;padding: 0 !important;margin-right: 10px" src="@item.Logo" alt="Logo" />
+                    <h4 class="col-md-8" style="word-wrap: break-word;padding: 0 !important; ">
+                        @item.Tencongty
+                    </h4>
+                </div>
+                <hr />
+                <p class="motaCT">
+                    @if (item.Mota != null)
+                    {
+                        @Html.Raw(item.Mota.Replace("\n", "<br>"))
+                    }
+                </p>
+            </div>
+        </div>
+    }
+</div>
+
+@if (!string.IsNullOrEmpty(ViewBag.NoResultsMessage))
+{
+    <div class="alert alert-warning" role="alert">
+        @ViewBag.NoResultsMessage
+    </div>
+}
+@if (Model.TotalItemCount > 8)
+{
+    <div class="row">
+        <div class="col-sm-12 col-md-7">
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    @Html.PagedListPager(Model, page => Url.Action("DSCongTyHome", new {page, searchTerm = ViewBag.searchTerm }), new PagedListRenderOptions
+                {
+                LiElementClasses = new List<string> { "page-item" },
+                PageClasses = new List<string> { "page-link" }
+                })
+                </ul>
+            </nav>
+        </div>
+    </div>
+}
