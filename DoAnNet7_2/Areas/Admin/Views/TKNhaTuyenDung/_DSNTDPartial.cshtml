@@ -23,9 +23,9 @@
             <th style="max-width: 315px">
                 Công ty
             </th>
-@*            <th>
+            <th>
                 Tuỳ chọn
-            </th>*@
+            </th>
 @*            <th>
                 Loại tài khoản
             </th>*@
@@ -59,26 +59,29 @@
 @*                <td>
                     @Html.DisplayFor(modelItem => item.IdLtkNavigation.Tenltk)
                 </td>*@
-                <td style="display: flex; justify-content: space-between; align-items: center">
-                    @*@if (!string.IsNullOrEmpty(item.Logo))
-                    {
-                        <img src="@item.Logo" alt="Logo" width="50" height="50" />
-                    }*@
-                    <a class="link-hover" asp-action="CongTy" asp-route-IdTK="@item.IdTk" asp-controller="TKNhaTuyenDung">
-                        @Html.DisplayFor(modelItem => item.Tencongty)
-                    </a>
-                    <div>
-                        <a style="margin: 7px !important;" class="btn btn-success" asp-action="SuaCongTy" asp-route-IdTK="@item.IdTk" asp-controller="TKNhaTuyenDung">
-                            <i class="fa-solid fa-pen"></i>
+                <td >
+                    <div style="display: flex; justify-content: space-between; align-items: center">
+                        @*@if (!string.IsNullOrEmpty(item.Logo))
+                        {
+                            <img src="@item.Logo" alt="Logo" width="50" height="50" />
+                        }*@
+                        <a class="link-hover" asp-action="CongTy" asp-route-IdTK="@item.IdTk" asp-controller="TKNhaTuyenDung">
+                            @Html.DisplayFor(modelItem => item.Tencongty)
                         </a>
-                        <a class="btn btn-danger" id="Xoa" onclick="confirmDelete(@item.IdCt)">
-                            <i class="fa-solid fa-trash"></i>
-                        </a>
+                        <div>
+                            <a style="margin: 7px !important;" class="btn btn-success" asp-action="SuaCongTy" asp-route-IdTK="@item.IdTk" asp-controller="TKNhaTuyenDung">
+                                <i class="fa-solid fa-pen"></i>
+                            </a>
+                            <a class="btn btn-danger" id="Xoa" onclick="confirmDelete(@item.IdCt)">
+                                <i class="fa-solid fa-trash"></i>
+                            </a>
+                        </div>
+
                     </div>
                 </td>
-@*                <td style="padding: 4px 10px !important">
+                <td style="padding: 4px 10px !important">
                     <a class="btn btn-secondary" asp-action="DSBTDCongTy" asp-controller="TKNhaTuyenDung" asp-route-idTK="@item.IdTk">Danh sách bài tuyển dụng</a>
-                </td>*@
+                </td>
                @* <td>
                     <a class="btn btn-success" asp-action="SuaCongTy" asp-route-IdTK="@item.IdTk" asp-controller="TKNhaTuyenDung">
                         <i class="fa-solid fa-pen"></i>

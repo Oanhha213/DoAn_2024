@@ -55,17 +55,17 @@
                 </td>
                 <td style="text-align: center">
                     <div class="dropdown">
-                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton_@item.IdBtd" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             @Html.DisplayFor(modelItem => item.IdTthtNavigation.Tenttht)
                         </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton_@item.IdBtd">
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton_@item.IdBtd" data-status="@item.IdTthtNavigation.Tenttht" type="button" id="dropdownMenuButton_@item.IdBtd">
                             <a class="dropdown-item" href="@Url.ActionLink("DoiTTHT", "BaiTuyenDung", new { idBTD = item.IdBtd, newStatus = "Hiện", currentView = "DSBTDCongTy", idTK = ViewBag.idTK})">Hiện</a>
                             <a class="dropdown-item" href="@Url.ActionLink("DoiTTHT", "BaiTuyenDung", new { idBTD = item.IdBtd, newStatus = "Ẩn",currentView = "DSBTDCongTy", idTK = ViewBag.idTK })">Ẩn</a>
                         </div>
                     </div>
                 </td>
                 <td class="">
-                    <a class="btn btn-secondary" asp-action="DSUngTuyen" asp-controller="BaiTuyenDung" asp-route-idBTD="@item.IdBtd">Danh sách ứng tuyển</a>
+                    <a style="min-width: 180px !important;" class="btn btn-secondary" asp-action="DSUngTuyen" asp-controller="BaiTuyenDung" asp-route-idBTD="@item.IdBtd">Danh sách ứng tuyển</a>
                 </td>
             </tr>
             stt++;
@@ -95,26 +95,40 @@
     </div>
 }
 <script>
-    document.querySelectorAll('.dropdown-toggle').forEach(function (button) {
-        // Lắng nghe sự kiện khi trạng thái dropdown thay đổi và khi trang được tải lên
-        button.addEventListener('click', updateButtonColor);
-        window.addEventListener('load', updateButtonColor);
+    //document.querySelectorAll('.dropdown-toggle').forEach(function (button) {
+    //    // Lắng nghe sự kiện khi trạng thái dropdown thay đổi và khi trang được tải lên
+    //    button.addEventListener('click', updateButtonColor);
+    //    window.addEventListener('load', updateButtonColor);
 
-        function updateButtonColor(event) {
-            // Lấy ra nội dung của nút dropdown
-            var buttonText = button.textContent.trim();
+    //    function updateButtonColor(event) {
+    //        // Lấy ra nội dung của nút dropdown
+    //        var buttonText = button.textContent.trim();
 
-            // Kiểm tra nội dung của nút dropdown và thêm lớp CSS tương ứng
+    //        // Kiểm tra nội dung của nút dropdown và thêm lớp CSS tương ứng
+    //        if (buttonText === 'Hiện') {
+    //            button.classList.remove('text-an');
+    //            button.classList.add('text-hien');
+    //        } else if (buttonText === 'Ẩn') {
+    //            button.classList.remove('text-hien');
+    //            button.classList.add('text-an');
+    //        }
+    //    }
+    //});
+    function updateButtonColors() {
+        $('.dropdown-toggle').each(function () {
+            var buttonText = $(this).text().trim();
             if (buttonText === 'Hiện') {
-                button.classList.remove('text-an');
-                button.classList.add('text-hien');
+                $(this).removeClass('text-an').addClass('text-hien');
             } else if (buttonText === 'Ẩn') {
-                button.classList.remove('text-hien');
-                button.classList.add('text-an');
+                $(this).removeClass('text-hien').addClass('text-an');
             }
-        }
-    });
+        });
+    }
 
+    // Gọi hàm cập nhật màu sắc của nút dropdown khi trang được tải lần đầu tiên
+    $(document).ready(function () {
+        updateButtonColors();
+    });
 </script>
 
 

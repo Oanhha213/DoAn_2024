@@ -26,7 +26,7 @@
             <th>
                 Loại tài khoản
             </th>
-            <th>
+            <th >
                 Thời gian tạo
             </th>
             <th>
@@ -44,11 +44,13 @@
                 <td>
                     @stt
                 </td>
-                <td style="display: flex;justify-content:center;">
-                    <img src="@item.Tenanh" alt="Avatar" width="50" height="50" style=""/>
-                    <a class="btn btn-secondary btn-sua-anh" asp-action="SuaAnhDD" asp-controller="Anh" asp-route-idTK="@item.IdTk">
-                        <i class="fa-solid fa-camera" style="font-size: small;"></i>
-                    </a>
+                <td >
+                    <div style="display: flex;justify-content:center;">
+                        <img src="@item.Tenanh" alt="Avatar" width="50" height="50" style=""/>
+                        <a class="btn btn-secondary btn-sua-anh" asp-action="SuaAnhDD" asp-controller="Anh" asp-route-idTK="@item.IdTk">
+                            <i class="fa-solid fa-camera" style="font-size: small;"></i>
+                        </a>
+                    </div>
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Hoten)
@@ -65,10 +67,10 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.IdLtkNavigation.Tenltk)
                 </td>
-                <td>
+                <td >
                     @Html.DisplayFor(modelItem => item.CreateAt)
                 </td>
-                <td>
+                <td style="min-width: 130px !important;">
                     <a class="btn btn-success" asp-action="SuaTaiKhoan" asp-controller="DanhSachTaiKhoan" asp-route-idTK="@item.IdTk">
                         <i class="fa-solid fa-pen"></i>
                     </a>
