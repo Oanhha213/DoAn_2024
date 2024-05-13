@@ -6,7 +6,7 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<div class="border-content col-md-6">
+<div class="border-content col-md-8">
 
     <h1>Sửa @ViewBag.Tenct</h1>
 
@@ -73,6 +73,7 @@
         </div>
     </div>
 </div>
+<input type="hidden" value="@Model.IdTk" id="idTK"/>
 <!-- Modal xác nhận sửa -->
 <div id="confirmModal" class="modal" aria-hidden="true">
     <div class="modal-content">
@@ -111,7 +112,7 @@
     $(function () {
         var messageType = '@ViewBag.MessageType';
         var message = '@ViewBag.Message';
-
+        var idTK = $('#idTK').val();
         if (messageType !== '') {
             Swal.fire({
                 icon: messageType,
@@ -121,7 +122,7 @@
             }).then(function () {
                 // Chuyển hướng sau khi hiển thị thông điệp
                 if (messageType === 'success') {
-                    window.location.href = '@Url.Action("DSNhaTuyenDung", "TKNhaTuyenDung")';
+                    window.location.href = '@Url.Action("InfoTK", "DanhSachTaiKhoan")?idTK=' + idTK;
                 }
             });
         }

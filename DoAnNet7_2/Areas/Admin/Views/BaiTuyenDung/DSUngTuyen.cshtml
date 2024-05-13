@@ -6,20 +6,30 @@
     ViewData["Title"] = "DSUngTuyen";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
+<style>
+    .title-card {
+        padding: 10px !important;
+        border-left: 8px solid #feb696;
+    }
 
-<div class="border-content col-md-12">
-    <div class="mt1">
-        <a class="link-hover" asp-action="DSBaiTuyenDung" asp-controller="BaiTuyenDung">Quay về</a>
+    .pad-none {
+        padding: 0 !important;
+    }
+</style>
+<div class="col-md-12">
+    <div class="border-content title-card" style="min-width:  -webkit-fill-available;">
+        <h4>Danh sách ứng tuyển @ViewBag.Tencongviec</h4>
     </div>
-    <h1>Danh sách ứng tuyển @ViewBag.Tencongviec</h1>
-    <input type="hidden" id="idBTD" value="@ViewBag.idBTD" />
+    <div class="border-content mt2" style="min-width:  -webkit-fill-available;">
+        <input type="hidden" id="idBTD" value="@ViewBag.idBTD" />
 
-    <form id="search-form" class="mt2" style="display: flex">
-        <input type="search" class="form-control" placeholder="Họ tên, email..." id="searchItem">
-        <button type="submit" class="btn btn-primary">Tìm kiếm</button>
-    </form>
-    <div id="item_search">
-        @Html.Partial("_DSUTPartial", Model)
+        <form id="search-form" class="mt2" style="display: flex">
+            <input type="search" class="form-control" placeholder="Họ tên, email..." id="searchItem">
+            <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+        </form>
+        <div id="item_search">
+            @Html.Partial("_DSUTPartial", Model)
+        </div>
     </div>
 </div>
 <script>

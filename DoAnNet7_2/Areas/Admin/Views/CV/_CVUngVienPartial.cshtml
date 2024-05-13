@@ -24,19 +24,17 @@
                 <td>
                     @stt
                 </td>
-                <td @*style="display: flex;     align-items: center;"*@>
-                    @*<div style="width: 80%">*@
-                        <a class="link-hover" asp-controller="CV" asp-action="ViewCV" asp-route-idCV="@item.IdSyll" target="_blank">@Html.DisplayFor(modelItem => item.Tensyll)</a>
-                    @*</div>*@
-                    @*<div style="width: 20%; text-align: end">
-                    </div>*@
+                <td>
+                    <a class="link-hover" asp-controller="CV" asp-action="ViewCV" asp-route-idCV="@item.IdSyll" target="_blank">@Html.DisplayFor(modelItem => item.Tensyll)</a>
+
                 </td>
                 <td>
-                        <a class="btn btn-success" asp-action="SuaCV" asp-controller="CV" asp-route-idSYLL="@item.IdSyll">
-                            <i class="fa-solid fa-pen"></i>
-                        </a>
-                    @*<a class="btn btn-secondary" asp-action="DSBTDUngTuyen" asp-controller="TKNguoiTimViec" asp-route-idCV="@item.IdSyll">Bài viết đã ứng tuyển</a>*@
-                    @*<a class="btn btn-secondary" href="@Url.Action("DSBTDUngTuyen", "TKNguoiTimViec", new { idCV = item.IdSyll, IdTK = ViewBag.IdTK, previousView = "DSCVUngVien" })">Bài viết đã ứng tuyển</a>*@
+                    <a class="btn btn-secondary" asp-action="TaiXuongCV" asp-controller="CV" asp-route-idCV="@item.IdSyll" style="font-size: large">
+                        <i class="fa-solid fa-file-arrow-down"></i>
+                    </a>
+                    <a class="btn btn-success" asp-action="SuaCV" asp-controller="CV" asp-route-idSYLL="@item.IdSyll">
+                        <i class="fa-solid fa-pen"></i>
+                    </a>
                     <a class="btn btn-danger" id="Xoa" onclick="confirmDelete(@item.IdSyll, @item.IdTk)">
                         <i class="fa-solid fa-trash"></i>
                     </a>

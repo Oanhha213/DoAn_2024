@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace DoAnNet7_2.Models;
 
@@ -18,6 +19,7 @@ public partial class Taikhoan
     public string Matkhau { get; set; } = null!;
 
     [DisplayName("Số điện thoại")]
+    [RegularExpression(@"^\d{0,10}$", ErrorMessage = "Số điện thoại không được quá 10 chữ số.")]
     public string? Sdt { get; set; }
 
     [DisplayName("Loại tài khoản")]

@@ -21,36 +21,86 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult DSNhaTuyenDung(int? page, string searchTerm)
         {
-            int pageNumber = page == null || page < 0 ? 1 : page.Value;
+            //int pageNumber = page == null || page < 0 ? 1 : page.Value;
+            //int pageSize = 8;
+            //var query = from tk in db.Taikhoans
+            //            join ct in db.Congties on tk.IdTk equals ct.IdTk into gj
+            //            from ct in gj.DefaultIfEmpty()
+            //            where tk.IdLtk == 2
+            //            select new Models.ViewModels.TaiKhoanCongTyViewModel
+            //            {
+            //                IdTk = tk.IdTk,
+            //                IdCt = ct != null ? ct.IdCt : 0,
+            //                Hoten = tk.Hoten,
+            //                Email = tk.Email,
+            //                Matkhau = tk.Matkhau,
+            //                Sdt = tk.Sdt,
+            //                Logo = ct != null ? ct.Logo : null,
+            //                Tencongty = ct != null ? ct.Tencongty : null
+            //            };
+
+            //if (!string.IsNullOrEmpty(searchTerm))
+            //{
+            //    ViewBag.searchTerm = searchTerm;
+            //    query = query.Where(x => x.Hoten.Contains(searchTerm) 
+            //    || x.Email.Contains(searchTerm) || x.Sdt.Contains(searchTerm) || x.Tencongty.Contains(searchTerm));
+            //}
+            //else
+            //{
+            //    ViewBag.searchTerm = null; // Đặt ViewBag.SearchTerm về null nếu không có searchTerm
+            //}
+
+            //var pagedList = query.OrderBy(x => x.IdTk).ToPagedList(pageNumber, pageSize);
+            //// Kiểm tra xem có kết quả trả về hay không
+            //if (pagedList.Count == 0)
+            //{
+            //    ViewBag.NoResultsMessage = "Không có kết quả phù hợp.";
+            //}
+            //else
+            //{
+            //    ViewBag.NoResultsMessage = null;
+            //}
+            //if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+            //{
+            //    return PartialView("_DSNTDPartial", pagedList);
+            //}
+            //return View(pagedList);
+            int pageNumber = page ?? 1;
             int pageSize = 8;
+
             var query = from tk in db.Taikhoans
-                        join ct in db.Congties on tk.IdTk equals ct.IdTk into gj
-                        from ct in gj.DefaultIfEmpty()
-                        where tk.IdLtk == 2
-                        select new Models.ViewModels.TaiKhoanCongTyViewModel
+                        join anh in db.Anhdaidiens on tk.IdTk equals anh.IdTk into gj
+                        from anh in gj.DefaultIfEmpty()
+                        join ltk in db.Loaitaikhoans on tk.IdLtk equals ltk.IdLtk into gj2
+                        from ltk in gj2.DefaultIfEmpty()
+                        where ltk.IdLtk == 2
+                        select new Models.ViewModels.TaiKhoanAnhViewModel
                         {
                             IdTk = tk.IdTk,
-                            IdCt = ct != null ? ct.IdCt : 0,
+                            IdAnhdd = anh != null ? anh.IdAnhdd : 0,
+                            Tenanh = anh != null ? anh.Tenanh : null,
                             Hoten = tk.Hoten,
                             Email = tk.Email,
                             Matkhau = tk.Matkhau,
                             Sdt = tk.Sdt,
-                            Logo = ct != null ? ct.Logo : null,
-                            Tencongty = ct != null ? ct.Tencongty : null
+                            IdLtk = tk.IdLtk,
+                            IdLtkNavigation = ltk,
+                            CreateAt = tk.CreateAt
                         };
 
+            // Kiểm tra xem có giá trị searchTerm không rồi gán giá trị cho ViewBag.SearchTerm
             if (!string.IsNullOrEmpty(searchTerm))
             {
                 ViewBag.searchTerm = searchTerm;
-                query = query.Where(x => x.Hoten.Contains(searchTerm) 
-                || x.Email.Contains(searchTerm) || x.Sdt.Contains(searchTerm) || x.Tencongty.Contains(searchTerm));
+                query = query.Where(tk => tk.Hoten.Contains(searchTerm) || tk.Email.Contains(searchTerm) || tk.Sdt.Contains(searchTerm));
             }
             else
             {
                 ViewBag.searchTerm = null; // Đặt ViewBag.SearchTerm về null nếu không có searchTerm
             }
 
-            var pagedList = query.OrderBy(x => x.IdTk).ToPagedList(pageNumber, pageSize);
+            var pagedList = query.OrderBy(x => x.Hoten).ToPagedList(pageNumber, pageSize);
+
             // Kiểm tra xem có kết quả trả về hay không
             if (pagedList.Count == 0)
             {
@@ -64,7 +114,35 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             {
                 return PartialView("_DSNTDPartial", pagedList);
             }
+
             return View(pagedList);
+        }
+
+        [Route("ThemTKNTD")]
+        [HttpGet]
+        public IActionResult ThemTKNTD()
+        {
+            return View();
+        }
+
+        [Route("ThemTKNTD")]
+        [HttpPost]
+        public IActionResult ThemTKNTD(Taikhoan tk)
+        {
+            if (ModelState.IsValid)
+            {
+                // Set thời gian tạo bài viết
+                tk.CreateAt = DateTime.Now;
+                db.Taikhoans.Add(tk);
+                db.SaveChanges();
+                var Id_TK = tk.IdTk;
+                HttpContext.Session.SetInt32("IdTk", Id_TK);
+
+                // Chuyển hướng đến action UpAnhDaiDien và truyền vai trò của người dùng
+                return RedirectToAction("ThemAnhDaiDien", "Anh");
+            }
+
+            return View(tk);
         }
 
         [HttpGet]

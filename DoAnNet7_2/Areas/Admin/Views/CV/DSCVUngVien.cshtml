@@ -7,25 +7,42 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<div class="border-content col-md-12">
-    <p class="mt1">
-        <a class="link-hover" asp-action="DSNguoiTimViec" asp-controller="TKNguoiTimViec">Quay về</a>
+<style>
+    .title-card {
+        padding: 10px !important;
+        border-left: 8px solid #feb696;
+    }
+
+    .pad-none {
+        padding: 0 !important;
+    }
+</style>
+<div class="col-md-12">
+    <p style=" margin-left: 10px; margin-bottom: 10px !important">
+        <a class="link-hover" asp-action="InfoTK" asp-controller="DanhSachTaiKhoan" asp-route-idTK="@ViewBag.IdTK"> &#60;&#60; Quay về</a>
     </p>
-    <h1>Danh sách sơ yếu lý lịch của @ViewBag.Ho_Ten</h1>
-    <input type="hidden" id="IdTK" value="@ViewBag.IdTK" />
-
-    <div class="row mt2" style="align-items: center; justify-content: space-between">
-        <p class="col-md-3">
-            <a class="btn btn-success" asp-action="ThemCVUngVien" asp-controller="CV">Thêm mới</a>
-        </p>
-        <form id="search-form" class="col-md-9" style="display: flex">
-            <input type="search" class="form-control" placeholder="Tên CV..." id="searchItem">
-            <button type="submit" class="btn btn-primary">Tìm kiếm</button>
-        </form>
+    <div class="border-content title-card" style="min-width:  -webkit-fill-available;">
+        <h4>Danh sách CV của @ViewBag.Ho_Ten</h4>
     </div>
+    <div class="row mt2" style="min-width:  -webkit-fill-available;">
+        <div class="border-content col-md-12">
+            <input type="hidden" id="IdTK" value="@ViewBag.IdTK" />
 
-    <div id="btd_search">
-        @Html.Partial("_CVUngVienPartial", Model)
+            <div class="row mt2" style="align-items: center; justify-content: space-between">
+                <p class="col-md-3">
+                    <a class="btn btn-success" asp-action="ThemCVUngVien" asp-controller="CV">Thêm mới</a>
+                </p>
+                <form id="search-form" class="col-md-9" style="display: flex">
+                    <input type="search" class="form-control" placeholder="Tên CV..." id="searchItem">
+                    <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+                </form>
+            </div>
+
+            <div id="btd_search">
+                @Html.Partial("_CVUngVienPartial", Model)
+            </div>
+        </div>
+
     </div>
 </div>
 <script>

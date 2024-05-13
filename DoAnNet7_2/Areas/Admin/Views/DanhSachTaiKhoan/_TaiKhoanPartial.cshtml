@@ -17,8 +17,8 @@
             <th>
                 Email
             </th>
-@*            <th>
-                Mật khẩu
+            @*            <th>
+            Mật khẩu
             </th>*@
             <th>
                 Số điện thoại
@@ -26,7 +26,7 @@
             <th>
                 Loại tài khoản
             </th>
-            <th >
+            <th>
                 Thời gian tạo
             </th>
             <th>
@@ -44,9 +44,16 @@
                 <td>
                     @stt
                 </td>
-                <td >
+                <td>
                     <div style="display: flex;justify-content:center;">
-                        <img src="@item.Tenanh" alt="Avatar" width="50" height="50" style=""/>
+                        @if (item.Tenanh == null)
+                        {
+                            <img src="/assets/images/user_avatar.jpg" alt="Avatar" width="50" height="50" style="" />
+                        }
+                        else
+                        {
+                            <img src="@item.Tenanh" alt="Avatar" width="50" height="50" style="" />
+                        }
                         <a class="btn btn-secondary btn-sua-anh" asp-action="SuaAnhDD" asp-controller="Anh" asp-route-idTK="@item.IdTk">
                             <i class="fa-solid fa-camera" style="font-size: small;"></i>
                         </a>
@@ -58,16 +65,16 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Email)
                 </td>
-@*                <td>
-                    @Html.DisplayFor(modelItem => item.Matkhau)
-                </td>*@
+                @*                <td>
+            @Html.DisplayFor(modelItem => item.Matkhau)
+            </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.Sdt)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.IdLtkNavigation.Tenltk)
                 </td>
-                <td >
+                <td>
                     @Html.DisplayFor(modelItem => item.CreateAt)
                 </td>
                 <td style="min-width: 130px !important;">
@@ -98,8 +105,8 @@
                 <ul class="pagination">
                     @Html.PagedListPager(Model, page => Url.Action("DanhSachTaiKhoan", new { page, searchTerm = ViewBag.searchTerm }), new PagedListRenderOptions
                 {
-                    LiElementClasses = new List<string> { "page-item" },
-                    PageClasses = new List<string> { "page-link" }
+                LiElementClasses = new List<string> { "page-item" },
+                PageClasses = new List<string> { "page-link" }
                 })
                 </ul>
             </nav>
@@ -107,7 +114,7 @@
     </div>
 }
 <style>
-    .btn-sua-anh{
+    .btn-sua-anh {
         height: fit-content !important;
         border-radius: 50% !important;
         padding: 1px 7px !important;

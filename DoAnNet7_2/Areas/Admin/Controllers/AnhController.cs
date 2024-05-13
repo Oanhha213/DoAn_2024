@@ -40,29 +40,27 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
 
             if (ModelState.IsValid)
             {
+                ViewBag.IdLtk = db.Taikhoans.FirstOrDefault(x => x.IdTk == ID_TK)?.IdLtk;
                 anhdd.IdTk = ID_TK.Value;
                 anhdd.Tenanh = LuuAnh.LuuAnhDaiDien(anhdd.UpAnhDaiDien);
                 db.Anhdaidiens.Add(anhdd);
                 db.SaveChanges();
 
                 // Kiểm tra loại tài khoản và chuyển hướng tới action tương ứng
-                var tk = db.Taikhoans.FirstOrDefault(x => x.IdTk == ID_TK);
+                var IdLTK = db.Taikhoans.FirstOrDefault(x => x.IdTk == ID_TK)?.IdLtk;
                 var syll = db.Soyeulyliches.Where(x => x.IdTk == ID_TK);
                 // Dựa vào vai trò của người dùng để chuyển hướng tới action tương ứng
-                if (tk != null)
+                if (IdLTK != null)
                 {
-                    if (tk.IdLtk == 2)
+                    if (IdLTK == 2)
                     {
-                        return RedirectToAction("ThemCongTy", "TKNhaTuyenDung");
-                    }
-                    else if (tk.IdLtk == 3)
-                    {
-                        return RedirectToAction("ThemCVUngVien", "CV");
+                        return RedirectToAction("DSNhaTuyenDung", "TKNhaTuyenDung");
                     }
                     else 
                     {
-                        return RedirectToAction("DanhSachTaiKhoan","DanhSachTaiKhoan");
+                        return RedirectToAction("DSNguoiTimViec", "TKNguoiTimViec");
                     }
+
                 }
             }
             return View(anhdd);
@@ -90,11 +88,13 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             var existingAnhDD = db.Anhdaidiens.FirstOrDefault(a => a.IdTk == anhDD.IdTk);
             if (existingAnhDD == null)
             {
-                return NotFound();
+                var ID_TK = HttpContext.Session.GetInt32("IdTk");
+                return RedirectToAction("ThemAnhDaiDien", "Anh");
             }
 
             if (anhDD.UpAnhDaiDien != null && ModelState.IsValid)
             {
+                ViewBag.IdLtk = db.Taikhoans.FirstOrDefault(x => x.IdTk == anhDD.IdTk)?.IdLtk;
                 // Xóa ảnh cũ nếu cần
 
                 // Lưu ảnh mới

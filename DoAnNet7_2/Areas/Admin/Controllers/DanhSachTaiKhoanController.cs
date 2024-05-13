@@ -27,7 +27,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
                         join anh in db.Anhdaidiens on tk.IdTk equals anh.IdTk into gj
                         from anh in gj.DefaultIfEmpty()
                         join ltk in db.Loaitaikhoans on tk.IdLtk equals ltk.IdLtk into gj2
-                        from ltk in gj2.DefaultIfEmpty()
+                        from ltk in gj2.DefaultIfEmpty() /*where ltk.IdLtk == 3*/
                         select new Models.ViewModels.TaiKhoanAnhViewModel
                         {
                             IdTk = tk.IdTk,
@@ -97,6 +97,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
                 // Chuyển hướng đến action UpAnhDaiDien và truyền vai trò của người dùng
                 return RedirectToAction("ThemAnhDaiDien", "Anh");
             }
+
             return View(tk);
         }
 
@@ -110,7 +111,6 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             {
                 NotFound();
             }
-            ViewBag.IdLtk = new SelectList(db.Loaitaikhoans.ToList(), "IdLtk", "Tenltk");
             return View(tk);
         }
 
@@ -156,13 +156,13 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             {
                 TempData["Message"] = $"Không xoá được tài khoản này vì tồn tại bài tuyển dụng";
                 TempData["MessageType"] = "error";
-                return RedirectToAction("DanhSachTaiKhoan", "DanhSachTaiKhoan");
+                return RedirectToAction("DSNhaTuyenDung", "TKNhaTuyenDung");
             }
             if (cvsyll.Count() > 0)
             {
                 TempData["Message"] = $"Không xoá được tài khoản này vì ứng viên đã ứng tuyển";
                 TempData["MessageType"] = "error";
-                return RedirectToAction("DanhSachTaiKhoan", "DanhSachTaiKhoan");
+                return RedirectToAction("DSNguoiTimViec", "TKNguoiTimViec");
             }
             if (tk != null)
             {
@@ -180,7 +180,44 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
                 TempData["Message"] = $"Không tìm thấy tài khoản có ID {tk}";
                 TempData["MessageType"] = "error";
             }
-            return RedirectToAction("DanhSachTaiKhoan", "DanhSachTaiKhoan");
+            if(tk != null && tk.IdLtk == 2) {
+                return RedirectToAction("DSNhaTuyenDung", "TKNhaTuyenDung");
+            
+            }
+            else {
+                return RedirectToAction("DSNguoiTimViec", "TKNguoiTimViec");
+            }
+        }
+
+        [Route("InfoTK")]
+        [HttpGet]
+        public IActionResult InfoTK(int idTK)
+        {
+            var tk = db.Taikhoans
+                .Include(x => x.IdLtkNavigation)
+                .FirstOrDefault(x => x.IdTk == idTK);
+            ViewBag.Anh = db.Anhdaidiens.FirstOrDefault(x => x.IdTk == idTK);
+            var CT = db.Congties.Include(x => x.IdNnNavigation).Include(x => x.IdTtNavigation).FirstOrDefault(x => x.IdTk == idTK);
+            var btd = db.Baituyendungs.Where(x => x.IdTk == idTK)
+                                        .Include(x => x.IdNnNavigation)
+                                        .Include(x => x.IdTthtNavigation)
+                                        .Include(x => x.IdTtNavigation)
+                                        .Include(x => x.IdLcvNavigation)
+                                        .Include(x => x.IdLuongNavigation)
+                                        .ToList();
+            if (tk != null)
+            {
+                if(CT != null)
+                {
+                    ViewBag.ct = CT;
+                }
+                ViewBag.btd = btd;
+                return View(tk);
+            }
+            else
+            {
+                return NotFound();
+            }
         }
     }
 }

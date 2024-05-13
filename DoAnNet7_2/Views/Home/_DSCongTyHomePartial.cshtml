@@ -3,11 +3,22 @@
 @using X.PagedList.Mvc.Core.Common;
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
+
+<style>
+/*
+    p { 
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }*/
+</style>
 <div class="row" style="margin-top: 50px">
     @foreach (var item in Model)
     {
-        <div class="col-md-4 row" style="margin-top: 20px">
-            <div class="col-md-12 border-content" style="min-height: 315px;">
+        <div class="col-md-4 row" style="margin-top: 20px;">
+            <div class="col-md-12 border-content" style="min-height: 315px; max-height: 315px;">
                 <div class="row" style="align-items: center; justify-content: space-between">
                     <img class="col-md-4" style="min-height: 100px; max-width: 100px;padding: 0 !important;margin-right: 10px" src="@item.Logo" alt="Logo" />
                     <h4 class="col-md-8" style="word-wrap: break-word;padding: 0 !important; ">
@@ -15,12 +26,13 @@
                     </h4>
                 </div>
                 <hr />
-                <p class="motaCT">
+                <div class="motaCT" >
+
                     @if (item.Mota != null)
                     {
-                        @Html.Raw(item.Mota.Replace("\n", "<br>"))
+                        @Html.Raw(item.Mota)
                     }
-                </p>
+                </div>
             </div>
         </div>
     }

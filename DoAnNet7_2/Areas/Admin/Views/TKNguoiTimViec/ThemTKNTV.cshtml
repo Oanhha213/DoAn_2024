@@ -1,0 +1,54 @@
+﻿@model DoAnNet7_2.Models.Taikhoan
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "ThemTKNTV";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="border-content col-md-8">
+    <h1>Thêm tài khoản</h1>
+
+    <hr />
+    <div class="row">
+        <div class="col-md-12">
+            <form asp-action="ThemTKNTV" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Hoten" class="control-label">
+                        Họ tên
+                        (<span style="color: red">*</span>)
+                    </label>
+                    <input asp-for="Hoten" class="form-control mt1" required />
+                    <span asp-validation-for="Hoten" class="text-danger"></span>
+                </div>
+                <div class="form-group mt2">
+                    <label asp-for="Email" class="control-label">
+                        Email
+                        (<span style="color: red">*</span>)
+                    </label>
+                    <input asp-for="Email" class="form-control mt1" type="email" required />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group mt2">
+                    <label asp-for="Matkhau" class="control-label">
+                        Mật khẩu
+                        (<span style="color: red">*</span>)
+                    </label>
+                    <input asp-for="Matkhau" class="form-control mt1" type="password" required />
+                    <span asp-validation-for="Matkhau" class="text-danger"></span>
+                </div>
+                <div class="form-group mt2">
+                    <label asp-for="Sdt" class="control-label"></label>
+                    <input asp-for="Sdt" class="form-control mt1" />
+                    <span asp-validation-for="Sdt" class="text-danger"></span>
+                </div>
+                <input asp-for="IdLtk" type="hidden" class="form-control mt1" value="3" />
+                <div class="form-group box-button">
+                    <input type="submit" value="Thêm mới" class="btn btn-success" />
+                    <a class="btn btn-danger" asp-action="DSNguoiTimViec" asp-controller="TKNguoiTimViec">Huỷ</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

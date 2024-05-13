@@ -18,16 +18,16 @@
 @*            <th>
                 Loại công việc
             </th>*@
-            <th style="max-width: 120px">
+            <th>
                 Thời gian tạo bài viết
             </th>
             <th>
                 Trạng thái hiển thị
             </th>
-            <th class="">
+            <th class="" >
                 Tuỳ chọn
             </th>
-            <th>
+            <th >
                 Thao tác
             </th>
         </tr>
@@ -53,7 +53,7 @@
 @*                <td>
                     @Html.DisplayFor(modelItem => item.IdTglvNavigation.Tentglv)
                 </td>*@
-                <td style="max-width: 120px">
+                <td>
                     @Html.DisplayFor(modelItem => item.CreateAt)
                 </td>
                 <td style="text-align: center">
@@ -67,14 +67,14 @@
                         </div>
                     </div>
                 </td>
-                <td class="">
+                <td class="" style="min-width: 210px !important">
                     <a class="btn btn-secondary" asp-action="DSUngTuyenNTD" asp-controller="NhaTuyenDung" asp-route-idBTD="@item.IdBtd">Danh sách ứng tuyển</a>
                 </td>
-                <td>
+                <td style="min-width: 128px !important">
                     <a class="btn btn-success" asp-action="SuaBTDNTD" asp-controller="NhaTuyenDung" asp-route-idBTD="@item.IdBtd">
                         <i class="fa-solid fa-pen"></i>
                     </a>
-                    <a class="btn btn-danger" id="XoaBTD" onclick="confirmDelete(@item.IdBtd)">
+                    <a class="btn btn-danger" id="XoaBTD" onclick="confirmDelete(@item.IdBtd)" >
                         <i class="fa-solid fa-trash"></i>
                     </a>
                 </td>

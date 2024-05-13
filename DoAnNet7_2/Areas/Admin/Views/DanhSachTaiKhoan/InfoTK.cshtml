@@ -1,0 +1,265 @@
+﻿@using DoAnNet7_2.Models;
+@model DoAnNet7_2.Models.Taikhoan
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "InfoTK";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style>
+    .title-card {
+        padding: 10px !important;
+        border-left: 8px solid #feb696;
+    }
+
+    .pad-none {
+        padding: 0 !important;
+    }
+</style>
+
+<div class="col-md-12">
+    <p style=" margin-left: 10px; margin-bottom: 10px !important">
+        @if(Model.IdLtk == 2){
+            <a class="link-hover" asp-action="DSNhaTuyenDung" asp-controller="TKNhaTuyenDung"> &#60;&#60; Quay về</a>
+        }
+        else
+        {
+            <a class="link-hover" asp-action="DSNguoiTimViec" asp-controller="TKNguoiTimViec"> &#60;&#60; Quay về</a>
+        }
+    </p>
+    <div class="border-content title-card" style="min-width: -webkit-fill-available;">
+        <h4>Chi tiết tài khoản</h4>
+    </div>
+
+    @if (Model.IdLtk == 2)
+    {
+        <div class="row mt2 pad-none" style="justify-content: space-between; min-width: -webkit-fill-available;">
+            <div class="col-md-8" style="padding-left: 0 !important">
+                <div class="border-content" style="min-width: -webkit-fill-available;">
+                    <div class="row" style="justify-content: space-between; align-items: center">
+                        <div class="col-md-11 row" style="align-items: center">
+                            @if (ViewBag.Anh != null)
+                            {
+                                <img src="@ViewBag.Anh.Tenanh" alt="Avartar" style="max-width: 100px!important; max-height: 100px !important; border-radius: 50%;position: relative;" class="des mt1" />
+                            }
+                            else
+                            {
+                                <img src="./assets/images/user_avatar.jpg" alt="Avartar" style="max-width: 100px!important; max-height: 100px !important; border-radius: 50%;position: relative;" class="des mt1" />
+                            }
+                            <a class="btn btn-secondary sua-anh-big" style="" asp-action="SuaAnhDD" asp-controller="Anh" asp-route-idTK="@Model.IdTk">
+                                <i class="fa-solid fa-camera"></i>
+                            </a>
+                            <h1 style="margin-left: 20px">@Html.DisplayFor(model => model.Hoten)</h1>
+                        </div>
+                        <div class="col-md-1" style="padding: 0 !important">
+                            <a class="circle-btn" asp-action="SuaTaiKhoan" asp-controller="DanhSachTaiKhoan" asp-route-idTK="@Model.IdTk" s>
+                                <i class="fa-solid fa-pen"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ml4 mt2">
+                        <div>
+                            <p>Email:</p>
+                            <p class="des  mt1">
+                                @Html.DisplayFor(model => model.Email)
+                            </p>
+                        </div>
+                        <div class="mt2">
+                            <p>
+                                Số điện thoại:
+                            </p>
+                            <p class="des mt1">
+                                @Html.DisplayFor(model => model.Sdt)
+                            </p>
+                        </div>
+                        <div class="mt2">
+                            <p>
+                                Thời gian tạo:
+                            </p>
+                            <p class="des mt1">
+                                @Html.DisplayFor(model => model.CreateAt)
+                            </p>
+                        </div>
+                        <div class="mt2">
+                            <p>
+                                Loại tài khoản:
+                            </p>
+                            <p class="des mt1">
+                                @Html.DisplayFor(model => model.IdLtkNavigation.Tenltk)
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4" style="padding-right: 0 !important">
+                <div class="border-content" style="min-width: -webkit-fill-available;">
+                    <div class="row">
+                        <h5 class="col-md-9">Công ty</h5>
+                        <div class="col-md-3">
+                            <a class="circle-btn" asp-action="SuaCongTy" asp-controller="TKNhaTuyenDung" asp-route-idTK="@Model.IdTk" s>
+                                <i class="fa-solid fa-pen"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <hr />
+                    @if (ViewBag.ct != null)
+                    {
+                        <p>
+                            Logo:
+                            <img src="@ViewBag.ct.Logo" alt="Logo" style="max-height: 80px; max-width: 80px; margin-left: 20px" />
+                        </p>
+                        <p class="mt1">Tên công ty: <b>@ViewBag.ct.Tencongty</b></p>
+                        <p class="mt1">Ngành nghề: @ViewBag.ct.IdNnNavigation.Tennganhnghe</p>
+                        <p class="mt1">Số nhân viên: @ViewBag.ct.Sonhanvien</p>
+                        <p class="mt1">Địa chỉ: @ViewBag.ct.Diachi @ViewBag.ct.IdTtNavigation.Tentt</p>
+                    }
+                </div>
+            </div>
+        </div>
+        @if (((List<Baituyendung>)ViewBag.btd).Count > 0)
+        {
+            <div class=" border-content mt2" style="min-width: -webkit-fill-available;">
+                <h5>Danh sách bài tuyển dụng</h5>
+                <hr />
+                <table class="table mt2">
+                    <thead>
+                        <tr>
+                            <th>
+                                #
+                            </th>
+                            <th>
+                                Tên công việc
+                            </th>
+                            <th>
+                                Loại công việc
+                            </th>
+                            <th>
+                                Ngành nghề
+                            </th>
+                            <th>
+                                Địa chỉ làm việc
+                            </th>
+                            <th>
+                                Lương
+                            </th>
+                            <th>
+                                Thời gian tạo bài viết
+                            </th>
+                            <th>
+                                Trạng thái hiển thị
+                            </th>
+                            <th>
+                                Tuỳ chọn
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            var stt = 1;
+                        }
+                        @foreach (var item in ViewBag.btd)
+                        {
+                            <tr>
+                                <td>
+                                    @stt
+                                </td>
+                                <td>
+                                    <a class="link-hover" asp-action="ChiTietBTD" asp-controller="BaiTuyenDung" asp-route-idBTD="@item.IdBtd" target="_blank">
+                                        @item.Tencongviec
+                                    </a>
+                                </td>
+                                <td>
+                                    @item.IdLcvNavigation.Tenlcv
+                                </td>
+                                <td>
+                                    @item.IdNnNavigation.Tennganhnghe
+                                </td>
+                                <td>
+                                    @item.Diachi @item.IdTtNavigation.Tentt
+                                </td>
+                                <td>
+                                    @item.IdLuongNavigation.Tenmucluong
+                                </td>
+                                <td>
+                                    @item.CreateAt
+                                </td>
+                                <td>
+                                    @item.IdTthtNavigation.Tenttht
+                                </td>
+                                <td style="min-width: 210px">
+                                    <a class="btn btn-secondary" asp-action="DSUngTuyen" asp-controller="BaiTuyenDung" asp-route-idBTD="@item.IdBtd">Danh sách ứng tuyển</a>
+                                </td>
+                            </tr>
+                            stt++;
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="border-content mt2" style="min-width: -webkit-fill-available;">
+            <div class="row">
+                <a class="btn btn-info" asp-action="DSCVUngVien" asp-controller="CV" asp-route-IdTK="@Model.IdTk">Danh sách CV</a>
+                <a class="btn btn-secondary" asp-action="DSBTDUngTuyen" asp-controller="TKNguoiTimViec" asp-route-idTK="@Model.IdTk">Bài viết đã ứng tuyển</a>
+                <a class="btn btn-success" asp-action="BaiVietDaThich" asp-controller="TKNguoiTimViec" asp-route-idTK="@Model.IdTk">Bài viết đã thích</a>
+            </div>
+            <hr/>
+            <div class="row" style="justify-content: space-between; align-items: center">
+                <div class="col-md-11 row" style="align-items: center">
+                    @if (ViewBag.Anh != null)
+                    {
+                        <img src="@ViewBag.Anh.Tenanh" alt="Avartar" style="max-width: 100px!important; max-height: 100px !important; border-radius: 50%;position: relative;" class="des mt1" />
+                    }
+                    else
+                    {
+                        <img src="./assets/images/user_avatar.jpg" alt="Avartar" style="max-width: 100px!important; max-height: 100px !important; border-radius: 50%;position: relative;" class="des mt1" />
+                    }
+                    <a class="btn btn-secondary sua-anh-big" style="" asp-action="SuaAnhDD" asp-controller="Anh" asp-route-idTK="@Model.IdTk">
+                        <i class="fa-solid fa-camera"></i>
+                    </a>
+                    <h1 style="margin-left: 20px">@Html.DisplayFor(model => model.Hoten)</h1>
+                </div>
+                <div class="col-md-1" style="padding: 0 !important">
+                    <a class="circle-btn" asp-action="SuaTaiKhoan" asp-controller="DanhSachTaiKhoan" asp-route-idTK="@Model.IdTk" s>
+                        <i class="fa-solid fa-pen"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="ml4 mt2">
+                <div>
+                    <p>Email:</p>
+                    <p class="des  mt1">
+                        @Html.DisplayFor(model => model.Email)
+                    </p>
+                </div>
+                <div class="mt2">
+                    <p>
+                        Số điện thoại:
+                    </p>
+                    <p class="des mt1">
+                        @Html.DisplayFor(model => model.Sdt)
+                    </p>
+                </div>
+                <div class="mt2">
+                    <p>
+                        Thời gian tạo:
+                    </p>
+                    <p class="des mt1">
+                        @Html.DisplayFor(model => model.CreateAt)
+                    </p>
+                </div>
+                <div class="mt2">
+                    <p>
+                        Loại tài khoản:
+                    </p>
+                    <p class="des mt1">
+                        @Html.DisplayFor(model => model.IdLtkNavigation.Tenltk)
+                    </p>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+

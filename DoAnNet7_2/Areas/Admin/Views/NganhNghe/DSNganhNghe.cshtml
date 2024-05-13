@@ -7,14 +7,27 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<div class="border-content col-md-12">
-    <h1>Danh sách ngành nghề</h1>
+<style>
+    .title-card {
+        padding: 10px !important;
+        border-left: 8px solid #feb696;
+    }
+
+    .pad-none {
+        padding: 0 !important;
+    }
+</style>
+
+<div class="border-content col-md-12 title-card ">
+    <h4>Danh sách ngành nghề</h4>
+</div>
+<div class="border-content col-md-12 mt2">
 
     <div class="row mt2" style="justify-content: space-between; align-items: center">
-        <p class="col-md-3">
+        <p class="col-md-3 pad-none">
             <a class="btn btn-success" asp-action="ThemNganhNghe" asp-controller="NganhNghe">Thêm mới</a>
         </p>
-        <form id="search-form" class="col-md-9" style="display: flex">
+        <form id="search-form" class="col-md-9 pad-none" style="display: flex">
             <input type="search" class="form-control" placeholder="Tên ngành nghề..." id="searchItem">
             <button type="submit" class="btn btn-primary">Tìm kiếm</button>
         </form>

@@ -246,10 +246,13 @@ a {
 
 
 .motaCT {
-    display: block;
-    -webkit-line-clamp: 6; /* số dòng hiển thị */
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    margin-top: 10px;
+}
+
+.active {
+   color: #feb696;
 }

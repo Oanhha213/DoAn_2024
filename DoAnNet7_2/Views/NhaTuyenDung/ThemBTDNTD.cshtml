@@ -91,7 +91,7 @@
                         Hạn nộp hồ sơ
                         (<span style="color: red">*</span>)
                     </label>
-                    <input style="position: relative; cusor: auto !important" asp-for="Hannopcv" type="text" class="form-control mt1" id="hannopcv" readonly placeholder="Chọn ngày" />
+                    <input style="position: relative; cusor: auto !important" asp-for="Hannopcv" type="text" class="form-control mt1" id="hannopcv" readonly placeholder="dd/mm/yyyy" />
                     <i class="fa-regular fa-calendar" style="position: absolute; right: 30px; bottom: 193px; font-size: large; color: #6c75a2;"></i>
                     <span asp-validation-for="Hannopcv" class="text-danger"></span>
                 </div>
@@ -120,7 +120,12 @@
         var minDate = yyyy + '-' + mm + '-' + dd; // Định dạng ngày tháng năm
         $("#hannopcv").datepicker({
             minDate: minDate, // Chỉ cho phép chọn từ hôm nay trở đi
-            dateFormat: 'yy-mm-dd' // Định dạng ngày: năm-tháng-ngày
+            dateFormat: 'yy-mm-dd', // Định dạng ngày: năm-tháng-ngày
+            onSelect: function (dateText, inst) {
+                var dateParts = dateText.split('-');
+                var formattedDate = dateParts[2] + '-' + dateParts[1] + '-' + dateParts[0]; // Định dạng lại ngày tháng
+                $("#hannopcv").val(formattedDate); // Hiển thị ngày tháng đã định dạng lại vào input
+            }
         });
     });
 </script>

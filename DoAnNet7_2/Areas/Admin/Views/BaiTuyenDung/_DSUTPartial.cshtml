@@ -47,6 +47,9 @@
                 </td>
                 <td style="text-align: center;">
                     <a class="btn btn-info" asp-action="ViewCV" asp-controller="CV" asp-route-idCV="@item.IdSyll" target="_blank">Xem CV</a>
+                    <a class="btn btn-secondary" asp-action="TaiXuongCV" asp-controller="CV" asp-route-idCV="@item.IdSyll" style="font-size: large">
+                        <i class="fa-solid fa-file-arrow-down"></i>
+                    </a>
                 </td>
                 <td style="text-align: center;">
                     <a class="btn btn-danger" id="Xoa" onclick="confirmDelete(@item.IdCvsyll,@item.IdBtd)">

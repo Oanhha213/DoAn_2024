@@ -5,7 +5,7 @@
     HttpContext context = ViewContext.HttpContext;
 }
 <!DOCTYPE html>
-
+   
 <html>
 <head>
     <meta charset="UTF-8">
@@ -46,7 +46,15 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>*@
 
     <style>
+        .active {
+            background-color: #fdebd0;
+            color: #000;
+            border-right: 8px solid #feb696
+        }
 
+        .menu li {
+            margin-top: 10px !important;
+        }
         .btn-profile {
             display: flex;
             margin-right: 100px !important;
@@ -150,12 +158,12 @@
                         Bảng tin
                     </a>
                 </li>
-                <li class="">
+@*                <li class="">
                     <a class="menu-item" id="item-account-admin" asp-action="DanhSachTaiKhoan" asp-controller="DanhSachTaiKhoan">
                         <i class="fa-solid fa-user-plus"></i>
                         <span>Tài khoản</span>
                     </a>
-                </li>
+                </li>*@
                 <li>
                     <a class="menu-item" id="item-employer-admin" asp-action="DSNhaTuyenDung" asp-controller="TKNhaTuyenDung">
                         <i class="fa-solid fa-building-user"></i>
@@ -181,15 +189,15 @@
                         <span>Ngành nghề</span>
                     </a>
                 </li>
-                <li class="">
+@*                <li class="">
                     <a class="menu-item" id="item-province-admin" asp-action="DSTinhThanh" asp-controller="TinhThanh">
                         <i class="fa-solid fa-tree-city"></i>
                         <span>Tỉnh thành</span>
                     </a>
-                </li>
+                </li>*@
             </ul>
         </div>
-        <div class="content-main col-md-10">
+        <div class="content-main col-md-10" style="padding-left: 0 !important; padding-right: 0 !important">
             <div class="content row">
                 @RenderBody()
             </div>
@@ -197,124 +205,41 @@
     </div>
     <script>
         $(document).ready(function () {
-            // Khi trang được load, kiểm tra trạng thái active trong Local Storage và áp dụng cho menu item tương ứng
-            var activeMenuItem = localStorage.getItem('activeMenuItem');
-            if (activeMenuItem) {
-                $('.menu-item').removeClass('active'); // Xóa lớp active khỏi tất cả các menu item
-                $('#' + activeMenuItem).addClass('active'); // Thêm lớp active vào menu item được lưu trong Local Storage
+            // Lấy mục menu đã chọn từ localStorage (nếu có)
+            var activeMenuItemId = localStorage.getItem("activeMenuItemId");
+
+            // Kiểm tra xem có mục menu đã chọn được lưu trong localStorage không
+            if (activeMenuItemId) {
+                $("#" + activeMenuItemId).addClass("active"); // Thêm lớp active cho mục menu đã chọn
             } else {
-                // Nếu không có menu item nào được lưu, mặc định active cho menu item Home và lưu nó vào Local Storage
-                $('#item-home-admin').addClass('active');
-                localStorage.setItem('activeMenuItem', 'admin'); // Sử dụng id của menu item cho mục này
+                $("#item-home-admin").addClass("active"); // Mặc định chọn mục menu "Bảng tin"
             }
 
-            // Khi click vào một menu item
-            $('.menu-item').click(function () {
-                var itemId = $(this).attr('id'); // Lấy id của menu item
-                $('.menu-item').removeClass('active'); // Xóa lớp active khỏi tất cả các menu item
-                $(this).addClass('active'); // Thêm lớp active vào menu item được click
+            // Thêm sự kiện click cho mỗi mục menu
+            $(".menu-item").click(function () {
+                // Lấy ID của mục menu đã chọn
+                var menuItemId = $(this).attr("id");
 
-                // Lưu trạng thái active vào Local Storage
-                localStorage.setItem('activeMenuItem', itemId);
+                // Lưu ID của mục menu đã chọn vào localStorage
+                localStorage.setItem("activeMenuItemId", menuItemId);
+
+                // Xoá lớp active khỏi tất cả các mục menu
+                $(".menu-item").removeClass("active");
+
+                // Thêm lớp active cho mục menu hiện tại
+                $(this).addClass("active");
             });
 
-            // Khi nhấn nút đăng xuất
-            $('#logoutBtn').click(function () {
-                // Xóa mục activeMenuItem khỏi Local Storage khi đăng xuất
-                localStorage.removeItem('activeMenuItem');
-                // Xóa lớp active khỏi tất cả các menu item
-                $('.menu-item').removeClass('active');
-                // Thiết lập menu item Home làm active và lưu vào Local Storage
-                $('#item-home-admin').addClass('active');
-                localStorage.setItem('activeMenuItem', 'admin'); // Sử dụng id của menu item cho mục này
+            // Thêm sự kiện click cho nút đăng xuất
+            $("#logoutBtn").click(function () {
+                // Xoá lớp active khỏi tất cả các mục menu
+                $(".menu-item").removeClass("active");
+
+                // Xoá mục menu đã chọn khỏi localStorage
+                localStorage.removeItem("activeMenuItemId");
             });
         });
 
-        //$(document).ready(function () {
-        //    // Khi trang được load, kiểm tra trạng thái active trong Local Storage và áp dụng cho menu item tương ứng
-        //    var activeMenuItem = localStorage.getItem('activeMenuItem');
-        //    if (activeMenuItem) {
-        //        $('.menu-item').removeClass('active'); // Xóa lớp active khỏi tất cả các menu item
-        //        $('#' + activeMenuItem).addClass('active'); // Thêm lớp active vào menu item được lưu trong Local Storage
-        //    } else {
-        //        // Nếu không có menu item nào được lưu, mặc định active cho menu item Home và lưu nó vào Local Storage
-        //        $('#item-home').addClass('active');
-        //        localStorage.setItem('activeMenuItem', 'item-home');
-        //    }
-
-        //    // Khi click vào một menu item
-        //    $('.menu-item').click(function () {
-        //        var itemId = $(this).attr('id'); // Lấy id của menu item
-        //        $('.menu-item').removeClass('active'); // Xóa lớp active khỏi tất cả các menu item
-        //        $(this).addClass('active'); // Thêm lớp active vào menu item được click
-
-        //        // Lưu trạng thái active vào Local Storage
-        //        localStorage.setItem('activeMenuItem', itemId);
-        //    });
-
-        //    // Khi nhấn nút đăng xuất
-        //    $('#logoutBtn').click(function () {
-        //        // Xóa mục activeMenuItem khỏi Local Storage khi đăng xuất
-        //        localStorage.removeItem('activeMenuItem');
-        //        // Xóa lớp active khỏi tất cả các menu item
-        //        $('.menu-item').removeClass('active');
-        //        // Thiết lập menu item Home làm active và lưu vào Local Storage
-        //        $('#item-home').addClass('active');
-        //        localStorage.setItem('activeMenuItem', 'item-home');
-        //    });
-        //});
-
-        $(document).ready(function () {
-            var activeMenuItem = localStorage.getItem('activeMenuItem');
-            if (!activeMenuItem) {
-                $('#item-home-admin').addClass('active');
-                localStorage.setItem('activeMenuItem', 'item-home-admin');
-            } else {
-                $('#' + activeMenuItem).addClass('active');
-            }
-            $('.menu-item').click(function () {
-                var itemId = $(this).attr('id'); // Lấy id của menu item
-                $('.menu-item').removeClass('active'); // Xóa lớp active khỏi tất cả các menu item
-                $(this).addClass('active'); // Thêm lớp active vào menu item được click
-
-                // Lưu trạng thái active vào Local Storage
-                localStorage.setItem('activeMenuItem', itemId);
-            });
-
-            $('#logoutBtn').click(function () {
-                // Xóa mục activeMenuItem khỏi Local Storage khi đăng xuất
-                localStorage.removeItem('activeMenuItem');
-            });
-        })
-
-        //// Xác định URL hiện tại
-        //var currentURL = window.location.pathname;
-
-        //// Duyệt qua các menu-item và áp dụng trạng thái active
-        //$('.menu-item').each(function () {
-        //    var menuItemURL = $(this).attr('href');
-        //    if (menuItemURL === currentURL) {
-        //        $(this).addClass('active');
-        //    }
-        //});
-
-        //// Khi click vào một menu item
-        //$('.menu-item').click(function () {
-        //    // Loại bỏ trạng thái active từ tất cả các menu item
-        //    $('.menu-item').removeClass('active');
-
-        //    // Thêm trạng thái active cho menu item được chọn
-        //    $(this).addClass('active');
-        //});
-        //$('#logoutBtn').click(function () {
-        //            // Xóa mục activeMenuItem khỏi Local Storage khi đăng xuất
-        //            localStorage.removeItem('activeMenuItem');
-        //            // Xóa lớp active khỏi tất cả các menu item
-        //            $('.menu-item').removeClass('active');
-        //            // Thiết lập menu item Home làm active và lưu vào Local Storage
-        //            $('#item-home').addClass('active');
-        //            localStorage.setItem('activeMenuItem', 'item-home');
-        //        });
 
     </script>
 
@@ -323,8 +248,6 @@
             $('.child-first').click(function () {
                 $(this).next('.child').toggleClass('expanded');
             });
-        });
-        $(document).ready(function () {
             $('.btn-profile').click(function (event) {
                 event.stopPropagation(); // Ngăn chặn sự kiện click được truyền xuống các phần tử cha
                 $('.dang-xuat-a').toggleClass('show');

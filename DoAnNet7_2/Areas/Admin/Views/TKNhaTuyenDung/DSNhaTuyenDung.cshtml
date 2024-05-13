@@ -1,4 +1,4 @@
-﻿@model X.PagedList.IPagedList<DoAnNet7_2.Models.ViewModels.TaiKhoanCongTyViewModel>
+﻿@model X.PagedList.IPagedList<DoAnNet7_2.Models.ViewModels.TaiKhoanAnhViewModel>
 @using X.PagedList.Mvc.Core
 @using X.PagedList.Mvc.Core.Common;
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
@@ -7,18 +7,36 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<div class="border-content col-md-12">
+<style>
+    .title-card {
+        padding: 10px !important;
+        border-left: 8px solid #feb696;
+    }
 
-    <h1>Danh sách nhà tuyển dụng</h1>
-
-    <form id="search-form" class="mt2" style="display: flex">
-        <input type="search" class="form-control" placeholder="Họ tên, email, công ty..." id="searchItem">
-        <button type="submit" class="btn btn-primary">Tìm kiếm</button>
-    </form>
+    .pad-none {
+        padding: 0 !important;
+    }
+</style>
 
 
-    <div id="tk_search">
-        @Html.Partial("_DSNTDPartial", Model)
+<div class=" col-md-12">
+    <div class="border-content title-card" style="min-width:  -webkit-fill-available;">
+        <h4>Danh sách nhà tuyển dụng</h4>
+    </div>
+    <div class="border-content mt2" style="min-width:  -webkit-fill-available;">
+        <div class="row mt2" style="align-items: center; justify-content: space-between">
+            <p class="pad-none col-md-3 ">
+                <a class="btn btn-success" asp-action="ThemTKNTD" asp-controller="TKNhaTuyenDung">Thêm mới</a>
+            </p>
+            <form id="search-form" class="pad-none col-md-9" style="display: flex">
+                <input type="search" class="form-control" placeholder="Họ tên, email..." id="searchItem">
+                <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+            </form>
+        </div>
+
+        <div id="tk_search">
+            @Html.Partial("_DSNTDPartial", Model)
+        </div>
     </div>
 </div>
 <script>

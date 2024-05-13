@@ -74,6 +74,10 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             }
             // Sắp xếp dữ liệu trước khi phân trang
             query = query.OrderBy(x => x.Tensyll);
+            ViewBag.Ho_Ten = HT;
+            ViewBag.IdTK = IdTK;
+            var Id_TK = IdTK;
+            HttpContext.Session.SetInt32("IdTk", Id_TK);
 
             var pagedList = query.ToPagedList(pageNumber, pageSize);
             // Kiểm tra xem có kết quả trả về hay không
@@ -89,11 +93,34 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             {
                 return PartialView("_CVUngVienPartial", pagedList);
             }
-            ViewBag.Ho_Ten = HT;
-            ViewBag.IdTK = IdTK;
-            var Id_TK = IdTK;
-            HttpContext.Session.SetInt32("IdTk", Id_TK);
+            
             return View(pagedList);
+        }
+
+        [HttpGet]
+        [Route("TaiXuongCV")]
+        public IActionResult TaiXuongCV(int idCV)
+        {
+            var cv = db.Soyeulyliches.FirstOrDefault(x => x.IdSyll == idCV);
+            if (cv == null)
+            {
+                return NotFound("Không tìm thấy CV.");
+            }
+
+            // Kiểm tra xem tệp có tồn tại không
+            if (!System.IO.File.Exists(cv.Duongdansyll))
+            {
+                return NotFound("Không tìm thấy tệp CV.");
+            }
+
+            // Lấy tên tệp từ đường dẫn
+            string fileName = Path.GetFileName(cv.Duongdansyll);
+
+            // Đọc dữ liệu của tệp PDF
+            var fileContent = System.IO.File.ReadAllBytes(cv.Duongdansyll);
+
+            // Trả về tệp PDF để tải xuống
+            return File(fileContent, "application/pdf", fileName);
         }
 
         [Route("DSBTDCV")]

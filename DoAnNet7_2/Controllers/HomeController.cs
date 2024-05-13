@@ -156,6 +156,20 @@ namespace DoAnNet7_2.Controllers
             return View(pagedList);
         }
 
+        [HttpGet]
+        [Route("VeCHungToi")]
+        public IActionResult AboutUs()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        [Route("LienHe")]
+        public IActionResult Contact()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

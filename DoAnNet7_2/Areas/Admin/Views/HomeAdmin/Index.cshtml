@@ -34,18 +34,27 @@
                     <p><b>@ViewBag.countNTDLastMonth nhà tuyển dụng mới</b></p>
                     <p class="info-tong">
                         @{
-                            if ((double)ViewBag.percentChangeNTD > 0)
+                            double percentChangeNTD = ViewBag.percentChangeNTD;
+                            string formattedPercentChangeNTD = percentChangeNTD.ToString();
+
+                            // Kiểm tra nếu giá trị có phần thập phân (không phải số nguyên)
+                            if (percentChangeNTD % 1 != 0)
                             {
-                                <span style="color: green;font-weight: 600;">+@ViewBag.percentChangeNTD% so với tháng @previousMonth2</span>
+                                formattedPercentChangeNTD = percentChangeNTD.ToString("0.00");
                             }
-                            else if ((double)ViewBag.percentChangeNTD < 0)
+                            if (percentChangeNTD > 0)
                             {
-                                <span style="color: red;font-weight: 600;">-@ViewBag.percentChangeNTD% so với tháng @previousMonth2</span>
+                                <span style="color: green;font-weight: 600;">+@formattedPercentChangeNTD% so với tháng @previousMonth2</span>
+                            }
+                            else if (percentChangeNTD < 0)
+                            {
+                                <span style="color: red;font-weight: 600;">@formattedPercentChangeNTD% so với tháng @previousMonth2</span>
                             }
                             else
                             {
                                 <span style="color: blue;font-weight: 600;">Bằng với tháng @previousMonth2</span>
                             }
+
                         }
                     </p>
                 </div>
@@ -60,13 +69,21 @@
                     <p><b>@ViewBag.countNTVLastMonth người tìm việc mới</b></p>
                     <p class="info-tong">
                         @{
-                            if ((double)ViewBag.percentChangeNTV > 0)
+                            double percentChangeNTV = ViewBag.percentChangeNTV;
+                            string formattedPercentChangeNTV = percentChangeNTV.ToString();
+                            // Kiểm tra nếu giá trị có phần thập phân (không phải số nguyên)
+                            if (percentChangeNTV % 1 != 0)
                             {
-                                <span style="color: green;font-weight: 600;">+@ViewBag.percentChangeNTV% so với tháng @previousMonth2</span>
+                                formattedPercentChangeNTV = percentChangeNTV.ToString("0.00");
                             }
-                            else if ((double)ViewBag.percentChangeNTV < 0)
+
+                            if (percentChangeNTV > 0)
                             {
-                                <span style="color: red; font-weight: 600;">-@ViewBag.percentChangeNTV% so với tháng @previousMonth2</span>
+                                <span style="color: green;font-weight: 600;">+@formattedPercentChangeNTV% so với tháng @previousMonth2</span>
+                            }
+                            else if (percentChangeNTV < 0)
+                            {
+                                <span style="color: red; font-weight: 600;">@formattedPercentChangeNTV% so với tháng @previousMonth2</span>
                             }
                             else
                             {
@@ -86,13 +103,21 @@
                     <p><b>@ViewBag.countBTDLastMonth bài tuyển dụng mới</b></p>
                     <p class="info-tong">
                         @{
-                            if ((double)ViewBag.percentChangeBTD > 0)
+                            double percentChangeBTD = ViewBag.percentChangeBTD;
+                            string formattedPercentChangeBTD = percentChangeBTD.ToString();
+
+                            // Kiểm tra nếu giá trị có phần thập phân (không phải số nguyên)
+                            if (percentChangeNTD % 1 != 0)
                             {
-                                <span style="color: green;font-weight: 600;">+@ViewBag.percentChangeBTD% so với tháng @previousMonth2</span>
+                                formattedPercentChangeBTD = percentChangeBTD.ToString("0.00");
                             }
-                            else if ((double)ViewBag.percentChangeBTD < 0)
+                            if (percentChangeBTD > 0)
                             {
-                                <span style="color: red;font-weight: 600;">-@ViewBag.percentChangeBTD% so với tháng @previousMonth2</span>
+                                <span style="color: green;font-weight: 600;">+@formattedPercentChangeBTD% so với tháng @previousMonth2</span>
+                            }
+                            else if (percentChangeBTD < 0)
+                            {
+                                <span style="color: red;font-weight: 600;">@formattedPercentChangeBTD% so với tháng @previousMonth2</span>
                             }
                             else
                             {

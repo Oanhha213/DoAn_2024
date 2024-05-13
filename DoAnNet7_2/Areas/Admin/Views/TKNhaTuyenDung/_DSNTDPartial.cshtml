@@ -1,8 +1,149 @@
-﻿@model X.PagedList.IPagedList<DoAnNet7_2.Models.ViewModels.TaiKhoanCongTyViewModel>
+﻿@model X.PagedList.IPagedList<DoAnNet7_2.Models.ViewModels.TaiKhoanAnhViewModel>
 @using X.PagedList.Mvc.Core
 @using X.PagedList.Mvc.Core.Common;
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 <table class="table mt2">
+    <thead>
+        <tr>
+            <th>
+                #
+            </th>
+            <th>
+                Ảnh đại diện
+            </th>
+            <th>
+                Họ tên
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Số điện thoại
+            </th>
+            <th>
+                Thao tác
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            var stt = (Model.PageNumber - 1) * Model.PageSize + 1;
+        }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @stt
+                </td>
+                <td>
+                    <div style="display: flex;justify-content:center;">
+                        @if (item.Tenanh == null)
+                        {
+                            <img src="/assets/images/user_avatar.jpg" alt="Avatar" width="50" height="50" style="" />
+                        }
+                        else
+                        {
+                            <img src="@item.Tenanh" alt="Avatar" width="50" height="50" style="" />
+                        }
+                        <a class="btn btn-secondary btn-sua-anh" asp-action="SuaAnhDD" asp-controller="Anh" asp-route-idTK="@item.IdTk">
+                            <i class="fa-solid fa-camera" style="font-size: small;"></i>
+                        </a>
+                    </div>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Hoten)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sdt)
+                </td>
+
+                <td style="min-width: 130px !important;">
+                    <a class="btn btn-info" asp-action="InfoTK" asp-controller="DanhSachTaiKhoan" asp-route-idTK="@item.IdTk">
+                        <i class="fa-solid fa-circle-info"></i>
+                    </a>
+                    <a class="btn btn-success" asp-action="SuaTaiKhoan" asp-controller="DanhSachTaiKhoan" asp-route-idTK="@item.IdTk">
+                        <i class="fa-solid fa-pen"></i>
+                    </a>
+                    <a class="btn btn-danger" id="Xoa" onclick="confirmDelete(@item.IdTk)">
+                        <i class="fa-solid fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+            stt++;
+        }
+    </tbody>
+</table>
+<style>
+    .btn-sua-anh {
+        height: fit-content !important;
+        border-radius: 50% !important;
+        padding: 1px 7px !important;
+        align-self: flex-end;
+    }
+</style>
+<!-- Modal xác nhận xoá -->
+<div id="confirmModal" class="modal" aria-hidden="true">
+    <div class="modal-content">
+        <div class="display: flex; justify-content: end">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="display: inline">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="title-danger">
+            <i class="fa-solid fa-triangle-exclamation" style="font-size: 20pt"></i>
+            <h3 style="margin-left: 10px !important" class="confirm-message">Bạn có chắc chắn muốn xoá?</h3>
+        </div>
+        <p class="mt2" style="font-size: 16pt; margin-left: 20px; margin-right: 20px">
+            Tài khoản này sẽ được xoá vĩnh viễn. Bạn chắc chắn muốn xoá tài khoản này?
+        </p>
+        <div class="button-container">
+            <button id="confirmBtn" class="confirm">
+                Đồng ý
+            </button>
+            <button id="cancelBtn" class="cancel">Huỷ bỏ</button>
+        </div>
+    </div>
+</div>
+<script>
+
+    // Kiểm tra xem trang đã được tải lại sau khi thực hiện thao tác xoá hay không
+    window.onload = function () {
+        var reloadFromDelete = sessionStorage.getItem('reloadFromDelete');
+        if (reloadFromDelete) {
+            // Nếu trang đã được tải lại từ thao tác xoá, hiển thị modal
+            Swal.fire({
+                icon: '@TempData["MessageType"]',
+                title: '@TempData["Message"]'
+            });
+            // Xóa dữ liệu trong sessionStorage để tránh hiển thị modal khi tải lại trang lần tiếp theo
+            sessionStorage.removeItem('reloadFromDelete');
+        }
+    };
+    function confirmDelete(id) {
+        // Hiển thị modal xác nhận
+        $('#confirmModal').modal('show');
+        // Lưu ID của tài khoản muốn xóa vào một thuộc tính data của modal
+        $('#confirmModal').data('id', id);
+    }
+
+    // Xử lý sự kiện khi người dùng xác nhận xoá
+    $('#confirmBtn').click(function () {
+        var id = $('#confirmModal').data('id');
+        var url = '@Url.Action("XoaTK", "DanhSachTaiKhoan")' + '?idTK=' + id;
+        sessionStorage.setItem('reloadFromDelete', true);
+        window.location.assign(url);
+    });
+
+    // Xử lý sự kiện khi người dùng nhấn nút "Huỷ bỏ"
+    $('#cancelBtn').click(function () {
+        $('#confirmModal').modal('hide'); // Đóng modal xác nhận
+    });
+</script>
+
+@*<table class="table mt2">
     <thead>
         <tr>
             <th>
@@ -14,9 +155,6 @@
             <th>
                 Email
             </th>
-@*            <th>
-                Mật khẩu
-            </th>*@
             <th>
                 Số điện thoại
             </th>
@@ -26,12 +164,6 @@
             <th>
                 Tuỳ chọn
             </th>
-@*            <th>
-                Loại tài khoản
-            </th>*@
-@*            <th>
-                Thao tác
-            </th>*@
         </tr>
     </thead>
     <tbody>
@@ -50,21 +182,13 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Email)
                 </td>
-@*                <td>
-                    @Html.DisplayFor(modelItem => item.Matkhau)
-                </td>*@
+
                 <td>
                     @Html.DisplayFor(modelItem => item.Sdt)
                 </td>
-@*                <td>
-                    @Html.DisplayFor(modelItem => item.IdLtkNavigation.Tenltk)
-                </td>*@
+
                 <td >
                     <div style="display: flex; justify-content: space-between; align-items: center">
-                        @*@if (!string.IsNullOrEmpty(item.Logo))
-                        {
-                            <img src="@item.Logo" alt="Logo" width="50" height="50" />
-                        }*@
                         <a class="link-hover" asp-action="CongTy" asp-route-IdTK="@item.IdTk" asp-controller="TKNhaTuyenDung">
                             @Html.DisplayFor(modelItem => item.Tencongty)
                         </a>
@@ -82,20 +206,11 @@
                 <td style="padding: 4px 10px !important">
                     <a class="btn btn-secondary" asp-action="DSBTDCongTy" asp-controller="TKNhaTuyenDung" asp-route-idTK="@item.IdTk">Danh sách bài tuyển dụng</a>
                 </td>
-               @* <td>
-                    <a class="btn btn-success" asp-action="SuaCongTy" asp-route-IdTK="@item.IdTk" asp-controller="TKNhaTuyenDung">
-                        <i class="fa-solid fa-pen"></i>
-                    </a>
-                    <a class="btn btn-danger" asp-action="SuaCongTy" asp-route-IdTK="@item.IdTk" asp-controller="TKNhaTuyenDung">
-                        <i class="fa-solid fa-trash"></i>
-                    </a>
-                    <a class="btn btn-secondary" asp-action="DSBTDCongTy" asp-controller="TKNhaTuyenDung" asp-route-idTK="@item.IdTk">Danh sách bài tuyển dụng</a>
-                </td>*@
             </tr>
             stt++;
         }
     </tbody>
-</table>
+</table>*@
 @if (!string.IsNullOrEmpty(ViewBag.NoResultsMessage))
 {
     <div class="alert alert-warning" role="alert">
@@ -119,7 +234,7 @@
 </div>
 }
 
-<!-- Modal xác nhận xoá -->
+@*<!-- Modal xác nhận xoá -->
 <div id="confirmModal" class="modal" aria-hidden="true">
     <div class="modal-content">
         <div class="display: flex; justify-content: end">
@@ -176,4 +291,4 @@
     $('#cancelBtn').click(function () {
         $('#confirmModal').modal('hide'); // Đóng modal xác nhận
     });
-</script>
+</script>*@

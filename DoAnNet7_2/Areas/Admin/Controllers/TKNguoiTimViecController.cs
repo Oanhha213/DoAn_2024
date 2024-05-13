@@ -8,6 +8,7 @@ using Microsoft.Extensions.Hosting.Internal;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 using System.Diagnostics;
 using System.Linq;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace DoAnNet7_2.Areas.Admin.Controllers
 {
@@ -22,23 +23,42 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult DSNguoiTimViec(int? page, string searchTerm)
         {
-            int pageNumber = page == null || page < 0 ? 1 : page.Value;
+            int pageNumber = page ?? 1;
             int pageSize = 8;
-            var query = db.Taikhoans.Include(tk => tk.IdLtkNavigation) // Bao gồm dữ liệu về Loaitaikhoan
-                        .Where(tk => tk.IdLtk == 3)
-                        .AsNoTracking()
-                        .OrderBy(x => x.IdTk);
+
+            var query = from tk in db.Taikhoans
+                        join anh in db.Anhdaidiens on tk.IdTk equals anh.IdTk into gj
+                        from anh in gj.DefaultIfEmpty()
+                        join ltk in db.Loaitaikhoans on tk.IdLtk equals ltk.IdLtk into gj2
+                        from ltk in gj2.DefaultIfEmpty()
+                        where ltk.IdLtk == 3
+                        select new Models.ViewModels.TaiKhoanAnhViewModel
+                        {
+                            IdTk = tk.IdTk,
+                            IdAnhdd = anh != null ? anh.IdAnhdd : 0,
+                            Tenanh = anh != null ? anh.Tenanh : null,
+                            Hoten = tk.Hoten,
+                            Email = tk.Email,
+                            Matkhau = tk.Matkhau,
+                            Sdt = tk.Sdt,
+                            IdLtk = tk.IdLtk,
+                            IdLtkNavigation = ltk,
+                            CreateAt = tk.CreateAt
+                        };
+
+            // Kiểm tra xem có giá trị searchTerm không rồi gán giá trị cho ViewBag.SearchTerm
             if (!string.IsNullOrEmpty(searchTerm))
             {
                 ViewBag.searchTerm = searchTerm;
-                query = (IOrderedQueryable<Taikhoan>)query.Where(x => x.Hoten.Contains(searchTerm) || x.Email.Contains(searchTerm) || x.Sdt.Contains(searchTerm));
+                query = query.Where(tk => tk.Hoten.Contains(searchTerm) || tk.Email.Contains(searchTerm) || tk.Sdt.Contains(searchTerm));
             }
             else
             {
                 ViewBag.searchTerm = null; // Đặt ViewBag.SearchTerm về null nếu không có searchTerm
             }
 
-            var pagedList = query.OrderBy(x => x.IdTk).ToPagedList(pageNumber, pageSize);
+            var pagedList = query.OrderBy(x => x.Hoten).ToPagedList(pageNumber, pageSize);
+
             // Kiểm tra xem có kết quả trả về hay không
             if (pagedList.Count == 0)
             {
@@ -52,7 +72,66 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             {
                 return PartialView("_DSNTVPartial", pagedList);
             }
+
             return View(pagedList);
+            //int pageNumber = page == null || page < 0 ? 1 : page.Value;
+            //int pageSize = 8;
+            //var query = db.Taikhoans.Include(tk => tk.IdLtkNavigation) // Bao gồm dữ liệu về Loaitaikhoan
+            //            .Where(tk => tk.IdLtk == 3)
+            //            .AsNoTracking()
+            //            .OrderBy(x => x.IdTk);
+            //if (!string.IsNullOrEmpty(searchTerm))
+            //{
+            //    ViewBag.searchTerm = searchTerm;
+            //    query = (IOrderedQueryable<Taikhoan>)query.Where(x => x.Hoten.Contains(searchTerm) || x.Email.Contains(searchTerm) || x.Sdt.Contains(searchTerm));
+            //}
+            //else
+            //{
+            //    ViewBag.searchTerm = null; // Đặt ViewBag.SearchTerm về null nếu không có searchTerm
+            //}
+
+            //var pagedList = query.OrderBy(x => x.IdTk).ToPagedList(pageNumber, pageSize);
+            //// Kiểm tra xem có kết quả trả về hay không
+            //if (pagedList.Count == 0)
+            //{
+            //    ViewBag.NoResultsMessage = "Không có kết quả phù hợp.";
+            //}
+            //else
+            //{
+            //    ViewBag.NoResultsMessage = null;
+            //}
+            //if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+            //{
+            //    return PartialView("_DSNTVPartial", pagedList);
+            //}
+            //return View(pagedList);
+        }
+
+        [Route("ThemTKNTV")]
+        [HttpGet]
+        public IActionResult ThemTKNTV()
+        {
+            return View();
+        }
+
+        [Route("ThemTKNTV")]
+        [HttpPost]
+        public IActionResult ThemTKNTV(Taikhoan tk)
+        {
+            if (ModelState.IsValid)
+            {
+                // Set thời gian tạo bài viết
+                tk.CreateAt = DateTime.Now;
+                db.Taikhoans.Add(tk);
+                db.SaveChanges();
+                var Id_TK = tk.IdTk;
+                HttpContext.Session.SetInt32("IdTk", Id_TK);
+
+                // Chuyển hướng đến action UpAnhDaiDien và truyền vai trò của người dùng
+                return RedirectToAction("ThemAnhDaiDien", "Anh");
+            }
+
+            return View(tk);
         }
 
         [Route("BaiVietDaThich")]

@@ -5,7 +5,7 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<div class="border-content col-md-6">
+<div class="border-content col-md-8">
 
     <h1>Đổi ảnh</h1>
     <hr />
@@ -29,16 +29,24 @@
                         <img class="mt2" id="AnhDaiDienPreview" src="#" alt="Ảnh đại diện" style="display: none; max-width: 200px; max-height: 200px;">
                     </div>
                 </div>
-                <input type="hidden" asp-for="IdTk" />
+                <input type="hidden" asp-for="IdTk"/>
                 <div class="form-group mt2">
                     @*<input type="submit" value="Lưu" class="btn btn-success" />*@
                     <button type="button" id="submitBtn" class="btn btn-success">Lưu</button>
-                    <a class="btn btn-danger" asp-controller="DanhSachTaiKhoan" asp-action="DanhSachTaiKhoan">Huỷ</a>
+                    @if (ViewBag.IdLtk == 2)
+                    {
+                        <a class="btn btn-danger" asp-action="DSNhaTuyenDung" asp-controller="TKNhaTuyenDung">Huỷ</a>
+                    }
+                    else
+                    {
+                        <a class="btn btn-danger" asp-action="DSNguoiTimViec" asp-controller="TKNguoiTimViec">Huỷ</a>
+                    }
                 </div>
             </form>
         </div>
     </div>
 </div>
+<input type="hidden" value="@ViewBag.IdLtk" id="idLTK"/>
 <!-- Modal xác nhận sửa -->
 <div id="confirmModal" class="modal" aria-hidden="true">
     <div class="modal-content">
@@ -77,7 +85,7 @@
     $(function () {
         var messageType = '@ViewBag.MessageType';
         var message = '@ViewBag.Message';
-
+        var idLTK = $('#idLTK').val();
         if (messageType !== '') {
             Swal.fire({
                 icon: messageType,
@@ -87,7 +95,12 @@
             }).then(function () {
                 // Chuyển hướng sau khi hiển thị thông điệp
                 if (messageType === 'success') {
-                    window.location.href = '@Url.Action("DanhSachTaiKhoan", "DanhSachTaiKhoan")';
+                    if (idLTK == 2) {
+                        window.location.href = '@Url.Action("DSNhaTuyenDung", "TKNhaTuyenDung")';
+                    }
+                    else{
+                        window.location.href = '@Url.Action("DSNguoiTimViec", "TKNguoiTimViec")';
+                    }
                 }
             });
         }

@@ -5,132 +5,158 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
+<style>
+    .title-card {
+        padding: 10px !important;
+        border-left: 8px solid #feb696;
+    }
 
-<div class="border-content col-md-12">
+    .pad-none {
+        padding: 0 !important;
+    }
 
-    <h1>Chi tiết bài tuyển dụng @ViewBag.Tencongviec</h1>
+    .content-btd .des {
+        padding: 10px; /* Khoảng cách nội dung với viền */
+        background-color: #f0f0f0; /* Màu nền */
+        border-radius: 5px; /* Bo góc */
+        margin-top: 5px;
+        margin-bottom: 5px; /* Khoảng cách với phần nội dung dưới */
+    }
 
-    <div class="ml4 row">
-        <hr />
-        <div class="col-sm-10" style="background-color: #fff">
-            <div class="mt1">
-                <p>
-                    Tên công việc
-                </p>
-                <div class="des">
-                    @Html.DisplayFor(model => model.Tencongviec)
+    .content-btd p{
+        color: #007bff;
+        font-weight: bold; /* Chữ in đậm */
+    }
+
+    .content-btd span {
+        color: #000; /* Màu chữ */
+        font-weight: normal;
+    }
+</style>
+<div class="col-md-12">
+    <div class="border-content title-card" style="min-width:  -webkit-fill-available;">
+        <h4>Chi tiết bài tuyển dụng</h4>
+    </div>
+    <div class="border-content mt2" style="min-width:  -webkit-fill-available;">
+        <div class="ml4 row">
+            <hr />
+            <div class="col-sm-12 content-btd" style="background-color: #fff">
+                <div class="mt1">
+                    <h3>
+                        <b>@Html.DisplayFor(model => model.Tencongviec)</b>
+                    </h3>
                 </div>
-            </div>
-            <div class="">
-                <p>
-                    Địa điểm làm việc
-                </p>
-                <p>
-                    <span class="des">
-                        @Html.DisplayFor(model => model.Diachi)
-                    </span>
-                    @if (Model.IdTtNavigation != null)
-                    {
-                        <span class="">
-                            ,@Html.DisplayFor(model => model.IdTtNavigation.Tentt)
+                <div class="mt1" style="display: flex; justify-content: space-around; margin-bottom: 10px">
+                    <p>
+                        <i class="fa-solid fa-location-dot"></i>
+                        Địa chỉ:
+                        <span>
+                            @Html.DisplayFor(model => model.Diachi)
                         </span>
-                    }
-                </p>
-            </div>
-            <div class="">
-                <p>
-                    Ngành nghề
-                </p>
-                <p class="des">
-                    @Html.DisplayFor(model => model.IdNnNavigation.Tennganhnghe)
-                </p>
-            </div>
-            <div class="">
-                <p>
-                    Loại công việc
-                </p>
-                <p class="des">
-                    @Html.DisplayFor(model => model.IdLcvNavigation.Tenlcv)
-                </p>
-            </div>
-            <div class="">
-                <p>
-                    Mô tả công việc
-                </p>
-                <div class="des">
-                    @Html.Raw(Model.Motacongviec.Replace("\n", "<br>"))
+                        @if (Model.IdTtNavigation != null)
+                        {
+                            <span class="">
+                                ,@Html.DisplayFor(model => model.IdTtNavigation.Tentt)
+                            </span>
+                        }
+                    </p>
+                    <p>
+                        <i class="fa-solid fa-sack-dollar"></i>
+                        Mức lương:
+                        <span>
+                            @Html.DisplayFor(model => model.IdLuongNavigation.Tenmucluong)
+
+                        </span>
+                    </p>
+                    <p>
+                        <i class="fa-solid fa-business-time"></i>
+                        Hạn nộp hồ sơ:
+                        <span>
+                            @if (Model.Hannopcv.HasValue)
+                            {
+                                @Model.Hannopcv.Value.ToShortDateString()
+                            }
+                        </span>
+                    </p>
                 </div>
-            </div>
-            <div class="">
-                <p>
-                    Yêu cầu khác
-                </p>
-                <div class="des">
-                    @Html.Raw(Model.Yeucaukhac.Replace("\n", "<br>"))
+                <div class="">
+                    <p>
+                        Ngành nghề:
+                        <span>@Html.DisplayFor(model => model.IdNnNavigation.Tennganhnghe)</span>
+                    </p>
                 </div>
-            </div>
-            <div class="">
-                <p>
-                    Quyền lợi
-                </p>
-                <div class="des">
-                    @Html.Raw(Model.Quyenloi.Replace("\n", "<br>"))
+                <div class="">
+                    <p>
+                        Loại công việc:
+                        <span>
+                            @Html.DisplayFor(model => model.IdLcvNavigation.Tenlcv)
+
+                        </span>
+                    </p>
                 </div>
-            </div>
-            <div class="">
+                <div class="">
+                    <p>
+                        Mô tả công việc
+                    </p>
+                    <div class="des">
+                        @Html.Raw(Model.Motacongviec.Replace("\n", "<br>"))
+                    </div>
+                </div>
                 <p>
-                    Mức lương
+                    Yêu cầu kinh nghiệm:
+                    <span>
+                        @Html.DisplayFor(model => model.IdTgknNavigation.Tentgkn)
+
+                    </span>
                 </p>
-                <p class="des">
-                    @Html.DisplayFor(model => model.IdLuongNavigation.Tenmucluong)
-                </p>
-            </div>
-            <div class="">
-                <p>
-                    Yêu cầu kinh nghiệm
-                </p>
-                <p class="des">
-                    @Html.DisplayFor(model => model.IdTgknNavigation.Tentgkn)
-                </p>
-            </div>
-            <div class="">
-                <p class="">
-                    Tài khoản tạo bài viết
-                </p>
-                <p class="des">
-                    @Html.DisplayFor(model => model.IdTkNavigation.Email)
-                </p>
-            </div>
-            <div class="">
-                <p>
-                    Thời gian tạo bài viết
-                </p>
-                <p class="des">
-                    @Html.DisplayFor(model => model.CreateAt)
-                </p>
-            </div>
-            <div class="">
-                <p>
-                    Hạn nộp hồ sơ
-                </p>
-                <p class="des">
-                    @if (Model.Hannopcv.HasValue)
-                    {
-                        @Model.Hannopcv.Value.ToShortDateString()
-                    }
-                </p>
-            </div>
-            <div class="">
-                <p>
-                    Trạng thái hiển thị
-                </p>
-                <p class="des">
-                    @Html.DisplayFor(model => model.IdTthtNavigation.Tenttht)
-                </p>
+                <div class="">
+                    <p>
+                        Yêu cầu khác
+                    </p>
+                    <div class="des">
+                        @Html.Raw(Model.Yeucaukhac.Replace("\n", "<br>"))
+                    </div>
+                </div>
+                <div class="">
+                    <p>
+                        Quyền lợi
+                    </p>
+                    <div class="des">
+                        @Html.Raw(Model.Quyenloi.Replace("\n", "<br>"))
+                    </div>
+                </div>
+
+                <div class="">
+                    <p class="">
+                        Tài khoản tạo bài viết:
+                        <span>
+                            @Html.DisplayFor(model => model.IdTkNavigation.Email)
+
+                        </span>
+                    </p>
+                </div>
+                <div class="">
+                    <p>
+                        Thời gian tạo bài viết:
+                        <span>
+                            @Html.DisplayFor(model => model.CreateAt)
+
+                        </span>
+                    </p>
+                </div>
+                <div class="">
+                    <p>
+                        Trạng thái hiển thị:
+                        <span>
+                            @Html.DisplayFor(model => model.IdTthtNavigation.Tenttht)
+                        </span>
+                    </p>
+                </div>
             </div>
         </div>
     </div>
     <div class="mt2 ml4" style="margin-bottom: 20px">
         <a class="btn btn-success" asp-controller="BaiTuyenDung" asp-action="SuaBTD" asp-route-idBTD="@Model.IdBtd">Chỉnh sửa</a>
     </div>
+</div>
 </div>

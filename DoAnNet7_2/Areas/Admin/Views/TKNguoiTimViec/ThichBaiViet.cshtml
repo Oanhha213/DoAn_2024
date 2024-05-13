@@ -7,21 +7,34 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<div class="border-content col-md-12">
-<div class="mt1">
-    <a class="link-hover" asp-action="BaiVietDaThich" asp-controller="TKNguoiTimViec" asp-route-idTK="@ViewBag.IdTk">Quay về</a>
-</div>
+@*Bài viết chưa thích*@
+<style>
+    .title-card {
+        padding: 10px !important;
+        border-left: 8px solid #feb696;
+    }
 
-<h1>Bài viết chưa thích của @ViewBag.Hoten</h1>
-<input type="hidden" id="idTK" value="@ViewBag.IdTk" />
-
-<form id="search-form" class="mt2" style="display: flex">
-    <input type="search" class="form-control" placeholder="Tên công việc, địa chỉ..." id="searchItem">
-    <button type="submit" class="btn btn-primary">Tìm kiếm</button>
-</form>
-<div id="item_search">
-    @Html.Partial("_ThichBaiVietPartial", Model)
-</div>
+    .pad-none {
+        padding: 0 !important;
+    }
+</style>
+<div class="col-md-12">
+    <p style=" margin-left: 10px; margin-bottom: 10px !important">
+        <a class="link-hover" asp-action="BaiVietDaThich" asp-controller="TKNguoiTimViec" asp-route-idTK="@ViewBag.IdTk">&#60;&#60; Quay về</a>
+    </p>
+    <div class="border-content title-card" style="min-width:  -webkit-fill-available;">
+        <h4>Bài viết chưa thích của @ViewBag.Hoten</h4>
+    </div>
+    <div class="border-content mt2" style="min-width:  -webkit-fill-available;">
+        <input type="hidden" id="idTK" value="@ViewBag.IdTk" />
+        <form id="search-form" class="mt2" style="display: flex">
+            <input type="search" class="form-control" placeholder="Tên công việc, địa chỉ..." id="searchItem">
+            <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+        </form>
+        <div id="item_search">
+            @Html.Partial("_ThichBaiVietPartial", Model)
+        </div>
+    </div>
 </div>
 <script>
     // Bắt sự kiện khi form submit

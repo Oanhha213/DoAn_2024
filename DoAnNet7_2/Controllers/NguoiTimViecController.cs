@@ -254,6 +254,32 @@ namespace DoAnNet7_2.Controllers
             return File(fileContent, "application/pdf");
         }
 
+        [HttpGet]
+        [Route("TaiXuongCV")]
+        public IActionResult TaiXuongCV(int idCV)
+        {
+            var cv = db.Soyeulyliches.FirstOrDefault(x => x.IdSyll == idCV);
+            if (cv == null)
+            {
+                return NotFound("Không tìm thấy CV.");
+            }
+
+            // Kiểm tra xem tệp có tồn tại không
+            if (!System.IO.File.Exists(cv.Duongdansyll))
+            {
+                return NotFound("Không tìm thấy tệp CV.");
+            }
+
+            // Lấy tên tệp từ đường dẫn
+            string fileName = Path.GetFileName(cv.Duongdansyll);
+
+            // Đọc dữ liệu của tệp PDF
+            var fileContent = System.IO.File.ReadAllBytes(cv.Duongdansyll);
+
+            // Trả về tệp PDF để tải xuống
+            return File(fileContent, "application/pdf", fileName);
+        }
+
         [Route("TaiKhoanNTV")]
         public IActionResult TaiKhoanNTV()
         {

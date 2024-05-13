@@ -29,6 +29,9 @@
                     <a class="link-hover" asp-controller="NguoiTimViec" asp-action="ViewCV" asp-route-idCV="@item.IdSyll" target="_blank">@Html.DisplayFor(modelItem => item.Tensyll)</a>
                 </td>
                 <td>
+                    <a class="btn btn-secondary" asp-action="TaiXuongCV" asp-controller="CV" asp-route-idCV="@item.IdSyll" style="font-size: large">
+                        <i class="fa-solid fa-file-arrow-down"></i>
+                    </a>
                     <a class="btn btn-success" asp-action="SuaCVNTV" asp-controller="NguoiTimViec" asp-route-idCV="@item.IdSyll">
                         <i class="fa-solid fa-pen"></i>
                     </a>

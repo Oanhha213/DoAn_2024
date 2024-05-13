@@ -7,20 +7,33 @@
     ViewData["Title"] = "BTD chưa Ứng tuyển";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
-<div class="border-content col-md-12">
-    <div class="mt1">
-        @*<a class="btn btn-return"
-        href="@Url.Action("DSBTDUngTuyen", "TKNguoiTimViec", new { IdTK = ViewBag.IdTK, idCV = @ViewBag.IdSyll,previousView = "DSNguoiTimViec" })">Quay về</a>*@
-        <a class="link-hover" asp-action="DSBTDUngTuyen" asp-controller="TKNguoiTimViec" asp-route-idTK="@ViewBag.IdTk">Quay về</a>
+
+<style>
+    .title-card {
+        padding: 10px !important;
+        border-left: 8px solid #feb696;
+    }
+
+    .pad-none {
+        padding: 0 !important;
+    }
+</style>
+<div class="col-md-12">
+    <p style=" margin-left: 10px; margin-bottom: 10px !important">
+        <a class="link-hover" asp-action="DSBTDUngTuyen" asp-controller="TKNguoiTimViec" asp-route-idTK="@ViewBag.IdTk">&#60;&#60; Quay về</a>
+    </p>
+    <div class="border-content title-card" style="min-width:  -webkit-fill-available;">
+        <h4>Bài viết chưa ứng tuyển của @ViewBag.Hoten</h4>
     </div>
-    <h1>Danh sách bài tuyển dụng chưa ứng tuyển của @ViewBag.Hoten</h1>
-    <input type="hidden" id="idCV" value="@ViewBag.IdSyll" />
-    <form id="search-form" class="mt2" style="display: flex">
-        <input type="search" class="form-control" placeholder="Tên công việc, địa chỉ..." id="searchItem">
-        <button type="submit" class="btn btn-primary">Tìm kiếm</button>
-    </form>
-    <div id="item_search">
-        @Html.Partial("_BTDChuaUTPartial", Model)
+    <div class="border-content mt2" style="min-width:  -webkit-fill-available;">
+        <input type="hidden" id="idCV" value="@ViewBag.IdSyll" />
+        <form id="search-form" class="mt2" style="display: flex">
+            <input type="search" class="form-control" placeholder="Tên công việc, địa chỉ..." id="searchItem">
+            <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+        </form>
+        <div id="item_search">
+            @Html.Partial("_BTDChuaUTPartial", Model)
+        </div>
     </div>
 </div>
 <script>

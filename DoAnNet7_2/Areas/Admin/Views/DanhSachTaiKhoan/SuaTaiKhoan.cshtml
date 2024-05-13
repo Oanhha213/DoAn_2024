@@ -5,7 +5,7 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<div class="border-content col-md-6">
+<div class="border-content col-md-8">
     <h1>Sửa tài khoản</h1>
     <input type="hidden" id="idTk" name="IdTk" />
 
@@ -16,24 +16,27 @@
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <input type="hidden" asp-for="IdTk" />
                 <div class="form-group">
-                    <label asp-for="Hoten" class="control-label">Họ tên
+                    <label asp-for="Hoten" class="control-label">
+                        Họ tên
                         (<span style="color: red">*</span>)
                     </label>
-                    <input asp-for="Hoten" class="form-control mt1" required/>
+                    <input asp-for="Hoten" class="form-control mt1" required />
                     <span asp-validation-for="Hoten" class="text-danger"></span>
                 </div>
                 <div class="form-group mt2">
-                    <label asp-for="Email" class="control-label">Email
+                    <label asp-for="Email" class="control-label">
+                        Email
                         (<span style="color: red">*</span>)
                     </label>
-                    <input asp-for="Email" class="form-control mt1" type="email"/>
+                    <input asp-for="Email" class="form-control mt1" type="email" readonly />
                     <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
                 <div class="form-group mt2">
-                    <label asp-for="Matkhau" class="control-label">Mật khẩu
+                    <label asp-for="Matkhau" class="control-label">
+                        Mật khẩu
                         (<span style="color: red">*</span>)
                     </label>
-                    <input asp-for="Matkhau" class="form-control mt1"/>
+                    <input asp-for="Matkhau" class="form-control mt1" />
                     <span asp-validation-for="Matkhau" class="text-danger"></span>
                 </div>
                 <div class="form-group mt2">
@@ -42,26 +45,49 @@
                     <span asp-validation-for="Sdt" class="text-danger"></span>
                 </div>
                 <div class="form-group mt2">
-                    <label asp-for="IdLtk" class="control-label"></label>
-                    <select asp-for="IdLtk" class="form-control mt1" asp-items="ViewBag.IdLtk"></select>
+                    <label asp-for="IdLtk" class="control-label">
+                        Loại tài khoản
+                        (<span style="color: red">*</span>)
+                    </label>
+                    <!-- Trường ẩn để lưu giá trị thực sự của IdLtk -->
+                    <input asp-for="IdLtk" type="hidden" />
+
+                    <!-- Trường text để hiển thị giá trị dưới dạng văn bản -->
+                    @if (Model.IdLtk == 2)
+                    {
+                        <input class="form-control mt1" value="Nhà tuyển dụng" readonly />
+                    }
+                    else
+                    {
+                        <input class="form-control mt1" value="Người tìm việc" readonly />
+                    }
                     <span asp-validation-for="IdLtk" class="text-danger"></span>
                 </div>
+                <input type="hidden" asp-for="CreateAt" />
                 <div class="form-group mt2">
                     @*<input type="submit" value="Lưu" class="btn btn-success" />*@
                     <button type="button" id="submitBtn" class="btn btn-success">Lưu</button>
-                    <a class="btn btn-danger" asp-action="DanhSachTaiKhoan" asp-controller="DanhSachTaiKhoan">Huỷ</a>
+                    @if (Model.IdLtk == 2)
+                    {
+                        <a class="btn btn-danger" asp-action="DSNhaTuyenDung" asp-controller="TKNhaTuyenDung">Huỷ</a>
+                    }
+                    else
+                    {
+                        <a class="btn btn-danger" asp-action="DSNguoiTimViec" asp-controller="TKNguoiTimViec">Huỷ</a>
+                    }
                 </div>
             </form>
         </div>
     </div>
 </div>
+<input type="hidden" value="@Model.IdLtk" id="idLTK" />
 <!-- Modal xác nhận sửa -->
 <div id="confirmModal" class="modal" aria-hidden="true">
     <div class="modal-content">
         <div class="display: flex; justify-content: end">
-           <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="display: inline">
-               <span aria-hidden="true" >&times;</span>
-           </button>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="display: inline">
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
         <div class="title-warning">
             <i class="fa-solid fa-triangle-exclamation" style="font-size: 20pt"></i>
@@ -93,7 +119,7 @@
     $(function () {
         var messageType = '@ViewBag.MessageType';
         var message = '@ViewBag.Message';
-
+        var idLTK = $('#idLTK').val();
         if (messageType !== '') {
             Swal.fire({
                 icon: messageType,
@@ -103,7 +129,13 @@
             }).then(function () {
                 // Chuyển hướng sau khi hiển thị thông điệp
                 if (messageType === 'success') {
-                    window.location.href = '@Url.Action("DanhSachTaiKhoan", "DanhSachTaiKhoan")';
+                    if (idLTK == 2) {
+
+                        window.location.href = '@Url.Action("DSNhaTuyenDung", "TKNhaTuyenDung")';
+                    }
+                    else{
+                        window.location.href = '@Url.Action("DSNguoiTimViec", "TKNguoiTimViec")';
+                    }
                 }
             });
         }

@@ -271,64 +271,64 @@
                     swal.fire("Lỗi!", xhr.responseText, "error");
                 });
         });
-    });
+        $("#openUngTuyenModal").click(function () {
+            $("#ungTuyenModal").modal("show"); // Kích hoạt modal
+        });
+        $("#nopHoSoBtn").click(function () {
+            var idCV = $("#cvSelect").val();
+            var idBTD = $("#idBTD").val();
+            var idTK = $("#idTK").val();
 
-    $("#openUngTuyenModal").click(function () {
-        $("#ungTuyenModal").modal("show"); // Kích hoạt modal
-    });
-    $("#nopHoSoBtn").click(function () {
-        var idCV = $("#cvSelect").val();
-        var idBTD = $("#idBTD").val();
-        var idTK = $("#idTK").val();
-
-        $.post("@Url.Action("UngTuyenNTV", "NguoiTimViec")", { idTK: idTK, idBTD: idBTD, idCV: idCV })
-            .done(function (data) {
-                $("#ungTuyenModal").modal("hide");
-                swal.fire({
-                    icon: 'success',
-                    title: 'Ứng tuyển thành công!',
-                    text: data.message
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        // Cập nhật trạng thái của nút "Ứng tuyển ngay"
-                        $(".btn-success").replaceWith('<a class="btn" style="background-color: var(--blue); cursor: auto">Đã ứng tuyển</a>');
-                        // Chuyển hướng về trang ChiTietBTDNTV
-                        window.location.href = '@Url.Action("ChiTietBTDNTV", "NguoiTimViec")' + '?idTK=' + idTK + '&idBTD=' + idBTD;
-                    }
+            $.post("@Url.Action("UngTuyenNTV", "NguoiTimViec")", { idTK: idTK, idBTD: idBTD, idCV: idCV })
+                .done(function (data) {
+                    $("#ungTuyenModal").modal("hide");
+                    swal.fire({
+                        icon: 'success',
+                        title: 'Ứng tuyển thành công!',
+                        text: data.message
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // Cập nhật trạng thái của nút "Ứng tuyển ngay"
+                            $(".btn-success").replaceWith('<a class="btn" style="background-color: var(--blue); cursor: auto">Đã ứng tuyển</a>');
+                            // Chuyển hướng về trang ChiTietBTDNTV
+                            window.location.href = '@Url.Action("ChiTietBTDNTV", "NguoiTimViec")' + '?idTK=' + idTK + '&idBTD=' + idBTD;
+                        }
+                    });
+                })
+                .fail(function (xhr, status, error) {
+                    swal.fire("Lỗi!", xhr.responseText, "error");
                 });
-            })
-            .fail(function (xhr, status, error) {
-                swal.fire("Lỗi!", xhr.responseText, "error");
-            });
+        });
     });
 
 
 
-            //$(document).ready(function () {
-        //    $("#openUngTuyenModal").click(function () {
-        //        $("#ungTuyenModal").modal("show"); // Kích hoạt modal
-        //    });
-        //    $("#nopHoSoBtn").click(function () {
-        //        var idCV = $("#cvSelect").val();
-        //        var idBTD = $("#idBTD").val();
-        //        var idTK = $("#idTK").val();
 
-        //        console.log("idTK:", idTK);
-        //        console.log("idBTD:", idBTD);
-        //        console.log("idCV:", idCV);
+                //$(document).ready(function () {
+            //    $("#openUngTuyenModal").click(function () {
+            //        $("#ungTuyenModal").modal("show"); // Kích hoạt modal
+            //    });
+            //    $("#nopHoSoBtn").click(function () {
+            //        var idCV = $("#cvSelect").val();
+            //        var idBTD = $("#idBTD").val();
+            //        var idTK = $("#idTK").val();
 
-        //        // Gửi request POST để xử lý hồ sơ ứng tuyển
-        //        $.post("@Url.Action("UngTuyenNTV", "NguoiTimViec")", { idTK: idTK, idBTD: idBTD, idCV: idCV })
-        //            .done(function (data) {
-        //                // Hiển thị thông báo khi ứng tuyển thành công
-        //                swal.fire("Ứng tuyển thành công!", data, "success");
-        //            })
-        //            .fail(function (xhr, status, error) {
-        //                // Xử lý khi có lỗi
-        //                swal.fire("Lỗi!", xhr.responseText, "error");
-        //            });
-        //    });
-        //});
+            //        console.log("idTK:", idTK);
+            //        console.log("idBTD:", idBTD);
+            //        console.log("idCV:", idCV);
+
+            //        // Gửi request POST để xử lý hồ sơ ứng tuyển
+            //        $.post("@Url.Action("UngTuyenNTV", "NguoiTimViec")", { idTK: idTK, idBTD: idBTD, idCV: idCV })
+            //            .done(function (data) {
+            //                // Hiển thị thông báo khi ứng tuyển thành công
+            //                swal.fire("Ứng tuyển thành công!", data, "success");
+            //            })
+            //            .fail(function (xhr, status, error) {
+            //                // Xử lý khi có lỗi
+            //                swal.fire("Lỗi!", xhr.responseText, "error");
+            //            });
+            //    });
+            //});
 </script>
 
 <style>

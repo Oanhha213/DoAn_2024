@@ -6,16 +6,28 @@
     ViewData["Title"] = "DSBaiTuyenDung";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
+<style>
+    .title-card {
+        padding: 10px !important;
+        border-left: 8px solid #feb696;
+    }
 
-<div class="border-content col-md-12">
+    .pad-none {
+        padding: 0 !important;
+    }
+</style>
 
-    <h1>Danh sách bài tuyển dụng</h1>
+<div class="border-content col-md-12 title-card ">
+    <h4>Danh sách bài tuyển dụng</h4>
+</div>
+<div class="border-content col-md-12 mt2">
+
 
     <div class="row mt2" style="align-items: center; justify-content: space-between">
-        <p class="col-md-3">
+        <p class="col-md-3 pad-none">
             <a class="btn btn-success" asp-controller="BaiTuyenDung" asp-action="ThemBTD">Thêm mới</a>
         </p>
-        <form id="search-form" class="col-md-9" style="display: flex; align-items: center">
+        <form id="search-form" class="col-md-9 pad-none" style="display: flex; align-items: center">
             <input type="search" class="form-control" placeholder="Tên công việc, ngành nghề..." id="searchProducts">
             <button type="submit" class="btn btn-primary">Tìm kiếm</button>
         </form>

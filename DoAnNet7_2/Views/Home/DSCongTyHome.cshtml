@@ -7,14 +7,31 @@
     Layout = "~/Views/Shared/_LayoutHome2.cshtml"; ;
 }
 
+<style>
+    .bg-congty {
+        background: transparent linear-gradient(6deg, #fff, #007bffd4 100%, rgba(0, 123, 255, 0.702) 0) 0 0 no-repeat padding-box;
+    }
+</style>
 
-<div class="row" style="justify-content: center">
-    <div class="col-md-11">
-        <form id="search-form" class="col-md-9" style="display: flex; align-items: center">
+<div class="col-md-12 bg-congty row">
+    <div class="col-md-8 row" style="align-self: center; justify-content: center">
+        <h2 style="color: #094789" class="col-md-10">
+            Khám phá hàng ngàn cơ hội việc làm từ các công ty
+        </h2>
+        <h5 class="col-md-10" style="text-align: center">
+            Tìm kiếm công việc mơ ước và nơi làm việc lý tưởng tại đây
+        </h5>
+        <form id="search-form" class="col-md-10" style="display: flex; align-items: center">
             <input type="search" class="form-control" placeholder="Tên công ty..." id="searchItem">
             <button type="submit" class="btn btn-primary">Tìm kiếm</button>
         </form>
+
     </div>
+    <div class="col-md-4">
+        <img src="~/assets/images/bgCongTy.png" style="max-width: 370px; max-height: 270px" />
+    </div>
+</div>
+<div class="row" style="justify-content: center">
     <div class="col-md-11">
         <div id="item_search">
             @Html.Partial("_DSCongTyHomePartial", Model)

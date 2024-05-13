@@ -13,7 +13,7 @@
     <h2 class="mt1">Thêm bài tuyển dụng</h2>
     <hr />
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-7">
             <form asp-action="ThemBTD" asp-controller="BaiTuyenDung" method="post">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group mt2">
@@ -111,7 +111,7 @@
                         Hạn nộp hồ sơ
                         (<span style="color: red">*</span>)
                     </label>
-                    <input style="position: relative; cusor: auto !important" asp-for="Hannopcv" type="text" class="form-control mt1" id="hannopcv" readonly placeholder="Chọn ngày" />
+                    <input style="position: relative; cusor: auto !important" asp-for="Hannopcv" type="text" class="form-control mt1" id="hannopcv" readonly placeholder="dd/mm/yyyy" />
                     <i class="fa-regular fa-calendar" style="position: absolute; right: 30px; bottom: 193px; font-size: large; color: #6c75a2;"></i>
                     <span asp-validation-for="Hannopcv" class="text-danger"></span>
                 </div>
@@ -127,7 +127,7 @@
                 </div>
             </form>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-5">
             <h3>Danh sách nhà tuyển dụng</h3>
             <div class="mt2" style="overflow-y: scroll;max-height: 500px; padding: 4px 8px">
                 <table class="table">
@@ -154,7 +154,7 @@
                                 </td>
                                 @*<td>@item.IdTk</td>*@
                                 <td>@item.Hoten</td>
-                                <td>@item.Hoten</td>
+                                <td>@item.Email</td>
                                 <td>@item.Sdt</td>
                                 @*<td style="min-width: 100px">
                             <a class="btn btn-info" asp-action="CongTy" asp-controller="TKNhaTuyenDung" asp-route-IdTK="@item.IdTk">Chi tiết</a>

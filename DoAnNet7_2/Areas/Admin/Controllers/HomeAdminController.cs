@@ -19,58 +19,6 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
         [Route("index")]
         public IActionResult Index()
         {
-            //var countNTD = db.Taikhoans.AsNoTracking().Where(x => x.IdLtk == 2).Distinct().Count();
-            //ViewBag.countNTD = countNTD;
-            // Lấy số lượng tài khoản mới trong tháng trước
-            var countNTDLastMonth = db.Taikhoans
-                .Where(x => x.IdLtk == 2 && x.CreateAt >= DateTime.Today.AddMonths(-1) && x.CreateAt < DateTime.Today)
-                .Distinct()
-                .Count();
-
-            // Lấy số lượng tài khoản mới trong tháng trước đó
-            var countNTDSecondLastMonth = db.Taikhoans
-                .Where(x => x.IdLtk == 2 && x.CreateAt >= DateTime.Today.AddMonths(-2) && x.CreateAt < DateTime.Today.AddMonths(-1))
-                .Distinct()
-                .Count();
-
-            // Tính toán phần trăm tăng trưởng hoặc giảm
-            double percentChangeNTD = 0.0;
-            if (countNTDSecondLastMonth != 0)
-            {
-                percentChangeNTD = ((double)(countNTDLastMonth - countNTDSecondLastMonth) / countNTDSecondLastMonth) * 100;
-            }
-
-            ViewBag.countNTDLastMonth = countNTDLastMonth;
-            ViewBag.countNTDSecondLastMonth = countNTDSecondLastMonth;
-            ViewBag.percentChangeNTD = percentChangeNTD;
-
-            //var countNTV = db.Taikhoans.AsNoTracking().Where(x => x.IdLtk == 3).Distinct().Count();
-            //ViewBag.countNTV = countNTV;
-
-            var countNTVLastMonth = db.Taikhoans
-                .Where(x => x.IdLtk == 3 && x.CreateAt >= DateTime.Today.AddMonths(-1) && x.CreateAt < DateTime.Today)
-                .Distinct()
-                .Count();
-
-            // Lấy số lượng tài khoản mới trong tháng trước đó
-            var countNTVSecondLastMonth = db.Taikhoans
-                .Where(x => x.IdLtk == 3 && x.CreateAt >= DateTime.Today.AddMonths(-2) && x.CreateAt < DateTime.Today.AddMonths(-1))
-                .Distinct()
-                .Count();
-
-            // Tính toán phần trăm tăng trưởng hoặc giảm
-            double percentChangeNTV = 0.0;
-            if (countNTDSecondLastMonth != 0)
-            {
-                percentChangeNTV = ((double)(countNTVLastMonth - countNTVSecondLastMonth) / countNTVSecondLastMonth) * 100;
-            }
-
-            ViewBag.countNTVLastMonth = countNTVLastMonth;
-            ViewBag.countNTVSecondLastMonth = countNTVSecondLastMonth;
-            ViewBag.percentChangeNTV = percentChangeNTV;
-
-            //var countBTD = db.Baituyendungs.AsNoTracking().Select(x => x.IdBtd).Distinct().Count();
-            //ViewBag.countBTD = countBTD;
 
             // Lấy ngày đầu tiên của tháng hiện tại
             var today = DateTime.Today;
@@ -81,6 +29,65 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
 
             // Lấy ngày đầu tiên của tháng trước đó
             var firstDayOfSecondLastMonth = firstDayOfLastMonth.AddMonths(-1);
+            //var countNTD = db.Taikhoans.AsNoTracking().Where(x => x.IdLtk == 2).Distinct().Count();
+            //ViewBag.countNTD = countNTD;
+            // Lấy số lượng tài khoản mới trong tháng trước
+            var countNTDLastMonth = db.Taikhoans
+                .Where(x => x.IdLtk == 2 && x.CreateAt >= firstDayOfLastMonth && x.CreateAt < firstDayOfThisMonth)
+                .Distinct()
+                .Count();
+
+            // Lấy số lượng tài khoản mới trong tháng trước đó
+            var countNTDSecondLastMonth = db.Taikhoans
+                .Where(x => x.IdLtk == 2 && x.CreateAt >= firstDayOfSecondLastMonth && x.CreateAt < firstDayOfLastMonth)
+                .Distinct()
+                .Count();
+
+            // Tính toán phần trăm tăng trưởng hoặc giảm
+            double percentChangeNTD = 0.0;
+            if (countNTDSecondLastMonth != 0)
+            {
+                percentChangeNTD = ((double)(countNTDLastMonth - countNTDSecondLastMonth) / countNTDSecondLastMonth) * 100;
+                percentChangeNTD = Math.Round(percentChangeNTD, 2);
+            }
+
+            ViewBag.countNTDLastMonth = countNTDLastMonth;
+            ViewBag.countNTDSecondLastMonth = countNTDSecondLastMonth;
+            ViewBag.percentChangeNTD = percentChangeNTD;
+
+            //var countNTV = db.Taikhoans.AsNoTracking().Where(x => x.IdLtk == 3).Distinct().Count();
+            //ViewBag.countNTV = countNTV;
+
+            var countNTVLastMonth = db.Taikhoans
+                .Where(x => x.IdLtk == 3 && x.CreateAt >= firstDayOfLastMonth && x.CreateAt < firstDayOfThisMonth)
+                .Distinct()
+                .Count();
+
+            // Lấy số lượng tài khoản mới trong tháng trước đó
+            var countNTVSecondLastMonth = db.Taikhoans
+                .Where(x => x.IdLtk == 3 && x.CreateAt >= firstDayOfSecondLastMonth && x.CreateAt < firstDayOfLastMonth)
+                .Distinct()
+                .Count();
+
+            // Tính toán phần trăm tăng trưởng hoặc giảm
+            double percentChangeNTV = 0.0;
+            if (countNTDSecondLastMonth != 0)
+            {
+                percentChangeNTV = ((double)(countNTVLastMonth - countNTVSecondLastMonth) / countNTVSecondLastMonth) * 100;
+                percentChangeNTV = Math.Round(percentChangeNTV, 2);
+            }
+            Debug.WriteLine("Tháng 3: " + countNTVSecondLastMonth);
+            Debug.WriteLine("Tháng 4: " + countNTVLastMonth);
+            Debug.WriteLine("Phần trăm: " + percentChangeNTV);
+
+
+            ViewBag.countNTVLastMonth = countNTVLastMonth;
+            ViewBag.countNTVSecondLastMonth = countNTVSecondLastMonth;
+            ViewBag.percentChangeNTV = percentChangeNTV;
+
+            //var countBTD = db.Baituyendungs.AsNoTracking().Select(x => x.IdBtd).Distinct().Count();
+            //ViewBag.countBTD = countBTD;
+
 
 
             // Đếm số lượng bài tuyển dụng trong tháng trước của tháng hiện tại, group theo tháng và năm
@@ -97,6 +104,8 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             if (countBTDSecondLastMonth != 0)
             {
                 percentChangeBTD = ((double)(countBTDLastMonth - countBTDSecondLastMonth) / countBTDSecondLastMonth) * 100;
+                // Giới hạn số chữ số sau dấu phẩy là 2
+                percentChangeBTD = Math.Round(percentChangeBTD, 2);
             }
             Debug.WriteLine("Tháng 3: " + countBTDSecondLastMonth);
             Debug.WriteLine("Tháng 4: " + countBTDLastMonth);

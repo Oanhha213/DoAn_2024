@@ -7,25 +7,38 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<div class="border-content col-md-12">
-    <div class="mt1">
-        <a class="link-hover" asp-action="DSNguoiTimViec" asp-controller="TKNguoiTimViec">Quay về</a>
-    </div>
-    <h1>Danh sách bài tuyển dụng đã ứng tuyển của @ViewBag.Hoten</h1>
-    <input type="hidden" id="idCV" value="@ViewBag.IdSyll" />
-    <input type="hidden" id="IdTK" value="@ViewBag.IdTk" />
+<style>
+    .title-card {
+        padding: 10px !important;
+        border-left: 8px solid #feb696;
+    }
 
-    <div class="row mt2" style="align-items: center; justify-content: space-between">
-        <div class="col-md-3">
-            <a class="btn btn-success" asp-action="BTDChuaUT" asp-controller="TKNguoiTimViec" asp-route-idTK="@ViewBag.IdTk">Bài viết chưa ứng tuyển</a>
-        </div>
-        <form id="search-form" class="col-md-9" style="display: flex">
-            <input type="search" class="form-control" placeholder="Tên công việc, địa chỉ..." id="searchItem">
-            <button type="submit" class="btn btn-primary">Tìm kiếm</button>
-        </form>
+    .pad-none {
+        padding: 0 !important;
+    }
+</style>
+<div class="col-md-12">
+    <p style=" margin-left: 10px; margin-bottom: 10px !important">
+        <a class="link-hover" asp-action="InfoTK" asp-controller="DanhSachTaiKhoan" asp-route-idTK="@ViewBag.idTK">&#60;&#60; Quay về</a>
+    </p>
+    <div class="border-content title-card" style="min-width:  -webkit-fill-available;">
+        <h4>Bài viết đã ứng tuyển của @ViewBag.Hoten</h4>
+        <input type="hidden" id="idCV" value="@ViewBag.IdSyll" />
+        <input type="hidden" id="IdTK" value="@ViewBag.IdTk" />
     </div>
-    <div id="btd_search">
-        @Html.Partial("_BTDUngTuyenPartial", Model)
+    <div class="border-content mt2" style="min-width:  -webkit-fill-available;">
+        <div class="row mt2" style="align-items: center; justify-content: space-between">
+            <div class="col-md-3 pad-none">
+                <a class="btn btn-success" asp-action="BTDChuaUT" asp-controller="TKNguoiTimViec" asp-route-idTK="@ViewBag.IdTk">Bài viết chưa ứng tuyển</a>
+            </div>
+            <form id="search-form" class="col-md-9 pad-none" style="display: flex">
+                <input type="search" class="form-control" placeholder="Tên công việc, địa chỉ..." id="searchItem">
+                <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+            </form>
+        </div>
+        <div id="btd_search">
+            @Html.Partial("_BTDUngTuyenPartial", Model)
+        </div>
     </div>
 </div>
 <script>
