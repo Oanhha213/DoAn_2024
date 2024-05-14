@@ -44,8 +44,8 @@ a {
 .slider-footer {
     background: url("../../assets/img/footer_bg.jpg") no-repeat #111316;
     background-size: cover;
-    padding-top: 197px;
-    padding-bottom: 136px;
+    padding-top: 120px;
+    padding-bottom: 120px;
     color: #fff;
     overflow: hidden;
 }
@@ -247,7 +247,7 @@ a {
 
 .motaCT {
     display: -webkit-box;
-    -webkit-line-clamp: 6;
+    -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -256,3 +256,16 @@ a {
 .active {
    color: #feb696;
 }
+
+.hover-bg:hover {
+    background-color: #f0f0f0; /* Thay đổi màu nền khi hover */
+    box-shadow: 0 4px 12px 6px rgba(200, 200, 200, 1); /* Tăng độ bóng để nổi bật hơn */
+    transform: scale(1.02); /* Tăng kích thước nhẹ để nổi bật */
+    cursor: pointer !important;
+}
+
+i {
+    width: 20px;
+    height: 20px;
+}
+

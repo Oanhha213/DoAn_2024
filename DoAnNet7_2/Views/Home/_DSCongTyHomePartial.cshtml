@@ -22,7 +22,9 @@
                 <div class="row" style="align-items: center; justify-content: space-between">
                     <img class="col-md-4" style="min-height: 100px; max-width: 100px;padding: 0 !important;margin-right: 10px" src="@item.Logo" alt="Logo" />
                     <h4 class="col-md-8" style="word-wrap: break-word;padding: 0 !important; ">
-                        @item.Tencongty
+                        <a style="display: inline-block; min-width: -webkit-fill-available" asp-action="ChiTietCTHome" asp-controller="Home" asp-route-idTK="@item.IdTk">
+                            @item.Tencongty
+                        </a>
                     </h4>
                 </div>
                 <hr />

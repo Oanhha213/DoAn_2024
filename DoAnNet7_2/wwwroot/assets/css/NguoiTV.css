@@ -70,3 +70,13 @@ i.fa-chevron-down.hide, i.fa-chevron-up {
     min-height: 100vh;
     padding: 35px;
 }
+.hover-bg:hover{
+    background-color: #f0f0f0; /* Thay đổi màu nền khi hover */
+    box-shadow: 0 4px 12px 6px rgba(200, 200, 200, 1); /* Tăng độ bóng để nổi bật hơn */
+    transform: scale(1.02); /* Tăng kích thước nhẹ để nổi bật */
+}
+
+i{
+    width: 20px;
+    height: 20px;
+}

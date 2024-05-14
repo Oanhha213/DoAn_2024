@@ -6,52 +6,75 @@
 
 @foreach (var item in Model)
 {
-    <div class="border-content col-md-12 row" style="margin-top: 20px; justify-content: space-between">
-        <div class="col-md-8">
-            <h5>
-                @item.Tencongviec
-            </h5>
-            @if (item.Diachi != null || item.IdTtNavigation?.Tentt != null)
-            {
+    <div class=" col-md-6" style="margin-top: 20px; justify-content: space-between">
+        <div class="border-content row hover-bg" style="width: -webkit-fill-available !important;">
+            <div class="col-md-8">
+                <h5>
+                    @item.Tencongviec
+                </h5>
+                @if (item.Diachi != null || item.IdTtNavigation?.Tentt != null)
+                {
+                    <p>
+                        <i class="fa-solid fa-location-dot"></i>
+                        @item.Diachi, @item.IdTtNavigation?.Tentt
+                    </p>
+                }
                 <p>
-                    <i class="fa-solid fa-location-dot"></i>
-                    @item.Diachi, @item.IdTtNavigation?.Tentt
+                    <span>
+                        @item.IdLcvNavigation?.Tenlcv
+                    </span>
+                    |
+                    <span>
+                        @item.IdLuongNavigation?.Tenmucluong
+                    </span>
                 </p>
-            }
-            <p>
-                <span>
-                    @item.IdLcvNavigation?.Tenlcv
-                </span>
-                |
-                <span>
-                    @item.IdLuongNavigation?.Tenmucluong
-                </span>
-            </p>
-        </div>
-        <div class="col-md-4 row" style="justify-content: end;">
-            <a class="btn btn-success col-md-10" style="height: fit-content; line-height: 26px;max-width: fit-content;">Ứng tuyển ngay</a>
-            <a class=" col-md-2" style="height: fit-content; line-height: 22px;max-width: fit-content;
+            </div>
+            <div class="col-md-4 row" style="justify-content: end;">
+                @*<a class="btn btn-success col-md-10" style="height: fit-content; line-height: 26px;max-width: fit-content;">Ứng tuyển ngay</a>*@
+                <a class=" col-md-2" style="height: fit-content; line-height: 22px;max-width: fit-content;
                                             cursor: pointer;
                                             margin: 12px !important;
                                             padding: 0 !important;">
-                <i class="fa-regular fa-heart" style="color: #fe91ab; font-size: x-large"></i>
-            </a>
+                    <i class="fa-regular fa-heart" style="color: #fe91ab; font-size: x-large"></i>
+                </a>
+            </div>
         </div>
     </div>
 }
+<!-- Notification div -->
+<div id="notification" class="notification" style="display:none; position:fixed; top:20px; right:20px; background-color: #f8d7da; padding: 15px; border: 1px solid #f5c6cb; border-radius: 5px;">
+    Đăng nhập để sử dụng nhiều hơn chức năng của chúng tôi
+</div>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const hoverElements = document.querySelectorAll('.hover-bg');
+        const notification = document.getElementById('notification');
+
+        hoverElements.forEach(element => {
+            element.addEventListener('click', function () {
+                notification.style.display = 'block';
+
+                // Ẩn thông báo sau 3 giây
+                setTimeout(function () {
+                    notification.style.display = 'none';
+                }, 3000);
+            });
+        });
+    });
+</script>
 @if (!string.IsNullOrEmpty(ViewBag.NoResultsMessage))
 {
     <div class="alert alert-warning" role="alert">
         @ViewBag.NoResultsMessage
-    </div>
+    </div>  
 }
 @if (Model.TotalItemCount > 8)
 {
-    <div class="row mt2">
+    <div class="row mt2" style="width: -webkit-fill-available;">
         <div class="col-sm-12">
             <nav aria-label="Page navigation">
-                <ul class="pagination">
+                <ul class="pagination" style="    justify-content: center !important;">
                     @Html.PagedListPager(Model, page => Url.Action("Index", new {page, searchTerm = ViewBag.SearchTerm }), new PagedListRenderOptions
                 {
                 LiElementClasses = new List<string> { "page-item" },

@@ -3,9 +3,28 @@
     Layout = "~/Views/Shared/_LayoutHome2.cshtml";
 }
 
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.h1-testimonial-active').slick({
+            dots: true,
+            infinite: true,
+            speed: 500,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 2500,
+            arrows: false
+        });
+    });
+</script>
+<style>
+    .testimonial-area h3, .testimonial-top-cap p {
+        color: #fff !important;
+    }
+</style>
 <!-- Hero Area Start-->
 <div class="slider-area ">
-    <div class="single-slider section-overly slider-height2 d-flex align-items-center" style="background-image: url('assets/images/h1_hero1.png');">
+    <div class="single-slider section-overly slider-height2 d-flex align-items-center" style="background-image: url('/assets/images/aboutUs_bg.jpg')">
         <div class="container">
             <div class="row">
                 <div class="col-xl-12">
@@ -30,8 +49,10 @@
                         <h2>Nhiều người tài năng đang có việc làm</h2>
                     </div>
                     <div class="support-caption">
-                        <p class="pera-top">Mollit anim laborum duis au dolor in voluptate velit ess cillum dolore eu lore dsu quality mollit anim laborumuis au dolor in voluptate velit cillum.</p>
-                        <p>Mollit anim laborum.Duis aute irufg dhjkolohr in re voluptate velit esscillumlore eu quife nrulla parihatur. Excghcepteur signjnt occa cupidatat non inulpadeserunt mollit aboru. temnthp incididbnt ut labore mollit anim laborum suis aute.</p>
+                        <p>
+                            Chúng tôi là một đội ngũ nhỏ, đam mê và nhiệt huyết với sứ mệnh kết nối những người tài năng với cơ hội việc làm. 
+                            Dù bạn là ứng viên tìm kiếm công việc hoặc nhà tuyển dụng đang tìm kiếm nhân sự, chúng tôi luôn đặt lợi ích của bạn lên hàng đầu.
+                            </p>
                         @*<a href="about.html" class="btn post-btn">Post a job</a>*@
                     </div>
                 </div>
@@ -70,7 +91,7 @@
                     </div>
                     <div class="process-cap">
                         <h5>1. Tìm kiếm công việc</h5>
-                        <p>Sorem spsum dolor sit amsectetur adipisclit, seddo eiusmod tempor incididunt ut laborea.</p>
+                        <p>Tìm hàng ngàn cơ hội việc làm từ các công ty hàng đầu. Sử dụng công cụ tìm kiếm để tìm công việc phù hợp với bạn.</p>
                     </div>
                 </div>
             </div>
@@ -81,7 +102,7 @@
                     </div>
                     <div class="process-cap">
                         <h5>2. Ứng tuyển</h5>
-                        <p>Sorem spsum dolor sit amsectetur adipisclit, seddo eiusmod tempor incididunt ut laborea.</p>
+                        <p>Nộp đơn ứng tuyển dễ dàng với vài cú click. Hệ thống sẽ tự động gửi hồ sơ của bạn đến nhà tuyển dụng.</p>
                     </div>
                 </div>
             </div>
@@ -92,7 +113,7 @@
                     </div>
                     <div class="process-cap">
                         <h5>3. Nhà tuyển dụng sẽ thấy CV của bạn</h5>
-                        <p>Sorem spsum dolor sit amsectetur adipisclit, seddo eiusmod tempor incididunt ut laborea.</p>
+                        <p>Nhà tuyển dụng sẽ xem xét hồ sơ và liên hệ với bạn nếu phù hợp. Hãy đảm bảo CV của bạn đã cập nhật.</p>
                     </div>
                 </div>
             </div>
@@ -101,4 +122,68 @@
 </div>
 <!-- How  Apply Process End-->
 
-
+<div class="testimonial-area testimonial-padding">
+    <div class="section-tittle" style="text-align: center; margin-bottom: 50px">
+        <span>Tại sao chọn chúng tôi</span>
+    </div>
+    <div class="container">
+        <!-- Testimonial contents -->
+        <div class="row d-flex justify-content-center">
+            <div class="col-xl-10 col-lg-10 col-md-10">
+                <div class="h1-testimonial-active dot-style" style="background-color: #ff4357; padding: 70px; border-radius: 10px">
+                    <!-- Single Testimonial -->
+                    <div class="single-testimonial text-center">
+                        <!-- Testimonial Content -->
+                        <div class="testimonial-caption ">
+                            <!-- founder -->
+                            <div class="testimonial-founder  ">
+                                <div class="founder-img mb-30">
+                                    <h3>Kết nối hiệu quả</h3>
+                                </div>
+                            </div>
+                            <div class="testimonial-top-cap">
+                                <p>
+                                    Chúng tôi đã giúp hàng nghìn ứng viên tìm được công việc phù hợp và đồng thời đưa nhà tuyển dụng đến với những ứng viên xuất sắc.
+                                    </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Single Testimonial -->
+                    <div class="single-testimonial text-center">
+                        <!-- Testimonial Content -->
+                        <div class="testimonial-caption ">
+                            <!-- founder -->
+                            <div class="testimonial-founder  ">
+                                <div class="founder-img mb-30">
+                                    <h3>Hiểu biết sâu rộng</h3>
+                                </div>
+                            </div>
+                            <div class="testimonial-top-cap">
+                                <p>
+                                    Với kiến thức về thị trường lao động và xu hướng công việc, chúng tôi luôn cập nhật và mang đến những cơ hội mới nhất cho bạn.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Single Testimonial -->
+                    <div class="single-testimonial text-center">
+                        <!-- Testimonial Content -->
+                        <div class="testimonial-caption ">
+                            <!-- founder -->
+                            <div class="testimonial-founder  ">
+                                <div class="founder-img mb-30">
+                                    <h3>Tận tâm và chuyên nghiệp</h3>
+                                </div>
+                            </div>
+                            <div class="testimonial-top-cap">
+                                <p>
+                                    Chúng tôi không chỉ là một trang web tuyển dụng, mà còn là người bạn đồng hành trên con đường sự nghiệp của bạn.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

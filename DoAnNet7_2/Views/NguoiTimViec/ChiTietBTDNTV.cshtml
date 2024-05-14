@@ -5,6 +5,7 @@
     Layout = "~/Views/Shared/_LayoutNguoiTimViec.cshtml";
 }
 
+
 <input type="hidden" value="@ViewBag.IdBtd" id="idBTD" />
 <input type="hidden" value="@ViewBag.IdTk" id="idTK" />
 <div class="slider">
@@ -24,56 +25,72 @@
     </div>
 </div>
 <div class="row" style="background-color: #f3f5f7;justify-content: center">
-    <div class="col-md-11 row" style="margin-top: 40px; margin-bottom: 30px">
+    <div class="col-md-11 row" style="margin-top: 40px; margin-bottom: 50px">
         <div class="col-md-8 row">
             <div class="border-content col-md-12 mt2" style="max-height: fit-content; margin-top: 0 !important">
                 <h1>@ViewBag.Tencongviec</h1>
                 <div class="row mt2">
-                    <div class="col-md-3">
-                        <p>
-                            <i class="fa-solid fa-location-dot"></i>
+                    <div class="col-md-3 row" style="align-items: center">
+                        <div class="col-md-4 pad-none">
+                            <div class="btn" style="background-color: #4d97fa;border-radius: 50% !important;">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                        </div>
+                        <div class="col-md-8 pad-none">
                             Địa điểm
-                        </p>
-                        <p>
+                            <br />
                             @if (Model.IdTtNavigation != null)
                             {
                                 <span class="">
                                     @Html.DisplayFor(model => model.IdTtNavigation.Tentt)
                                 </span>
                             }
-                        </p>
+                        </div>
                     </div>
-                    <div class="col-md-3">
-                        <p>
+                    <div class="col-md-3 row" style="align-items: center">
+                        <div class="col-md-4 pad-none">
+                            <div class="btn" style="background-color: #4d97fa;border-radius: 50% !important;">
+                                <i class="fa-solid fa-money-bills"></i>
+
+                            </div>
+                        </div>
+                        <div class="col-md-8 pad-none">
                             Mức lương
-                        </p>
-                        <p class="des">
+                            <br />
                             @Html.DisplayFor(model => model.IdLuongNavigation.Tenmucluong)
-                        </p>
+                        </div>
                     </div>
-                    <div class="col-md-3">
-                        <p>
-                            <i class="fa-solid fa-star"></i>
+                    <div class="col-md-3 row" style="align-items: center">
+                        <div class="col-md-4 pad-none">
+                            <div class="btn" style="background-color: #4d97fa;border-radius: 50% !important;">
+                                <i class="fa-solid fa-star"></i>
+
+                            </div>
+                        </div>
+                        <div class="col-md-8 pad-none">
                             Kinh nghiệm
-                        </p>
-                        <p class="des">
+                            <br />
                             @Html.DisplayFor(model => model.IdTgknNavigation.Tentgkn)
-                        </p>
+                        </div>
                     </div>
-                    <div class="col-md-3">
-                        <p>
-                            <i class="fa-solid fa-business-time"></i>
+                    <div class="col-md-3 row" style="align-items: center">
+                        <div class="col-md-4 pad-none">
+                            <div class="btn" style="background-color: #4d97fa;border-radius: 50% !important;">
+                                <i class="fa-solid fa-business-time"></i>
+
+                            </div>
+                        </div>
+                        <div class="col-md-8 pad-none">
                             Hạn nộp
-                        </p>
-                        <p class="des">
+                            <br />
                             @if (Model.Hannopcv.HasValue)
                             {
                                 @Model.Hannopcv.Value.ToShortDateString()
                             }
-                        </p>
+                        </div>
                     </div>
                 </div>
-                <div class="row mt2">
+                <div class="row mt2" style="align-items: center">
                     @if (ViewBag.TTHH == "Đã hết hạn")
                     {
                         <a class="btn btn-danger" style="background-color: var(--blue); cursor: auto">Đã hết hạn</a>
@@ -89,20 +106,20 @@
                     }
                     @if (ViewBag.TTThich == "Chưa thích")
                     {
-                        <a class="thichBtn" data-idbtd="@ViewBag.IdBtd" data-idtk="@ViewBag.IdTk" style="cursor: pointer">
+                        <a class="thichBtn" data-idbtd="@ViewBag.IdBtd" data-idtk="@ViewBag.IdTk" style="cursor: pointer; margin-left: 30px">
                             <i class="fa-regular fa-heart" style="color: #fe91ab; font-size: x-large"></i>
                         </a>
                     }
                     else
                     {
-                        <a class="thichBtn" data-idbtd="@ViewBag.IdBtd" data-idtk="@ViewBag.IdTk" style="cursor: pointer">
+                        <a class="thichBtn" data-idbtd="@ViewBag.IdBtd" data-idtk="@ViewBag.IdTk" style="cursor: pointer; margin-left: 30px">
                             <i class="fa-solid fa-heart" style="color: #fe91ab; font-size: x-large"></i>
                         </a>
                     }
                 </div>
             </div>
             <div class="border-content col-md-12 row" style="margin-top: 40px">
-                <h2 class="col-md-12" style="background-color: #6cd7cb;color: #fff;opacity: 0.6;padding: 5px 10px !important;">
+                <h2 class="col-md-12" style="background-color: #e9ecef;color: #000;opacity: 0.6;padding: 5px 10px !important;border-left: 10px solid #1462d5;">
                     Chi tiết công việc
                 </h2>
                 <div class="col-sm-12 mt2">
@@ -193,9 +210,7 @@
             </div>
         </div>
     </div>
-    <div>
-        Top ngành nghể nổi bật
-    </div>
+
 </div>
 
 <div class="modal fade" id="ungTuyenModal" tabindex="-1" role="dialog" aria-labelledby="ungTuyenModalLabel" aria-hidden="true">
@@ -235,7 +250,6 @@
     </div>
 </div>
 
-<button id="btn-test" data-id="@ViewBag.IdBtd" data-idtk="@ViewBag.IdTk">Test Id</button>
 <script>
     //$("#btn-test").click(function () {
     //    var id = $(this).data("id");
@@ -301,34 +315,6 @@
         });
     });
 
-
-
-
-                //$(document).ready(function () {
-            //    $("#openUngTuyenModal").click(function () {
-            //        $("#ungTuyenModal").modal("show"); // Kích hoạt modal
-            //    });
-            //    $("#nopHoSoBtn").click(function () {
-            //        var idCV = $("#cvSelect").val();
-            //        var idBTD = $("#idBTD").val();
-            //        var idTK = $("#idTK").val();
-
-            //        console.log("idTK:", idTK);
-            //        console.log("idBTD:", idBTD);
-            //        console.log("idCV:", idCV);
-
-            //        // Gửi request POST để xử lý hồ sơ ứng tuyển
-            //        $.post("@Url.Action("UngTuyenNTV", "NguoiTimViec")", { idTK: idTK, idBTD: idBTD, idCV: idCV })
-            //            .done(function (data) {
-            //                // Hiển thị thông báo khi ứng tuyển thành công
-            //                swal.fire("Ứng tuyển thành công!", data, "success");
-            //            })
-            //            .fail(function (xhr, status, error) {
-            //                // Xử lý khi có lỗi
-            //                swal.fire("Lỗi!", xhr.responseText, "error");
-            //            });
-            //    });
-            //});
 </script>
 
 <style>

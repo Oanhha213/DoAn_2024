@@ -27,7 +27,7 @@
     </div>
 </div>
 <div class="row content-center" style="padding-bottom: 40px ;width: -webkit-fill-available !important; flex-direction: column; background-color: #f3f5f7;">
-    <div class="col-md-8 filter" style="margin-top: 40px">
+    <div class="col-md-10 filter" style="margin-top: 40px">
         <form id="search-form-home" class="row">
             <div class="col-md-12 row" style="justify-content: space-around; align-items: center;
                                             padding: 0 !important;
@@ -47,12 +47,12 @@
             </div>
             <div class="col-md-12 row mt2" style="justify-content: space-between; padding: 0 !important">
                 <div class="col-md-2" style="min-width: 24% !important; padding: 0 !important">
-                    <div class="row select-form" style="flex-grow: 1;">
-                        <i class="fa-solid fa-sack-dollar col-md-2" style="vertical-align: middle; color: var(--blue)"></i>
-                        <p style="padding: 0 10px" id="luong" class="result-option col-md-8"></p>
-                        <i class="fa-solid fa-angle-down col-md-2" style="color: var(--blue)"></i>
-                        <div class="option-select" style="flex-grow: 1;">
-                            <ul class="ul-select" style="min-height: 176px !important;overflow-y: auto;max-height: 176px">
+                    <div class="row select-form" style="flex-grow: 1;text-align: center;">
+                        <i class="fa-solid fa-sack-dollar col-md-2 pad-none" style="vertical-align: middle; color: var(--blue)"></i>
+                        <p style="padding: 0 !important" id="luong" class="result-option col-md-8"></p>
+                        <i class="fa-solid fa-angle-down col-md-2 pad-none" style="color: var(--blue)"></i>
+                        <div class="option-select" style="flex-grow: 1;max-width: -webkit-fill-available;">
+                            <ul class="ul-select" style="min-height: 264px !important;overflow-y: auto;max-height: 264px">
                                 <li>Mức lương</li>
                                 <li>Dưới 10 triệu</li>
                                 <li>10 - 15 triệu</li>
@@ -64,12 +64,12 @@
                     </div>
                 </div>
                 <div class="col-md-2" style="min-width: 24% !important; padding: 0 !important">
-                    <div class="row select-form" style="">
-                        <i class="fa-solid fa-location-dot col-md-2" style="vertical-align: middle; color: var(--blue)"></i>
-                        <p style="padding: 0 10px" id="tinhthanh" class="result-option col-md-8"></p>
-                        <i class="fa-solid fa-angle-down col-md-2" style="color: var(--blue)"></i>
-                        <div class="option-select">
-                            <ul class="ul-select" style="max-height: 176px !important;overflow-y: auto;min-height: 176px">
+                    <div class="row select-form" style="text-align: center;">
+                        <i class="fa-solid fa-location-dot col-md-2 pad-none" style="vertical-align: middle; color: var(--blue)"></i>
+                        <p style="padding: 0 !important" id="tinhthanh" class="result-option col-md-8"></p>
+                        <i class="fa-solid fa-angle-down col-md-2 pad-none" style="color: var(--blue)"></i>
+                        <div class="option-select" style="max-width: -webkit-fill-available;">
+                            <ul class="ul-select" style="max-height: 264px !important;overflow-y: auto;min-height: 264px">
                                 <li>Tỉnh thành</li>
                                 @foreach (var option in ViewBag.tinhthanhOptions)
                                 {
@@ -80,12 +80,12 @@
                     </div>
                 </div>
                 <div class="col-md-2" style="min-width: 24% !important; padding: 0 !important">
-                    <div class="row select-form" style="">
-                        <i class="fa-solid fa-briefcase col-md-2" style="vertical-align: middle; color: var(--blue)"></i>
-                        <p style="padding: 0 10px" id="nganhnghe" class="result-option col-md-8"></p>
-                        <i class="fa-solid fa-angle-down col-md-2" style="color: var(--blue)"></i>
-                        <div class="option-select">
-                            <ul class="ul-select" style="max-height: 176px !important;overflow-y: auto;min-height: 176px">
+                    <div class="row select-form" style="text-align: center;">
+                        <i class="fa-solid fa-briefcase col-md-2 pad-none" style="vertical-align: middle; color: var(--blue)"></i>
+                        <p style="padding: 0 !important" id="nganhnghe" class="result-option col-md-8"></p>
+                        <i class="fa-solid fa-angle-down col-md-2 pad-none" style="color: var(--blue)"></i>
+                        <div class="option-select" style="max-width: -webkit-fill-available;">
+                            <ul class="ul-select" style="max-height: 264px !important;overflow-y: auto;min-height: 264px">
                                 <li>Ngành nghề</li>
                                 @foreach (var option in ViewBag.nganhngheOptions)
                                 {
@@ -96,12 +96,12 @@
                     </div>
                 </div>
                 <div class="col-md-2" style="min-width: 24% !important; padding: 0 !important">
-                    <div class="row select-form" style="">
-                        <i class="fa-solid fa-star col-md-2" style="vertical-align: middle; color: var(--blue)"></i>
-                        <p style="padding: 0 10px" id="kinhnghiem" class="result-option col-md-8"></p>
-                        <i class="fa-solid fa-angle-down col-md-2" style="color: var(--blue)"></i>
-                        <div class="option-select">
-                            <ul class="ul-select" style="max-height: 176px !important;overflow-y: auto;min-height: 176px">
+                    <div class="row select-form" style="text-align: center;">
+                        <i class="fa-solid fa-star col-md-2 pad-none" style="vertical-align: middle; color: var(--blue)"></i>
+                        <p style="padding: 0 !important" id="kinhnghiem" class="result-option col-md-8"></p>
+                        <i class="fa-solid fa-angle-down col-md-2 pad-none" style="color: var(--blue)"></i>
+                        <div class="option-select" style="max-width: -webkit-fill-available;">
+                            <ul class="ul-select" style="max-height: 264px !important;overflow-y: auto;min-height: 264px">
                                 <li>Kinh nghiệm</li>
                                 <li>Chưa có kinh nghiệm</li>
                                 <li>1 năm</li>
@@ -117,14 +117,12 @@
             </div>
         </form>
     </div>
-    <div class="" style="margin-top: 100px">
-        <h1>Slider nhỏ</h1>
+    <div class="col-md-10 row" style="margin: 50px 0; justify-content: center">
+        <div class="col-md-12" style="background-image: url('/assets/images/slider_nho.jpg');  background-repeat: no-repeat;background-size: cover;padding: 140px; border-radius: 10px ">
+        </div>
     </div>
-    <div class="col-md-8 row content-center width-100" id="partial-container">
+    <div class="col-md-10 row" id="partial-container">
         @Html.Partial("_NguoiTimViecPartial", Model)
-    </div>
-    <div>
-        Top ngành nghể nổi bật
     </div>
 </div>
 

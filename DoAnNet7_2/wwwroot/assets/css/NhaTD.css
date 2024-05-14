@@ -27,3 +27,7 @@ p{
 .circle-btn:hover {
     background-color: #f0f8ff !important;
 }
+
+.active {
+    color: #feb696;
+}

@@ -49,7 +49,8 @@ namespace DoAnNet7_2.Controllers
             if (!ID_TK.HasValue)
             {
                 // Xử lý trường hợp người dùng không hợp lệ, có thể chuyển hướng hoặc xử lý lỗi khác
-                return RedirectToAction("TrangLoi", "Home");
+                //return View();
+                return RedirectToAction("Trangloi", "Home");
             }
 
             var anhDD = new Anhdaidien
@@ -105,7 +106,7 @@ namespace DoAnNet7_2.Controllers
                     }
                     else if (tk.IdLtk == 3)
                     {
-                        return RedirectToAction("DanhSachCV", "NguoiTimViec");
+                        return RedirectToAction("ThemCV", "NguoiTimViec");
                     }
                 }
             }

@@ -35,18 +35,37 @@
                 <div class="collapse navbar-collapse" style="justify-content: space-between">
                     <ul class="navbar-nav" style="font-size: 13pt; font-weight: 500">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" asp-action="NguoiTimViec" asp-controller="NguoiTimViec">Công việc</a>
+                            <a class="nav-link active" id="nav-congviec" aria-current="page" asp-action="NguoiTimViec" asp-controller="NguoiTimViec">Công việc</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-action="DSCongTyHome" asp-controller="Home">Công ty</a>
+                            <a class="nav-link" id="nav-congty" asp-action="DSCongTyHome" asp-controller="Home">Công ty</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Về chúng tôi</a>
+                            <a class="nav-link" id="nav-vechungtoi" asp-action="AboutUs" asp-controller="Home">Về chúng tôi</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Hỗ trợ</a>
+                            <a class="nav-link" id="nav-hotro" asp-action="Contact" asp-controller="Home">Hỗ trợ</a>
                         </li>
                     </ul>
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function () {
+                            // Lấy URL hiện tại
+                            const currentUrl = window.location.pathname.toLowerCase();
+
+                            // Lấy tất cả các nav-link
+                            const navLinks = document.querySelectorAll('.nav-link');
+
+                            // Lặp qua từng nav-link để kiểm tra URL
+                            navLinks.forEach(link => {
+                                const linkHref = link.getAttribute('href').toLowerCase();
+                                if (currentUrl === linkHref) {
+                                    link.classList.add('active');
+                                } else {
+                                    link.classList.remove('active');
+                                }
+                            });
+                        });
+                    </script>
                     <div class="row group-btn-access">
                         <div class="btn-profile">
                             <div class="nav-profile-img">
@@ -101,30 +120,25 @@
     <div class="">
         @RenderBody()
     </div>
-@*    <a class="btn-li" id="logoutBtn" asp-controller="Access" asp-action="DangXuat">
-        <i class="fa-solid fa-right-from-bracket" style="margin-right: 10px; color: var(--blue)"></i>
-        Đăng xuất
-    </a>*@
     <!-- footer -->
     <div id="footer">
         <div class="slider-footer">
             <div class="container-footer">
                 <div class="first-card p-m">
                     <div class="address">
-                        <p>28 Jackson Blvd<br>Ste 151, Chicago<br>IL 60604-2340</p>
+                        <p>91 ĐƯỜNG NGUYỄN CHÍ THANH<br>THÀNH CÔNG, BA ĐÌNH<br>HÀ NỘI, VIỆT NAM</p>
                     </div>
                     <div class="email">
                         <i class="far fa-envelope"></i>
-                        <a href="" class="link-mail">info@demolink.org</a>
+                        <a href="" class="link-mail">adminJW@gmail.com</a>
                     </div>
                 </div>
                 <div class="second-card p-m">
                     <ul>
-                        <li class="active"><a href="./index.html">HOME</a></li>
-                        <li><a href="./about.html">ABOUT US</a></li>
-                        <li><a href="./menu.html">OUR MENU</a></li>
-                        <li><a href="./gallery.html">GALLERY</a></li>
-                        <li><a href="./contact.html">CONTACTS</a></li>
+                        <li><a asp-action="Index" asp-controller="Home">CÔNG VIỆC</a></li>
+                        <li><a asp-action="DSCongTyHome" asp-controller="Home">CÔNG TY</a></li>
+                        <li><a asp-action="AboutUs" asp-controller="Home">VỀ CHÚNG TÔI</a></li>
+                        <li><a asp-action="Contact" asp-controller="Home">HỖ TRỢ</a></li>
                     </ul>
                 </div>
                 <div class="third-card p-m">
@@ -157,7 +171,7 @@
                     </ul>
                     <p>
                         ©
-                        <span>2021</span>
+                        <span>2024</span>
                         <span class="line"></span>
                         <a href="">PRIVACY POLICY</a>
                     </p>

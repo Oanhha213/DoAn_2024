@@ -10,7 +10,7 @@
 <div class="row">
     <ul class="menu col-md-3" style="max-width: 20%; margin-top: 40px">
         <li class="">
-            <a class="active menu-item" id="item-home" asp-action="TaiKhoanNTV" asp-controller="NguoiTimViec">
+            <a class="menu-item" id="item-home" asp-action="TaiKhoanNTV" asp-controller="NguoiTimViec">
                 <i class="fa-solid fa-address-card"></i>
                 Tài khoản
             </a>
@@ -28,7 +28,7 @@
             </a>
         </li>
         <li>
-            <a class="menu-item" id="item-account" asp-action="BaiVietDaThichNTV" asp-controller="NguoiTimViec" asp-route-idTK="@ViewBag.IdTk">
+            <a class="active menu-item" id="item-account" asp-action="BaiVietDaThichNTV" asp-controller="NguoiTimViec" asp-route-idTK="@ViewBag.IdTk">
                 <i class="fa-solid fa-hand-holding-heart"></i>
                 <span>Bài viết đã thích</span>
             </a>
@@ -37,7 +37,7 @@
     </ul>
     <div class="col-md-9 row background-caidat" style="justify-content: center;    min-width: 80%;">
         <div class="border-content col-md-12">
-            <h1>Bài viết đã thích </h1>
+            <h1>Bài tuyển dụng đã thích </h1>
             <input type="hidden" id="idTK" value="@ViewBag.idTK" />
 
             <div class="row mt2" style="align-items: center; justify-content: space-between;">

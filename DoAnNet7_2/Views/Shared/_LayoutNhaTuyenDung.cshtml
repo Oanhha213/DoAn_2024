@@ -84,7 +84,7 @@
 <body>
     <div id="nav-bar">
         <div style="min-width: 20% !important;display: flex; justify-content: center">
-             <img class="logo" src="~/assets/images/LOGO.jpg" alt="Logo">
+            <img class="logo" src="~/assets/images/LOGO.jpg" alt="Logo">
         </div>
         <div style="display: flex; justify-content: space-between;width: -webkit-fill-available; align-items: center">
             <p>
@@ -142,12 +142,6 @@
                         <span>Cài đặt tài khoản</span>
                     </a>
                 </li>
-                <li>
-                    <a class="menu-item" id="item-help" asp-action="HoTro" asp-controller="Common">
-                        <i class="fa-brands fa-hire-a-helper"></i>
-                        <span>Hỗ trợ</span>
-                    </a>
-                </li>
             </ul>
         </div>
         <div class="content-main col-md-9" style="max-width: 80% !important; margin-left: 20% !important">
@@ -156,71 +150,50 @@
             </div>
         </div>
     </div>
-@*    <script>
-        $(document).ready(function () {
-            // Khi trang được load, kiểm tra trạng thái active trong Local Storage và áp dụng cho menu item tương ứng
-            var activeMenuItem = localStorage.getItem('activeMenuItem');
-            if (activeMenuItem) {
-                $('.menu-item').removeClass('active'); // Xóa lớp active khỏi tất cả các menu item
-                $('#' + activeMenuItem).addClass('active'); // Thêm lớp active vào menu item được lưu trong Local Storage
-            } else {
-                // Nếu không có menu item nào được lưu, mặc định active cho menu item Home và lưu nó vào Local Storage
-                $('#item-home').addClass('active');
-                localStorage.setItem('activeMenuItem', 'item-home');
-            }
+    @*    <script>
+    $(document).ready(function () {
+    // Khi trang được load, kiểm tra trạng thái active trong Local Storage và áp dụng cho menu item tương ứng
+    var activeMenuItem = localStorage.getItem('activeMenuItem');
+    if (activeMenuItem) {
+    $('.menu-item').removeClass('active'); // Xóa lớp active khỏi tất cả các menu item
+    $('#' + activeMenuItem).addClass('active'); // Thêm lớp active vào menu item được lưu trong Local Storage
+    } else {
+    // Nếu không có menu item nào được lưu, mặc định active cho menu item Home và lưu nó vào Local Storage
+    $('#item-home').addClass('active');
+    localStorage.setItem('activeMenuItem', 'item-home');
+    }
 
-            // Khi click vào một menu item
-            $('.menu-item').click(function () {
-                var itemId = $(this).attr('id'); // Lấy id của menu item
-                $('.menu-item').removeClass('active'); // Xóa lớp active khỏi tất cả các menu item
-                $(this).addClass('active'); // Thêm lớp active vào menu item được click
+    // Khi click vào một menu item
+    $('.menu-item').click(function () {
+    var itemId = $(this).attr('id'); // Lấy id của menu item
+    $('.menu-item').removeClass('active'); // Xóa lớp active khỏi tất cả các menu item
+    $(this).addClass('active'); // Thêm lớp active vào menu item được click
 
-                // Lưu trạng thái active vào Local Storage
-                localStorage.setItem('activeMenuItem', itemId);
-            });
-            $('#logoutBtn').click(function () {
-                // Sau khi đăng xuất
-                localStorage.removeItem('activeMenuItem');
-            })
-        });
+    // Lưu trạng thái active vào Local Storage
+    localStorage.setItem('activeMenuItem', itemId);
+    });
+    $('#logoutBtn').click(function () {
+    // Sau khi đăng xuất
+    localStorage.removeItem('activeMenuItem');
+    })
+    });
     </script>*@
     <script>
-        $(document).ready(function () {
-            // Khi trang được load, kiểm tra trạng thái active trong Local Storage và áp dụng cho menu item tương ứng
-            var activeMenuItem = localStorage.getItem('activeMenuItem');
-            if (activeMenuItem) {
-                $('.menu-item').removeClass('active'); // Xóa lớp active khỏi tất cả các menu item
-                $('.menu-item').each(function () {
-                    var href = $(this).attr('href');
-                    if (href && href.includes(activeMenuItem)) {
-                        $(this).addClass('active'); // Thêm lớp active vào menu item được lưu trong Local Storage
-                    }
-                });
-            } else {
-                // Nếu không có menu item nào được lưu, mặc định active cho menu item Home và lưu nó vào Local Storage
-                $('#item-home').addClass('active');
-                localStorage.setItem('activeMenuItem', 'NhaTuyenDung');
-            }
+        document.addEventListener('DOMContentLoaded', function () {
+            // Lấy URL hiện tại
+            const currentUrl = window.location.pathname.toLowerCase();
 
-            // Khi click vào một menu item
-            $('.menu-item').click(function () {
-                var href = $(this).attr('href');
-                $('.menu-item').removeClass('active'); // Xóa lớp active khỏi tất cả các menu item
-                $(this).addClass('active'); // Thêm lớp active vào menu item được click
+            // Lấy tất cả các nav-link
+            const menuItems = document.querySelectorAll('.menu-item');
 
-                // Lưu trạng thái active vào Local Storage
-                localStorage.setItem('activeMenuItem', href);
-            });
-
-            // Khi nhấn nút đăng xuất
-            $('#logoutBtn').click(function () {
-                // Xóa mục activeMenuItem khỏi Local Storage khi đăng xuất
-                localStorage.removeItem('activeMenuItem');
-                // Xóa lớp active khỏi tất cả các menu item
-                $('.menu-item').removeClass('active');
-                // Thiết lập menu item Home làm active và lưu vào Local Storage
-                $('[href="/NhaTuyenDung/NhaTuyenDung"]').addClass('active');
-                localStorage.setItem('activeMenuItem', '/NhaTuyenDung/NhaTuyenDung');
+            // Lặp qua từng nav-link để kiểm tra URL
+            menuItems.forEach(link => {
+                const linkHref = link.getAttribute('href').toLowerCase();
+                if (currentUrl === linkHref) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
             });
         });
     </script>

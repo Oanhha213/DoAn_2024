@@ -205,6 +205,10 @@
       "PackagePath": "staticwebassets\\assets\\css\\NhaTD.css"
     },
     {
+      "Id": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\assets\\css\\SignUp.css",
+      "PackagePath": "staticwebassets\\assets\\css\\SignUp.css"
+    },
+    {
       "Id": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\assets\\css\\themify-icons.css",
       "PackagePath": "staticwebassets\\assets\\css\\themify-icons.css"
     },
@@ -225,8 +229,16 @@
       "PackagePath": "staticwebassets\\assets\\images\\NTV.png"
     },
     {
+      "Id": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\assets\\images\\aboutUs_bg.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\aboutUs_bg.jpg"
+    },
+    {
       "Id": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\assets\\images\\avatarAdmin.png",
       "PackagePath": "staticwebassets\\assets\\images\\avatarAdmin.png"
+    },
+    {
+      "Id": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\assets\\images\\bg-01.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\bg-01.jpg"
     },
     {
       "Id": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\assets\\images\\bgCongTy.png",
@@ -251,6 +263,34 @@
     {
       "Id": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\assets\\images\\iconCV2.png",
       "PackagePath": "staticwebassets\\assets\\images\\iconCV2.png"
+    },
+    {
+      "Id": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\assets\\images\\logo1.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\logo1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\assets\\images\\logo2.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\logo2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\assets\\images\\slide_side2.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\slide_side2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\assets\\images\\slider_nho.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\slider_nho.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\assets\\images\\slider_side1.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\slider_side1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\assets\\images\\slider_side3.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\slider_side3.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\assets\\images\\slider_side4.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\slider_side4.jpg"
     },
     {
       "Id": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\assets\\images\\user_avatar.jpg",
@@ -783,6 +823,10 @@
     {
       "Id": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\uploads\\CV\\638507128688563243_CV.pdf",
       "PackagePath": "staticwebassets\\uploads\\CV\\638507128688563243_CV.pdf"
+    },
+    {
+      "Id": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\uploads\\CV\\638513047491700270_CV.pdf",
+      "PackagePath": "staticwebassets\\uploads\\CV\\638513047491700270_CV.pdf"
     },
     {
       "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.DoAnNet7_2.Microsoft.AspNetCore.StaticWebAssets.props",

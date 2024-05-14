@@ -1,0 +1,173 @@
+﻿@model DoAnNet7_2.Models.Congty
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "ChiTietCTHome";
+    Layout = "~/Views/Shared/_LayoutHome2.cshtml";
+}
+<div class="row" style="justify-content: center; margin-bottom: 50px">
+    <div class="col-md-10 mt2">
+        <div class="border-content" style="width: -webkit-fill-available !important; text-align: center">
+            <div class="">
+                <img src="@Model.Logo" style="max-width: 200px; max-height: 200px; min-height: 100px; min-width: 100px; border-radius: 50%" />
+            </div>
+            <div class="">
+                <h2>
+                    @Model.Tencongty
+                </h2>
+                <div class="row" style="justify-content: space-around;">
+                    <div>
+                        @if (Model.IdNnNavigation != null)
+                        {
+                            <i class="fa-solid fa-briefcase"></i>
+                            <span>Chuyên ngành: </span>
+                            @Model.IdNnNavigation.Tennganhnghe
+                        }
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span>Địa chỉ: </span>
+                        @Model.Diachi
+                        @if (Model.IdTtNavigation != null)
+                        {
+                            <span>,</span>
+                            @Model.IdTtNavigation.Tentt
+                        }
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-people-group"></i>
+                        <span>Số nhân viên: </span>
+                        @Model.Sonhanvien
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-10 mt2">
+        <div class="" style="width: -webkit-fill-available !important; box-shadow: 0 2px 6px 4px rgba(220, 220,220,0.8);border-radius: 10px;">
+            <h3 style="padding: 10px;background-color: #5997da; color: #fff;border-top-left-radius: 10px; border-top-right-radius: 10px">
+                Giới thiệu công ty
+            </h3>
+            <div style="padding: 20px 30px">
+                @Html.Raw(Model.Mota)
+            </div>
+        </div>
+    </div>
+    <div class="col-md-10 mt2">
+        <div class="" style="width: -webkit-fill-available !important;box-shadow: 0 2px 6px 4px rgba(220, 220,220,0.8);border-radius: 10px;">
+            <h3 style="padding: 10px;background-color: #5997da; color: #fff;border-top-left-radius: 10px; border-top-right-radius: 10px">
+                Tuyển dụng
+            </h3>
+            <div style="padding: 0 30px 20px 30px;overflow-y: auto;    max-height: 560px;">
+                @if (ViewBag.btd != null)
+                {
+                    @foreach (var item in ViewBag.btd)
+                    {
+                        <div class="row mt2 hover-bg" style="width: -webkit-fill-available !important; position: relative; border: solid 1px #ccc; padding: 20px">
+                            <div class="col-md-10 ">
+                                @if (@ViewBag.IdTk != null)
+                                {
+                                    <a style="display: inline-block; width: -webkit-fill-available; cursor: pointer; color: #000 !important" target="_blank" asp-action="ChiTietBTDNTV" asp-controller="NguoiTImViec" asp-route-idBTD="@item.IdBtd" asp-route-idTK="@ViewBag.IdTk">
+                                        <h4>
+                                            @item.Tencongviec
+                                        </h4>
+                                        <p class="">
+                                            <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+                                            @item.Diachi
+                                            @if (item.IdTtNavigation != null)
+                                            {
+                                                <span>,</span>
+                                                @item.IdTtNavigation.Tentt
+                                            }
+                                        </p>
+                                        <p class="">
+                                            <i class="fa-solid fa-business-time" aria-hidden="true"></i>
+                                            Hạn nộp hồ sơ:
+                                            @item.Hannopcv
+                                        </p>
+                                        <p class="">
+                                            <span>
+                                                <i class="fa-solid fa-location-arrow" aria-hidden="true"></i>
+                                                @item.IdLcvNavigation.Tenlcv
+                                            </span>
+                                            |
+                                            <span>
+                                                <i class="fa-solid fa-money-bills" aria-hidden="true"></i>
+                                                @item.IdLuongNavigation.Tenmucluong
+                                            </span>
+                                        </p>
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a class="hover-btd-ct" style="display: inline-block; width: -webkit-fill-available; cursor: pointer; color: #000 !important">
+                                        <h4>
+                                            @item.Tencongviec
+                                        </h4>
+                                        <p class="">
+                                            <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+                                            @item.Diachi
+                                            @if (item.IdTtNavigation != null)
+                                            {
+                                                <span>,</span>
+                                                @item.IdTtNavigation.Tentt
+                                            }
+                                        </p>
+                                        <p class="">
+                                            <i class="fa-solid fa-business-time" aria-hidden="true"></i>
+                                            Hạn nộp hồ sơ:
+                                            @item.Hannopcv
+                                        </p>
+                                        <p class="">
+                                            <span>
+                                                <i class="fa-solid fa-location-arrow" aria-hidden="true"></i>
+                                                @item.IdLcvNavigation.Tenlcv
+                                            </span>
+                                            |
+                                            <span>
+                                                <i class="fa-solid fa-money-bills" aria-hidden="true"></i>
+                                                @item.IdLuongNavigation.Tenmucluong
+                                            </span>
+                                        </p>
+                                    </a>
+
+                                }
+                            </div>
+                            <div class="col-md-2 row" style="justify-content: flex-end; align-items: end">
+                                <a class="thichBtn" data-idbtd="1011" data-idtk="3" style="height: fit-content; line-height: 22px;max-width: fit-content;
+                                                        cursor: pointer;
+                                                        margin: 0 !important;
+                                                        padding: 0 !important;">
+                                    <i class="fa-regular fa-heart" style="color: #fe91ab; font-size: x-large" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                    }
+
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Notification div -->
+<div id="notification" class="notification" style="display:none; position:fixed; top:20px; right:20px; background-color: #f8d7da; padding: 15px; border: 1px solid #f5c6cb; border-radius: 5px;">
+    Đăng nhập để sử dụng nhiều hơn chức năng của chúng tôi
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const hoverElements = document.querySelectorAll('.hover-btd-ct');
+        const notification = document.getElementById('notification');
+
+        hoverElements.forEach(element => {
+            element.addEventListener('click', function () {
+                notification.style.display = 'block';
+
+                // Ẩn thông báo sau 3 giây
+                setTimeout(function () {
+                    notification.style.display = 'none';
+                }, 3000);
+            });
+        });
+    });
+</script>

@@ -158,6 +158,7 @@ namespace DoAnNet7_2.Controllers
             {
                 // Xử lý trường hợp người dùng không hợp lệ, có thể chuyển hướng hoặc xử lý lỗi khác
                 return RedirectToAction("TrangLoi", "Home");
+                //return View();
             }
             var lstCV = db.Soyeulyliches.Where(x => x.IdTk == ID_TK).ToList();
             HttpContext.Session.SetInt32("IdTk", (int)ID_TK);
@@ -174,6 +175,8 @@ namespace DoAnNet7_2.Controllers
             {
                 // Xử lý trường hợp người dùng không hợp lệ, có thể chuyển hướng hoặc xử lý lỗi khác
                 return RedirectToAction("TrangLoi", "Home");
+                //return View();
+
             }
             HttpContext.Session.SetInt32("IdTk", (int)ID_TK);
 

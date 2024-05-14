@@ -101,11 +101,11 @@ namespace DoAnNet7_2.Controllers
         {
             var ID_TK = HttpContext.Session.GetInt32("IdTk");
 
-            //if (!ID_TK.HasValue)
-            //{
-            //    // Xử lý trường hợp người dùng không hợp lệ, có thể chuyển hướng hoặc xử lý lỗi khác
-            //    return RedirectToAction("TrangLoi", "Home");
-            //}
+            if (!ID_TK.HasValue)
+            {
+                // Xử lý trường hợp người dùng không hợp lệ, có thể chuyển hướng hoặc xử lý lỗi khác
+                return RedirectToAction("TrangLoi", "Home");
+            }
 
             var anhDD = new Anhdaidien
             {
@@ -122,11 +122,11 @@ namespace DoAnNet7_2.Controllers
         {
             var ID_TK = HttpContext.Session.GetInt32("IdTk");
 
-            //if (!ID_TK.HasValue)
-            //{
-            //    // Xử lý trường hợp người dùng không hợp lệ, có thể chuyển hướng hoặc xử lý lỗi khác
-            //    return RedirectToAction("Trangloi", "Home");
-            //}
+            if (!ID_TK.HasValue)
+            {
+                // Xử lý trường hợp người dùng không hợp lệ, có thể chuyển hướng hoặc xử lý lỗi khác
+                return RedirectToAction("Trangloi", "Home");
+            }
 
             if (anhdd.UpAnhDaiDien != null)
             {
@@ -156,7 +156,7 @@ namespace DoAnNet7_2.Controllers
 
         [Route("TaoCongTy")]
         [HttpGet]
-        public IActionResult TaoCongTy() 
+        public IActionResult TaoCongTy()
         {
             var ID_TK = HttpContext.Session.GetInt32("IdTk");
 
@@ -164,6 +164,7 @@ namespace DoAnNet7_2.Controllers
             {
                 // Xử lý trường hợp người dùng không hợp lệ, có thể chuyển hướng hoặc xử lý lỗi khác
                 return RedirectToAction("TrangLoi", "Home");
+                //return View();
             }
 
             ViewBag.IdNn = new SelectList(db.Nganhnghes.ToList(), "IdNn", "Tennganhnghe");
@@ -188,6 +189,7 @@ namespace DoAnNet7_2.Controllers
             {
                 // Xử lý trường hợp người dùng không hợp lệ, có thể chuyển hướng hoặc xử lý lỗi khác
                 return RedirectToAction("Trangloi", "Home");
+
             }
 
             // Mục 3: Kiểm tra ModelState Errors
@@ -229,8 +231,11 @@ namespace DoAnNet7_2.Controllers
                 return View(ct);
             }
             ViewBag.IdTk = ID_TK;
-            //var Id_TK = IdTK;
-            //HttpContext.Session.SetInt32("IdTk", Id_TK);
+            if (ID_TK.HasValue)
+            {
+                var Id_TK = ID_TK;
+                HttpContext.Session.SetInt32("IdTk", (int)Id_TK);
+            }
             return View(ct);
         }
 
@@ -381,7 +386,7 @@ namespace DoAnNet7_2.Controllers
             {
                 return PartialView("_DSBTDNTDPartial", pagedList);
             }
-            
+
             return View(pagedList);
         }
 
@@ -467,7 +472,7 @@ namespace DoAnNet7_2.Controllers
                 TempData["Message"] = $"Không tìm thấy";
                 TempData["MessageType"] = "error";
             }
-            return RedirectToAction("DSUngTuyenNTD", "NhaTuyenDung",new {idBTD = idBTD });
+            return RedirectToAction("DSUngTuyenNTD", "NhaTuyenDung", new { idBTD = idBTD });
         }
 
         [Authentication]
@@ -648,7 +653,7 @@ namespace DoAnNet7_2.Controllers
             return View(tk);
         }
 
-        
+
         [Route("SuaAnhDDNTD")]
         [HttpGet]
         public IActionResult SuaAnhDDNTD(int idTK)
@@ -685,7 +690,7 @@ namespace DoAnNet7_2.Controllers
 
                 // Cập nhật thông tin ảnh đại diện trong cơ sở dữ liệu
                 db.SaveChanges();
-                if(idTK != null)
+                if (idTK != null)
                 {
                     HttpContext.Session.SetInt32("IdTk", (int)idTK);
                     HttpContext.Session.SetString("Tenanh", existingAnhDD.Tenanh);

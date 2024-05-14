@@ -157,7 +157,7 @@ namespace DoAnNet7_2.Controllers
         }
 
         [HttpGet]
-        [Route("VeCHungToi")]
+        [Route("VeChungToi")]
         public IActionResult AboutUs()
         {
             return View();
@@ -168,6 +168,42 @@ namespace DoAnNet7_2.Controllers
         public IActionResult Contact()
         {
             return View();
+        }
+
+        [HttpGet]
+        [Route("ChiTietCTHome")]
+        public IActionResult ChiTietCTHome(int idTK)
+        {
+            var ID_TK = HttpContext.Session.GetInt32("IdTk");
+
+            var ct = db.Congties.Include(x => x.IdNnNavigation)
+                                .Include(x => x.IdTtNavigation)
+                                .FirstOrDefault(x => x.IdTk == idTK);
+            if (ct == null)
+            {
+                // Xử lý khi không tìm thấy công ty, có thể chuyển hướng đến trang lỗi hoặc hiển thị thông báo
+                return NotFound();
+            }
+            var btd = db.Baituyendungs.Where(x => x.IdTk == idTK).Include(x => x.IdTtNavigation)
+                                        .Include(x => x.IdLuongNavigation)
+                                        .Include(x => x.IdLcvNavigation);
+            if (ID_TK.HasValue)
+            {
+                ViewBag.IdTk = ID_TK.Value;
+            }
+            else
+            {
+                ViewBag.IdTk = null;
+            }
+            if(btd.Count() >0)
+            {
+                ViewBag.btd = btd.ToList();
+            }
+            else
+            {
+                ViewBag.btd = null;
+            }
+            return View(ct);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

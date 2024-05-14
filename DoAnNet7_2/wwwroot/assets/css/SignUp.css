@@ -1,0 +1,60 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+html, body {
+    height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background-color: #f2edf3 !important;
+}
+
+.container {
+    height: inherit;
+    margin: auto;
+}
+
+
+.mt-3 {
+    margin-top: 30px;
+}
+
+.mt-4 {
+    margin-top: 40px;
+}
+
+input {
+    border: 1px solid #ebedf2;
+    display: block;
+    height: 30px;
+    padding: 20px;
+    outline: none !important;
+    font-size: 12pt;
+    width: 100%;
+}
+
+.btn-dang-ky {
+    line-height: 30px;
+    text-align: center;
+    padding: 10px 25px;
+    color: #fff;
+    background-color: #bd99e0;
+    border-radius: 30px;
+    border: none;
+    margin-top: 25px;
+    transition: 0.3s;
+}
+
+    .btn-dang-ky:hover {
+        background-color: #8c69af;
+        cursor: pointer;
+        color: #f9f9f9;
+    }
