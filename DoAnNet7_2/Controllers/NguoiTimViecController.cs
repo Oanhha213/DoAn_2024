@@ -749,10 +749,17 @@ namespace DoAnNet7_2.Controllers
             var btd = db.Baituyendungs.FirstOrDefault(x => x.IdBtd == idBTD);
             var listCV = db.Soyeulyliches.Where(cv => cv.IdTk == idTK).ToList();
 
-            ViewBag.ListCV = listCV;
+            
             ViewBag.IdTk = idTK;
             HttpContext.Session.SetInt32("IdTk", idTK);
-
+            if(listCV.Count() > 0)
+            {
+                ViewBag.ListCV = listCV;
+            }
+            else
+            {
+                ViewBag.ListCV = null;
+            }
             if (btd != null)
             {
 
@@ -765,12 +772,14 @@ namespace DoAnNet7_2.Controllers
                     var diachi = ct.FirstOrDefault(x => x.IdTk == idTKBtd)?.Diachi;
                     var tt = ct.FirstOrDefault(x => x.IdTk == idTKBtd)?.IdTtNavigation.Tentt;
                     var sonv = ct.FirstOrDefault(x => x.IdTk == idTKBtd)?.Sonhanvien;
+                    var idtkct = ct.FirstOrDefault(x => x.IdTk == idTKBtd)?.IdTk;
                     ViewBag.Logo = logo;
                     ViewBag.Tenct = tenct;
                     ViewBag.Diachi = diachi;
                     ViewBag.Tinhthanh = tt;
                     ViewBag.SoNV = sonv;
                     ViewBag.congty = ct;
+                    ViewBag.IdTkCT = idtkct;
                 }
                 else
                 {

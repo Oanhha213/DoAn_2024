@@ -68,6 +68,7 @@ namespace DoAnNet7_2.Controllers
                     return RedirectToAction("NguoiTimViec", "NguoiTimViec");
                 }
             }
+            ViewBag.ErrorMessage = "Bạn đã nhập sai email hoặc mật khẩu.";
             return View();
         }
 

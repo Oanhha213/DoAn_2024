@@ -205,7 +205,7 @@
                     }
                 }
                 <div class="row mt2" style="justify-content: center">
-                    <a class="btn text-hien col-md-12" style="max-width: fit-content">Chi tiết</a>
+                    <a class="btn text-hien col-md-12" style="max-width: fit-content" asp-action="ChiTietCTHome" asp-controller="Home" asp-route-idTK="@ViewBag.IdTkCT">Chi tiết</a>
                 </div>
             </div>
         </div>
@@ -238,6 +238,10 @@
                                     <option value="@cv.IdSyll">@cv.Tensyll</option>
                                 }
                             }
+                            else
+                            {
+                                <option value="" disabled selected> Bạn phải tải lên CV trước </option>
+                            }
                         </select>
                     </div>
                 </form>
@@ -251,16 +255,6 @@
 </div>
 
 <script>
-    //$("#btn-test").click(function () {
-    //    var id = $(this).data("id");
-    //    var idtk = $(this).data("idtk");
-    //    console.log(id);
-    //    console.log(idtk); // Kiểm tra giá trị của this
-    //    // Kiểm tra giá trị của this
-    //});
-    //$(".thichBtn").click(function () {
-    //    console.log(this); // Kiểm tra giá trị của this
-    //});
 
     $(document).ready(function () {
         $(".thichBtn").click(function () {
@@ -286,7 +280,16 @@
                 });
         });
         $("#openUngTuyenModal").click(function () {
-            $("#ungTuyenModal").modal("show"); // Kích hoạt modal
+            var cvListEmpty = "@(ViewBag.ListCV == null)";
+            if (cvListEmpty === "True") {
+                swal.fire({
+                    icon: 'warning',
+                    title: 'Bạn phải tải lên CV trước',
+                    text: 'Hãy nhấn vào tài khoản của bạn trên màn hình và chọn cài đặt tài khoản sau đó chọn sơ yếu lý lịch và tải lên CV của mình.'
+                });
+            } else {
+                $("#ungTuyenModal").modal("show"); // Kích hoạt modal
+            }
         });
         $("#nopHoSoBtn").click(function () {
             var idCV = $("#cvSelect").val();
