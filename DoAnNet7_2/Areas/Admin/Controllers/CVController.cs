@@ -1,4 +1,5 @@
 ﻿using DoAnNet7_2.Models;
+using DoAnNet7_2.Models.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -14,6 +15,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
     {
         Jobsworld2Context db = new Jobsworld2Context();
 
+        [Authentication]
         [Route("DanhSachCV")]
         [HttpGet]
         public IActionResult DanhSachCV(int? page, string searchTerm)
@@ -53,6 +55,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             return View(pagedList);
         }
 
+        [Authentication]
         [HttpGet]
         [Route("DSCVUngVien")]
         public IActionResult DSCVUngVien(int IdTK, int? page, string searchTerm)
@@ -97,6 +100,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             return View(pagedList);
         }
 
+        [Authentication]
         [HttpGet]
         [Route("TaiXuongCV")]
         public IActionResult TaiXuongCV(int idCV)
@@ -123,6 +127,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             return File(fileContent, "application/pdf", fileName);
         }
 
+        [Authentication]
         [Route("DSBTDCV")]
         public IActionResult DSBTDCV(int idCV, int? page, string searchTerm)
         {
@@ -170,6 +175,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             return View(pagedList);
         }
 
+        [Authentication]
         [Route("ThemCVUngVien")]
         [HttpGet]
         public IActionResult ThemCVUngVien()
@@ -190,6 +196,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             return View(cv);
         }
 
+        [Authentication]
         [Route("ThemCVUngVien")]
         [HttpPost]
         public IActionResult ThemCVUngVien(Soyeulylich syll, IFormFile cvFile)
@@ -275,6 +282,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
         //    }
         //}
 
+        [Authentication]
         [Route("ThemCV")]
         [HttpGet]
         public IActionResult ThemCV()
@@ -284,6 +292,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             return View();
         }
 
+        [Authentication]
         [Route("ThemCV")]
         [HttpPost]
         public IActionResult ThemCV(Soyeulylich syll, IFormFile cvFile)
@@ -324,6 +333,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             return View(syll);
         }
 
+        [Authentication]
         [Route("SuaCV")]
         [HttpGet]
         public IActionResult SuaCV(int idSYLL)
@@ -332,6 +342,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             return View(syll);
         }
 
+        [Authentication]
         [Route("SuaCV")]
         [HttpPost]
 
@@ -355,6 +366,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             return View(syll);
         }
 
+        [Authentication]
         [Route("XoaCV")]
         [HttpGet]
         public IActionResult XoaCV(int idCV, int idTK)

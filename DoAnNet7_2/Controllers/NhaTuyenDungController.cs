@@ -95,6 +95,7 @@ namespace DoAnNet7_2.Controllers
             return View();
         }
 
+        [Authentication]
         [Route("UpAnhDaiDienNTD")]
         [HttpGet]
         public IActionResult UpAnhDaiDienNTD()
@@ -115,6 +116,7 @@ namespace DoAnNet7_2.Controllers
             return View(anhDD);
         }
 
+        [Authentication]
         [Route("UpAnhDaiDienNTD")]
         [HttpPost]
 
@@ -153,7 +155,7 @@ namespace DoAnNet7_2.Controllers
             return View(anhdd);
         }
 
-
+        [Authentication]
         [Route("TaoCongTy")]
         [HttpGet]
         public IActionResult TaoCongTy()
@@ -178,7 +180,7 @@ namespace DoAnNet7_2.Controllers
             return View(ct);
         }
 
-
+        [Authentication]
         [Route("TaoCongTy")]
         [HttpPost]
         public IActionResult TaoCongTy(Congty ct)
@@ -211,6 +213,7 @@ namespace DoAnNet7_2.Controllers
             return View(ct);
         }
 
+        [Authentication]
         [Route("CongTyNTD")]
         [HttpGet]
         public IActionResult CongTyNTD()
@@ -239,6 +242,7 @@ namespace DoAnNet7_2.Controllers
             return View(ct);
         }
 
+        [Authentication]
         [Route("SuaCongTyNTD")]
         [HttpGet]
         public IActionResult SuaCongTyNTD(int idTK)
@@ -257,6 +261,7 @@ namespace DoAnNet7_2.Controllers
             return View(ct);
         }
 
+        [Authentication]
         [Route("SuaCongTyNTD")]
         [HttpPost]
         public IActionResult SuaCongTyNTD(Congty ct)
@@ -300,6 +305,7 @@ namespace DoAnNet7_2.Controllers
             return View(ct);
         }
 
+        [Authentication]
         [HttpGet]
         public async Task<IActionResult> DoiTTHT(int idBTD, string newStatus)
         {
@@ -411,6 +417,7 @@ namespace DoAnNet7_2.Controllers
             return View(btd);
         }
 
+        [Authentication]
         [Route("DSUngTuyenNTD")]
         [HttpGet]
         public IActionResult DSUngTuyenNTD(int idBTD, int? page, string searchTerm)
@@ -506,7 +513,8 @@ namespace DoAnNet7_2.Controllers
                 btd.IdTk = ID_TK;
                 db.Baituyendungs.Add(btd);
                 db.SaveChanges();
-                return RedirectToAction("DSBTDNTD", "NhaTuyenDung");
+                ViewBag.ThemBTDNTDTC = true;
+                //return RedirectToAction("DSBTDNTD", "NhaTuyenDung");
             }
             else
             {
@@ -518,9 +526,9 @@ namespace DoAnNet7_2.Controllers
             ViewBag.IdNn = new SelectList(db.Nganhnghes.ToList(), "IdNn", "Tennganhnghe");
             ViewBag.IdLcv = new SelectList(db.Loaicongviecs.ToList(), "IdLcv", "Tenlcv");
             ViewBag.IdTgkn = new SelectList(db.Thoigiankinhnghiems.ToList(), "IdTgkn", "Tentgkn");
-            ViewBag.IdLuong = new SelectList(db.Luongs.ToList(), "Idluong", "Tenmucluong");
+            ViewBag.IdLuong = new SelectList(db.Luongs.ToList(), "IdLuong", "Tenmucluong");
             ViewBag.IdTt = new SelectList(db.Tinhthanhs.ToList(), "IdTt", "Tentt");
-            ViewBag.IdTtht = new SelectList(db.Trangthaihienthis.ToList(), "IdTt", "Tenttht");
+            ViewBag.IdTtht = new SelectList(db.Trangthaihienthis.ToList(), "IdTtht", "Tenttht");
             return View(btd);
         }
 
@@ -551,7 +559,7 @@ namespace DoAnNet7_2.Controllers
                 db.SaveChanges();
                 ViewBag.MessageType = "success";
                 ViewBag.Message = "Sửa thành công";
-                //return RedirectToAction("DSBaiTuyenDung", "BaiTuyenDung");
+                return RedirectToAction("DSBTDNTD", "NhaTuyenDung");
             }
             else
             {
@@ -586,7 +594,7 @@ namespace DoAnNet7_2.Controllers
             return RedirectToAction("DSBTDNTD", "NhaTuyenDung");
         }
 
-
+        [Authentication]
         [Route("CaiDatTaiKhoanNTD")]
         public IActionResult CaiDatTaiKhoanNTD()
         {
@@ -609,7 +617,8 @@ namespace DoAnNet7_2.Controllers
             //HttpContext.Session.SetInt32("IdTk", Id_TK);
             return View(tk);
         }
-
+        
+        [Authentication]
         [Route("SuaTaiKhoanNTD")]
         [HttpGet]
         public IActionResult SuaTaiKhoanNTD(int idTK)
@@ -626,6 +635,7 @@ namespace DoAnNet7_2.Controllers
             return View(tk);
         }
 
+        [Authentication]
         [Route("SuaTaiKhoanNTD")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -653,7 +663,7 @@ namespace DoAnNet7_2.Controllers
             return View(tk);
         }
 
-
+        [Authentication]
         [Route("SuaAnhDDNTD")]
         [HttpGet]
         public IActionResult SuaAnhDDNTD(int idTK)
@@ -669,6 +679,7 @@ namespace DoAnNet7_2.Controllers
             return View(anhDD);
         }
 
+        [Authentication]
         [Route("SuaAnhDDNTD")]
         [HttpPost]
         public IActionResult SuaAnhDDNTD(Anhdaidien anhDD)

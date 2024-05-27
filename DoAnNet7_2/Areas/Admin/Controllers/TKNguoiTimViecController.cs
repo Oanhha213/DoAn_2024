@@ -9,6 +9,7 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 using System.Diagnostics;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using DoAnNet7_2.Models.Authentication;
 
 namespace DoAnNet7_2.Areas.Admin.Controllers
 {
@@ -18,6 +19,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
     {
         Jobsworld2Context db = new Jobsworld2Context();
 
+        [Authentication]
         [Route("")]
         [Route("DSNguoiTimViec")]
         [HttpGet]
@@ -107,6 +109,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             //return View(pagedList);
         }
 
+        [Authentication]
         [Route("ThemTKNTV")]
         [HttpGet]
         public IActionResult ThemTKNTV()
@@ -114,6 +117,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             return View();
         }
 
+        [Authentication]
         [Route("ThemTKNTV")]
         [HttpPost]
         public IActionResult ThemTKNTV(Taikhoan tk)
@@ -134,6 +138,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             return View(tk);
         }
 
+        [Authentication]
         [Route("BaiVietDaThich")]
         public IActionResult BaiVietDaThich(int idTK, int? page, string searchTerm)
         {
@@ -181,6 +186,8 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             }
             return View(pagedList);
         }
+
+        [Authentication]
         //Bài viết chưa thích
         [Route("ThichBaiViet")]
         [HttpGet]
@@ -229,6 +236,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             return View(pagedList);
         }
 
+        [Authentication]
         [Route("ThichBaiViet")]
         [HttpPost]
         public IActionResult ThichBaiViet(int idBTD, int IdTK)
@@ -239,6 +247,8 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             return RedirectToAction("ThichBaiViet", new { idTK = IdTK });
         }
 
+
+        [Authentication]
         [Route("XoaBTDDaThich")]
         [HttpGet]
         public IActionResult XoaBTDDaThich(int idTCV, int idTK)
@@ -260,6 +270,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             return RedirectToAction("BaiVietDaThich", "TKNguoiTimViec", new { idTK = idTK });
         }
 
+        [Authentication]
         [HttpGet]
         [Route("DSBTDUngTuyen")]
         public IActionResult DSBTDUngTuyen(int idTK, int? page, string searchTerm)
@@ -312,6 +323,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             return View(pagedList);
         }
 
+        [Authentication]
         [Route("XoaBTDUngTuyen")]
         [HttpGet]
         public IActionResult XoaBTDUngTuyen(int idCVSYLL, int idTK)
@@ -333,6 +345,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             return RedirectToAction("DSBTDUngTuyen", "TKNguoiTimViec", new { idTK = idTK });
         }
 
+        [Authentication]
         [Route("BTDChuaUT")]
         [HttpGet]
         public IActionResult BTDChuaUT(int idTK, int? page, string searchTerm)
@@ -388,6 +401,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             return View(pagedList);
         }
 
+        [Authentication]
         [Route("UVUngTuyen")]
         [HttpGet]
         public IActionResult UVUngTuyen(int idTK, int idBTD)
@@ -404,6 +418,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             return View();
         }
 
+        [Authentication]
         [HttpPost]
         [Route("UVUngTuyen")]
         public IActionResult UVUngTuyen(int IdTK, int idBTD, int idCV)

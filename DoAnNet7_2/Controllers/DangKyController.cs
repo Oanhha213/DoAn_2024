@@ -27,6 +27,19 @@ namespace DoAnNet7_2.Controllers
         [HttpPost]
         public IActionResult DangKy(Taikhoan tk)
         {
+            var existingUser = db.Taikhoans.FirstOrDefault(u => u.Email == tk.Email);
+            var loaiTK = new[]
+            {
+                new { IdLtk = 2, Text = "Nhà tuyển dụng" },
+                new { IdLtk = 3, Text = "Người tìm việc" }
+            };
+
+            if (existingUser != null)
+            {
+                ViewBag.ErrorMessage = "Tài khoản đã tồn tại. Vui lòng kiểm tra lại thông tin";
+                ViewBag.IdLtk = new SelectList(loaiTK, "IdLtk", "Text");
+                return View(tk);
+            }
             if (ModelState.IsValid)
             {
                 db.Taikhoans.Add(tk);
@@ -37,6 +50,7 @@ namespace DoAnNet7_2.Controllers
                 // Chuyển hướng đến action UpAnhDaiDien và truyền vai trò của người dùng
                 return RedirectToAction("UpAnhDaiDien", "DangKy");
             }
+            ViewBag.IdLtk = new SelectList(loaiTK, "IdLtk", "Text");
             return View(tk);
         }
 

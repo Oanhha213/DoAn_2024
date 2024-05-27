@@ -1,4 +1,5 @@
 ﻿using DoAnNet7_2.Models;
+using DoAnNet7_2.Models.Authentication;
 using DoAnNet7_2.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -15,6 +16,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
     {
         Jobsworld2Context db = new Jobsworld2Context();
 
+        [Authentication]
         [HttpGet]
         [Route("")]
         [Route("DanhSachTaiKhoan")]
@@ -72,7 +74,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             return View(pagedList);
         }
 
-
+        [Authentication]
         [Route("ThemTaiKhoan")]
         [HttpGet]
         public IActionResult ThemTaiKhoan()
@@ -81,6 +83,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             return View();
         }
 
+        [Authentication]
         [Route("ThemTaiKhoan")]
         [HttpPost]
         public IActionResult ThemTaiKhoan(Taikhoan tk)
@@ -101,6 +104,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             return View(tk);
         }
 
+        [Authentication]
         [Route("SuaTaiKhoan")]
         [HttpGet]
         public IActionResult SuaTaiKhoan(int idTK)
@@ -114,6 +118,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             return View(tk);
         }
 
+        [Authentication]
         [Route("SuaTaiKhoan")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -140,6 +145,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             return View(tk);
         }
 
+        [Authentication]
         [Route("XoaTK")]
         [HttpGet]
         public IActionResult XoaTK(int idTK)
@@ -189,6 +195,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             }
         }
 
+        [Authentication]
         [Route("InfoTK")]
         [HttpGet]
         public IActionResult InfoTK(int idTK)

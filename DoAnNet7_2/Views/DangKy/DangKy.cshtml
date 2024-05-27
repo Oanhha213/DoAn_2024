@@ -20,36 +20,46 @@
     <script src="https://cdn.ckeditor.com/ckeditor5/37.0.0/classic/ckeditor.js"></script>
 </head>
 <body>
-
+      
     <div class="container">
         <div class="row" style="justify-content: center; align-items: center; height: inherit">
             <div class="col-md-6" style="background-color: #fff; border-radius: 10px; padding: 30px">
                 <h3 style="text-align: center; margin-bottom: 30px">ĐĂNG KÝ</h3>
                 <form asp-action="DangKy" method="post">
+                    @if (ViewBag.ErrorMessage != null)
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            @ViewBag.ErrorMessage
+                        </div>
+                    }
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-group">
-                        <label asp-for="Hoten" class="control-label">Họ tên
+                        <label asp-for="Hoten" class="control-label">
+                            Họ tên
                             (<span style="color: red">*</span>)
                         </label>
-                        <input asp-for="Hoten" class="form-control" required/>
+                        <input asp-for="Hoten" class="form-control" required />
                         <span asp-validation-for="Hoten" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="Email" class="control-label">Email
+                        <label asp-for="Email" class="control-label">
+                            Email
                             (<span style="color: red">*</span>)
                         </label>
-                        <input asp-for="Email" class="form-control" type="email" required/>
+                        <input asp-for="Email" class="form-control" type="email" required />
                         <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="Matkhau" class="control-label">Mật khẩu
+                        <label asp-for="Matkhau" class="control-label">
+                            Mật khẩu
                             (<span style="color: red">*</span>)
                         </label>
-                        <input asp-for="Matkhau" class="form-control" type="password" required/>
+                        <input asp-for="Matkhau" class="form-control" type="password" required />
                         <span asp-validation-for="Matkhau" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="IdLtk" class="control-label">Loại  tài khoản
+                        <label asp-for="IdLtk" class="control-label">
+                            Loại  tài khoản
                             (<span style="color: red">*</span>)
                         </label>
                         <select asp-for="IdLtk" class="form-control" asp-items="ViewBag.IdLtk" required></select>
@@ -59,12 +69,12 @@
                         <a class="btn btn-danger" asp-action="Index" asp-controller="Home">Huỷ</a>
                     </div>
                 </form>
-                <div  style="text-align:center">
+                <div style="text-align:center">
                     Bạn đã có tài khoản? <a asp-action="DangNhap" asp-controller="Access">Đăng nhập ngay tại đây!</a>
                 </div>
             </div>
         </div>
     </div>
-        
+
 </body>
 </html>

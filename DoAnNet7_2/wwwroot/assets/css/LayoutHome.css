@@ -71,12 +71,10 @@ a {
 }
 
     .first-card .email {
-        display: flex;
-        flex-direction: column;
         font-size: 20px;
         line-height: 38px;
         color: #f44029;
-        margin-top: 46px;
+        vertical-align: middle;
     }
 
         .first-card .email a {
@@ -89,7 +87,8 @@ a {
             }
 
         .first-card .email i {
-            font-size: 30px;
+            font-size: 20px;
+            margin-right: 8px;
         }
 
 .second-card {

@@ -33,9 +33,9 @@
                 <div class="info" style="">
                     <h4 style="color: #dc3545">Số bài tuyển dụng hiển thị</h4>
                     <p><b>@ViewBag.BTDHien bài viết hiển thị</b></p>
-                    <p class="info-tong">
+@*                    <p class="info-tong">
                         Tổng số bài hiển thị được quản lý
-                    </p>
+                    </p>*@
                 </div>
             </div>
         </div>
@@ -46,9 +46,9 @@
                 <div class="info" style="">
                     <h4 style="color: #dc3545">Số CV đã tiếp nhận</h4>
                     <p><b>@ViewBag.TongCVUT CV đã tiếp nhận</b></p>
-                    <p class="info-tong">
+@*                    <p class="info-tong">
                         Tổng số CV đã tiếp nhận được quản lý
-                    </p>
+                    </p>*@
                 </div>
             </div>
         </div>
@@ -60,19 +60,42 @@
                     <h4 style="color: #dc3545">Bài tuyển dụng mới tháng @previousMonth</h4>
                     <p><b>@ViewBag.countBTDLastMonth bài tuyển dụng mới</b></p>
                     <p class="info-tong">
-                        @{
+                        @*@{
                             if ((double)ViewBag.percentChangeBTD > 0)
                             {
                                 <span style="color: green;font-weight: 600;">+@ViewBag.percentChangeBTD% so với tháng @previousMonth2</span>
                             }
                             else if ((double)ViewBag.percentChangeBTD < 0)
                             {
-                                <span style="color: red;font-weight: 600;">-@ViewBag.percentChangeBTD% so với tháng @previousMonth2</span>
+                                <span style="color: red;font-weight: 600;">@ViewBag.percentChangeBTD% so với tháng @previousMonth2</span>
                             }
                             else
                             {
                                 <span style="color: blue;font-weight: 600;">Bằng với tháng @previousMonth2</span>
                             }
+                        }*@
+                        @{
+                            double percentChangeBTD = ViewBag.percentChangeBTD;
+                            string formattedPercentChangeBTD = percentChangeBTD.ToString();
+
+                            // Kiểm tra nếu giá trị có phần thập phân (không phải số nguyên)
+                            if (percentChangeBTD % 1 != 0)
+                            {
+                                formattedPercentChangeBTD = percentChangeBTD.ToString("0.00");
+                            }
+                            if (percentChangeBTD > 0)
+                            {
+                                <span style="color: green;font-weight: 600;">+@formattedPercentChangeBTD% so với tháng @previousMonth2</span>
+                            }
+                            else if (percentChangeBTD < 0)
+                            {
+                                <span style="color: red;font-weight: 600;">@formattedPercentChangeBTD% so với tháng @previousMonth2</span>
+                            }
+                            else
+                            {
+                                <span style="color: blue;font-weight: 600;">Bằng với tháng @previousMonth2</span>
+                            }
+
                         }
                     </p>
                 </div>

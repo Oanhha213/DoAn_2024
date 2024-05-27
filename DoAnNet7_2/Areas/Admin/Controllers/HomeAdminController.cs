@@ -14,7 +14,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
     {
         Jobsworld2Context db = new Jobsworld2Context();
 
-        //[Authentication]
+        [Authentication]
         [Route("")]
         [Route("index")]
         public IActionResult Index()
@@ -76,9 +76,9 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
                 percentChangeNTV = ((double)(countNTVLastMonth - countNTVSecondLastMonth) / countNTVSecondLastMonth) * 100;
                 percentChangeNTV = Math.Round(percentChangeNTV, 2);
             }
-            Debug.WriteLine("Tháng 3: " + countNTVSecondLastMonth);
-            Debug.WriteLine("Tháng 4: " + countNTVLastMonth);
-            Debug.WriteLine("Phần trăm: " + percentChangeNTV);
+            //Debug.WriteLine("Tháng 3: " + countNTVSecondLastMonth);
+            //Debug.WriteLine("Tháng 4: " + countNTVLastMonth);
+            //Debug.WriteLine("Phần trăm: " + percentChangeNTV);
 
 
             ViewBag.countNTVLastMonth = countNTVLastMonth;

@@ -7,7 +7,7 @@
 @foreach (var item in Model)
 {
     <div class="col-md-6" style="margin-top: 20px; justify-content: space-between;">
-        <div class="border-content row hover-bg" style="width: -webkit-fill-available !important; position: relative">
+        <div class="border-content row hover-bg" style="width: -webkit-fill-available !important; position: relative; min-height: 100%">
             <div class="col-md-10 ">
                 <a style="display: inline-block; width: -webkit-fill-available; cursor: pointer; color: #000 !important" asp-route-idBTD="@item.IdBtd" asp-route-idTK="@ViewBag.IdTk" asp-action="ChiTietBTDNTV" asp-controller="NguoiTimViec" target="_blank">
                     <h3>

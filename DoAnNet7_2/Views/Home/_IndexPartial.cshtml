@@ -7,29 +7,46 @@
 @foreach (var item in Model)
 {
     <div class=" col-md-6" style="margin-top: 20px; justify-content: space-between">
-        <div class="border-content row hover-bg" style="width: -webkit-fill-available !important;">
-            <div class="col-md-8">
-                <h5>
+        <div class="border-content row hover-bg" style="width: -webkit-fill-available !important;min-height: 100%;">
+            <div class="col-md-10">
+                <h3>
                     @item.Tencongviec
-                </h5>
-                @if (item.Diachi != null || item.IdTtNavigation?.Tentt != null)
+                </h3>
+                @if (item.Diachi != null)
                 {
-                    <p>
+                    <p class="mt1">
                         <i class="fa-solid fa-location-dot"></i>
-                        @item.Diachi, @item.IdTtNavigation?.Tentt
+
+                        @item.Diachi
+                        @if (item.IdTtNavigation?.Tentt != null)
+                        {
+                            <span>
+                                ,@item.IdTtNavigation?.Tentt
+                            </span>
+                        }
                     </p>
                 }
-                <p>
+                <p class="mt1">
+                    <i class="fa-solid fa-business-time"></i>
+                    Hạn nộp hồ sơ:
+                    @if (item.Hannopcv.HasValue)
+                    {
+                        @item.Hannopcv.Value.ToShortDateString()
+                    }
+                </p>
+                <p class="mt1">
                     <span>
+                        <i class="fa-solid fa-location-arrow"></i>
                         @item.IdLcvNavigation?.Tenlcv
                     </span>
                     |
                     <span>
+                        <i class="fa-solid fa-money-bills"></i>
                         @item.IdLuongNavigation?.Tenmucluong
                     </span>
                 </p>
             </div>
-            <div class="col-md-4 row" style="justify-content: end;">
+            <div class="col-md-2" style="text-align: right">
                 @*<a class="btn btn-success col-md-10" style="height: fit-content; line-height: 26px;max-width: fit-content;">Ứng tuyển ngay</a>*@
                 <a class=" col-md-2" style="height: fit-content; line-height: 22px;max-width: fit-content;
                                             cursor: pointer;

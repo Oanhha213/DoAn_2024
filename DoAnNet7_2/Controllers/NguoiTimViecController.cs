@@ -15,7 +15,7 @@ namespace DoAnNet7_2.Controllers
     {
         Jobsworld2Context db = new Jobsworld2Context();
 
-        //[Authentication]
+        [Authentication]
         [Route("")]
         [Route("NguoiTimViec")]
         [HttpGet]
@@ -149,7 +149,7 @@ namespace DoAnNet7_2.Controllers
             return View(pagedList);
         }
 
-
+        [Authentication]
         [Route("DanhSachCV")]
         public IActionResult DanhSachCV()
         {
@@ -165,6 +165,7 @@ namespace DoAnNet7_2.Controllers
             return View(lstCV);
         }
 
+        [Authentication]
         [Route("ThemCV")]
         [HttpGet]
         public IActionResult ThemCV()
@@ -188,6 +189,7 @@ namespace DoAnNet7_2.Controllers
             return View(cv);
         }
 
+        [Authentication]
         [Route("ThemCV")]
         [HttpPost]
         public IActionResult ThemCV(Soyeulylich syll, IFormFile cvFile)
@@ -257,6 +259,7 @@ namespace DoAnNet7_2.Controllers
             return File(fileContent, "application/pdf");
         }
 
+        [Authentication]
         [HttpGet]
         [Route("TaiXuongCV")]
         public IActionResult TaiXuongCV(int idCV)
@@ -283,6 +286,7 @@ namespace DoAnNet7_2.Controllers
             return File(fileContent, "application/pdf", fileName);
         }
 
+        [Authentication]
         [Route("TaiKhoanNTV")]
         public IActionResult TaiKhoanNTV()
         {
@@ -310,6 +314,7 @@ namespace DoAnNet7_2.Controllers
             return View(tk);
         }
 
+        [Authentication]
         [Route("SuaTaiKhoanNTV")]
         [HttpGet]
         public IActionResult SuaTaiKhoanNTV(int idTK)
@@ -326,6 +331,7 @@ namespace DoAnNet7_2.Controllers
             return View(tk);
         }
 
+        [Authentication]
         [Route("SuaTaiKhoanNTV")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -358,6 +364,7 @@ namespace DoAnNet7_2.Controllers
             return View(tk);
         }
 
+        [Authentication]
         [Route("SuaAnhDDNTV")]
         [HttpGet]
         public IActionResult SuaAnhDDNTV(int idTK)
@@ -373,6 +380,7 @@ namespace DoAnNet7_2.Controllers
             return View(anhDD);
         }
 
+        [Authentication]
         [Route("SuaAnhDDNTV")]
         [HttpPost]
         public IActionResult SuaAnhDDNTV(Anhdaidien anhDD)
@@ -415,6 +423,7 @@ namespace DoAnNet7_2.Controllers
             return View(existingAnhDD);
         }
 
+        [Authentication]
         [Route("DSCVNTV")]
         [HttpGet]
         public IActionResult DSCVNTV(int idTK, int? page, string searchTerm)
@@ -476,6 +485,8 @@ namespace DoAnNet7_2.Controllers
             HttpContext.Session.SetInt32("IdTk", Id_TK);
             return View(pagedList);
         }
+
+        [Authentication]
         [Route("ThemCVTKNTV")]
         [HttpGet]
         public IActionResult ThemCVTKNTV()
@@ -496,12 +507,13 @@ namespace DoAnNet7_2.Controllers
             return View(cv);
         }
 
+        [Authentication]
         [Route("ThemCVTKNTV")]
         [HttpPost]
         public IActionResult ThemCVTKNTV(Soyeulylich syll, IFormFile cvFile)
         {
             var ID_TK = HttpContext.Session.GetInt32("IdTk");
-
+            ViewBag.IdTk = ID_TK;
             if (!ID_TK.HasValue)
             {
                 // Xử lý trường hợp người dùng không hợp lệ, có thể chuyển hướng hoặc xử lý lỗi khác
@@ -539,12 +551,14 @@ namespace DoAnNet7_2.Controllers
                     syll.Duongdansyll = filePath;
                     db.Soyeulyliches.Add(syll);
                     db.SaveChanges();
-                    return RedirectToAction("DSCVNTV", "NguoiTimViec", new { idTK = ID_TK.Value });
+                    ViewBag.ThemCVTC = true;
+                    //return RedirectToAction("DSCVNTV", "NguoiTimViec", new { idTK = ID_TK.Value });
                 }
             }
             return View(syll);
         }
 
+        [Authentication]
         [Route("SuaCVNTV")]
         [HttpGet]
         public IActionResult SuaCVNTV(int idCV)
@@ -558,6 +572,7 @@ namespace DoAnNet7_2.Controllers
             return View(syll);
         }
 
+        [Authentication]
         [Route("SuaCVNTV")]
         [HttpPost]
 
@@ -586,6 +601,7 @@ namespace DoAnNet7_2.Controllers
             return View(syll);
         }
 
+        [Authentication]
         [Route("XoaCVNTV")]
         [HttpGet]
         public IActionResult XoaCVNTV(int idCV, int IdTK)
@@ -616,6 +632,7 @@ namespace DoAnNet7_2.Controllers
             return RedirectToAction("DSCVNTV", "NguoiTimViec", new { idTK = IdTK });
         }
 
+        [Authentication]
         [Route("BaiVietDaThichNTV")]
         public IActionResult BaiVietDaThichNTV(int idTK, int? page, string searchTerm)
         {
@@ -665,6 +682,8 @@ namespace DoAnNet7_2.Controllers
             }
             return View(pagedList);
         }
+
+        [Authentication]
         [Route("XoaBTDDaThichNTV")]
         [HttpGet]
         public IActionResult XoaBTDDaThichNTV(int idTCV, int idTK)
@@ -688,6 +707,7 @@ namespace DoAnNet7_2.Controllers
             return RedirectToAction("BaiVietDaThichNTV", "NguoiTimViec", new { idTK = idTK });
         }
 
+        [Authentication]
         [Route("BTDDaUngTuyen")]
         [HttpGet]
         public IActionResult BTDDaUngTuyen(int idTK, int? page, string searchTerm)
@@ -764,15 +784,15 @@ namespace DoAnNet7_2.Controllers
             {
 
                 var idTKBtd = btd.IdTk;
-                var ct = db.Congties.Where(x => x.IdTk == idTKBtd).Include(x => x.IdTtNavigation);
+                var ct = db.Congties.Include(x => x.IdTtNavigation).FirstOrDefault(x => x.IdTk == idTKBtd);
                 if (ct != null)
                 {
-                    var tenct = ct.FirstOrDefault(x => x.IdTk == idTKBtd)?.Tencongty;
-                    var logo = ct.FirstOrDefault(x => x.IdTk == idTKBtd)?.Logo;
-                    var diachi = ct.FirstOrDefault(x => x.IdTk == idTKBtd)?.Diachi;
-                    var tt = ct.FirstOrDefault(x => x.IdTk == idTKBtd)?.IdTtNavigation.Tentt;
-                    var sonv = ct.FirstOrDefault(x => x.IdTk == idTKBtd)?.Sonhanvien;
-                    var idtkct = ct.FirstOrDefault(x => x.IdTk == idTKBtd)?.IdTk;
+                    var tenct = ct?.Tencongty;
+                    var logo = ct?.Logo;
+                    var diachi = ct?.Diachi;
+                    var tt = ct?.IdTtNavigation.Tentt;
+                    var sonv = ct?.Sonhanvien;
+                    var idtkct = ct?.IdTk;
                     ViewBag.Logo = logo;
                     ViewBag.Tenct = tenct;
                     ViewBag.Diachi = diachi;
@@ -805,6 +825,7 @@ namespace DoAnNet7_2.Controllers
             return View(btd);
         }
 
+        [Authentication]
         [HttpPost]
         [Route("UngTuyenNTV")]
         public IActionResult UngTuyenNTV(int idTK, int idBTD, int idCV)
@@ -847,6 +868,7 @@ namespace DoAnNet7_2.Controllers
 
         }
 
+        [Authentication]
         [HttpPost]
         public IActionResult ThichCongViec(int idBTD, int idTK) // Thêm tham số idTK vào phương thức
         {

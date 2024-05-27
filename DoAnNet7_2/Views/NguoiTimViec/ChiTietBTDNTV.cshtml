@@ -25,7 +25,7 @@
     </div>
 </div>
 <div class="row" style="background-color: #f3f5f7;justify-content: center">
-    <div class="col-md-11 row" style="margin-top: 40px; margin-bottom: 50px">
+    <div class="col-md-11 row" style="margin-top: 40px; margin-bottom: 50px; justify-content: center">
         <div class="col-md-8 row">
             <div class="border-content col-md-12 mt2" style="max-height: fit-content; margin-top: 0 !important">
                 <h1>@ViewBag.Tencongviec</h1>
@@ -174,11 +174,11 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="border-content col-md-12" style="min-width: -webkit-fill-available;">
+        @if (ViewBag.congty != null)
+        {
+            <div class="col-md-4">
+                <div class="border-content col-md-12" style="min-width: -webkit-fill-available;">
 
-                @if (ViewBag.congty != null)
-                {
                     <div class="row" style="align-items: center">
                         @if (ViewBag.Logo != null)
                         {
@@ -203,12 +203,12 @@
                             }
                         </div>
                     }
-                }
-                <div class="row mt2" style="justify-content: center">
-                    <a class="btn text-hien col-md-12" style="max-width: fit-content" asp-action="ChiTietCTHome" asp-controller="Home" asp-route-idTK="@ViewBag.IdTkCT">Chi tiết</a>
+                    <div class="row mt2" style="justify-content: center">
+                        <a class="btn text-hien col-md-12" style="max-width: fit-content" asp-action="ChiTietCTHome" asp-controller="Home" asp-route-idTK="@ViewBag.IdTkCT">Chi tiết</a>
+                    </div>
                 </div>
             </div>
-        </div>
+        }
     </div>
 
 </div>

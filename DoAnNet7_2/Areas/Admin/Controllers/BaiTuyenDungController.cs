@@ -1,5 +1,6 @@
 ﻿using Azure;
 using DoAnNet7_2.Models;
+using DoAnNet7_2.Models.Authentication;
 using DoAnNet7_2.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -17,6 +18,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
     {
         Jobsworld2Context db = new Jobsworld2Context();
 
+        [Authentication]
         [HttpGet]
         [Route("DSBaiTuyenDung")]
         public IActionResult DSBaiTuyenDung(int? page, string searchTerm)
@@ -65,6 +67,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             return View(pagedList);
         }
 
+        [Authentication]
         [HttpGet]
         public async Task<IActionResult> DoiTTHT(int idBTD, string newStatus, string currentView)
         {
@@ -106,6 +109,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             return RedirectToAction("DSBaiTuyenDung", "BaiTuyenDung");
         }
 
+        [Authentication]
         [Route("ChiTietBTD")]
         public IActionResult ChiTietBTD(int idBTD)
         {
@@ -127,6 +131,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             return View(btd);
         }
 
+        [Authentication]
         [Route("DSUngTuyen")]
         [HttpGet]
         public IActionResult DSUngTuyen(int idBTD, int? page, string searchTerm)
@@ -169,6 +174,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             return View(pagedList);
         }
 
+        [Authentication]
         [Route("XoaUT")]
         [HttpGet]
         public IActionResult XoaUT(int idCVSYLL, int idBTD)
@@ -190,6 +196,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             return RedirectToAction("DSUngTuyen", "BaiTuyenDung", new {idBTD = idBTD});
         }
 
+        [Authentication]
         [Route("BTDUngVien")]
         [HttpGet]
         public IActionResult BTDUngVien( int? page, string searchTerm)
@@ -251,6 +258,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
         //    return View(ut);
         //}
 
+        [Authentication]
         [Route("ThemBTDCongTy")]
         [HttpGet]
         public IActionResult ThemBTDCongTy()
@@ -266,6 +274,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             return View();
         }
 
+        [Authentication]
         [Route("ThemBTDCongTy")]
         [HttpPost]
 
@@ -298,6 +307,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             return View(btd);
         }
 
+        [Authentication]
         [Route("ThemBTD")]
         [HttpGet]
         public IActionResult ThemBTD()
@@ -313,6 +323,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             return View();
         }
 
+        [Authentication]
         [Route("ThemBTD")]
         [HttpPost]
 
@@ -324,12 +335,14 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
                 btd.CreateAt = DateTime.Now;
                 db.Baituyendungs.Add(btd);
                 db.SaveChanges();
-                return RedirectToAction("DSBaiTuyenDung", "BaiTuyenDung");
+                ViewBag.ThemBTDTC = true;
+                //return RedirectToAction("DSBaiTuyenDung", "BaiTuyenDung");
             }
             ViewBag.Taikhoan = db.Taikhoans.Where(x => x.IdLtk == 2).ToList();
             return View(btd);
         }
 
+        [Authentication]
         [Route("SuaBTD")]
         [HttpGet]
         public IActionResult SuaBTD(int idBTD)
@@ -344,6 +357,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             return View(btd);
         }
 
+        [Authentication]
         [Route("SuaBTD")]
         [HttpPost]
 
@@ -366,6 +380,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             return View(btd);
         }
 
+        [Authentication]
         [Route("XoaBTD")]
         [HttpGet]
         public IActionResult XoaBTD(int idBTD)
@@ -389,6 +404,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             return RedirectToAction("DSBaiTuyenDung","BaiTuyenDung");
         }
 
+        [Authentication]
         [Route("XoaBTDUngVien")]
         [HttpGet]
         public IActionResult XoaBTDUngVien(int idBTDUV)

@@ -1,6 +1,9 @@
 ﻿using DoAnNet7_2.Models;
+using DoAnNet7_2.Models.Authentication;
 using DoAnNet7_2.Services;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
+using System.Diagnostics.Metrics;
 
 namespace DoAnNet7_2.Areas.Admin.Controllers
 {
@@ -9,13 +12,23 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
     {
         Jobsworld2Context db = new Jobsworld2Context();
 
+        [Authentication]
         [Route("ThemAnhDaiDien")]
         [HttpGet]
         public IActionResult ThemAnhDaiDien()
         {
+            var ID_TK = HttpContext.Session.GetInt32("IdTk");
+            Debug.WriteLine("IDTK: " + ID_TK);
+            var idLtk = db.Taikhoans.FirstOrDefault(x => x.IdTk == ID_TK)?.IdLtk;
+            ViewBag.IdLtk = idLtk;
+            if (ViewBag.IdLtk != null)
+            {
+                Debug.WriteLine("IdLtk: " + idLtk);
+            }
             return View();
         }
 
+        [Authentication]
         [Route("ThemAnhDaiDien")]
         [HttpPost]
 
@@ -34,38 +47,39 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             {
                 foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
                 {
-                    Console.WriteLine(error.ErrorMessage);
+                    Debug.WriteLine(error.ErrorMessage);
                 }
             }
+                var IdLTK = db.Taikhoans.FirstOrDefault(x => x.IdTk == ID_TK)?.IdLtk;
+                ViewBag.IdLtk = IdLTK;
 
             if (ModelState.IsValid)
             {
-                ViewBag.IdLtk = db.Taikhoans.FirstOrDefault(x => x.IdTk == ID_TK)?.IdLtk;
                 anhdd.IdTk = ID_TK.Value;
                 anhdd.Tenanh = LuuAnh.LuuAnhDaiDien(anhdd.UpAnhDaiDien);
                 db.Anhdaidiens.Add(anhdd);
                 db.SaveChanges();
-
-                // Kiểm tra loại tài khoản và chuyển hướng tới action tương ứng
-                var IdLTK = db.Taikhoans.FirstOrDefault(x => x.IdTk == ID_TK)?.IdLtk;
-                var syll = db.Soyeulyliches.Where(x => x.IdTk == ID_TK);
                 // Dựa vào vai trò của người dùng để chuyển hướng tới action tương ứng
-                if (IdLTK != null)
-                {
-                    if (IdLTK == 2)
-                    {
-                        return RedirectToAction("DSNhaTuyenDung", "TKNhaTuyenDung");
-                    }
-                    else 
-                    {
-                        return RedirectToAction("DSNguoiTimViec", "TKNguoiTimViec");
-                    }
-
-                }
+                ViewBag.SuccessMessage = "Thêm tài khoản thành công.";
+                ViewBag.ThemTKThanhCong = true;
             }
             return View(anhdd);
         }
 
+        //                        if (IdLTK != null)
+        //                {
+        //                    if (IdLTK == 2)
+        //                    {
+        //                        return RedirectToAction("DSNhaTuyenDung", "TKNhaTuyenDung");
+        //    }
+        //                    else
+        //                    {
+        //                        return RedirectToAction("DSNguoiTimViec", "TKNguoiTimViec");
+        //}
+
+        //                }
+
+        [Authentication]
         [Route("SuaAnhDD")]
         [HttpGet]
         public IActionResult SuaAnhDD(int idTK)
@@ -81,6 +95,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             return View(anhDD);
         }
 
+        [Authentication]
         [Route("SuaAnhDD")]
         [HttpPost]
         public IActionResult SuaAnhDD(Anhdaidien anhDD)

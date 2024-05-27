@@ -19,7 +19,8 @@ public partial class Taikhoan
     public string Matkhau { get; set; } = null!;
 
     [DisplayName("Số điện thoại")]
-    [RegularExpression(@"^\d{0,10}$", ErrorMessage = "Số điện thoại không được quá 10 chữ số.")]
+    [RegularExpression(@"^[0-9]*$", ErrorMessage = "Số điện thoại chỉ được chứa các ký tự số.")]
+    [MaxLength(12, ErrorMessage = "Số điện thoại không được quá 12 chữ số.")]
     public string? Sdt { get; set; }
 
     [DisplayName("Loại tài khoản")]

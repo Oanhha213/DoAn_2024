@@ -27,4 +27,19 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        var themNNTC = '@(ViewBag.ThemNNTC ?? false)'; // Lấy giá trị biến bool từ ViewBag
 
+        if (themNNTC == "True") { // Kiểm tra xem việc thêm tài khoản có thành công không
+            Swal.fire({
+                title: "Thành công!",
+                text: "Thêm mới thành công!",
+                icon: "success",
+                timer: 3000
+            }).then(() => {
+                window.location.href = '@Url.Action("DSNganhNghe", "NganhNghe")';
+            });
+        }
+    });
+</script>

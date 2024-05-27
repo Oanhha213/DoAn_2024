@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_LayoutNhaTuyenDung.cshtml";
 }
 
-<div class="border-content col-md-6">
+<div class="border-content col-md-8">
     <h1>Thêm Bài tuyển dụng</h1>
     <hr />
     <div class="row">
@@ -48,7 +48,8 @@
                     <select asp-for="IdLcv" class="form-control mt1" asp-items="ViewBag.IdLcv" required></select>
                 </div>
                 <div class="form-group mt2">
-                    <label asp-for="IdLuong" class="control-label">Mức lương
+                    <label asp-for="IdLuong" class="control-label">
+                        Mức lương
                         (<span style="color: red">*</span>)
                     </label>
                     <select asp-for="IdLuong" class="form-control mt1" asp-items="ViewBag.IdLuong" required></select>
@@ -103,15 +104,15 @@
                 </div>
                 <div class="form-group mt2">
                     <input type="submit" value="Thêm mới" class="btn btn-success" />
-                    <a class="btn btn-danger" asp-action="DSBTDNTD" asp-controller="NhaTuyenDung" asp-route-idTK="@ViewBag.IdTk">Huỷ</a>
+                    <a class="btn btn-danger" asp-action="DSBTDNTD" asp-controller="NhaTuyenDung">Huỷ</a>
                 </div>
             </form>
         </div>
     </div>
 </div>
-<script src="/_framework/aspnetcore-browser-refresh.js"></script>
+@*<script src="/_framework/aspnetcore-browser-refresh.js"></script>*@
 
-<script>
+<script>  
     $(function () {
         var today = new Date(); // Lấy ngày hiện tại
         var dd = String(today.getDate()).padStart(2, '0'); // Lấy ngày
@@ -127,5 +128,20 @@
                 $("#hannopcv").val(formattedDate); // Hiển thị ngày tháng đã định dạng lại vào input
             }
         });
+    });
+    $(document).ready(function () {
+        var idTK = $('#idTK').val();
+        var themBTDNTDTC = '@(ViewBag.ThemBTDNTDTC ?? false)'; // Lấy giá trị biến bool từ ViewBag
+
+        if (themBTDNTDTC == "True") { // Kiểm tra xem việc thêm tài khoản có thành công không
+            Swal.fire({
+                title: "Thành công!",
+                text: "Thêm mới thành công!",
+                icon: "success",
+                timer: 3000
+            }).then(() => {
+                window.location.href = '@Url.Action("DSBTDNTD", "NhaTuyenDung")';
+            });
+        }
     });
 </script>

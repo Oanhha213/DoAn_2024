@@ -1,4 +1,5 @@
 ﻿using DoAnNet7_2.Models;
+using DoAnNet7_2.Models.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +13,8 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
     public class NganhNgheController : Controller
     {
         Jobsworld2Context db = new Jobsworld2Context();
+
+        [Authentication]
         [Route("DSNganhNghe")]
         [HttpGet]
         public IActionResult DSNganhNghe(int? page, string searchTerm)
@@ -50,6 +53,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             return View(pagedList);
         }
 
+        [Authentication]
         [Route("ThemNganhNghe")]
         [HttpGet]
         public IActionResult ThemNganhNghe()
@@ -57,6 +61,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             return View();
         }
 
+        [Authentication]
         [Route("ThemNganhNghe")]
         [HttpPost]
         public IActionResult ThemNganhNghe(Nganhnghe nn)
@@ -66,11 +71,13 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
                 // Set thời gian tạo bài viết
                 db.Nganhnghes.Add(nn);
                 db.SaveChanges();
-                return RedirectToAction("DSNganhNghe", "NganhNghe");
+                ViewBag.ThemNNTC = true;
+                //return RedirectToAction("DSNganhNghe", "NganhNghe");
             }
             return View(nn);
         }
 
+        [Authentication]
         [Route("SuaNganhNghe")]
         [HttpGet]
         public IActionResult SuaNganhNghe(int idNN)
@@ -79,6 +86,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             return View(nn);
         }
 
+        [Authentication]
         [Route("SuaNganhNghe")]
         [HttpPost]
 
@@ -102,6 +110,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             return View(nn);
         }
 
+        [Authentication]
         [Route("XoaNganhNghe")]
         [HttpGet]
 

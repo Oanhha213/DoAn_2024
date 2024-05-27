@@ -1,4 +1,5 @@
 ﻿using DoAnNet7_2.Models;
+using DoAnNet7_2.Models.Authentication;
 using DoAnNet7_2.Models.ViewModels;
 using DoAnNet7_2.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -16,6 +17,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
     {
         Jobsworld2Context db = new Jobsworld2Context();
 
+        [Authentication]
         [Route("")]
         [Route("DSNhaTuyenDung")]
         [HttpGet]
@@ -118,6 +120,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             return View(pagedList);
         }
 
+        [Authentication]
         [Route("ThemTKNTD")]
         [HttpGet]
         public IActionResult ThemTKNTD()
@@ -125,6 +128,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             return View();
         }
 
+        [Authentication]
         [Route("ThemTKNTD")]
         [HttpPost]
         public IActionResult ThemTKNTD(Taikhoan tk)
@@ -145,6 +149,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             return View(tk);
         }
 
+        [Authentication]
         [HttpGet]
         [Route("DSBTDCongTy")]
         public IActionResult DSBTDCongTy(int idTK, int? page, string searchTerm)
@@ -196,6 +201,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             return View(pagedList);
         }
 
+        [Authentication]
         [Route("ThemCongTy")]
         [HttpGet]
         public IActionResult ThemCongTy()
@@ -219,6 +225,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             return View(ct);
         }
 
+        [Authentication]
         [Route("ThemCongTy")]
         [HttpPost]
         public IActionResult ThemCongTy(Congty ct)
@@ -270,6 +277,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             return View(ct);
         }
 
+        [Authentication]
         [Route("SuaCongTy")]
         [HttpGet]
         public IActionResult SuaCongTy(int idTK)
@@ -288,6 +296,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             return View(ct);
         }
 
+        [Authentication]
         [Route("SuaCongTy")]
         [HttpPost]
         public IActionResult SuaCongTy(Congty ct)
@@ -329,6 +338,8 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
             }
             return View(ct);
         }
+
+        [Authentication]
         [Route("XoaCongTy")]
         [HttpGet]
         public IActionResult XoaCongTy(int idCT)

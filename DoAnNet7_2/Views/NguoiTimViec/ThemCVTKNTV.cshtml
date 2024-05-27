@@ -34,7 +34,7 @@
 
     </ul>
     <div class="col-md-9 row background-caidat" style="justify-content: center;    min-width: 80%;">
-        <div class="border-content col-md-6">
+        <div class="border-content col-md-8">
 
             <h1>Thêm CV</h1>
 
@@ -59,6 +59,7 @@
                             <input asp-for="cvFile" class="form-control" type="file" id="cvFile" name="cvFile" required />
                             <span asp-validation-for="cvFile" class="text-danger"></span>
                         </div>
+                        <input type="hidden" value="@ViewBag.IdTk" id="idTK"/>
                         <div class="form-group mt2">
                             <input class="btn btn-success" type="submit" value="Thêm mới" />
                             <a class="btn btn-danger" asp-action="DSCVNTV" asp-controller="NguoiTimViec" asp-route-IdTK="@ViewBag.IdTk">Bỏ qua</a>
@@ -76,6 +77,21 @@
                     alert('Chỉ cho phép tệp PDF.');
                     fileInput.value = '';
                     return false;
+                }
+            });
+            $(document).ready(function () {
+                var idTK = $('#idTK').val();
+                var themCVTC = '@(ViewBag.ThemCVTC ?? false)'; // Lấy giá trị biến bool từ ViewBag
+
+                if (themCVTC == "True") { // Kiểm tra xem việc thêm tài khoản có thành công không
+                    Swal.fire({
+                        title: "Thành công!",
+                        text: "Thêm mới thành công!",
+                        icon: "success",
+                        timer: 3000
+                    }).then(() => {
+                        window.location.href = '@Url.Action("DSCVNTV", "NguoiTimViec")?idTk' + idTK;
+                    });
                 }
             });
         </script>
