@@ -32,9 +32,9 @@
                     <a class="btn btn-secondary" asp-action="TaiXuongCV" asp-controller="CV" asp-route-idCV="@item.IdSyll" style="font-size: large">
                         <i class="fa-solid fa-file-arrow-down"></i>
                     </a>
-                    <a class="btn btn-success" asp-action="SuaCV" asp-controller="CV" asp-route-idSYLL="@item.IdSyll">
+@*                    <a class="btn btn-success" asp-action="SuaCV" asp-controller="CV" asp-route-idSYLL="@item.IdSyll">
                         <i class="fa-solid fa-pen"></i>
-                    </a>
+                    </a>*@
                     <a class="btn btn-danger" id="Xoa" onclick="confirmDelete(@item.IdSyll, @item.IdTk)">
                         <i class="fa-solid fa-trash"></i>
                     </a>

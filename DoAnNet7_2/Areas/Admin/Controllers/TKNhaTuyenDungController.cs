@@ -101,7 +101,7 @@ namespace DoAnNet7_2.Areas.Admin.Controllers
                 ViewBag.searchTerm = null; // Đặt ViewBag.SearchTerm về null nếu không có searchTerm
             }
 
-            var pagedList = query.OrderBy(x => x.Hoten).ToPagedList(pageNumber, pageSize);
+            var pagedList = query.OrderByDescending(x => x.Hoten).ToPagedList(pageNumber, pageSize);
 
             // Kiểm tra xem có kết quả trả về hay không
             if (pagedList.Count == 0)

@@ -36,7 +36,7 @@ namespace DoAnNet7_2.Controllers
                         .Include(x => x.IdTtNavigation)
                         .Include(x => x.IdTgknNavigation)
                         .OrderBy(x => x.Hannopcv < DateTime.Now) // Sắp xếp các bài tuyển dụng đã hết hạn xuống cuối danh sách
-                        .ThenBy(x => x.IdBtd); // Sau đó, sắp xếp theo thứ tự bình thường
+                        .ThenByDescending(x => x.IdBtd); // Sau đó, sắp xếp theo thứ tự bình thường
             var items = query.ToList();
             foreach (var item in items)
             {

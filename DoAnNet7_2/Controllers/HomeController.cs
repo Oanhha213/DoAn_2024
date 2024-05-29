@@ -33,7 +33,7 @@ namespace DoAnNet7_2.Controllers
                         .Include(x => x.IdTtNavigation)
                         .Include(x => x.IdTgknNavigation)
                         .AsNoTracking()
-                        .OrderBy(x => x.IdBtd);
+                        .OrderByDescending(x => x.IdBtd);
 
             // Kiểm tra xem có giá trị searchTerm không rồi gán giá trị cho ViewBag.SearchTerm
             if (!string.IsNullOrEmpty(searchTerm))

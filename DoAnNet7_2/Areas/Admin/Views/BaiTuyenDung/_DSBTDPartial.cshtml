@@ -71,14 +71,14 @@
                     <a class="btn btn-secondary" asp-action="DSUngTuyen" asp-controller="BaiTuyenDung" asp-route-idBTD="@item.IdBtd">Danh sách ứng tuyển</a>
                 </td>
                 <td>
-                    <a class="btn btn-success" asp-action="SuaBTD" asp-controller="BaiTuyenDung" asp-route-idBTD="@item.IdBtd">
+@*                    <a class="btn btn-success" asp-action="SuaBTD" asp-controller="BaiTuyenDung" asp-route-idBTD="@item.IdBtd">
                         <i class="fa-solid fa-pen"></i>
-                    </a>
+                    </a>*@
                     <a class="btn btn-danger" id="XoaBTD" onclick="confirmDelete(@item.IdBtd)">
                         <i class="fa-solid fa-trash"></i>
                     </a>
                 </td>
-            </tr>
+            </tr>   
             stt++;
         }
     </tbody>

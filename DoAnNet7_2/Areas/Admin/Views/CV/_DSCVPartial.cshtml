@@ -45,9 +45,9 @@
                     </div>*@
                 </td>
                 <td @*style="max-width: 250px !important"*@>
-                        <a class="btn btn-success" asp-action="SuaCV" asp-controller="CV" asp-route-idSYLL="@item.IdSyll">
+                        @*<a class="btn btn-success" asp-action="SuaCV" asp-controller="CV" asp-route-idSYLL="@item.IdSyll">
                             <i class="fa-solid fa-pen"></i>
-                        </a>
+                        </a>*@
                     @*<a class="btn btn-secondary" href="@Url.Action("DSBTDUngTuyen", "TKNguoiTimViec", new { idCV = item.IdSyll, previousView = "DanhSachCV" })">Bài viết đã ứng tuyển</a>*@
                     @*<a class="btn btn-secondary" asp-action="DSBTDUngTuyen" asp-controller="TKNguoiTimViec" asp-route-idCV="@item.IdSyll">Bài viết đã ứng tuyển</a>*@
                     <a class="btn btn-danger" id="Xoa" onclick="confirmDelete(@item.IdSyll)">
