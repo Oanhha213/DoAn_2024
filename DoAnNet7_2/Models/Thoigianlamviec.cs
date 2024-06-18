@@ -9,4 +9,6 @@ public partial class Thoigianlamviec
 
     public string? Tentglv { get; set; }
 
+    public virtual ICollection<Baituyendung> Baituyendungs { get; set; } = new List<Baituyendung>();
+
 }

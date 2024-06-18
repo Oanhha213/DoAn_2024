@@ -268,3 +268,8 @@ i {
     height: 20px;
 }
 
+.hide-text {
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+}

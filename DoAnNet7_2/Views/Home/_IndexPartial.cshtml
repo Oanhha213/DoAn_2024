@@ -9,7 +9,10 @@
     <div class=" col-md-6" style="margin-top: 20px; justify-content: space-between">
         <div class="border-content row hover-bg" style="width: -webkit-fill-available !important;min-height: 100%;">
             <div class="col-md-8">
-                <h3>
+                <h3 style="
+                            overflow: hidden !important;
+                            text-overflow: ellipsis !important;
+                            white-space: nowrap !important;">
                     @item.Tencongviec
                 </h3>
                 @if (item.Diachi != null)
@@ -41,9 +44,22 @@
                     </span>
                     |
                     <span>
+                        <i class="fa-solid fa-stopwatch"></i>
+                        @item.IdTglvNavigation?.Tentglv
+                    </span>
+                </p>
+                <p class="mt1">
+                    <span>
                         <i class="fa-solid fa-money-bills"></i>
                         @item.IdLuongNavigation?.Tenmucluong
                     </span>
+                </p>
+                <p class="mt1">
+                    Ngày đăng bài:
+                    @if (item.CreateAt.HasValue)
+                    {
+                        @item.CreateAt.Value.ToShortDateString()
+                    }
                 </p>
             </div>
             <div class="col-md-4" style="text-align: right;padding: 0 !important;">

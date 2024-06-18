@@ -19,7 +19,7 @@ namespace DoAnNet7_2.Controllers
         [Route("")]
         [Route("NguoiTimViec")]
         [HttpGet]
-        public IActionResult NguoiTimViec(int? page, string searchTerm, string luong, string tinhthanh, string nganhnghe, string kinhnghiem)
+        public IActionResult NguoiTimViec(int? page, string searchTerm, string luong, string tinhthanh, string nganhnghe, string kinhnghiem, string loaicv, string tglv)
         {
             var ID_TK = HttpContext.Session.GetInt32("IdTk");
             int pageNumber = page ?? 1;
@@ -35,6 +35,7 @@ namespace DoAnNet7_2.Controllers
                         .Include(x => x.IdTthtNavigation)
                         .Include(x => x.IdTtNavigation)
                         .Include(x => x.IdTgknNavigation)
+                        .Include(x => x.IdTglvNavigation)
                         .OrderBy(x => x.Hannopcv < DateTime.Now) // Sắp xếp các bài tuyển dụng đã hết hạn xuống cuối danh sách
                         .ThenByDescending(x => x.IdBtd); // Sau đó, sắp xếp theo thứ tự bình thường
             var items = query.ToList();
@@ -118,6 +119,18 @@ namespace DoAnNet7_2.Controllers
                 query = (IOrderedQueryable<Baituyendung>)query.Where(x => x.IdTgknNavigation.Tentgkn == kinhnghiem);
                 ViewBag.kinhnghiem = kinhnghiem;
             }
+
+            if (!string.IsNullOrEmpty(loaicv) && loaicv != "Loại công việc")
+            {
+                query = (IOrderedQueryable<Baituyendung>)query.Where(x => x.IdLcvNavigation.Tenlcv == loaicv);
+                ViewBag.loaicv = loaicv;
+            }
+
+            if (!string.IsNullOrEmpty(tglv) && tglv != "Thời gian làm việc")
+            {
+                query = (IOrderedQueryable<Baituyendung>)query.Where(x => x.IdTglvNavigation.Tentglv == tglv);
+                ViewBag.tglv = tglv;
+            }
             else
             {
                 ViewBag.searchTerm = null; // Đặt ViewBag.SearchTerm về null nếu không có searchTerm
@@ -125,6 +138,8 @@ namespace DoAnNet7_2.Controllers
                 ViewBag.tinhthanh = null;
                 ViewBag.nganhnghe = null;
                 ViewBag.kinhnghiem = null;
+                ViewBag.loaicv = null;
+                ViewBag.tglv = null;
             }
 
             if (ID_TK != null)
@@ -815,6 +830,7 @@ namespace DoAnNet7_2.Controllers
                 ViewBag.Tencongviec = btd.Tencongviec;
                 ViewBag.IdBtd = idBTD;
                 db.Entry(btd).Reference(x => x.IdTgknNavigation).Load();
+                db.Entry(btd).Reference(x => x.IdTglvNavigation).Load();
                 db.Entry(btd).Reference(x => x.IdLcvNavigation).Load();
                 db.Entry(btd).Reference(x => x.IdNnNavigation).Load();
                 db.Entry(btd).Reference(x => x.IdTkNavigation).Load();

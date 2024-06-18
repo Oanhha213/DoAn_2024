@@ -10,7 +10,10 @@
         <div class="border-content row hover-bg" style="width: -webkit-fill-available !important; position: relative; min-height: 100%">
             <div class="col-md-10 ">
                 <a style="display: inline-block; width: -webkit-fill-available; cursor: pointer; color: #000 !important" asp-route-idBTD="@item.IdBtd" asp-route-idTK="@ViewBag.IdTk" asp-action="ChiTietBTDNTV" asp-controller="NguoiTimViec" target="_blank">
-                    <h3>
+                    <h3 style="
+                            overflow: hidden !important;
+                            text-overflow: ellipsis !important;
+                            white-space: nowrap !important;">
                         @item.Tencongviec
                     </h3>
                     @if (item.Diachi != null)
@@ -42,9 +45,22 @@
                         </span>
                         |
                         <span>
+                            <i class="fa-solid fa-stopwatch"></i>
+                            @item.IdTglvNavigation?.Tentglv
+                        </span>
+                    </p>
+                    <p class="mt1">
+                        <span>
                             <i class="fa-solid fa-money-bills"></i>
                             @item.IdLuongNavigation?.Tenmucluong
                         </span>
+                    </p>
+                    <p class="mt1">
+                        Ngày đăng bài:
+                        @if (item.CreateAt.HasValue)
+                        {
+                            @item.CreateAt.Value.ToShortDateString()
+                        }
                     </p>
                 </a>
             </div>
@@ -138,7 +154,7 @@
             <nav aria-label="Page navigation">
                 <ul class="pagination" style="justify-content: center !important">
                     @Html.PagedListPager(Model, page => Url.Action("NguoiTimViec", new
-                {page, searchTerm = ViewBag.SearchTerm, luong = ViewBag.luong, tinhthanh = ViewBag.tinhthanh , nganhnghe = ViewBag.nganhnghe, kinhnghiem = ViewBag.kinhnghiem }),
+                {page, searchTerm = ViewBag.SearchTerm, luong = ViewBag.luong, tinhthanh = ViewBag.tinhthanh , nganhnghe = ViewBag.nganhnghe, kinhnghiem = ViewBag.kinhnghiem, loaicv = ViewBag.loaicv, tglv = ViewBag.tglv  }),
                 new PagedListRenderOptions
                 {
                 LiElementClasses = new List<string> { "page-item" },

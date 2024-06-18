@@ -69,7 +69,15 @@
                     <div class="row group-btn-access">
                         <div class="btn-profile">
                             <div class="nav-profile-img">
-                                <img class="avatar" src="@context.Session.GetString("Tenanh")" alt="image">
+                                @if (context.Session.GetString("Tenanh") == null)
+                                {
+                                    <img class="avatar" src="/assets/images/user_avatar.jpg" alt="image">
+                                }
+                                else
+                                {
+                                    <img class="avatar" src="@context.Session.GetString("Tenanh")" alt="image">
+                                    
+                                }
                             </div>
                             <div class="nav-profile-text">
                                 <p class="text-black">

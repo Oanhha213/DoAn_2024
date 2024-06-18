@@ -40,11 +40,11 @@
                         <div class="col-md-11 row" style="align-items: center">
                             @if (ViewBag.Anh != null)
                             {
-                                <img src="@ViewBag.Anh.Tenanh" alt="Avartar" style="max-width: 100px!important; max-height: 100px !important; border-radius: 50%;position: relative;" class="des mt1" />
+                                <img src="@ViewBag.Anh.Tenanh" alt="Avatar" style="max-width: 100px!important; max-height: 100px !important; border-radius: 50%;position: relative;" class="des mt1" />
                             }
                             else
                             {
-                                <img src="./assets/images/user_avatar.jpg" alt="Avartar" style="max-width: 100px!important; max-height: 100px !important; border-radius: 50%;position: relative;" class="des mt1" />
+                                <img src="/assets/images/user_avatar.jpg" alt="Avatar" style="max-width: 100px!important; max-height: 100px !important; border-radius: 50%;position: relative;" class="des mt1" />
                             }
                             <a class="btn btn-secondary sua-anh-big" style="" asp-action="SuaAnhDD" asp-controller="Anh" asp-route-idTK="@Model.IdTk">
                                 <i class="fa-solid fa-camera"></i>
@@ -214,7 +214,7 @@
                     }
                     else
                     {
-                        <img src="./assets/images/user_avatar.jpg" alt="Avartar" style="max-width: 100px!important; max-height: 100px !important; border-radius: 50%;position: relative;" class="des mt1" />
+                        <img src="/assets/images/user_avatar.jpg" alt="Avartar" style="max-width: 100px!important; max-height: 100px !important; border-radius: 50%;position: relative;" class="des mt1" />
                     }
                     <a class="btn btn-secondary sua-anh-big" style="" asp-action="SuaAnhDD" asp-controller="Anh" asp-route-idTK="@Model.IdTk">
                         <i class="fa-solid fa-camera"></i>

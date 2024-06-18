@@ -41,11 +41,11 @@
                 </button>
             </div>
             <div class="col-md-12 row mt2" style="justify-content: space-between; padding: 0 !important">
-                <div class="col-md-2" style="min-width: 24% !important; padding: 0 !important">
+                <div class="col-md-2" style="padding-left: 0 !important">
                     <div class="row select-form" style="flex-grow: 1;    text-align: center;">
-                        <i class="fa-solid fa-sack-dollar col-md-2 pad-none" style="vertical-align: middle; color: var(--blue)"></i>
+                        <i class="fa-solid fa-sack-dollar col-md-2 pad-none" style="vertical-align: middle; color: var(--blue);line-height: inherit;"></i>
                         <p style="padding: 0 !important" id="luong" class="result-option col-md-8"></p>
-                        <i class="fa-solid fa-angle-down col-md-2 pad-none" style="color: var(--blue)"></i>
+                        <i class="fa-solid fa-angle-down col-md-2 pad-none" style="color: var(--blue);line-height: inherit;"></i>
                         <div class="option-select" style="flex-grow: 1;max-width: -webkit-fill-available;">
                             <ul class="ul-select" style="min-height: 264px !important;overflow-y: auto;max-height: 264px">
                                 <li>Mức lương</li>
@@ -58,11 +58,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-2" style="min-width: 24% !important; padding: 0 !important">
+                <div class="col-md-2" style="padding-left: 0 !important">
                     <div class="row select-form" style="    text-align: center;">
-                        <i class="fa-solid fa-location-dot col-md-2 pad-none" style="vertical-align: middle; color: var(--blue)"></i>
+                        <i class="fa-solid fa-location-dot col-md-2 pad-none" style="vertical-align: middle; color: var(--blue);line-height: inherit;"></i>
                         <p style="padding: 0 !important" id="tinhthanh" class="result-option col-md-8"></p>
-                        <i class="fa-solid fa-angle-down col-md-2 pad-none" style="color: var(--blue)"></i>
+                        <i class="fa-solid fa-angle-down col-md-2 pad-none" style="color: var(--blue);line-height: inherit;"></i>
                         <div class="option-select" style="    max-width: -webkit-fill-available;">
                             <ul class="ul-select" style="max-height: 264px !important;overflow-y: auto;min-height: 264px">
                                 <li>Tỉnh thành</li>
@@ -74,11 +74,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-2" style="min-width: 24% !important; padding: 0 !important">
+                <div class="col-md-2" style="padding-left: 0 !important">
                     <div class="row select-form" style="    text-align: center;">
-                        <i class="fa-solid fa-briefcase col-md-2 pad-none" style="vertical-align: middle; color: var(--blue)"></i>
+                        <i class="fa-solid fa-briefcase col-md-2 pad-none" style="vertical-align: middle; color: var(--blue);line-height: inherit;"></i>
                         <p style="padding: 0 !important" id="nganhnghe" class="result-option col-md-8"></p>
-                        <i class="fa-solid fa-angle-down col-md-2 pad-none" style="color: var(--blue)"></i>
+                        <i class="fa-solid fa-angle-down col-md-2 pad-none" style="color: var(--blue);line-height: inherit;"></i>
                         <div class="option-select" style="    max-width: -webkit-fill-available;">
                             <ul class="ul-select" style="max-height: 264px !important;overflow-y: auto;min-height: 264px">
                                 <li>Ngành nghề</li>
@@ -90,11 +90,43 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-2" style="min-width: 24% !important; padding: 0 !important">
+                <div class="col-md-2" style="padding-left: 0 !important">
+                    <div class="row select-form" style="flex-grow: 1;text-align: center;">
+                        <i class="fa-solid fa-location-arrow col-md-2 pad-none" style="vertical-align: middle; color: var(--blue);line-height: inherit;"></i>
+                        <p style="padding: 0 !important" id="loaicv" class="result-option col-md-8"></p>
+                        <i class="fa-solid fa-angle-down col-md-2 pad-none" style="color: var(--blue);line-height: inherit;"></i>
+                        <div class="option-select" style="flex-grow: 1;max-width: -webkit-fill-available;">
+                            <ul class="ul-select" style="overflow-y: auto;max-height: 264px">
+                                <li>Loại công việc</li>
+                                @foreach (var option in ViewBag.loaicvOptions)
+                                {
+                                    <li>@option.Text</li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2" style="padding: 0 !important">
+                    <div class="row select-form" style="flex-grow: 1;text-align: center;">
+                        <i class="fa-solid fa-stopwatch col-md-2 pad-none" style="vertical-align: middle; color: var(--blue);line-height: inherit;"></i>
+                        <p style="padding: 0 !important" id="tglv" class="result-option col-md-8"></p>
+                        <i class="fa-solid fa-angle-down col-md-2 pad-none" style="color: var(--blue);line-height: inherit;"></i>
+                        <div class="option-select" style="flex-grow: 1;max-width: -webkit-fill-available;">
+                            <ul class="ul-select" style="overflow-y: auto;max-height: 264px">
+                                <li>Thời gian làm việc</li>
+                                @foreach (var option in ViewBag.tglvOptions)
+                                {
+                                    <li>@option.Text</li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2" style="padding-right: 0 !important">
                     <div class="row select-form" style="    text-align: center;">
-                        <i class="fa-solid fa-star col-md-2 pad-none" style="vertical-align: middle; color: var(--blue)"></i>
+                        <i class="fa-solid fa-star col-md-2 pad-none" style="vertical-align: middle; color: var(--blue);line-height: inherit;"></i>
                         <p style="padding: 0 !important" id="kinhnghiem" class="result-option col-md-8"></p>
-                        <i class="fa-solid fa-angle-down col-md-2 pad-none" style="color: var(--blue)"></i>
+                        <i class="fa-solid fa-angle-down col-md-2 pad-none" style="color: var(--blue);line-height: inherit;"></i>
                         <div class="option-select" style="    max-width: -webkit-fill-available;">
                             <ul class="ul-select" style="max-height: 264px !important;overflow-y: auto;min-height: 176px">
                                 <li>Kinh nghiệm</li>
@@ -171,6 +203,8 @@
             var tinhthanh = $('#tinhthanh').text();
             var nganhnghe = $('#nganhnghe').text();
             var kinhnghiem = $('#kinhnghiem').text();
+            var loaicv = $('#loaicv').text();
+            var tglv = $('#tglv').text();
 
             console.log("Lương: ", luong);
             console.log("Tỉnh thành: ", tinhthanh);
@@ -186,7 +220,9 @@
                     luong: luong,
                     tinhthanh: tinhthanh,
                     nganhnghe: nganhnghe,
-                    kinhnghiem: kinhnghiem
+                    kinhnghiem: kinhnghiem,
+                    loaicv: loaicv,
+                    tglv: tglv
                 },
                 success: function (response) {
                     // Xử lý dữ liệu trả về từ server

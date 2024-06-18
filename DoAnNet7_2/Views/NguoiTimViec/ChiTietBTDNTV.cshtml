@@ -141,6 +141,14 @@
                     </div>
                     <div class="">
                         <h5>
+                            Thời gian làm việc
+                        </h5>
+                        <div class="des">
+                            @Html.DisplayFor(model => model.IdTglvNavigation.Tentglv)
+                        </div>
+                    </div>
+                    <div class="">
+                        <h5>
                             Yêu cầu khác
                         </h5>
                         <div class="des">
@@ -170,6 +178,10 @@
                                 </span>
                             }
                         </p>
+                    </div>
+                    <div>
+                        Ngày đăng bài:
+                        @Html.DisplayFor(model => model.CreateAt)
                     </div>
                 </div>
             </div>

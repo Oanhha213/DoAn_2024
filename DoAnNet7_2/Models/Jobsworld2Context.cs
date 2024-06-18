@@ -90,6 +90,7 @@ public partial class Jobsworld2Context : DbContext
             entity.Property(e => e.IdTtht).HasColumnName("ID_TTHT");
             entity.Property(e => e.IdLcv).HasColumnName("ID_LCV");
             entity.Property(e => e.IdNn).HasColumnName("ID_NN");
+            entity.Property(e => e.IdTglv).HasColumnName("ID_TGLV");
             entity.Property(e => e.IdTgkn).HasColumnName("ID_TGKN");
             entity.Property(e => e.IdTk).HasColumnName("ID_TK");
             entity.Property(e => e.IdTt).HasColumnName("ID_TT");
@@ -97,9 +98,9 @@ public partial class Jobsworld2Context : DbContext
             entity.Property(e => e.Hannopcv)
                    .HasColumnType("datetime")
                    .HasColumnName("HANNOPCV");
-            entity.Property(e => e.Thoigianlamviec)
-                    .HasMaxLength(500)
-                    .HasColumnName("THOIGIANLAMVIEC");
+            //entity.Property(e => e.Thoigianlamviec)
+            //        .HasMaxLength(500)
+            //        .HasColumnName("THOIGIANLAMVIEC");
             entity.Property(e => e.Motacongviec)
                 .HasColumnType("ntext")
                 .HasColumnName("MOTACONGVIEC");
@@ -115,7 +116,9 @@ public partial class Jobsworld2Context : DbContext
             entity.Property(e => e.CreateAt)
                 .HasColumnType("datetime")
                 .HasColumnName("CREATE_AT");
-
+            entity.HasOne(d => d.IdTglvNavigation).WithMany(p => p.Baituyendungs)
+                .HasForeignKey(d => d.IdTglv)
+                .HasConstraintName("FK__BAITUYEND__ID_TG__3A4CA8FD");
             entity.HasOne(d => d.IdLcvNavigation).WithMany(p => p.Baituyendungs)
                 .HasForeignKey(d => d.IdLcv)
                 .HasConstraintName("FK__BAITUYEND__ID_LC__5070F446");
@@ -140,6 +143,7 @@ public partial class Jobsworld2Context : DbContext
             entity.HasOne(d => d.IdTthtNavigation).WithMany(p => p.Baituyendungs)
                 .HasForeignKey(d => d.IdTtht)
                 .HasConstraintName("FK__BAITUYEND__ID_TT__02FC7413");
+
         });
 
         modelBuilder.Entity<Chungchi>(entity =>

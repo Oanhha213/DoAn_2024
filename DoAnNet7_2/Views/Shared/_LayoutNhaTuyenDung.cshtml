@@ -95,7 +95,15 @@
             </p>
             <button class="btn-profile">
                 <div class="nav-profile-img">
-                    <img class="avatar" src="@context.Session.GetString("Tenanh")" alt="image">
+                    @if (context.Session.GetString("Tenanh") == null)
+                    {
+                        <img class="avatar" src="/assets/images/user_avatar.jpg" alt="image">
+                    }
+                    else
+                    {
+                        <img class="avatar" src="@context.Session.GetString("Tenanh")" alt="image">
+
+                    }
                 </div>
                 <div class="nav-profile-text">
                     <p class="text-black">
@@ -111,7 +119,15 @@
     <div class="row main">
         <div class="side-bar col-md-3" style="max-width: 20% !important">
             <div style="margin-top: 30px; display: flex; flex-direction: column; align-items: center">
-                <img class="avatarNTD" src="@context.Session.GetString("Tenanh")" alt="anh-dai-dien">
+                @if (context.Session.GetString("Tenanh") == null)
+                {
+                    <img class="avatarNTD" src="/assets/images/user_avatar.jpg" alt="anh-dai-dien">
+                }
+                else
+                {
+                    <img class="avatarNTD" src="@context.Session.GetString("Tenanh")" alt="anh-dai-dien">
+
+                }
                 <div class="name-admin">
                     <h4 style="text-align: center;font-size: 1.5rem !important;">
                         @context.Session.GetString("Hoten")

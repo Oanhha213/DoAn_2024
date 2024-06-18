@@ -12,6 +12,10 @@
             {
                 <img src="@ViewBag.Anh.Tenanh" alt="Avartar" style="max-width: 100px!important; max-height: 100px !important; border-radius: 50%;position: relative;" class="des mt1" />
             }
+            else
+            {
+                <img src="/assets/images/user_avatar.jpg" alt="Avartar" style="max-width: 100px!important; max-height: 100px !important; border-radius: 50%;position: relative;" class="des mt1" />
+            }
             <a class="btn btn-secondary sua-anh-big" style="" asp-action="SuaAnhDDNTD" asp-controller="NhaTuyenDung" asp-route-idTK="@Model.IdTk">
                 <i class="fa-solid fa-camera"></i>
             </a>

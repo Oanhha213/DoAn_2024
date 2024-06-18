@@ -542,3 +542,9 @@ input[type=file] {
 .pad-none{
     padding: 0 !important;
 }
+
+.hide-text {
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+}

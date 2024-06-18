@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace DoAnNet7_2.Models;
 
@@ -25,7 +26,8 @@ public partial class Baituyendung
     public int IdLcv { get; set; }
 
     [DisplayName("Thời gian làm việc")]
-    public string Thoigianlamviec { get; set; } = null!;
+    //public string Thoigianlamviec { get; set; } = null!;
+    public int IdTglv { get; set; } 
 
     [DisplayName("Ngành nghề")]
     public int? IdNn { get; set; }
@@ -52,6 +54,7 @@ public partial class Baituyendung
     public DateTime? Hannopcv { get; set; } = null!;
 
     [DisplayName("Thời gian tạo bài")]
+    [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
     public DateTime? CreateAt { get; set; }
 
     public virtual ICollection<CongviecSyll> CongviecSylls { get; set; } = new List<CongviecSyll>();
@@ -62,6 +65,8 @@ public partial class Baituyendung
     public virtual Nganhnghe? IdNnNavigation { get; set; }
 
     public virtual Thoigiankinhnghiem? IdTgknNavigation { get; set; }
+
+    public virtual Thoigianlamviec? IdTglvNavigation { get; set; }
 
     public virtual Taikhoan? IdTkNavigation { get; set; }
 

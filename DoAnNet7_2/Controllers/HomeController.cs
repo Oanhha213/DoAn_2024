@@ -18,7 +18,7 @@ namespace DoAnNet7_2.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index(int? page, string searchTerm, string luong, string tinhthanh, string nganhnghe, string kinhnghiem)
+        public IActionResult Index(int? page, string searchTerm, string luong, string tinhthanh, string nganhnghe, string kinhnghiem, string loaicv, string tglv)
         {
 
             int pageNumber = page ?? 1;
@@ -32,6 +32,7 @@ namespace DoAnNet7_2.Controllers
                         .Include(x => x.IdTthtNavigation)
                         .Include(x => x.IdTtNavigation)
                         .Include(x => x.IdTgknNavigation)
+                        .Include(x => x.IdTglvNavigation)
                         .AsNoTracking()
                         .OrderByDescending(x => x.IdBtd);
 
@@ -50,11 +51,15 @@ namespace DoAnNet7_2.Controllers
             //var luongs = db.Luongs.Select(x => x.Tenmucluong).Distinct().OrderBy(x => x).ToList();
             var tinhthanhs = db.Tinhthanhs.Select(x => x.Tentt).Distinct().ToList();
             var nganhnghes = db.Nganhnghes.Select(x => x.Tennganhnghe).Distinct().ToList();
+            var loaicvs = db.Loaicongviecs.Select(x => x.Tenlcv).Distinct().ToList();
+            var tglvs = db.Thoigianlamviecs.Select(x => x.Tentglv).Distinct().ToList();
             //var kinhnghiems = db.Thoigiankinhnghiems.Select(x => x.Tentgkn).Distinct().ToList();
 
             // Kiểm tra xem có bản ghi nào có Tennganhnghe hoặc Tentt là "Khác" không
             var khacNganhNghe = nganhnghes.FirstOrDefault(x => x == "Khác");
             var khacTinhThanh = tinhthanhs.FirstOrDefault(x => x == "Khác");
+            var khacTglv = tglvs.FirstOrDefault(x => x == "Khác");
+            var khaclcv = loaicvs.FirstOrDefault(x => x == "Khác");
 
             if (khacNganhNghe != null)
             {
@@ -67,13 +72,26 @@ namespace DoAnNet7_2.Controllers
                 tinhthanhs.Remove(khacTinhThanh);
                 tinhthanhs.Add(khacTinhThanh);
             }
+
+            if (khacTglv != null)
+            {
+                tglvs.Remove(khacTinhThanh);
+                tglvs.Add(khacTinhThanh);
+            }
+
+            if (khaclcv != null)
+            {
+                loaicvs.Remove(khacTinhThanh);
+                loaicvs.Add(khacTinhThanh);
+            }
             // Tạo các option từ dữ liệu truy vấn
             //ViewBag.luongOptions = luongs.Select(l => new SelectListItem { Value = l, Text = l }).ToList();
             ViewBag.tinhthanhOptions = tinhthanhs.Select(tt => new SelectListItem { Value = tt, Text = tt }).ToList();
             ViewBag.nganhngheOptions = nganhnghes.Select(nn => new SelectListItem { Value = nn, Text = nn }).ToList();
+            ViewBag.loaicvOptions = loaicvs.Select(lcv => new SelectListItem { Value = lcv, Text = lcv }).ToList();
+            ViewBag.tglvOptions = tglvs.Select(tglv => new SelectListItem { Value = tglv, Text = tglv }).ToList();
             //ViewBag.kinhnghiemOptions = kinhnghiems.Select(kn => new SelectListItem { Value = kn, Text = kn }).ToList();
 
-            // Áp dụng các bộ lọc
             // Áp dụng các bộ lọc
             if (!string.IsNullOrEmpty(luong) && luong != "Mức lương")
             {
@@ -98,6 +116,18 @@ namespace DoAnNet7_2.Controllers
                 query = (IOrderedQueryable<Baituyendung>)query.Where(x => x.IdTgknNavigation.Tentgkn == kinhnghiem);
                 ViewBag.kinhnghiem = kinhnghiem;
             }
+
+            if (!string.IsNullOrEmpty(loaicv) && loaicv != "Loại công việc")
+            {
+                query = (IOrderedQueryable<Baituyendung>)query.Where(x => x.IdLcvNavigation.Tenlcv == loaicv);
+                ViewBag.loaicv = loaicv;
+            }
+
+            if (!string.IsNullOrEmpty(tglv) && tglv != "Thời gian làm việc")
+            {
+                query = (IOrderedQueryable<Baituyendung>)query.Where(x => x.IdTglvNavigation.Tentglv == tglv);
+                ViewBag.tglv = tglv;
+            }
             else
             {
                 ViewBag.searchTerm = null; // Đặt ViewBag.SearchTerm về null nếu không có searchTerm
@@ -105,6 +135,8 @@ namespace DoAnNet7_2.Controllers
                 ViewBag.tinhthanh = null;
                 ViewBag.nganhnghe = null;
                 ViewBag.kinhnghiem = null;
+                ViewBag.loaicv = null;
+                ViewBag.tglv = null;
             }
 
             var pagedList = query.ToPagedList(pageNumber, pageSize);
