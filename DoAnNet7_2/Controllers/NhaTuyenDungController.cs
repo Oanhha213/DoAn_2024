@@ -89,6 +89,7 @@ namespace DoAnNet7_2.Controllers
                         .Include(x => x.IdNnNavigation)
                         .Include(x => x.IdLcvNavigation)
                         .Include(x => x.IdTkNavigation)
+                        .Include(x => x.IdTglvNavigation)
                         .Take(5) // Chỉ lấy 5 bài đăng mới nhất
                         .ToList();
             ViewBag.BTDMoi = BTDMoi;
