@@ -885,6 +885,14 @@
       "PackagePath": "staticwebassets\\uploads\\CV\\638513047491700270_CV.pdf"
     },
     {
+      "Id": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\uploads\\CV\\638543785343616656_CV.pdf",
+      "PackagePath": "staticwebassets\\uploads\\CV\\638543785343616656_CV.pdf"
+    },
+    {
+      "Id": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\uploads\\CV\\638543797924422536_CV.pdf",
+      "PackagePath": "staticwebassets\\uploads\\CV\\638543797924422536_CV.pdf"
+    },
+    {
       "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.DoAnNet7_2.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },

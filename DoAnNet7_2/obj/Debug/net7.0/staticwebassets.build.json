@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "5LnMzf+0VUcs5cuV+ZeHTVbTdoVb0aCMFUxUnFcjXE8=",
+  "Hash": "09+35rY22yJgqL/jZAqDaM58GGmt5wpZDlrtV0V8pnI=",
   "Source": "DoAnNet7_2",
   "BasePath": "_content/DoAnNet7_2",
   "Mode": "Default",
@@ -3789,6 +3789,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\CV\\638513047491700270_CV.pdf"
+    },
+    {
+      "Identity": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\uploads\\CV\\638543785343616656_CV.pdf",
+      "SourceId": "DoAnNet7_2",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\",
+      "BasePath": "_content/DoAnNet7_2",
+      "RelativePath": "uploads/CV/638543785343616656_CV.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\CV\\638543785343616656_CV.pdf"
+    },
+    {
+      "Identity": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\uploads\\CV\\638543797924422536_CV.pdf",
+      "SourceId": "DoAnNet7_2",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Ha Yen\\Documents\\oanhDoc\\Ki2Nam4\\DoAn\\DoAnNet7_2\\DoAnNet7_2\\wwwroot\\",
+      "BasePath": "_content/DoAnNet7_2",
+      "RelativePath": "uploads/CV/638543797924422536_CV.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\CV\\638543797924422536_CV.pdf"
     }
   ]
 }
